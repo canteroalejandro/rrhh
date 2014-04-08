@@ -1,0 +1,18 @@
+= form_for @estado_trib_afip do |f|
+  - if @estado_trib_afip.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@estado_trib_afip.errors.count, "error")} prohibited this estado_trib_afip from being saved:"
+      ul
+        - @estado_trib_afip.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :clave
+    = f.text_field :clave
+  .field
+    = f.label :fechaAlta
+    = f.date_select :fechaAlta
+  .field
+    = f.label :condicion
+    = f.text_field :condicion
+  .actions = f.submit 'Save'

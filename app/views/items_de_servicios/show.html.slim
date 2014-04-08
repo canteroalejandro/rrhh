@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Monto establecido:
+  = @item_de_servicio.monto_establecido
+
+= link_to 'Edit', edit_item_de_servicio_path(@item_de_servicio)
+'|
+= link_to 'Back', items_de_servicios_path

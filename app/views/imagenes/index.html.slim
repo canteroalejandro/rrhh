@@ -1,0 +1,23 @@
+h1 Listing imagenes
+
+table
+  tr
+    th Nombre
+    th Fecha
+    th Url imagen
+    th
+    th
+    th
+
+  - @imagenes.each do |imagen|
+    tr
+      td = imagen.nombre
+      td = imagen.fecha
+      td = imagen.url_imagen
+      td = link_to 'Show', imagen
+      td = link_to 'Edit', edit_imagen_path(imagen)
+      td = link_to 'Destroy', imagen, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Imagen', new_imagen_path

@@ -1,0 +1,12 @@
+= form_for @contador do |f|
+  - if @contador.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@contador.errors.count, "error")} prohibited this contador from being saved:"
+      ul
+        - @contador.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :nombre
+    = f.text_field :nombre
+  .actions = f.submit 'Save'

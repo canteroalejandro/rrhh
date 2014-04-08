@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Nombre:
+  = @obra_social.nombre
+p
+  strong Detalle:
+  = @obra_social.detalle
+
+= link_to 'Edit', edit_obra_social_path(@obra_social)
+'|
+= link_to 'Back', obra_sociales_path

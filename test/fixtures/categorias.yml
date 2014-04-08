@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  identificador: MyString
+  montoMaxFacturado: 9.99
+  gastosMaxLuz: 9.99
+  fechaVigencia: 2014-04-07
+
+two:
+  identificador: MyString
+  montoMaxFacturado: 9.99
+  gastosMaxLuz: 9.99
+  fechaVigencia: 2014-04-07

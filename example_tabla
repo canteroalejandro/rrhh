@@ -1,0 +1,53 @@
+table#sample-table-2.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th.center
+          label
+            input type="checkbox"
+            span.lbl
+        th Domain
+        th Price
+        th.hidden-480 Clicks
+        th.hidden-phone
+          i.icon-time.bigger-110.hidden-phone
+          | Update
+        th.hidden-480 Status
+        th
+    tbody
+      tr
+        td.center
+          label
+            input type="checkbox" /
+            span.lbl
+        td
+          a href="#"  app.com
+        td $45
+        td.hidden-480 3,330
+        td.hidden-phone Feb 12
+        td.hidden-480
+          span.label.label-warning Expiring
+        td.td-actions
+          .hidden-phone.visible-desktop.action-buttons
+            a.blue href="#" 
+              i.icon-zoom-in.bigger-130
+            a.green href="#" 
+              i.icon-pencil.bigger-130
+            a.red href="#" 
+              i.icon-trash.bigger-130
+          .hidden-desktop.visible-phone
+            .inline.position-relative
+              button.btn.btn-minier.btn-yellow.dropdown-toggle data-toggle="dropdown" 
+                i.icon-caret-down.icon-only.bigger-120
+              ul.dropdown-menu.dropdown-icon-only.dropdown-yellow.pull-right.dropdown-caret.dropdown-close
+                li
+                  a.tooltip-info data-rel="tooltip" href="#" title="View" 
+                    span.blue
+                      i.icon-zoom-in.bigger-120
+                li
+                  a.tooltip-success data-rel="tooltip" href="#" title="Edit" 
+                    span.green
+                      i.icon-edit.bigger-120
+                li
+                  a.tooltip-error data-rel="tooltip" href="#" title="Delete" 
+                    span.red
+                      i.icon-trash.bigger-120

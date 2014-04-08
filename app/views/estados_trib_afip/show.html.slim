@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Clave:
+  = @estado_trib_afip.clave
+p
+  strong Fechaalta:
+  = @estado_trib_afip.fechaAlta
+p
+  strong Condicion:
+  = @estado_trib_afip.condicion
+
+= link_to 'Edit', edit_estado_trib_afip_path(@estado_trib_afip)
+'|
+= link_to 'Back', estados_trib_afip_path

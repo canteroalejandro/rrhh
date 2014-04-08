@@ -1,0 +1,12 @@
+= form_for @cuenta_corriente do |f|
+  - if @cuenta_corriente.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@cuenta_corriente.errors.count, "error")} prohibited this cuenta_corriente from being saved:"
+      ul
+        - @cuenta_corriente.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :descripcion
+    = f.text_field :descripcion
+  .actions = f.submit 'Save'

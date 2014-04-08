@@ -1,0 +1,16 @@
+/tmp
+/app/assets/javascripts/themes/js/jquery.flot.min.js
+/app/assets/javascripts/themes/js/jquery.flot.pie.min.js
+/app/assets/javascripts/themes/js/jquery.flot.resize.min.js
+/app/assets/javascripts/themes/js/jquery.min.js
+/app/assets/javascripts/themes/js/jquery.slimscroll.min.js
+/app/assets/javascripts/themes/js/jquery.sparkline.min.js
+/app/assets/javascripts/themes/js/jquery-ui-1.10.3.custom.min.js
+/app/assets/javascripts/themes/js/jquery.ui.touch-punch.min.js
+/app/assets/javascripts/themes/js/w8-elements.min.js
+/app/assets/javascripts/themes/js/w8.min.js
+/app/assets/javascripts/themes/js/jquery.easy-pie-chart.min.js
+db/development.sqlite3
+/.gitignore~
+/vendor/assets/javascripts/angular-mocks.js
+/log

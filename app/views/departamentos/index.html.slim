@@ -1,0 +1,19 @@
+h1 Listing departamentos
+
+table
+  tr
+    th Nombre
+    th
+    th
+    th
+
+  - @departamentos.each do |departamento|
+    tr
+      td = departamento.nombre
+      td = link_to 'Show', departamento
+      td = link_to 'Edit', edit_departamento_path(departamento)
+      td = link_to 'Destroy', departamento, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Departamento', new_departamento_path

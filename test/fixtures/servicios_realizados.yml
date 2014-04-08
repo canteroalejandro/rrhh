@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  descripcion: MyString
+  monto: 9.99
+  fecha: 2014-04-07
+  bonificacion: 9.99
+
+two:
+  descripcion: MyString
+  monto: 9.99
+  fecha: 2014-04-07
+  bonificacion: 9.99

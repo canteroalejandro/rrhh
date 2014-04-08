@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Nombre:
+  = @cliente.nombre
+p
+  strong Nroctamunicipal:
+  = @cliente.nroCtaMunicipal
+p
+  strong Cbu:
+  = @cliente.cbu
+p
+  strong Claveafip:
+  = @cliente.claveAfip
+
+= link_to 'Edit', edit_cliente_path(@cliente)
+'|
+= link_to 'Back', clientes_path

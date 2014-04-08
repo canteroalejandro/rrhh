@@ -1,0 +1,19 @@
+h1 Listing paises
+
+table
+  tr
+    th Nombre
+    th
+    th
+    th
+
+  - @paises.each do |pais|
+    tr
+      td = pais.nombre
+      td = link_to 'Show', pais
+      td = link_to 'Edit', edit_pais_path(pais)
+      td = link_to 'Destroy', pais, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Pais', new_pais_path

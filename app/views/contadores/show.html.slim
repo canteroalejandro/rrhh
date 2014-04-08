@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Nombre:
+  = @contador.nombre
+
+= link_to 'Edit', edit_contador_path(@contador)
+'|
+= link_to 'Back', contadores_path

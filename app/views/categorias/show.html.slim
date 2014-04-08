@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Identificador:
+  = @categoria.identificador
+p
+  strong Montomaxfacturado:
+  = @categoria.montoMaxFacturado
+p
+  strong Gastosmaxluz:
+  = @categoria.gastosMaxLuz
+p
+  strong Fechavigencia:
+  = @categoria.fechaVigencia
+
+= link_to 'Edit', edit_categoria_path(@categoria)
+'|
+= link_to 'Back', categorias_path

@@ -1,0 +1,27 @@
+p#notice = notice
+
+p
+  strong Fecha:
+  = @movimiento.fecha
+p
+  strong Descripcion:
+  = @movimiento.descripcion
+p
+  strong Nro documento:
+  = @movimiento.nro_documento
+p
+  strong Debe:
+  = @movimiento.debe
+p
+  strong Haber:
+  = @movimiento.haber
+p
+  strong Bonifpaqserv:
+  = @movimiento.bonifPaqServ
+p
+  strong Bonifmanual:
+  = @movimiento.bonifManual
+
+= link_to 'Edit', edit_movimiento_path(@movimiento)
+'|
+= link_to 'Back', movimientos_path

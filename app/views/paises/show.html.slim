@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Nombre:
+  = @pais.nombre
+
+= link_to 'Edit', edit_pais_path(@pais)
+'|
+= link_to 'Back', paises_path

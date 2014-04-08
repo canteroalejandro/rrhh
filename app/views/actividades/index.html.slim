@@ -1,0 +1,50 @@
+page-header.position-relative
+  .row-fluid
+    .widget-box.transparent
+      .widget-header.widget-header-flat
+        h4.lighter
+          i.icon-list.blue
+          | Actividades
+        .widget-toolbar
+          = link_to(new_actividad_path) do
+            button.btn.btn-small.btn-success
+              i.icon-plus
+              span Nueva Actividad
+          end
+
+      .widget-body
+        .widget-body-inner style="display: block;"
+          .widget-main.no-padding
+
+            table.table.table-bordered.table-striped
+              thead
+                tr
+                  th
+                    i.icon-caret-right.blue
+                    | Descripcion
+                  th
+                    i.icon-caret-right.blue
+                    | Codigo
+                  th.hidden-phone
+                    i.icon-caret-right.blue
+                    | Acciones
+              tbody
+              - @actividades.each do |actividad|
+                tr
+                  td = actividad.codigo
+                  td
+                    b.green = actividad.descripcion
+                  td
+                    .btn-group
+                      = link_to(actividad) do
+                        button.btn.btn-mini.btn-yellow
+                          i.icon-search.bigger-125
+                      end
+                      = link_to(edit_actividad_path(actividad)) do
+                        button.btn.btn-mini.btn-info
+                          i.icon-edit.bigger-125
+                      end
+                      = link_to actividad, :confirm => 'Are you sure?', :method => :delete do
+                        button.btn.btn-mini.btn-danger
+                          i.icon-trash.bigger-125
+                      end

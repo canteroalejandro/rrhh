@@ -1,0 +1,250 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 54.0,
+		"selected_items":
+		[
+			[
+				"install p",
+				"Package Control: Install Package"
+			],
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"conver",
+				"Indentation: Convert to Spaces"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/ale/Ubuntu One/CursoNodejs/read_file_sync.js",
+		"/home/ale/Ubuntu One/CursoNodejs/hola.js",
+		"/home/ale/Ubuntu One/CursoNodejs/files/read_file_async.js",
+		"/media/ale/DATA/PROYECTOS/unror/app/views/clientes/_form.html.slim",
+		"/home/ale/Ubuntu One/CursoNodejs/two.txt",
+		"/home/ale/Ubuntu One/CursoNodejs/one.txt",
+		"/media/ale/DATA/PROYECTOS/unror/app/models/datos_afip.rb",
+		"/media/ale/DATA/PROYECTOS/unror/app/controllers/clientes_controller.rb",
+		"/media/ale/DATA/PROYECTOS/unror/app/views/clientes/index.html.erb",
+		"/media/ale/DATA/PROYECTOS/unror/app/views/clientes/show.html.slim",
+		"/media/ale/DATA/PROYECTOS/unror/app/models/cliente.rb",
+		"/media/ale/DATA/PROYECTOS/unror/config/routes.rb",
+		"/media/ale/DATA/PROYECTOS/unror/app/controllers/datos_afips_controller.rb",
+		"/media/ale/DATA/PROYECTOS/unror/app/views/datos_afips/index.html.slim",
+		"/media/ale/DATA/PROYECTOS/unror/app/views/datos_afips/edit.html.slim",
+		"/media/ale/DATA/PROYECTOS/unror/app/views/clientes/destroy.html.slim",
+		"/media/ale/DATA/PROYECTOS/unror/app/views/obra_socials/index.html.slim",
+		"/media/ale/DATA/PROYECTOS/unror/app/models/obra_social.rb",
+		"/media/ale/DATA/PROYECTOS/unror/db/migrate/20131015235846_create_obra_socials.rb",
+		"/media/ale/DATA/PROYECTOS/unror/app/views/obra_socials/show.html.slim",
+		"/media/ale/DATA/PROYECTOS/unror/app/views/contadors/show.html.slim",
+		"/media/ale/DATA/PROYECTOS/unror/app/views/datos_afips/show.html.slim",
+		"/media/ale/DATA/PROYECTOS/unror/app/views/datos_afips/_form.html.slim",
+		"/media/ale/DATA/PROYECTOS/unror/db/schema.rb",
+		"/media/ale/DATA/PROYECTOS/unror/app/views/datos_afips/new.html.slim"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"alta",
+			"datos_afips",
+			"dato_afip",
+			"dato",
+			"datos",
+			"obra",
+			"datos",
+			"obra",
+			"clave",
+			"datos_afip",
+			"contador_cliente",
+			"p"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "/media/ale/DATA/PROYECTOS/unror"
+		}
+	],
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.coffeecompile_output":
+	{
+		"height": 124.0
+	},
+	"project": "",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"dato",
+				"app/models/datos_afip.rb"
+			],
+			[
+				"datos",
+				"app/models/datos_afip.rb"
+			],
+			[
+				"rou",
+				"config/routes.rb"
+			],
+			[
+				"routes",
+				"config/routes.rb"
+			],
+			[
+				"clie",
+				"app/models/cliente.rb"
+			],
+			[
+				"cliente",
+				"app/models/cliente.rb"
+			],
+			[
+				"schem",
+				"db/schema.rb"
+			],
+			[
+				"obra",
+				"app/models/obra_social.rb"
+			],
+			[
+				"ob",
+				"app/models/obra_social.rb"
+			],
+			[
+				"client",
+				"app/models/cliente.rb"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 318.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Descripcion:
+  = @servicio.descripcion
+p
+  strong Monto:
+  = @servicio.monto
+
+= link_to 'Edit', edit_servicio_path(@servicio)
+'|
+= link_to 'Back', servicios_path

@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Nombre:
+  = @departamento.nombre
+
+= link_to 'Edit', edit_departamento_path(@departamento)
+'|
+= link_to 'Back', departamentos_path

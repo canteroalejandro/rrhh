@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fecha: 2014-04-07
+  descripcion: MyString
+  nro_documento: MyString
+  debe: false
+  haber: false
+  bonifPaqServ: 9.99
+  bonifManual: 9.99
+
+two:
+  fecha: 2014-04-07
+  descripcion: MyString
+  nro_documento: MyString
+  debe: false
+  haber: false
+  bonifPaqServ: 9.99
+  bonifManual: 9.99

@@ -1,0 +1,19 @@
+h1 Listing contadores
+
+table
+  tr
+    th Nombre
+    th
+    th
+    th
+
+  - @contadores.each do |contador|
+    tr
+      td = contador.nombre
+      td = link_to 'Show', contador
+      td = link_to 'Edit', edit_contador_path(contador)
+      td = link_to 'Destroy', contador, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Contador', new_contador_path

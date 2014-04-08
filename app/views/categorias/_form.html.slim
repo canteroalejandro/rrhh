@@ -1,0 +1,21 @@
+= form_for @categoria do |f|
+  - if @categoria.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@categoria.errors.count, "error")} prohibited this categoria from being saved:"
+      ul
+        - @categoria.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :identificador
+    = f.text_field :identificador
+  .field
+    = f.label :montoMaxFacturado
+    = f.text_field :montoMaxFacturado
+  .field
+    = f.label :gastosMaxLuz
+    = f.text_field :gastosMaxLuz
+  .field
+    = f.label :fechaVigencia
+    = f.date_select :fechaVigencia
+  .actions = f.submit 'Save'

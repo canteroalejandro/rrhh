@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Descripcion:
+  = @servicio_realizado.descripcion
+p
+  strong Monto:
+  = @servicio_realizado.monto
+p
+  strong Fecha:
+  = @servicio_realizado.fecha
+p
+  strong Bonificacion:
+  = @servicio_realizado.bonificacion
+
+= link_to 'Edit', edit_servicio_realizado_path(@servicio_realizado)
+'|
+= link_to 'Back', servicios_realizados_path

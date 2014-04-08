@@ -1,0 +1,19 @@
+h1 Listing items_de_servicios
+
+table
+  tr
+    th Monto establecido
+    th
+    th
+    th
+
+  - @items_de_servicios.each do |item_de_servicio|
+    tr
+      td = item_de_servicio.monto_establecido
+      td = link_to 'Show', item_de_servicio
+      td = link_to 'Edit', edit_item_de_servicio_path(item_de_servicio)
+      td = link_to 'Destroy', item_de_servicio, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Item de servicio', new_item_de_servicio_path

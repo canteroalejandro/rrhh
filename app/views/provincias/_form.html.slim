@@ -1,0 +1,12 @@
+= form_for @provincia do |f|
+  - if @provincia.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@provincia.errors.count, "error")} prohibited this provincia from being saved:"
+      ul
+        - @provincia.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :nombre
+    = f.text_field :nombre
+  .actions = f.submit 'Save'

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  clave: MyString
+  fechaAlta: 2014-04-07
+  condicion: MyString
+
+two:
+  clave: MyString
+  fechaAlta: 2014-04-07
+  condicion: MyString

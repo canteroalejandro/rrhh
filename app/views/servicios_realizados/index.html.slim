@@ -1,0 +1,25 @@
+h1 Listing servicios_realizados
+
+table
+  tr
+    th Descripcion
+    th Monto
+    th Fecha
+    th Bonificacion
+    th
+    th
+    th
+
+  - @servicios_realizados.each do |servicio_realizado|
+    tr
+      td = servicio_realizado.descripcion
+      td = servicio_realizado.monto
+      td = servicio_realizado.fecha
+      td = servicio_realizado.bonificacion
+      td = link_to 'Show', servicio_realizado
+      td = link_to 'Edit', edit_servicio_realizado_path(servicio_realizado)
+      td = link_to 'Destroy', servicio_realizado, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Servicio realizado', new_servicio_realizado_path

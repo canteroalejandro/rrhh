@@ -1,0 +1,29 @@
+rails generate nested_scaffold Contador/Cliente nombre:string nroCtaMunicipal:string \
+cbu:string actividad_id:integer obra_social_id:integer localidad_id:integer \departamento_id:integer provincia_id:integer pais_id:integer \tipo_documento_id:integer nro_documento:string
+
+rails generate nested_scaffold Contador/Servicio descripcion:string monto:decimal
+
+rails generate nested_scaffold Contador/PaqueteDeServicio descripcion:string monto:decimal activo:boolean 
+
+rails generate scaffold Item monto_establecido:decimal
+
+rails generate scaffold Servicio descripcion:string monto:decimal
+
+rails generate scaffold ServicioPrestado descripcion:string monto:decimal fecha:date \
+bonificacion:decimal
+
+rails generate scaffold Movimiento fecha:date descripcion:string nro_documento:string \
+tipo_documento:string debe:boolean haber:boolean bonifPaqServ:decimal bonifManual:decimal
+
+rails generate scaffold TipoDocumentoComercial nombre:string descripcion:string
+
+rails generate scaffold ObraSocial nombre:string detalle:string 
+
+rails generate scaffold Localidad nombre:string
+rails generate scaffold Departamento nombre:string
+rails generate scaffold Provincia nombre:string
+rails generate scaffold Pais nombre:string
+
+rails generate scaffold Usuario nick:string password:string
+
+rails generate scaffold Permiso url:string seccion:string accion:string
