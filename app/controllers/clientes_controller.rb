@@ -1,4 +1,5 @@
 class ClientesController < ApplicationController
+  before_filter :load_direcciones, only: [:new, :create, :edit, :save]
   # GET /clientes
   # GET /clientes.json
   def index

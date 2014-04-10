@@ -7,5 +7,6 @@ class ApplicationController < ActionController::Base
     @paises = Pais.all
     @provincias = Provincia.all
     @departamentos = Departamento.all
+    @localidades = Localidad.all
   end
 end
