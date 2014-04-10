@@ -19,6 +19,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'cliente', 'clientes'
   inflect.irregular 'provincia', 'provincias'
   inflect.irregular 'pais', 'paises'
+  inflect.irregular 'servicio_realizado', 'servicios_realizados'
   inflect.irregular 'estado_trib_afip', 'estados_trib_afip'
   inflect.irregular 'obra_social', 'obra_sociales'
   inflect.irregular 'item_de_servicio', 'items_de_servicios'

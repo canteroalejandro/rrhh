@@ -27,24 +27,24 @@ p#notice = notice
             thead
               tr
                 th Descripcion
-                th.hidden-480 Tipo De Documento
+                / th.hidden-480 Tipo De Documento
                 th Nro de Documento
                 th 
             tbody
               - @contador.clientes.each do |cliente|
                   tr
                     td = cliente.nombre
-                    td = cliente.try(:tipo_documento).try(:nombre)
-                    td.hidden-480 = cliente.nro_documento
+                    / td = cliente.try(:tipo_documento).try(:nombre)
+                    / td.hidden-480 = cliente.nro_documento
                     td.td-actions
                       .hidden-phone.visible-desktop.action-buttons
-                        = link_to([cliente.contador, cliente], {class: "blue"}) do
+                        = link_to([cliente], {class: "blue"}) do
                           i.icon-zoom-in.bigger-130
                         end
-                        = link_to(edit_contador_cliente_path(cliente.contador, cliente), {class: "green"}) do
+                        = link_to(edit_cliente_path(cliente), {class: "green"}) do
                           i.icon-pencil.bigger-130
                         end
-                        = link_to [cliente.contador, cliente], :confirm => 'Are you sure?', :method => :delete do
+                        = link_to [cliente], :confirm => 'Are you sure?', :method => :delete do
                           i.icon-trash.bigger-130.red
                         end
                       .hidden-desktop.visible-phone
@@ -53,15 +53,15 @@ p#notice = notice
                             i.icon-caret-down.icon-only.bigger-120
                           ul.dropdown-menu.dropdown-icon-only.dropdown-yellow.pull-right.dropdown-caret.dropdown-close
                             li
-                              a.tooltip-info data-rel="tooltip" href=contador_cliente_path(cliente.contador, cliente) title="Ver" 
+                              a.tooltip-info data-rel="tooltip" href=cliente_path(cliente) title="Ver" 
                                 span.blue
                                   i.icon-zoom-in.bigger-120
                             li
-                              a.tooltip-success data-rel="tooltip" href=edit_contador_cliente_path(cliente.contador, cliente) title="Editar" 
+                              a.tooltip-success data-rel="tooltip" href=edit_cliente_path(cliente) title="Editar" 
                                 span.green
                                   i.icon-edit.bigger-120
                             li
-                              a.tooltip-error data-rel="tooltip" title="Eliminar" href=contador_cliente_path(cliente.contador, cliente) data-confirm="Are you sure?" data-method="delete" rel="nofollow"
+                              a.tooltip-error data-rel="tooltip" title="Eliminar" href=cliente_path(cliente) data-confirm="Are you sure?" data-method="delete" rel="nofollow"
                                 span.red
                                   i.icon-trash.bigger-120
 

@@ -6,16 +6,87 @@
         - @servicio_realizado.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :descripcion
-    = f.text_field :descripcion
-  .field
-    = f.label :monto
-    = f.text_field :monto
-  .field
-    = f.label :fecha
-    = f.date_select :fecha
-  .field
-    = f.label :bonificacion
-    = f.text_field :bonificacion
-  .actions = f.submit 'Save'
+  / .field
+  /   = f.label :descripcion
+  /   = f.text_field :descripcion
+  / .field
+  /   = f.label :monto
+  /   = f.text_field :monto
+  / .field
+  /   = f.label :fecha
+  /   = f.date_select :fecha
+  / .field
+  /   = f.label :bonificacion
+  /   = f.text_field :bonificacion
+  / .actions = f.submit 'Save'
+
+  div ng-app="app" ng-controller="Ctrl"
+    table.table.table-bordered.table-hover.table-condensed
+      thead
+        tr style="font-weight: bold"
+          td style="width:25%"
+            | Servicio
+          td style="width:25%"
+            | Monto Independiente
+          td style="width:20%"
+            | Precio Definido en el Paquete
+          td
+            | Bonificacion
+          td
+            | Precio Final
+          td
+      tbody
+        tr ng-repeat="item_de_servicio in items_de_servicios"
+          td
+            span e-ng-options="g.id as g.descripcion for g in servicios" editable-select="item_de_servicio.servicio" onshow="loadServicios()"
+              | {{ showServicio(item_de_servicio) }}
+            input name="servicio_prestado[servicios][{{ $index }}][servicio]" style="display:none" type="text" value="{{ item_de_servicio.servicio }}"
+          td
+            span
+              | {{ showMontoServicio(item_de_servicio) }}
+          td
+            span
+              | {{ showMontoServicioBonificado(item_de_servicio, $index) }}
+          td
+            span editable-number="item_de_servicio.bonificacion" e-min="0"
+              | {{  item_de_servicio.bonificacion || 0 }}
+            input name="servicio_prestado[servicios][{{ $index }}][bonificacion]" style="display:none" type="number" value="{{ item_de_servicio.bonificacion }}"
+          td
+            span e-required=""
+              | {{ calcularTotal() || 0 }}
+              input name="servicio_prestado[monto]" style="display:none" type="number" value="{{  calcularSubTotal(item_de_servicio) }}"
+          td
+            a.btn.btn-small.btn-danger ng-click="removeServicio($index)"
+              | Quitar
+      tfoot
+        / tr
+        /   td
+        /     span
+        /       | Bonificacion
+        /   td
+        /     span editable-number="bonificacion" e-min="0"
+        /       | {{ bonificacion }}
+        /     input name="servicio_prestado[bonificacion]" style="display:none" type="number" value="{{  bonificacion }}"
+        /   td
+        /   td
+        /   td
+        tr
+          td
+            a.btn.btn-small.btn-default ng-click="addUser()"
+              | Agregar Fila
+          td
+          td
+          td
+          td
+          
+  
+  button#sumbit.btn.btn-primary
+    | Guardar
+
+javascript:
+  $("form").submit(function(e){
+    if ($("#new_servicio_prestado input[style='display:none'][value=]").size() > 0){
+      e.preventDefault()
+      alert("Faltan Datos")
+    }
+  })

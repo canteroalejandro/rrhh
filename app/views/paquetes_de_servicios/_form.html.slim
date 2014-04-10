@@ -15,4 +15,49 @@
   .field
     = f.label :activo
     = f.check_box :activo
+    
+  div ng-app="app" ng-controller="Ctrl"
+    table.table.table-bordered.table-hover.table-condensed
+      thead
+        tr style="font-weight: bold"
+          td style="width:25%"
+            | Servicio
+          td style="width:25%"
+            | Monto Independiente
+          td style="width:20%"
+            | Monto Establecido
+          td style="width:20%"
+            | Bonificacion
+          td
+      tbody
+        tr ng-repeat="item_de_servicio in items_de_servicios"
+          td
+            span e-name="servicio" e-ng-options="g.id as g.descripcion for g in servicios" editable-select="item_de_servicio.servicio" onshow="loadServicios()"
+              | {{ showServicio(item_de_servicio) }}
+            input name="paquete_de_servicio[item_de_servicios][{{ $index }}][servicio]" style="display:none" type="text" value="{{ item_de_servicio.servicio }}"
+          td
+            span e-required=""
+              | {{ showMontoServicio(item_de_servicio) }}
+          td
+            span editable-number="item_de_servicio.monto_establecido"
+              | {{ item_de_servicio.monto_establecido }}
+            input name="paquete_de_servicio[item_de_servicios][{{ $index }}][monto_establecido]" style="display:none" type="number" value="{{  item_de_servicio.monto_establecido }}"
+          td
+            span e-required=""
+              | {{ calcularBonificacion(item_de_servicio) }}
+          td
+            a.btn.btn-small.btn-danger ng-click="removeServicio($index)"
+              | Quitar
+      tfoot
+        tr
+          td
+            a.btn.btn-small.btn-default ng-click="addUser()"
+              | Agregar Fila
+          td TOTAL
+          td
+            span e-required=""
+              | {{ calcularTotal() }}
+              input name="paquete_de_servicio[monto]" style="display:none" type="number" value="{{  calcularTotal() }}"
+          td
+          td
   .actions = f.submit 'Save'

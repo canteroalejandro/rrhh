@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 30000000000045) do
+ActiveRecord::Schema.define(:version => 30000000000046) do
 
   create_table "actividades", :force => true do |t|
     t.string   "descripcion"
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 30000000000045) do
     t.string   "nroCtaMunicipal"
     t.string   "cbu"
     t.string   "claveAfip"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.integer  "cuenta_corriente_id"
     t.integer  "contador_id"
     t.integer  "actividad_id"
@@ -45,12 +45,14 @@ ActiveRecord::Schema.define(:version => 30000000000045) do
     t.integer  "provincia_id"
     t.integer  "pais_id"
     t.integer  "tipo_documento_id"
+    t.integer  "estadoTribAfipActual"
   end
 
   add_index "clientes", ["actividad_id"], :name => "index_clientes_on_actividad_id"
   add_index "clientes", ["contador_id"], :name => "index_clientes_on_contador_id"
   add_index "clientes", ["cuenta_corriente_id"], :name => "index_clientes_on_cuenta_corriente_id"
   add_index "clientes", ["departamento_id"], :name => "index_clientes_on_departamento_id"
+  add_index "clientes", ["estadoTribAfipActual"], :name => "index_clientes_on_estadoTribAfipActual"
   add_index "clientes", ["localidad_id"], :name => "index_clientes_on_localidad_id"
   add_index "clientes", ["obra_social_id"], :name => "index_clientes_on_obra_social_id"
   add_index "clientes", ["pais_id"], :name => "index_clientes_on_pais_id"
