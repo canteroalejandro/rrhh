@@ -1,4 +1,7 @@
 Myapp::Application.routes.draw do
+  resources :actividades
+
+
   resources :contadores
 
 
@@ -36,14 +39,6 @@ Myapp::Application.routes.draw do
 
 
   resources :obra_sociales
-
-
-  resources :actividades do
-    # Para que funcione new_contadores_path
-    collection do
-      get 'index'
-     end
-  end
 
 
   resources :cuentas_corrientes

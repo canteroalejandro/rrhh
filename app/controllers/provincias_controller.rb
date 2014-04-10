@@ -15,6 +15,8 @@ class ProvinciasController < ApplicationController
   def show
     @provincia = Provincia.find(params[:id])
 
+    puts '@provincia.pais', @provincia.pais
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @provincia }

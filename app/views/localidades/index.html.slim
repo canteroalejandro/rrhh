@@ -3,6 +3,9 @@ h1 Listing localidades
 table
   tr
     th Nombre
+    th Departamento
+    th Provincia
+    th Pais
     th
     th
     th
@@ -10,6 +13,9 @@ table
   - @localidades.each do |localidad|
     tr
       td = localidad.nombre
+      td = localidad.departamento.nombre
+      td = localidad.provincia.nombre
+      td = localidad.pais.nombre
       td = link_to 'Show', localidad
       td = link_to 'Edit', edit_localidad_path(localidad)
       td = link_to 'Destroy', localidad, :confirm => 'Are you sure?', :method => :delete

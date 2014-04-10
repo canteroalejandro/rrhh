@@ -1,4 +1,8 @@
 class ActividadesController < ApplicationController
+  add_breadcrumb 'Actividades', :actividades_path
+  add_breadcrumb 'Nuevo', :new_actividad_path, :only => [:new, :create]
+  add_breadcrumb 'Editar', :edit_actividad_path, :only => [:edit, :update]
+
   # GET /actividades
   # GET /actividades.json
   def index
@@ -14,6 +18,8 @@ class ActividadesController < ApplicationController
   # GET /actividades/1.json
   def show
     @actividad = Actividad.find(params[:id])
+
+    add_breadcrumb "#{@actividad.descripcion}", ''
 
     respond_to do |format|
       format.html # show.html.erb

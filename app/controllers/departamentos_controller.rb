@@ -1,4 +1,6 @@
 class DepartamentosController < ApplicationController
+  before_filter :load_direcciones, only: [:new, :create, :edit, :save]
+
   # GET /departamentos
   # GET /departamentos.json
   def index

@@ -7,6 +7,18 @@
           li = message
 
   .field
+    = f.label :pais
+    select#departamento_pais_id name="departamento[pais_id]"
+      - @paises.each do |pais|
+        option value=( pais.id) =pais.nombre
+  .field  
+    = f.label :provincia
+    select#departamento_provincia_id name="departamento[provincia_id]"
+      - @provincias.each do |provincia|
+        option class=(provincia.pais_id) value=( provincia.id) =provincia.nombre
+  .field
     = f.label :nombre
     = f.text_field :nombre
+
+
   .actions = f.submit 'Save'

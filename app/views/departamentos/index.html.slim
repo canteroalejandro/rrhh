@@ -3,13 +3,15 @@ h1 Listing departamentos
 table
   tr
     th Nombre
-    th
-    th
+    th Provincia
+    th Pais
     th
 
   - @departamentos.each do |departamento|
     tr
       td = departamento.nombre
+      td = departamento.provincia.nombre
+      td = departamento.pais.nombre
       td = link_to 'Show', departamento
       td = link_to 'Edit', edit_departamento_path(departamento)
       td = link_to 'Destroy', departamento, :confirm => 'Are you sure?', :method => :delete

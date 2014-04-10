@@ -1,3 +1,618 @@
+
+= form_for [@cliente.contador, @cliente] do |f|
+  - if @cliente.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@categorium.errors.count, "error")} prohibited this categorium from being saved:"
+      ul
+        - @cliente.errors.full_messages.each do |message|
+          li = message
+
+  #user-profile-2.user-profile.row-fluid
+    .tabbable
+      ul.nav.nav-tabs.padding-18
+        li.active
+          a data-toggle="tab" href="#home" 
+            i.green.icon-user.bigger-120
+            | Profile
+        li
+          a data-toggle="tab" href="#feed" 
+            i.orange.icon-rss.bigger-120
+            | Activity Feed
+        li
+          a data-toggle="tab" href="#friends" 
+            i.blue.icon-group.bigger-120
+            | Friends
+        li
+          a data-toggle="tab" href="#pictures" 
+            i.pink.icon-picture.bigger-120
+            | Pictures
+      .tab-content.no-border.padding-24
+        #home.tab-pane.in.active
+          .row-fluid
+            .span3.center
+              span.profile-picture
+                img#avatar2.editable alt=("Alex's Avatar") src="/assets/avatars/profile-pic.jpg" /
+              .space.space-4
+              a.btn.btn-small.btn-block.btn-success href="#" 
+                i.icon-plus-sign.bigger-110
+                | Add as a friend
+              a.btn.btn-small.btn-block.btn-primary href="#" 
+                i.icon-envelope-alt
+                | Send a message
+            /! /span
+            .span9
+              .profile-user-info
+                .profile-info-row
+                  .profile-info-name 
+                    h4.blue
+                    span.middle Nombre
+                  .profile-info-value
+                    h4.blue
+                      span.middle Alex M. Doe
+                .profile-info-row
+                  .profile-info-name Dirección
+                  .profile-info-value
+                    i.icon-map-marker.light-orange.bigger-110
+                    span Netherlands
+                    span Amsterdam
+
+                    / select#cliente_pais_id name="cliente[pais_id]"
+                    /   - @paises.each do |pais|
+                    /     option value=( pais.id) =pais.nombre
+                    / select#cliente_provincia_id name="cliente[provincia_id]"
+                    /   - @provincias.each do |provincia|
+                    /     option value=( provincia.id) =provincia.nombre
+                    / select#cliente_departamento_id name="cliente[departamento_id]"
+                    /   - @departamentos.each do |departamento|
+                    /     option value=( departamento.id) =departamento.nombre
+                    / select#cliente_localidad_id name="cliente[localidad_id]"
+                    /   - @localidades.each do |localidad|
+                    /     option value=( localidad.id) =localidad.nombre
+                      
+                    select#mark name="mark" 
+                      option value=""  --
+                      option value="bmw"  BMW
+                      option value="audi"  Audi
+                    select#series name="series" 
+                      option value=""  --
+                      option.bmw value="series-1"  1 series
+                      option.bmw value="series-3"  3 series
+                      option.bmw value="series-5"  5 series
+                      option.bmw value="series-6"  6 series
+                      option.bmw value="series-7"  7 series
+                    select#model name="model" 
+                      option value=""  --
+                      option.series-3.series-5.series-7 value="sedan"  Sedan
+                      option.series-3.series-5 value="touring"  Touring
+                      option.series-5 value="gran-tourismo"  Gran Tourismo
+                    select#engine name="engine" 
+                      option value=""  --
+                      option.series-3.series-5.series-6.a3.a4.a5 value="30-petrol"  3.0 petrol
+
+                .profile-info-row
+                  .profile-info-name Actividad
+                  .profile-info-value
+                    span = f.collection_select :actividad_id, Actividad.all, :id, :descripcion
+                .profile-info-row
+                  .profile-info-name Obra Social
+                  .profile-info-value
+                    span = f.collection_select :obra_social_id, ObraSocial.all, :id, :nombre
+                .profile-info-row
+                  .profile-info-name Nro de Cuenta Municipal
+                  .profile-info-value
+                    span = f.text_field :nroCtaMunicipal
+                .profile-info-row
+                  .profile-info-name CBU
+                  .profile-info-value
+                    span = f.text_field :cbu
+            /! /span
+          /! /row-fluid
+
+        /! #home
+        #feed.tab-pane
+          .profile-feed.row-fluid
+            .span6
+              .profile-activity.clearfix
+                div
+                  img.pull-left alt=("Alex Doe's avatar") src="assets/avatars/avatar5.png" /
+                  a.user href="#"  Alex Doe
+                  | changed his profile photo.
+                  a href="#"  Take a look
+                  .time
+                    i.icon-time.bigger-110
+                    | an hour ago
+                .tools.action-buttons
+                  a.blue href="#" 
+                    i.icon-pencil.bigger-125
+                  a.red href="#" 
+                    i.icon-remove.bigger-125
+              .profile-activity.clearfix
+                div
+                  img.pull-left alt=("Susan Smith's avatar") src="assets/avatars/avatar1.png" /
+                  a.user href="#"  Susan Smith
+                  | is now friends with Alex Doe.
+                  .time
+                    i.icon-time.bigger-110
+                    | 2 hours ago
+                .tools.action-buttons
+                  a.blue href="#" 
+                    i.icon-pencil.bigger-125
+                  a.red href="#" 
+                    i.icon-remove.bigger-125
+              .profile-activity.clearfix
+                div
+                  i.pull-left.thumbicon.icon-ok.btn-success.no-hover
+                  a.user href="#"  Alex Doe
+                  | joined
+                  a href="#"  Country Music
+                  | group.
+                  .time
+                    i.icon-time.bigger-110
+                    | 5 hours ago
+                .tools.action-buttons
+                  a.blue href="#" 
+                    i.icon-pencil.bigger-125
+                  a.red href="#" 
+                    i.icon-remove.bigger-125
+              .profile-activity.clearfix
+                div
+                  i.pull-left.thumbicon.icon-picture.btn-info.no-hover
+                  a.user href="#"  Alex Doe
+                  | uploaded a new photo.
+                  a href="#"  Take a look
+                  .time
+                    i.icon-time.bigger-110
+                    | 5 hours ago
+                .tools.action-buttons
+                  a.blue href="#" 
+                    i.icon-pencil.bigger-125
+                  a.red href="#" 
+                    i.icon-remove.bigger-125
+              .profile-activity.clearfix
+                div
+                  img.pull-left alt=("David Palms's avatar") src="assets/avatars/avatar4.png" /
+                  a.user href="#"  David Palms
+                  | left a comment on Alex's wall.
+                  .time
+                    i.icon-time.bigger-110
+                    | 8 hours ago
+                .tools.action-buttons
+                  a.blue href="#" 
+                    i.icon-pencil.bigger-125
+                  a.red href="#" 
+                    i.icon-remove.bigger-125
+            /! /span
+            .span6
+              .profile-activity.clearfix
+                div
+                  i.pull-left.thumbicon.icon-edit.btn-pink.no-hover
+                  a.user href="#"  Alex Doe
+                  | published a new blog post.
+                  a href="#"  Read now
+                  .time
+                    i.icon-time.bigger-110
+                    | 11 hours ago
+                .tools.action-buttons
+                  a.blue href="#" 
+                    i.icon-pencil.bigger-125
+                  a.red href="#" 
+                    i.icon-remove.bigger-125
+              .profile-activity.clearfix
+                div
+                  img.pull-left alt=("Alex Doe's avatar") src="assets/avatars/avatar5.png" /
+                  a.user href="#"  Alex Doe
+                  | upgraded his skills.
+                  .time
+                    i.icon-time.bigger-110
+                    | 12 hours ago
+                .tools.action-buttons
+                  a.blue href="#" 
+                    i.icon-pencil.bigger-125
+                  a.red href="#" 
+                    i.icon-remove.bigger-125
+              .profile-activity.clearfix
+                div
+                  i.pull-left.thumbicon.icon-key.btn-info.no-hover
+                  a.user href="#"  Alex Doe
+                  | logged in.
+                  .time
+                    i.icon-time.bigger-110
+                    | 12 hours ago
+                .tools.action-buttons
+                  a.blue href="#" 
+                    i.icon-pencil.bigger-125
+                  a.red href="#" 
+                    i.icon-remove.bigger-125
+              .profile-activity.clearfix
+                div
+                  i.pull-left.thumbicon.icon-off.btn-inverse.no-hover
+                  a.user href="#"  Alex Doe
+                  | logged out.
+                  .time
+                    i.icon-time.bigger-110
+                    | 16 hours ago
+                .tools.action-buttons
+                  a.blue href="#" 
+                    i.icon-pencil.bigger-125
+                  a.red href="#" 
+                    i.icon-remove.bigger-125
+              .profile-activity.clearfix
+                div
+                  i.pull-left.thumbicon.icon-key.btn-info.no-hover
+                  a.user href="#"  Alex Doe
+                  | logged in.
+                  .time
+                    i.icon-time.bigger-110
+                    | 16 hours ago
+                .tools.action-buttons
+                  a.blue href="#" 
+                    i.icon-pencil.bigger-125
+                  a.red href="#" 
+                    i.icon-remove.bigger-125
+            /! /span
+          /! /row
+          .space-12
+          .center
+            a.btn.btn-small.btn-primary href="#" 
+              i.icon-rss.bigger-150.middle
+              | View more activities
+              i.icon-on-right.icon-arrow-right
+        /! /#feed
+        #friends.tab-pane
+          .profile-users.clearfix
+            .itemdiv.memberdiv
+              .inline.position-relative
+                .user
+                  a href="#" 
+                    img alt=("Bob Doe's avatar") src="assets/avatars/avatar4.png" /
+                .body
+                  .name
+                    a href="#" 
+                      span.user-status.status-online
+                      | Bob Doe
+                .popover
+                  .arrow
+                  .popover-content
+                    .bolder Content Editor
+                    .time
+                      i.icon-time.middle.bigger-120.orange
+                      span.green 20 mins ago
+                    .hr.dotted.hr-8
+                    .tools.action-buttons
+                      a href="#" 
+                        i.icon-facebook-sign.blue.bigger-150
+                      a href="#" 
+                        i.icon-twitter-sign.light-blue.bigger-150
+                      a href="#" 
+                        i.icon-google-plus-sign.red.bigger-150
+            .itemdiv.memberdiv
+              .inline.position-relative
+                .user
+                  a href="#" 
+                    img alt=("Rose Doe's avatar") src="assets/avatars/avatar1.png" /
+                .body
+                  .name
+                    a href="#" 
+                      span.user-status.status-offline
+                      | Rose Doe
+                .popover
+                  .arrow
+                  .popover-content
+                    .bolder Graphic Designer
+                    .time
+                      i.icon-time.middle.bigger-120.grey
+                      span.grey 30 min ago
+                    .hr.dotted.hr-8
+                    .tools.action-buttons
+                      a href="#" 
+                        i.icon-facebook-sign.blue.bigger-150
+                      a href="#" 
+                        i.icon-twitter-sign.light-blue.bigger-150
+                      a href="#" 
+                        i.icon-google-plus-sign.red.bigger-150
+            .itemdiv.memberdiv
+              .inline.position-relative
+                .user
+                  a href="#" 
+                    img alt=("Jim Doe's avatar") src="assets/avatars/avatar.png" /
+                .body
+                  .name
+                    a href="#" 
+                      span.user-status.status-busy
+                      | Jim Doe
+                .popover
+                  .arrow
+                  .popover-content
+                    .bolder SEO &amp; Advertising
+                    .time
+                      i.icon-time.middle.bigger-120.red
+                      span.grey 1 hour ago
+                    .hr.dotted.hr-8
+                    .tools.action-buttons
+                      a href="#" 
+                        i.icon-facebook-sign.blue.bigger-150
+                      a href="#" 
+                        i.icon-twitter-sign.light-blue.bigger-150
+                      a href="#" 
+                        i.icon-google-plus-sign.red.bigger-150
+            .itemdiv.memberdiv
+              .inline.position-relative
+                .user
+                  a href="#" 
+                    img alt=("Alex Doe's avatar") src="assets/avatars/avatar5.png" /
+                .body
+                  .name
+                    a href="#" 
+                      span.user-status.status-idle
+                      | Alex Doe
+                .popover
+                  .arrow
+                  .popover-content
+                    .bolder Marketing
+                    .time
+                      i.icon-time.middle.bigger-120.orange
+                      span 40 minutes idle
+                    .hr.dotted.hr-8
+                    .tools.action-buttons
+                      a href="#" 
+                        i.icon-facebook-sign.blue.bigger-150
+                      a href="#" 
+                        i.icon-twitter-sign.light-blue.bigger-150
+                      a href="#" 
+                        i.icon-google-plus-sign.red.bigger-150
+            .itemdiv.memberdiv
+              .inline.position-relative
+                .user
+                  a href="#" 
+                    img alt=("Phil Doe's avatar") src="assets/avatars/avatar2.png" /
+                .body
+                  .name
+                    a href="#" 
+                      span.user-status.status-online
+                      | Phil Doe
+                .popover
+                  .arrow
+                  .popover-content
+                    .bolder Public Relations
+                    .time
+                      i.icon-time.middle.bigger-120.orange
+                      span.green 2 hours ago
+                    .hr.dotted.hr-8
+                    .tools.action-buttons
+                      a href="#" 
+                        i.icon-facebook-sign.blue.bigger-150
+                      a href="#" 
+                        i.icon-twitter-sign.light-blue.bigger-150
+                      a href="#" 
+                        i.icon-google-plus-sign.red.bigger-150
+            .itemdiv.memberdiv
+              .inline.position-relative
+                .user
+                  a href="#" 
+                    img alt=("Susan Doe's avatar") src="assets/avatars/avatar3.png" /
+                .body
+                  .name
+                    a href="#" 
+                      span.user-status.status-online
+                      | Susan Doe
+                .popover
+                  .arrow
+                  .popover-content
+                    .bolder HR Management
+                    .time
+                      i.icon-time.middle.bigger-120.orange
+                      span.green 20 mins ago
+                    .hr.dotted.hr-8
+                    .tools.action-buttons
+                      a href="#" 
+                        i.icon-facebook-sign.blue.bigger-150
+                      a href="#" 
+                        i.icon-twitter-sign.light-blue.bigger-150
+                      a href="#" 
+                        i.icon-google-plus-sign.red.bigger-150
+            .itemdiv.memberdiv
+              .inline.position-relative
+                .user
+                  a href="#" 
+                    img alt=("Jennifer Doe's avatar") src="assets/avatars/avatar1.png" /
+                .body
+                  .name
+                    a href="#" 
+                      span.user-status.status-offline
+                      | Jennifer Doe
+                .popover
+                  .arrow
+                  .popover-content
+                    .bolder Graphic Designer
+                    .time
+                      i.icon-time.middle.bigger-120.grey
+                      span.grey 2 hours ago
+                    .hr.dotted.hr-8
+                    .tools.action-buttons
+                      a href="#" 
+                        i.icon-facebook-sign.blue.bigger-150
+                      a href="#" 
+                        i.icon-twitter-sign.light-blue.bigger-150
+                      a href="#" 
+                        i.icon-google-plus-sign.red.bigger-150
+            .itemdiv.memberdiv
+              .inline.position-relative
+                .user
+                  a href="#" 
+                    img alt=("Alexa Doe's avatar") src="assets/avatars/avatar3.png" /
+                .body
+                  .name
+                    a href="#" 
+                      span.user-status.status-offline
+                      | Alexa Doe
+                .popover
+                  .arrow
+                  .popover-content
+                    .bolder Accounting
+                    .time
+                      i.icon-time.middle.bigger-120.grey
+                      span.grey 4 hours ago
+                    .hr.dotted.hr-8
+                    .tools.action-buttons
+                      a href="#" 
+                        i.icon-facebook-sign.blue.bigger-150
+                      a href="#" 
+                        i.icon-twitter-sign.light-blue.bigger-150
+                      a href="#" 
+                        i.icon-google-plus-sign.red.bigger-150
+          .hr.hr10.hr-double
+          ul.pager.pull-right
+            li.previous.disabled
+              a href="#"  &larr; Prev
+            li.next
+              a href="#"  Next &rarr;
+        /! /#friends
+        #pictures.tab-pane
+          ul.ace-thumbnails
+            li
+              a data-rel="colorbox" href="#" 
+                img alt="150x150" src="assets/images/gallery/thumb-1.jpg" /
+                .text
+                  .inner Sample Caption on Hover
+              .tools.tools-bottom
+                a href="#" 
+                  i.icon-link
+                a href="#" 
+                  i.icon-paper-clip
+                a href="#" 
+                  i.icon-pencil
+                a href="#" 
+                  i.icon-remove.red
+            li
+              a data-rel="colorbox" href="#" 
+                img alt="150x150" src="assets/images/gallery/thumb-2.jpg" /
+                .text
+                  .inner Sample Caption on Hover
+              .tools.tools-bottom
+                a href="#" 
+                  i.icon-link
+                a href="#" 
+                  i.icon-paper-clip
+                a href="#" 
+                  i.icon-pencil
+                a href="#" 
+                  i.icon-remove.red
+            li
+              a data-rel="colorbox" href="#" 
+                img alt="150x150" src="assets/images/gallery/thumb-3.jpg" /
+                .text
+                  .inner Sample Caption on Hover
+              .tools.tools-bottom
+                a href="#" 
+                  i.icon-link
+                a href="#" 
+                  i.icon-paper-clip
+                a href="#" 
+                  i.icon-pencil
+                a href="#" 
+                  i.icon-remove.red
+            li
+              a data-rel="colorbox" href="#" 
+                img alt="150x150" src="assets/images/gallery/thumb-4.jpg" /
+                .text
+                  .inner Sample Caption on Hover
+              .tools.tools-bottom
+                a href="#" 
+                  i.icon-link
+                a href="#" 
+                  i.icon-paper-clip
+                a href="#" 
+                  i.icon-pencil
+                a href="#" 
+                  i.icon-remove.red
+            li
+              a data-rel="colorbox" href="#" 
+                img alt="150x150" src="assets/images/gallery/thumb-5.jpg" /
+                .text
+                  .inner Sample Caption on Hover
+              .tools.tools-bottom
+                a href="#" 
+                  i.icon-link
+                a href="#" 
+                  i.icon-paper-clip
+                a href="#" 
+                  i.icon-pencil
+                a href="#" 
+                  i.icon-remove.red
+            li
+              a data-rel="colorbox" href="#" 
+                img alt="150x150" src="assets/images/gallery/thumb-6.jpg" /
+                .text
+                  .inner Sample Caption on Hover
+              .tools.tools-bottom
+                a href="#" 
+                  i.icon-link
+                a href="#" 
+                  i.icon-paper-clip
+                a href="#" 
+                  i.icon-pencil
+                a href="#" 
+                  i.icon-remove.red
+            li
+              a data-rel="colorbox" href="#" 
+                img alt="150x150" src="assets/images/gallery/thumb-1.jpg" /
+                .text
+                  .inner Sample Caption on Hover
+              .tools.tools-bottom
+                a href="#" 
+                  i.icon-link
+                a href="#" 
+                  i.icon-paper-clip
+                a href="#" 
+                  i.icon-pencil
+                a href="#" 
+                  i.icon-remove.red
+            li
+              a data-rel="colorbox" href="#" 
+                img alt="150x150" src="assets/images/gallery/thumb-2.jpg" /
+                .text
+                  .inner Sample Caption on Hover
+              .tools.tools-bottom
+                a href="#" 
+                  i.icon-link
+                a href="#" 
+                  i.icon-paper-clip
+                a href="#" 
+                  i.icon-pencil
+                a href="#" 
+                  i.icon-remove.red
+        /! /#pictures
+
+  .row-fluid
+    .span3
+      .infobox-container
+        .infobox.infobox-blue
+          .infobox-data
+            span.infobox-data-number = f.label :pais_id
+            .infobox-content = f.collection_select :pais_id, Pais.all, :id, :nombre
+
+      .infobox-container
+        .infobox.infobox-blue
+          .infobox-data
+            span.infobox-data-number = f.label :provincia_id
+            .infobox-content = f.collection_select :provincia_id, Provincia.all, :id, :nombre
+
+    .span3
+      .infobox-container
+        .infobox.infobox-blue
+          .infobox-data
+            span.infobox-data-number = f.label :departamento_id
+            .infobox-content = f.collection_select :departamento_id, Departamento.all, :id, :nombre
+      
+      .infobox-container
+        .infobox.infobox-blue
+          .infobox-data
+            span.infobox-data-number = f.label :localidad_id
+            .infobox-content = f.collection_select :localidad_id, Localidad.all, :id, :nombre
+
+
+  .actions = f.submit 'Save'
+
 = form_for @cliente do |f|
   - if @cliente.errors.any?
     #error_explanation

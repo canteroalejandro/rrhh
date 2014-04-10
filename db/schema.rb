@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 30000000000040) do
+ActiveRecord::Schema.define(:version => 30000000000045) do
 
   create_table "actividades", :force => true do |t|
     t.string   "descripcion"
@@ -85,9 +85,14 @@ ActiveRecord::Schema.define(:version => 30000000000040) do
 
   create_table "departamentos", :force => true do |t|
     t.string   "nombre"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "pais_id"
+    t.integer  "provincia_id"
   end
+
+  add_index "departamentos", ["pais_id"], :name => "index_departamentos_on_pais_id"
+  add_index "departamentos", ["provincia_id"], :name => "index_departamentos_on_provincia_id"
 
   create_table "estados_trib_afip", :force => true do |t|
     t.string   "clave"
@@ -126,9 +131,16 @@ ActiveRecord::Schema.define(:version => 30000000000040) do
 
   create_table "localidades", :force => true do |t|
     t.string   "nombre"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "pais_id"
+    t.integer  "provincia_id"
+    t.integer  "departamento_id"
   end
+
+  add_index "localidades", ["departamento_id"], :name => "index_localidades_on_departamento_id"
+  add_index "localidades", ["pais_id"], :name => "index_localidades_on_pais_id"
+  add_index "localidades", ["provincia_id"], :name => "index_localidades_on_provincia_id"
 
   create_table "movimientos", :force => true do |t|
     t.date     "fecha"
@@ -179,10 +191,10 @@ ActiveRecord::Schema.define(:version => 30000000000040) do
     t.string   "nombre"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "pai_id"
+    t.integer  "pais_id"
   end
 
-  add_index "provincias", ["pai_id"], :name => "index_provincias_on_pai_id"
+  add_index "provincias", ["pais_id"], :name => "index_provincias_on_pais_id"
 
   create_table "servicios", :force => true do |t|
     t.string   "descripcion"

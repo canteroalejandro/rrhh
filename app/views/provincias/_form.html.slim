@@ -7,6 +7,11 @@
           li = message
 
   .field
+    = f.label :pais_id
+    = f.collection_select :pais_id, Pais.all, :id, :nombre
+
+  .field
     = f.label :nombre
     = f.text_field :nombre
+
   .actions = f.submit 'Save'

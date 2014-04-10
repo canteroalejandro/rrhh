@@ -1,4 +1,5 @@
 class LocalidadesController < ApplicationController
+  before_filter :load_direcciones, only: [:new, :create, :edit, :save]
   # GET /localidades
   # GET /localidades.json
   def index
