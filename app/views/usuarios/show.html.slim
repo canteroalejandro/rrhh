@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Username:
+  = @usuario.userName
+p
+  strong Password:
+  = @usuario.password
+p
+  strong Rol:
+  = @usuario.rol
+
+= link_to 'Edit', edit_usuario_path(@usuario)
+'|
+= link_to 'Back', usuarios_path

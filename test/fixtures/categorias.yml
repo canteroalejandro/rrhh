@@ -1,13 +1,11 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  identificador: MyString
-  montoMaxFacturado: 9.99
-  gastosMaxLuz: 9.99
-  fechaVigencia: 2014-04-07
+  codigo: MyString
+  nombre: MyString
+  salarioBase: 9.99
 
 two:
-  identificador: MyString
-  montoMaxFacturado: 9.99
-  gastosMaxLuz: 9.99
-  fechaVigencia: 2014-04-07
+  codigo: MyString
+  nombre: MyString
+  salarioBase: 9.99

@@ -1,28 +1,30 @@
 a.brand href="#"
   small
     i.icon-briefcase
-    |   Sistema Cartera de Clientes
+    |   Sistema de Asistencia de Empleados
 
-ul.nav.ace-nav.pull-right
-  li.light-blue
-    a.dropdown-toggle data-toggle="dropdown" href="#" 
-      img.nav-user-photo alt=("Carina's Photo") src="/assets/cari.jpg" /
-      span.user-info
-        small Usuario,
-        | Carina
-      i.icon-caret-down
+-if current_user
+  ul.nav.ace-nav.pull-right
+    li.light-blue
+      a.dropdown-toggle data-toggle="dropdown" href="#" 
+        img.nav-user-photo alt=("Carina's Photo") src="/assets/cari.jpg" /
+        span.user-info
+          small Usuario,
+          | 
+          = current_user.userName
+        i.icon-caret-down
 
-    ul.user-menu.pull-right.dropdown-menu.dropdown-yellow.dropdown-caret.dropdown-closer
-      li
-        a href="#" 
-          i.icon-cog
-          | Settings
-      li
-        a href="#" 
-          i.icon-user
-          | Profile
-      li.divider
-      li
-        a href="#" 
-          i.icon-off
-          | Logout
+      ul.user-menu.pull-right.dropdown-menu.dropdown-yellow.dropdown-caret.dropdown-closer
+        li
+          a href="#" 
+            i.icon-cog
+            | Settings
+        li
+          a href="#" 
+            i.icon-user
+            | Profile  
+        li.divider  
+          li
+            a href="log_out" 
+              i.icon-off
+              | Logout

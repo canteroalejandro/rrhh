@@ -1,0 +1,27 @@
+= form_for @horario do |f|
+  - if @horario.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@horario.errors.count, "error")} prohibited this horario from being saved:"
+      ul
+        - @horario.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :codigo
+    = f.text_field :codigo
+  .field
+    = f.label :nombre
+    = f.text_field :nombre
+  .field
+    = f.label :diaInicio
+    = f.select :diaInicio, options_for_select([['Domingo',0], ['Lunes',1], ['Martes', 2], ['Miércoles',3],['Jueves',4], ['Viernes',5], ['Sábado',6]])
+  .field
+    = f.label :diaFin
+    = f.select :diaFin, options_for_select([['Domingo',0], ['Lunes',1], ['Martes', 2], ['Miércoles',3],['Jueves',4], ['Viernes',5], ['Sábado',6]])
+  .field
+    = f.label :horaInicio
+    = f.time_select :horaInicio
+  .field
+    = f.label :horaFin
+    = f.time_select :horaFin
+  .actions = f.submit

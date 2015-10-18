@@ -1,0 +1,30 @@
+= form_for @empleado do |f|
+  - if @empleado.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@empleado.errors.count, "error")} prohibited this empleado from being saved:"
+      ul
+        - @empleado.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :codigo
+    = f.text_field :codigo
+  .field
+    = f.label :dni
+    = f.text_field :dni
+  .field
+    = f.label :nombre
+    = f.text_field :nombre
+  .field
+    = f.label :apellido
+    = f.text_field :apellido
+  .field
+    = f.label :sexo
+    = f.text_field :sexo
+  .field
+    = f.label :fechaNacimiento
+    = f.date_select :fechaNacimiento
+  .field
+    = f.label :direccion
+    = f.text_field :direccion
+  .actions = f.submit

@@ -7,15 +7,12 @@
           li = message
 
   .field
-    = f.label :identificador
-    = f.text_field :identificador
+    = f.label :codigo
+    = f.text_field :codigo
   .field
-    = f.label :montoMaxFacturado
-    = f.text_field :montoMaxFacturado
+    = f.label :nombre
+    = f.text_field :nombre
   .field
-    = f.label :gastosMaxLuz
-    = f.text_field :gastosMaxLuz
-  .field
-    = f.label :fechaVigencia
-    = f.date_select :fechaVigencia
-  .actions = f.submit 'Save'
+    = f.label :salarioBase
+    = f.text_field :salarioBase
+  .actions = f.submit

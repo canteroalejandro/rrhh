@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Entrada:
+  = @asistencia.entrada
+p
+  strong Salida:
+  = @asistencia.salida
+
+= link_to 'Edit', edit_asistencia_path(@asistencia)
+'|
+= link_to 'Back', asistencias_path

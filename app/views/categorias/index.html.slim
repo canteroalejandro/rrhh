@@ -1,24 +1,24 @@
 h1 Listing categorias
 
-table
-  tr
-    th Identificador
-    th Montomaxfacturado
-    th Gastosmaxluz
-    th Fechavigencia
-    th
-    th
-    th
-
-  - @categorias.each do |categoria|
+table class="table table-striped table-bordered table-hover"
+  thead
     tr
-      td = categoria.identificador
-      td = categoria.montoMaxFacturado
-      td = categoria.gastosMaxLuz
-      td = categoria.fechaVigencia
-      td = link_to 'Show', categoria
-      td = link_to 'Edit', edit_categoria_path(categoria)
-      td = link_to 'Destroy', categoria, :confirm => 'Are you sure?', :method => :delete
+      th Codigo
+      th Nombre
+      th Salario Base
+      th colspan="3" Acciones
+      / th
+      / th
+
+  tbody
+    - @categorias.each do |categoria|
+      tr
+        td = categoria.codigo
+        td = categoria.nombre
+        td = categoria.salarioBase
+        td = link_to 'Show', categoria
+        td = link_to 'Edit', edit_categoria_path(categoria)
+        td = link_to 'Destroy', categoria, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 

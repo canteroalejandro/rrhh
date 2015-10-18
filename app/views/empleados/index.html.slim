@@ -1,0 +1,33 @@
+h1 Listing empleados
+
+table
+  thead
+    tr
+      th Codigo
+      th Dni
+      th Nombre
+      th Apellido
+      th Sexo
+      th Fechanacimiento
+      th Direccion
+      th
+      th
+      th
+
+  tbody
+    - @empleados.each do |empleado|
+      tr
+        td = empleado.codigo
+        td = empleado.dni
+        td = empleado.nombre
+        td = empleado.apellido
+        td = empleado.sexo
+        td = empleado.fechaNacimiento
+        td = empleado.direccion
+        td = link_to 'Show', empleado
+        td = link_to 'Edit', edit_empleado_path(empleado)
+        td = link_to 'Destroy', empleado, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Empleado', new_empleado_path

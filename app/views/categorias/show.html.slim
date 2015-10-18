@@ -1,18 +1,37 @@
 p#notice = notice
 
-p
-  strong Identificador:
-  = @categoria.identificador
-p
-  strong Montomaxfacturado:
-  = @categoria.montoMaxFacturado
-p
-  strong Gastosmaxluz:
-  = @categoria.gastosMaxLuz
-p
-  strong Fechavigencia:
-  = @categoria.fechaVigencia
+div class="profile-user-info"
+  div class="profile-info-row"
+    div class="profile-info-name" Codigo: 
+    div class="profile-info-value"
+      = @categoria.codigo
+  div class="profile-info-row"
+    div class="profile-info-name" Nombre: 
+    div class="profile-info-value"
+      = @categoria.nombre
+  div class="profile-info-row"
+    div class="profile-info-name" Salario Base: 
+    div class="profile-info-value"
+      = @categoria.salarioBase
 
-= link_to 'Edit', edit_categoria_path(@categoria)
-'|
-= link_to 'Back', categorias_path
+div class="space-6"
+  div class="profile-contact-links align-left"
+    a class="btn btn-link"
+      = link_to 'Edit', edit_categoria_path(@categoria)
+      '|
+    a class="btn btn-link"
+      = link_to 'Back', categorias_path
+
+/ p
+/   strong Codigo:
+/   = @categoria.codigo
+/ p
+/   strong Nombre:
+/   = @categoria.nombre
+/ p
+/   strong Salariobase:
+/   = @categoria.salarioBase
+
+/ = link_to 'Edit', edit_categoria_path(@categoria)
+/ '|
+/ = link_to 'Back', categorias_path

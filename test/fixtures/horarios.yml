@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codigo: MyString
+  nombre: MyString
+  diaInicio: 1
+  diaFin: 1
+  horaInicio: 2015-10-16 16:03:24
+  horaFin: 2015-10-16 16:03:24
+
+two:
+  codigo: MyString
+  nombre: MyString
+  diaInicio: 1
+  diaFin: 1
+  horaInicio: 2015-10-16 16:03:24
+  horaFin: 2015-10-16 16:03:24

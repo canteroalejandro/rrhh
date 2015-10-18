@@ -1,20 +1,24 @@
 h1 Listing departamentos
 
 table
-  tr
-    th Nombre
-    th Provincia
-    th Pais
-    th
-
-  - @departamentos.each do |departamento|
+  thead
     tr
-      td = departamento.nombre
-      td = departamento.provincia.nombre
-      td = departamento.pais.nombre
-      td = link_to 'Show', departamento
-      td = link_to 'Edit', edit_departamento_path(departamento)
-      td = link_to 'Destroy', departamento, :confirm => 'Are you sure?', :method => :delete
+      th Codigo
+      th Nombre
+      th Fechaenquedirige
+      th
+      th
+      th
+
+  tbody
+    - @departamentos.each do |departamento|
+      tr
+        td = departamento.codigo
+        td = departamento.nombre
+        td = departamento.fechaEnQueDirige
+        td = link_to 'Show', departamento
+        td = link_to 'Edit', edit_departamento_path(departamento)
+        td = link_to 'Destroy', departamento, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 

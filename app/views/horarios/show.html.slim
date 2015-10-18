@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Codigo:
+  = @horario.codigo
+p
+  strong Nombre:
+  = @horario.nombre
+p
+  strong Diainicio:
+  = @horario.numero_a_dia(@horario.diaInicio)
+p
+  strong Diafin:
+  = @horario.numero_a_dia(@horario.diaFin)
+p
+  strong Horainicio:
+  = @horario.horaInicio
+p
+  strong Horafin:
+  = @horario.horaFin
+
+= link_to 'Edit', edit_horario_path(@horario)
+'|
+= link_to 'Back', horarios_path

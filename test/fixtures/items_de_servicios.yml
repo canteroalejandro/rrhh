@@ -1,7 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  monto_establecido: 9.99
-
-two:
-  monto_establecido: 9.99

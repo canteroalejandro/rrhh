@@ -1,0 +1,75 @@
+ul.nav.nav-list
+  li class=(is_active?("index"))
+    a href=(categorias_path)
+      i.icon-list
+      span.menu-text
+        | Categorias 
+  
+  li class=(is_active?("index"))
+    a href=(empleados_path)
+      i.icon-list
+      span.menu-text
+        | Empleados
+
+  li class=(is_active?("index"))
+    a href=(departamentos_path)
+      i.icon-list
+      span.menu-text
+        | Departamentos
+
+  li class=(is_active?("index"))
+    a href=(proyectos_path)
+      i.icon-list
+      span.menu-text
+        | Proyectos
+
+  li class=(is_active?("index"))
+    a href=(horarios_path)
+      i.icon-list
+      span.menu-text
+        | Horarios
+
+  li class=(is_active?("index"))
+    a href=(usuarios_path)
+      i.icon-list
+      span.menu-text
+        | Usuarios
+  
+  / li class=(is_active?("index"))
+  /   a href=(proyectos_path)
+  /     i.icon-plus-sign
+  /     span.menu-text
+  /       | Proyectos
+
+  / li class=(is_active?("index"))
+  /   a href=(contadores_path)
+  /     i.icon-cogs
+  /     span.menu-text
+  /       | Contadores
+
+  / li class=(is_active?("index"))
+  /   a.dropdown-toggle
+  /     i.icon-flag
+  /     span.menu-text 
+  /       |  Ubicaciones
+  /     b.arrow.icon-angle-down
+
+  /   ul.submenu
+  /     li
+  /       a href=(localidades_path)
+  /         i.icon-double-angle-right
+  /         |  Localidades
+  /     li
+  /       a href=(departamentos_path)
+  /         i.icon-double-angle-right
+  /         |  Departamentos
+
+  /     li
+  /       a href=(provincias_path)
+  /         i.icon-double-angle-right
+  /         |  Provincias
+
+  /     li
+  /       a.dropdown-toggle href=(paises_path)
+  /         i.icon-double-angle-right
+  /         |  Paises

@@ -1,0 +1,31 @@
+h1 Listing horarios
+
+table
+  thead
+    tr
+      th Codigo
+      th Nombre
+      th Diainicio 
+      th Diafin
+      th Horainicio
+      th Horafin
+      th
+      th
+      th
+
+  tbody
+    - @horarios.each do |horario|
+      tr
+        td = horario.codigo
+        td = horario.nombre
+        td = horario.numero_a_dia(horario.diaInicio)
+        td = horario.numero_a_dia(horario.diaFin)
+        td = horario.horaInicio
+        td = horario.horaFin
+        td = link_to 'Show', horario
+        td = link_to 'Edit', edit_horario_path(horario)
+        td = link_to 'Destroy', horario, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Horario', new_horario_path

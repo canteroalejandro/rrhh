@@ -1,0 +1,27 @@
+p#notice = notice
+
+p
+  strong Codigo:
+  = @empleado.codigo
+p
+  strong Dni:
+  = @empleado.dni
+p
+  strong Nombre:
+  = @empleado.nombre
+p
+  strong Apellido:
+  = @empleado.apellido
+p
+  strong Sexo:
+  = @empleado.sexo
+p
+  strong Fechanacimiento:
+  = @empleado.fechaNacimiento
+p
+  strong Direccion:
+  = @empleado.direccion
+
+= link_to 'Edit', edit_empleado_path(@empleado)
+'|
+= link_to 'Back', empleados_path
