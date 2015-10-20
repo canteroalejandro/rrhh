@@ -3,6 +3,7 @@ class CreateAsistencias < ActiveRecord::Migration
     create_table :asistencias do |t|
       t.boolean :entrada
       t.boolean :salida
+      t.string :outputAsistencia
 
       t.timestamps null: false
     end

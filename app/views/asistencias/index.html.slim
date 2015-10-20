@@ -5,6 +5,7 @@ table
     tr
       th Entrada
       th Salida
+      th Outputasistencia
       th
       th
       th
@@ -14,6 +15,7 @@ table
       tr
         td = asistencia.entrada
         td = asistencia.salida
+        td = asistencia.outputAsistencia
         td = link_to 'Show', asistencia
         td = link_to 'Edit', edit_asistencia_path(asistencia)
         td = link_to 'Destroy', asistencia, data: {:confirm => 'Are you sure?'}, :method => :delete

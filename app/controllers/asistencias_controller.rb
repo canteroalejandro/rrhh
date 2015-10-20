@@ -69,6 +69,6 @@ class AsistenciasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def asistencia_params
-      params.require(:asistencia).permit(:entrada, :salida)
+      params.require(:asistencia).permit(:entrada, :salida, :outputAsistencia)
     end
 end

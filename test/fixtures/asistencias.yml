@@ -3,7 +3,9 @@
 one:
   entrada: false
   salida: false
+  outputAsistencia: MyString
 
 two:
   entrada: false
   salida: false
+  outputAsistencia: MyString

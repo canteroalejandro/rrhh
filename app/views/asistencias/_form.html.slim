@@ -8,10 +8,11 @@
 
   .field
     = f.label :entrada
-    = f.check_box :entrada, hidden: false
-  br 
+    = f.check_box :entrada
   .field
     = f.label :salida
-    = f.check_box :salida, hidden: false
-  br
+    = f.check_box :salida
+  .field
+    = f.label :outputAsistencia
+    = f.text_field :outputAsistencia
   .actions = f.submit
