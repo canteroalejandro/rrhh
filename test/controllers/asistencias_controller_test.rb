@@ -18,7 +18,7 @@ class AsistenciasControllerTest < ActionController::TestCase
 
   test "should create asistencia" do
     assert_difference('Asistencia.count') do
-      post :create, asistencia: { entrada: @asistencia.entrada, outputAsistencia: @asistencia.outputAsistencia, salida: @asistencia.salida }
+      post :create, asistencia: { entrada: @asistencia.entrada, horasTrabajadas: @asistencia.horasTrabajadas, outputAsistencia: @asistencia.outputAsistencia, salida: @asistencia.salida }
     end
 
     assert_redirected_to asistencia_path(assigns(:asistencia))
@@ -35,7 +35,7 @@ class AsistenciasControllerTest < ActionController::TestCase
   end
 
   test "should update asistencia" do
-    patch :update, id: @asistencia, asistencia: { entrada: @asistencia.entrada, outputAsistencia: @asistencia.outputAsistencia, salida: @asistencia.salida }
+    patch :update, id: @asistencia, asistencia: { entrada: @asistencia.entrada, horasTrabajadas: @asistencia.horasTrabajadas, outputAsistencia: @asistencia.outputAsistencia, salida: @asistencia.salida }
     assert_redirected_to asistencia_path(assigns(:asistencia))
   end
 

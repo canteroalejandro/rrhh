@@ -4,6 +4,7 @@ class CreateAsistencias < ActiveRecord::Migration
       t.boolean :entrada
       t.boolean :salida
       t.string :outputAsistencia
+      t.integer :horasTrabajadas
 
       t.timestamps null: false
     end

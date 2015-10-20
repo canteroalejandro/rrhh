@@ -10,4 +10,5 @@ rails g scaffold Horario codigo:string nombre:string diaInicio:integer diaFin:in
 
 rails g scaffold Usuario userName:string password:string rol:string
 
-rails g scaffold Asistencia entrada:boolean salida:boolean outputAsistencia:string
+rails g scaffold Asistencia entrada:boolean salida:boolean outputAsistencia:string horasTrabajadas:integer
+
