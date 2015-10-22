@@ -12,3 +12,7 @@ rails g scaffold Usuario userName:string password:string rol:string
 
 rails g scaffold Asistencia entrada:boolean salida:boolean outputAsistencia:string horasTrabajadas:integer
 
+rails g scaffold HistoriaMedica codigo:string fecha:date doctor:string
+
+# Model to Table, nombre del modelo sin camelcase
+rails generate migration AddEmpleadoRefToHistoriaMedica empleado:references

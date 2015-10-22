@@ -6,10 +6,21 @@ ul.nav.nav-list
         | Categorias 
   
   li class=(is_active?("index"))
-    a href=(empleados_path)
+    a.dropdown-toggle href=(empleados_path)
       i.icon-list
       span.menu-text
         | Empleados
+      b.arrow.icon-angle-down
+
+    ul.submenu
+      li
+        a href=(historia_medicas_path)
+          i.icon-double-angle-right
+          |  Historias Medicas
+      / li
+      /   a href=(departamentos_path)
+      /     i.icon-double-angle-right
+      /     |  Departamentos
 
   li class=(is_active?("index"))
     a href=(departamentos_path)

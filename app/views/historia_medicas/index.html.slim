@@ -1,0 +1,25 @@
+h1 Listing historia_medicas
+
+table
+  thead
+    tr
+      th Codigo
+      th Fecha
+      th Doctor
+      th
+      th
+      th
+
+  tbody
+    - @historia_medicas.each do |historia_medica|
+      tr
+        td = historia_medica.codigo
+        td = historia_medica.fecha
+        td = historia_medica.doctor
+        td = link_to 'Show', historia_medica
+        td = link_to 'Edit', edit_historia_medica_path(historia_medica)
+        td = link_to 'Destroy', historia_medica, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Historia medica', new_historia_medica_path

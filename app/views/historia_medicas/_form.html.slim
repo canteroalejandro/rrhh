@@ -1,0 +1,18 @@
+= form_for @historia_medica do |f|
+  - if @historia_medica.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@historia_medica.errors.count, "error")} prohibited this historia_medica from being saved:"
+      ul
+        - @historia_medica.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :codigo
+    = f.text_field :codigo
+  .field
+    = f.label :fecha
+    = f.date_select :fecha
+  .field
+    = f.label :doctor
+    = f.text_field :doctor
+  .actions = f.submit

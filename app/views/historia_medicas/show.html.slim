@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Codigo:
+  = @historia_medica.codigo
+p
+  strong Fecha:
+  = @historia_medica.fecha
+p
+  strong Doctor:
+  = @historia_medica.doctor
+
+= link_to 'Edit', edit_historia_medica_path(@historia_medica)
+'|
+= link_to 'Back', historia_medicas_path
