@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022042631) do
+ActiveRecord::Schema.define(version: 20151024013219) do
 
   create_table "asistencias", force: :cascade do |t|
     t.boolean  "entrada"
@@ -64,12 +64,16 @@ ActiveRecord::Schema.define(version: 20151022042631) do
   create_table "horarios", force: :cascade do |t|
     t.string   "codigo"
     t.string   "nombre"
-    t.integer  "diaInicio"
-    t.integer  "diaFin"
-    t.time     "horaInicio"
-    t.time     "horaFin"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.time     "horaEntrada"
+    t.time     "horaSalida"
+    t.boolean  "margenEntradaCheck"
+    t.boolean  "margenSalidaCheck"
+    t.time     "inicioMargenEntrada"
+    t.time     "finMargenEntrada"
+    t.time     "inicioMargenSalida"
+    t.time     "finMargenSalida"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "proyectos", force: :cascade do |t|

@@ -7,17 +7,29 @@ p
   strong Nombre:
   = @horario.nombre
 p
-  strong Diainicio:
-  = @horario.numero_a_dia(@horario.diaInicio)
+  strong Horaentrada:
+  = @horario.horaEntrada
 p
-  strong Diafin:
-  = @horario.numero_a_dia(@horario.diaFin)
+  strong Horasalida:
+  = @horario.horaSalida
 p
-  strong Horainicio:
-  = @horario.horaInicio
+  strong Margenentradacheck:
+  = @horario.margenEntradaCheck
 p
-  strong Horafin:
-  = @horario.horaFin
+  strong Margensalidacheck:
+  = @horario.margenSalidaCheck
+p
+  strong Iniciomargenentrada:
+  = @horario.inicioMargenEntrada
+p
+  strong Finmargenentrada:
+  = @horario.finMargenEntrada
+p
+  strong Iniciomargensalida:
+  = @horario.inicioMargenSalida
+p
+  strong Finmargensalida:
+  = @horario.finMargenSalida
 
 = link_to 'Edit', edit_horario_path(@horario)
 '|

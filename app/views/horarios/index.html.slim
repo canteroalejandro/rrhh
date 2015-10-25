@@ -5,10 +5,14 @@ table
     tr
       th Codigo
       th Nombre
-      th Diainicio 
-      th Diafin
-      th Horainicio
-      th Horafin
+      th Horaentrada
+      th Horasalida
+      th Margenentradacheck
+      th Margensalidacheck
+      th Iniciomargenentrada
+      th Finmargenentrada
+      th Iniciomargensalida
+      th Finmargensalida
       th
       th
       th
@@ -18,10 +22,14 @@ table
       tr
         td = horario.codigo
         td = horario.nombre
-        td = horario.numero_a_dia(horario.diaInicio)
-        td = horario.numero_a_dia(horario.diaFin)
-        td = horario.horaInicio
-        td = horario.horaFin
+        td = horario.horaEntrada
+        td = horario.horaSalida
+        td = horario.margenEntradaCheck
+        td = horario.margenSalidaCheck
+        td = horario.inicioMargenEntrada
+        td = horario.finMargenEntrada
+        td = horario.inicioMargenSalida
+        td = horario.finMargenSalida
         td = link_to 'Show', horario
         td = link_to 'Edit', edit_horario_path(horario)
         td = link_to 'Destroy', horario, data: {:confirm => 'Are you sure?'}, :method => :delete

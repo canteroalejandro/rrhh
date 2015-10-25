@@ -3,15 +3,23 @@
 one:
   codigo: MyString
   nombre: MyString
-  diaInicio: 1
-  diaFin: 1
-  horaInicio: 2015-10-16 16:03:24
-  horaFin: 2015-10-16 16:03:24
+  horaEntrada: 2015-10-23 22:32:19
+  horaSalida: 2015-10-23 22:32:19
+  margenEntradaCheck: false
+  margenSalidaCheck: false
+  inicioMargenEntrada: 2015-10-23 22:32:19
+  finMargenEntrada: 2015-10-23 22:32:19
+  inicioMargenSalida: 2015-10-23 22:32:19
+  finMargenSalida: 2015-10-23 22:32:19
 
 two:
   codigo: MyString
   nombre: MyString
-  diaInicio: 1
-  diaFin: 1
-  horaInicio: 2015-10-16 16:03:24
-  horaFin: 2015-10-16 16:03:24
+  horaEntrada: 2015-10-23 22:32:19
+  horaSalida: 2015-10-23 22:32:19
+  margenEntradaCheck: false
+  margenSalidaCheck: false
+  inicioMargenEntrada: 2015-10-23 22:32:19
+  finMargenEntrada: 2015-10-23 22:32:19
+  inicioMargenSalida: 2015-10-23 22:32:19
+  finMargenSalida: 2015-10-23 22:32:19

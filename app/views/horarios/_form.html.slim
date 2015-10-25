@@ -13,15 +13,27 @@
     = f.label :nombre
     = f.text_field :nombre
   .field
-    = f.label :diaInicio
-    = f.select :diaInicio, options_for_select([['Domingo',0], ['Lunes',1], ['Martes', 2], ['Miércoles',3],['Jueves',4], ['Viernes',5], ['Sábado',6]])
+    = f.label "Hora de Entrada"
+    = f.time_select :horaEntrada
   .field
-    = f.label :diaFin
-    = f.select :diaFin, options_for_select([['Domingo',0], ['Lunes',1], ['Martes', 2], ['Miércoles',3],['Jueves',4], ['Viernes',5], ['Sábado',6]])
+    = f.label "Hora de Salida" 
+    = f.time_select :horaSalida
+  .field#check
+    = f.check_box :margenEntradaCheck, {:class=>"ace"}
+    span.lbl  Existe Margen de Entrada
   .field
-    = f.label :horaInicio
-    = f.time_select :horaInicio
+    = f.label "Desde"
+    = f.time_select :inicioMargenEntrada
   .field
-    = f.label :horaFin
-    = f.time_select :horaFin
+    = f.label "Hasta"
+    = f.time_select :finMargenEntrada
+  .field#check
+    = f.check_box :margenSalidaCheck, {:class=>"ace"}
+    span.lbl  Existe Margen de Salida
+  .field
+    = f.label "Desde"
+    = f.time_select :inicioMargenSalida
+  .field
+    = f.label "Hasta"
+    = f.time_select :finMargenSalida
   .actions = f.submit
