@@ -29,6 +29,7 @@ Rails.application.config.assets.precompile += %w( js/flot/jquery.flot.pie.min.js
 Rails.application.config.assets.precompile += %w( js/flot/jquery.flot.resize.min.js )
 Rails.application.config.assets.precompile += %w( js/ace-elements.min.js)
 Rails.application.config.assets.precompile += %w( js/ace.min.js)
+Rails.application.config.assets.precompile += %w( .svg .eot .woff .ttf )
 
 %w( categorias departamentos empleados proyectos horarios usuarios sessions asistencias historia_medicas).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
