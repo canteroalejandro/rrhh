@@ -10,7 +10,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 gem 'pg'
 
 gem 'rails_12factor', group: :production
