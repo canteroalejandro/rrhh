@@ -1,0 +1,15 @@
+= form_for @sexo do |f|
+  - if @sexo.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@sexo.errors.count, "error")} prohibited this sexo from being saved:"
+      ul
+        - @sexo.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :codigo
+    = f.text_field :codigo
+  .field
+    = f.label :sexo
+    = f.text_field :sexo
+  .actions = f.submit

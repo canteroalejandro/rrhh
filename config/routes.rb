@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :sexos
   resources :historia_medicas
   resources :usuarios
   resources :proyectos

@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Codigo:
+  = @sexo.codigo
+p
+  strong Sexo:
+  = @sexo.sexo
+
+= link_to 'Edit', edit_sexo_path(@sexo)
+'|
+= link_to 'Back', sexos_path

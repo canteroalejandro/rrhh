@@ -1,0 +1,23 @@
+h1 Listing sexos
+
+table
+  thead
+    tr
+      th Codigo
+      th Sexo
+      th
+      th
+      th
+
+  tbody
+    - @sexos.each do |sexo|
+      tr
+        td = sexo.codigo
+        td = sexo.sexo
+        td = link_to 'Show', sexo
+        td = link_to 'Edit', edit_sexo_path(sexo)
+        td = link_to 'Destroy', sexo, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Sexo', new_sexo_path
