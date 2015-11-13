@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
 
+  resources :historia_medicas
+  resources :usuarios
+  resources :proyectos
+  resources :departamentos
+  resources :empleados
+  resources :categorias
   resources :horarios
   resources :historia_medicas
   resources :asistencias

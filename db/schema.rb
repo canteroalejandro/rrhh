@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20151024013219) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "asistencias", force: :cascade do |t|
     t.boolean  "entrada"
     t.boolean  "salida"
@@ -59,7 +62,7 @@ ActiveRecord::Schema.define(version: 20151024013219) do
     t.integer  "empleado_id"
   end
 
-  add_index "historia_medicas", ["empleado_id"], name: "index_historia_medicas_on_empleado_id"
+  add_index "historia_medicas", ["empleado_id"], name: "index_historia_medicas_on_empleado_id", using: :btree
 
   create_table "horarios", force: :cascade do |t|
     t.string   "codigo"
@@ -91,4 +94,5 @@ ActiveRecord::Schema.define(version: 20151024013219) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "historia_medicas", "empleados"
 end

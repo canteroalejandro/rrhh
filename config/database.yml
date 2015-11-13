@@ -6,17 +6,27 @@
 
 development:
   adapter: postgresql
+  encoding: unicode
   database: my_database_development
   pool: 5
-  timeout: 5000
-test:
-  adapter: postgresql
-  database: my_database_test
-  pool: 5
-  timeout: 5000
+  username: ana
+  password: 'drought'
+  host: localhost
 
-production:
-  adapter: postgresql
-  database: my_database_production
-  pool: 5
-  timeout: 5000
+# test:
+#   adapter: postgresql
+#   database: my_database_test
+#   pool: 5
+#   timeout: 5000
+#   username: ana
+#   password: drought   ### password you have specified within psql
+#   host: localhost
+
+# production:
+#   adapter: postgresql
+#   database: my_database_production
+#   pool: 5
+#   timeout: 5000
+#   username: ana
+#   password: drought   ### password you have specified within psql
+#   host: localhost
