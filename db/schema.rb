@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151114025050) do
+ActiveRecord::Schema.define(version: 20151114033109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,10 +59,12 @@ ActiveRecord::Schema.define(version: 20151114025050) do
     t.datetime "updated_at",      null: false
     t.integer  "categoria_id"
     t.integer  "departamento_id"
+    t.integer  "sexo_id"
   end
 
   add_index "empleados", ["categoria_id"], name: "index_empleados_on_categoria_id", using: :btree
   add_index "empleados", ["departamento_id"], name: "index_empleados_on_departamento_id", using: :btree
+  add_index "empleados", ["sexo_id"], name: "index_empleados_on_sexo_id", using: :btree
 
   create_table "historia_medicas", force: :cascade do |t|
     t.string   "codigo"
@@ -124,6 +126,7 @@ ActiveRecord::Schema.define(version: 20151114025050) do
   add_foreign_key "departamentos", "empleados"
   add_foreign_key "empleados", "categorias"
   add_foreign_key "empleados", "departamentos"
+  add_foreign_key "empleados", "sexos"
   add_foreign_key "historia_medicas", "empleados"
   add_foreign_key "horarios", "empleados"
   add_foreign_key "proyectos", "departamentos"

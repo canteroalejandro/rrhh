@@ -12,11 +12,17 @@ ul.nav.nav-list
         | Empleados
       b.arrow.icon-angle-down
 
-    ul.submenu
-      li
-        a href=(historia_medicas_path)
-          i.icon-double-angle-right
-          |  Historias Medicas
+  li class=(is_active?("index"))
+    a href=(historia_medicas_path)
+      i.icon-list
+      span.menu-text
+        |  Historias Medicas
+
+  li class=(is_active?("index"))
+    a href=(sexos_path)
+      i.icon-list
+      span.menu-text
+        |  Sexo
       / li
       /   a href=(departamentos_path)
       /     i.icon-double-angle-right

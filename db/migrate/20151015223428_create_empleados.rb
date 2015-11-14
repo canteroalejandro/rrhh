@@ -5,7 +5,6 @@ class CreateEmpleados < ActiveRecord::Migration
       t.string :dni
       t.string :nombre
       t.string :apellido
-      t.string :sexo
       t.date :fechaNacimiento
       t.string :direccion
 

@@ -33,3 +33,5 @@ rails generate migration AddCategoriaRefToEmpleado categoria:references
 rails generate migration AddDepartamentoRefToEmpleado departamento:references
 
 rails generate migration AddDepartamentoRefToProyecto departamento:references
+
+rails generate migration AddSexoRefToEmpleado sexo:references

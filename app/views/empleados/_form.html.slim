@@ -20,7 +20,7 @@
     = f.text_field :apellido
   .field
     = f.label :sexo, 'Sexo:'
-    = f.text_field :sexo
+    = f.collection_select :sexo_id, Sexo.all, :id, :sexo
   .field
     = f.label :fechaNacimiento, 'Fecha de Nacimiento:'
     = f.date_select :fechaNacimiento, :start_year => 1900, :end_year => Date.today.year
