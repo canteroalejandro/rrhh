@@ -21,3 +21,11 @@
 
  en:
    hello: "Hello world"
+
+   errors:
+    format: '%{message}'
+
+   helpers:
+    submit:
+      create: "Crear %{model}"
+      update: "Actualizar %{model}"

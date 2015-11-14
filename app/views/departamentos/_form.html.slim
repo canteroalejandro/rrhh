@@ -1,18 +1,21 @@
 = form_for @departamento do |f|
   - if @departamento.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@departamento.errors.count, "error")} prohibited this departamento from being saved:"
+      h2 = "#{pluralize(@departamento.errors.count, "error")} #{pluralize_without_count(@departamento.errors.count, "prohibe", "prohiben")} almacenar este Departamento:"
       ul
         - @departamento.errors.full_messages.each do |message|
           li = message
 
   .field
-    = f.label :codigo
-    = f.text_field :codigo
+    = f.label :codigo, "Código:"
+    = f.text_field :codigo,:value => @departamento.codigo_departamento
   .field
-    = f.label :nombre
+    = f.label :nombre, "Nombre:"
     = f.text_field :nombre
   .field
-    = f.label :fechaEnQueDirige
-    = f.datetime_select :fechaEnQueDirige
+    = f.label :empleado_id, 'Empleado:'
+    = f.collection_select :empleado_id, Empleado.all, :id, :nombre
+  .field
+    = f.label :fechaEnQueDirige, "Fecha desde que dirige:"
+    = f.date_select :fechaEnQueDirige, :start_year => 1900, :end_year => Date.today.year
   .actions = f.submit

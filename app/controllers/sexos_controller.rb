@@ -28,7 +28,7 @@ class SexosController < ApplicationController
 
     respond_to do |format|
       if @sexo.save
-        format.html { redirect_to @sexo, notice: 'Sexo was successfully created.' }
+        format.html { redirect_to @sexo, notice: 'Sexo fue creado exitosamente.' }
         format.json { render :show, status: :created, location: @sexo }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class SexosController < ApplicationController
   def update
     respond_to do |format|
       if @sexo.update(sexo_params)
-        format.html { redirect_to @sexo, notice: 'Sexo was successfully updated.' }
+        format.html { redirect_to @sexo, notice: 'Sexo fue actualizado exitosamente.' }
         format.json { render :show, status: :ok, location: @sexo }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class SexosController < ApplicationController
   def destroy
     @sexo.destroy
     respond_to do |format|
-      format.html { redirect_to sexos_url, notice: 'Sexo was successfully destroyed.' }
+      format.html { redirect_to sexos_url, notice: 'Sexo fue eliminado exitosamente.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class SexosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sexo_params
-      params.require(:sexo).permit(:codigo, :sexo)
+      params.require(:sexo).permit(:sexo)
     end
 end

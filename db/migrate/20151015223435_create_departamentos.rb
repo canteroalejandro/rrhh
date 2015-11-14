@@ -3,7 +3,7 @@ class CreateDepartamentos < ActiveRecord::Migration
     create_table :departamentos do |t|
       t.string :codigo
       t.string :nombre
-      t.datetime :fechaEnQueDirige
+      t.date :fechaEnQueDirige
 
       t.timestamps null: false
     end

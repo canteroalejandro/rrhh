@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024013219) do
+ActiveRecord::Schema.define(version: 20151114025050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,10 @@ ActiveRecord::Schema.define(version: 20151024013219) do
     t.integer  "horasTrabajadas"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "empleado_id"
   end
+
+  add_index "asistencias", ["empleado_id"], name: "index_asistencias_on_empleado_id", using: :btree
 
   create_table "categorias", force: :cascade do |t|
     t.string   "codigo"
@@ -36,10 +39,13 @@ ActiveRecord::Schema.define(version: 20151024013219) do
   create_table "departamentos", force: :cascade do |t|
     t.string   "codigo"
     t.string   "nombre"
-    t.datetime "fechaEnQueDirige"
+    t.date     "fechaEnQueDirige"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "empleado_id"
   end
+
+  add_index "departamentos", ["empleado_id"], name: "index_departamentos_on_empleado_id", using: :btree
 
   create_table "empleados", force: :cascade do |t|
     t.string   "codigo"
@@ -51,7 +57,12 @@ ActiveRecord::Schema.define(version: 20151024013219) do
     t.string   "direccion"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "categoria_id"
+    t.integer  "departamento_id"
   end
+
+  add_index "empleados", ["categoria_id"], name: "index_empleados_on_categoria_id", using: :btree
+  add_index "empleados", ["departamento_id"], name: "index_empleados_on_departamento_id", using: :btree
 
   create_table "historia_medicas", force: :cascade do |t|
     t.string   "codigo"
@@ -77,11 +88,23 @@ ActiveRecord::Schema.define(version: 20151024013219) do
     t.time     "finMargenSalida"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "empleado_id"
   end
+
+  add_index "horarios", ["empleado_id"], name: "index_horarios_on_empleado_id", using: :btree
 
   create_table "proyectos", force: :cascade do |t|
     t.string   "codigo"
     t.string   "nombre"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "departamento_id"
+  end
+
+  add_index "proyectos", ["departamento_id"], name: "index_proyectos_on_departamento_id", using: :btree
+
+  create_table "sexos", force: :cascade do |t|
+    t.string   "sexo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -90,9 +113,19 @@ ActiveRecord::Schema.define(version: 20151024013219) do
     t.string   "userName"
     t.string   "password"
     t.string   "rol"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "empleado_id"
   end
 
+  add_index "usuarios", ["empleado_id"], name: "index_usuarios_on_empleado_id", using: :btree
+
+  add_foreign_key "asistencias", "empleados"
+  add_foreign_key "departamentos", "empleados"
+  add_foreign_key "empleados", "categorias"
+  add_foreign_key "empleados", "departamentos"
   add_foreign_key "historia_medicas", "empleados"
+  add_foreign_key "horarios", "empleados"
+  add_foreign_key "proyectos", "departamentos"
+  add_foreign_key "usuarios", "empleados"
 end

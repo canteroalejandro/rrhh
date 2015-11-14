@@ -1,15 +1,15 @@
 p#notice = notice
 
 p
-  strong Codigo:
+  strong Código: 
   = @departamento.codigo
 p
-  strong Nombre:
+  strong Nombre: 
   = @departamento.nombre
 p
-  strong Fechaenquedirige:
+  strong Fecha desde que dirige: 
   = @departamento.fechaEnQueDirige
 
-= link_to 'Edit', edit_departamento_path(@departamento)
+= link_to 'Editar', edit_departamento_path(@departamento)
 '|
-= link_to 'Back', departamentos_path
+= link_to 'Volver', departamentos_path

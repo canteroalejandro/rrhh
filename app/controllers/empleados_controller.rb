@@ -28,7 +28,7 @@ class EmpleadosController < ApplicationController
 
     respond_to do |format|
       if @empleado.save
-        format.html { redirect_to @empleado, notice: 'Empleado was successfully created.' }
+        format.html { redirect_to @empleado, notice: 'Empleado fue creado exitosamente.' }
         format.json { render :show, status: :created, location: @empleado }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class EmpleadosController < ApplicationController
   def update
     respond_to do |format|
       if @empleado.update(empleado_params)
-        format.html { redirect_to @empleado, notice: 'Empleado was successfully updated.' }
+        format.html { redirect_to @empleado, notice: 'Empleado fue actualizado exitosamente.' }
         format.json { render :show, status: :ok, location: @empleado }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class EmpleadosController < ApplicationController
   def destroy
     @empleado.destroy
     respond_to do |format|
-      format.html { redirect_to empleados_url, notice: 'Empleado was successfully destroyed.' }
+      format.html { redirect_to empleados_url, notice: 'Empleado fue eliminado exitosamente.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class EmpleadosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def empleado_params
-      params.require(:empleado).permit(:codigo, :dni, :nombre, :apellido, :sexo, :fechaNacimiento, :direccion)
+      params.require(:empleado).permit(:codigo, :dni, :nombre, :apellido, :sexo, :fechaNacimiento, :direccion, :categoria_id, :departamento_id)
     end
 end

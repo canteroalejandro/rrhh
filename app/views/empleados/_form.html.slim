@@ -1,30 +1,33 @@
 = form_for @empleado do |f|
   - if @empleado.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@empleado.errors.count, "error")} prohibited this empleado from being saved:"
+      h2 = "#{pluralize(@empleado.errors.count, "error")} #{pluralize_without_count(@empleado.errors.count, "prohibe", "prohiben")} almacenar este Empleado:"
       ul
         - @empleado.errors.full_messages.each do |message|
           li = message
 
   .field
-    = f.label :codigo
-    = f.text_field :codigo
+    = f.label :codigo, "Código:"
+    = f.text_field :codigo, :value => @empleado.codigo_empleado
   .field
-    = f.label :dni
+    = f.label :dni, 'DNI:'
     = f.text_field :dni
   .field
-    = f.label :nombre
+    = f.label :nombre, 'Nombre:'
     = f.text_field :nombre
   .field
-    = f.label :apellido
+    = f.label :apellido, 'Apellido:'
     = f.text_field :apellido
   .field
-    = f.label :sexo
+    = f.label :sexo, 'Sexo:'
     = f.text_field :sexo
   .field
-    = f.label :fechaNacimiento
-    = f.date_select :fechaNacimiento
+    = f.label :fechaNacimiento, 'Fecha de Nacimiento:'
+    = f.date_select :fechaNacimiento, :start_year => 1900, :end_year => Date.today.year
   .field
-    = f.label :direccion
+    = f.label :direccion, 'Dirección:'
     = f.text_field :direccion
+  .field
+    = f.label :categoria_id, 'Categoria:'
+    = f.collection_select :categoria_id, Categoria.all, :id, :nombre
   .actions = f.submit

@@ -1,1 +1,1 @@
-json.extract! @sexo, :id, :codigo, :sexo, :created_at, :updated_at
+json.extract! @sexo, :id, :sexo, :created_at, :updated_at

@@ -6,9 +6,7 @@ table
       th Codigo
       th Nombre
       th Fechaenquedirige
-      th
-      th
-      th
+      th colspan="3" Acciones
 
   tbody
     - @departamentos.each do |departamento|
@@ -16,10 +14,10 @@ table
         td = departamento.codigo
         td = departamento.nombre
         td = departamento.fechaEnQueDirige
-        td = link_to 'Show', departamento
-        td = link_to 'Edit', edit_departamento_path(departamento)
-        td = link_to 'Destroy', departamento, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Mostrar', departamento
+        td = link_to 'Editar', edit_departamento_path(departamento)
+        td = link_to 'Elimiar', departamento, data: {:confirm => '¿Está Seguro que desea Eliminar el Departamento?'}, :method => :delete
 
 br
 
-= link_to 'New Departamento', new_departamento_path
+= link_to 'Nuevo Departamento', new_departamento_path

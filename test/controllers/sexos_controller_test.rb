@@ -18,7 +18,7 @@ class SexosControllerTest < ActionController::TestCase
 
   test "should create sexo" do
     assert_difference('Sexo.count') do
-      post :create, sexo: { codigo: @sexo.codigo, sexo: @sexo.sexo }
+      post :create, sexo: { sexo: @sexo.sexo }
     end
 
     assert_redirected_to sexo_path(assigns(:sexo))
@@ -35,7 +35,7 @@ class SexosControllerTest < ActionController::TestCase
   end
 
   test "should update sexo" do
-    patch :update, id: @sexo, sexo: { codigo: @sexo.codigo, sexo: @sexo.sexo }
+    patch :update, id: @sexo, sexo: { sexo: @sexo.sexo }
     assert_redirected_to sexo_path(assigns(:sexo))
   end
 

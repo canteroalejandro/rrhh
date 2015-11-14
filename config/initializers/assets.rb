@@ -31,6 +31,6 @@ Rails.application.config.assets.precompile += %w( js/ace-elements.min.js)
 Rails.application.config.assets.precompile += %w( js/ace.min.js)
 Rails.application.config.assets.precompile += %w( .svg .eot .woff .ttf )
 
-%w( categorias departamentos empleados proyectos horarios usuarios sessions asistencias historia_medicas).each do |controller|
+%w( categorias departamentos empleados proyectos horarios usuarios sessions asistencias historia_medicas sexos).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
 end

@@ -1,18 +1,18 @@
 = form_for @categoria do |f|
   - if @categoria.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@categoria.errors.count, "error")} prohibited this categoria from being saved:"
+      h2 = "#{pluralize(@categoria.errors.count, "error")}  #{pluralize_without_count(@categoria.errors.count, "prohibe", "prohiben")} almacenar esta Categoría:"
       ul
         - @categoria.errors.full_messages.each do |message|
           li = message
 
   .field
-    = f.label :codigo
-    = f.text_field :codigo
+    = f.label :codigo, "Código:"
+    = f.text_field :codigo,:value => @categoria.codigo_categoria
   .field
-    = f.label :nombre
+    = f.label :nombre, "Nombre:"
     = f.text_field :nombre
   .field
-    = f.label :salarioBase
+    = f.label :salarioBase, "Salario Básico:"
     = f.text_field :salarioBase
   .actions = f.submit

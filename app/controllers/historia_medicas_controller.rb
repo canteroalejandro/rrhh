@@ -28,7 +28,7 @@ class HistoriaMedicasController < ApplicationController
 
     respond_to do |format|
       if @historia_medica.save
-        format.html { redirect_to @historia_medica, notice: 'Historia medica was successfully created.' }
+        format.html { redirect_to @historia_medica, notice: 'Historia Médica fue creada exitosamente.' }
         format.json { render :show, status: :created, location: @historia_medica }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class HistoriaMedicasController < ApplicationController
   def update
     respond_to do |format|
       if @historia_medica.update(historia_medica_params)
-        format.html { redirect_to @historia_medica, notice: 'Historia medica was successfully updated.' }
+        format.html { redirect_to @historia_medica, notice: 'Historia Médica fue actualizada exitosamente.' }
         format.json { render :show, status: :ok, location: @historia_medica }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class HistoriaMedicasController < ApplicationController
   def destroy
     @historia_medica.destroy
     respond_to do |format|
-      format.html { redirect_to historia_medicas_url, notice: 'Historia medica was successfully destroyed.' }
+      format.html { redirect_to historia_medicas_url, notice: 'Historia Médica fue eliminada exitosamente.' }
       format.json { head :no_content }
     end
   end
