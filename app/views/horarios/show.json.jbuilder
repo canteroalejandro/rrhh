@@ -1,1 +1,1 @@
-json.extract! @horario, :id, :codigo, :nombre, :horaEntrada, :horaSalida, :margenEntradaCheck, :margenSalidaCheck, :inicioMargenEntrada, :finMargenEntrada, :inicioMargenSalida, :finMargenSalida, :created_at, :updated_at
+json.extract! @horario, :id, :codigo, :nombre, :dia, :horaEntrada, :horaSalida, :margenEntradaCheck, :margenSalidaCheck, :inicioMargenEntrada, :finMargenEntrada, :inicioMargenSalida, :finMargenSalida, :created_at, :updated_at

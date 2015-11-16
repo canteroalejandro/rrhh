@@ -18,7 +18,7 @@ class HorariosControllerTest < ActionController::TestCase
 
   test "should create horario" do
     assert_difference('Horario.count') do
-      post :create, horario: { codigo: @horario.codigo, finMargenEntrada: @horario.finMargenEntrada, finMargenSalida: @horario.finMargenSalida, horaEntrada: @horario.horaEntrada, horaSalida: @horario.horaSalida, inicioMargenEntrada: @horario.inicioMargenEntrada, inicioMargenSalida: @horario.inicioMargenSalida, margenEntradaCheck: @horario.margenEntradaCheck, margenSalidaCheck: @horario.margenSalidaCheck, nombre: @horario.nombre }
+      post :create, horario: { codigo: @horario.codigo, dia: @horario.dia, finMargenEntrada: @horario.finMargenEntrada, finMargenSalida: @horario.finMargenSalida, horaEntrada: @horario.horaEntrada, horaSalida: @horario.horaSalida, inicioMargenEntrada: @horario.inicioMargenEntrada, inicioMargenSalida: @horario.inicioMargenSalida, margenEntradaCheck: @horario.margenEntradaCheck, margenSalidaCheck: @horario.margenSalidaCheck, nombre: @horario.nombre }
     end
 
     assert_redirected_to horario_path(assigns(:horario))
@@ -35,7 +35,7 @@ class HorariosControllerTest < ActionController::TestCase
   end
 
   test "should update horario" do
-    patch :update, id: @horario, horario: { codigo: @horario.codigo, finMargenEntrada: @horario.finMargenEntrada, finMargenSalida: @horario.finMargenSalida, horaEntrada: @horario.horaEntrada, horaSalida: @horario.horaSalida, inicioMargenEntrada: @horario.inicioMargenEntrada, inicioMargenSalida: @horario.inicioMargenSalida, margenEntradaCheck: @horario.margenEntradaCheck, margenSalidaCheck: @horario.margenSalidaCheck, nombre: @horario.nombre }
+    patch :update, id: @horario, horario: { codigo: @horario.codigo, dia: @horario.dia, finMargenEntrada: @horario.finMargenEntrada, finMargenSalida: @horario.finMargenSalida, horaEntrada: @horario.horaEntrada, horaSalida: @horario.horaSalida, inicioMargenEntrada: @horario.inicioMargenEntrada, inicioMargenSalida: @horario.inicioMargenSalida, margenEntradaCheck: @horario.margenEntradaCheck, margenSalidaCheck: @horario.margenSalidaCheck, nombre: @horario.nombre }
     assert_redirected_to horario_path(assigns(:horario))
   end
 

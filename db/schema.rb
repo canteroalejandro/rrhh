@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151114033109) do
+ActiveRecord::Schema.define(version: 20151115193250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,18 +52,15 @@ ActiveRecord::Schema.define(version: 20151114033109) do
     t.string   "dni"
     t.string   "nombre"
     t.string   "apellido"
-    t.string   "sexo"
     t.date     "fechaNacimiento"
     t.string   "direccion"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "categoria_id"
-    t.integer  "departamento_id"
     t.integer  "sexo_id"
   end
 
   add_index "empleados", ["categoria_id"], name: "index_empleados_on_categoria_id", using: :btree
-  add_index "empleados", ["departamento_id"], name: "index_empleados_on_departamento_id", using: :btree
   add_index "empleados", ["sexo_id"], name: "index_empleados_on_sexo_id", using: :btree
 
   create_table "historia_medicas", force: :cascade do |t|
@@ -80,6 +77,7 @@ ActiveRecord::Schema.define(version: 20151114033109) do
   create_table "horarios", force: :cascade do |t|
     t.string   "codigo"
     t.string   "nombre"
+    t.integer  "dia"
     t.time     "horaEntrada"
     t.time     "horaSalida"
     t.boolean  "margenEntradaCheck"
@@ -125,7 +123,6 @@ ActiveRecord::Schema.define(version: 20151114033109) do
   add_foreign_key "asistencias", "empleados"
   add_foreign_key "departamentos", "empleados"
   add_foreign_key "empleados", "categorias"
-  add_foreign_key "empleados", "departamentos"
   add_foreign_key "empleados", "sexos"
   add_foreign_key "historia_medicas", "empleados"
   add_foreign_key "horarios", "empleados"

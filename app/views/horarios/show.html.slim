@@ -1,16 +1,19 @@
 p#notice = notice
 
 p
-  strong Codigo:
+  strong Código:
   = @horario.codigo
 p
   strong Nombre:
   = @horario.nombre
 p
-  strong Horaentrada:
+  strong Dia:
+  = @horario.dia
+p
+  strong Hora de Entrada:
   = @horario.horaEntrada
 p
-  strong Horasalida:
+  strong Hora de Salida:
   = @horario.horaSalida
 p
   strong Margenentradacheck:
@@ -31,6 +34,6 @@ p
   strong Finmargensalida:
   = @horario.finMargenSalida
 
-= link_to 'Edit', edit_horario_path(@horario)
+= link_to 'Editar', edit_horario_path(@horario)
 '|
-= link_to 'Back', horarios_path
+= link_to 'Volver', horarios_path
