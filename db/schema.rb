@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20151115193250) do
   create_table "horarios", force: :cascade do |t|
     t.string   "codigo"
     t.string   "nombre"
-    t.integer  "dia"
+    t.string   "dia"
     t.time     "horaEntrada"
     t.time     "horaSalida"
     t.boolean  "margenEntradaCheck"
