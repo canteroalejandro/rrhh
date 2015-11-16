@@ -3,7 +3,7 @@ class CreateHorarios < ActiveRecord::Migration
     create_table :horarios do |t|
       t.string :codigo
       t.string :nombre
-      t.integer :dia
+      t.string :dia
       t.time :horaEntrada
       t.time :horaSalida
       t.boolean :margenEntradaCheck
