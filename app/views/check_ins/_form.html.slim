@@ -1,0 +1,27 @@
+= form_for @check_in do |f|
+  - if @check_in.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@check_in.errors.count, "error")} prohibited this check_in from being saved:"
+      ul
+        - @check_in.errors.full_messages.each do |message|
+          li = message
+
+  
+  .field
+    p#horaOutput 
+      'Usuario:  
+  .field
+    p#horaOutput 
+      'Empleado:  
+  .field
+    p#horaOutput 
+      'Horario:                
+  .field
+    = f.label :tardanza
+    = f.check_box :tardanza
+  .field
+    p#horaOutput 
+      'Dia y Hora de Entrada:  
+      = DateTime.now.strftime('%d-%m-%y %I:%M %p')
+    = f.hidden_field :horaOutput, :value => DateTime.now
+  .actions = f.submit

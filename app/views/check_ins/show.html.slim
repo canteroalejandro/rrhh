@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Tardanza:
+  = @check_in.tardanza
+p
+  strong Horaoutput:
+  = @check_in.horaOutput
+
+= link_to 'Edit', edit_check_in_path(@check_in)
+'|
+= link_to 'Back', check_ins_path

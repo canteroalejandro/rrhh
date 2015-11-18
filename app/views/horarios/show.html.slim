@@ -1,38 +1,39 @@
 p#notice = notice
 
 p
-  strong Código:
+  strong Código: 
   = @horario.codigo
 p
-  strong Nombre:
+  strong Nombre: 
   = @horario.nombre
 p
-  strong Dia:
-  = @horario.dia
+  strong Día: 
+  /= @horario.dia
+  = @horario.string_por_dias(@horario.dia)
 p
-  strong Hora de Entrada:
-  = @horario.horaEntrada
+  strong Hora de Entrada: 
+  = @horario.horaEntrada.strftime("%H:%M %P")  
 p
-  strong Hora de Salida:
-  = @horario.horaSalida
+  strong Hora de Salida: 
+  = @horario.horaSalida.strftime("%H:%M %P")  
 p
-  strong Margenentradacheck:
+  strong Posee Margen de Entrada: 
   = @horario.margenEntradaCheck
 p
-  strong Margensalidacheck:
+  strong Inicio de Margen de Entrada: 
+  = @horario.inicioMargenEntrada.strftime("%H:%M %P")  
+p
+  strong Fin de Margen de Entrada: 
+  = @horario.finMargenEntrada.strftime("%H:%M %P")  
+p
+  strong Posee Margen de Salida: 
   = @horario.margenSalidaCheck
 p
-  strong Iniciomargenentrada:
-  = @horario.inicioMargenEntrada
+  strong Inicio de Margen de Salida: 
+  = @horario.inicioMargenSalida.strftime("%H:%M %P")  
 p
-  strong Finmargenentrada:
-  = @horario.finMargenEntrada
-p
-  strong Iniciomargensalida:
-  = @horario.inicioMargenSalida
-p
-  strong Finmargensalida:
-  = @horario.finMargenSalida
+  strong Fin de Margen de Salida: 
+  = @horario.finMargenSalida.strftime("%H:%M %P")  
 
 = link_to 'Editar', edit_horario_path(@horario)
 '|

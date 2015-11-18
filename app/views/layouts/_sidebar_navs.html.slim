@@ -1,4 +1,24 @@
 ul.nav.nav-list
+
+  li class=(is_active?("index"))
+    a href=(asistencias_path)
+      i.icon-list
+      span.menu-text
+        | Asistencias 
+
+  li class=(is_active?("index"))
+    a href=(new_check_in_path)
+      i.icon-list
+      span.menu-text
+        | Check In 
+
+  li class=(is_active?("index"))
+    a href=(new_check_out_path)
+      i.icon-list
+      span.menu-text
+        | Check Out 
+
+
   li class=(is_active?("index"))
     a href=(categorias_path)
       i.icon-list

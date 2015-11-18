@@ -1,11 +1,16 @@
 class Horario < ActiveRecord::Base
 
+	has_many :horario_empleados
+	has_many :empleados, through: :horario_empleados
+
 	before_save do
 	  self.dia.gsub!(/[\[\]\"]/, "") if attribute_present?("dia")
 	end
 
 	#format
-	#validates :codigo, :format => { :with => /(HR-)\d*/, :message => "El formato del Código es incorrecto" }
+	validates :codigo, :format => { :with => /(HR-)\d*/, :message => "El formato del Código es incorrecto" }
+	#prescence
+	validates :codigo, :nombre, presence: {message: "El campo %{attribute} debe ser completado"}
 
 	def numeros_por_dias(nro)
 		if nro == 0
@@ -13,7 +18,7 @@ class Horario < ActiveRecord::Base
 		elsif nro == 1
 			return "Martes"
 		elsif nro == 2
-			return "Miercoles"
+			return "Miércoles"
 		elsif nro == 3
 			return "Jueves"
 		elsif nro == 4
@@ -23,6 +28,16 @@ class Horario < ActiveRecord::Base
 		elsif nro == 6
 			return "Domingo"
 		end	
+	end
+
+	def string_por_dias(texto)
+		aux = texto.split(", ").map(&:to_i)
+		texto = ""
+		for a in aux do			
+			texto = texto + numeros_por_dias(a)+ ", "
+		end
+		result = texto[0,texto.length-2]
+		return result
 	end
 
 	def codigo_horario

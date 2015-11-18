@@ -1,5 +1,7 @@
 class Empleado < ActiveRecord::Base
 	has_many :historia_medicas
+	has_many :horarioEmpleados
+	has_many :horarios, through: :horarioEmpleados
 	has_one :categoria
 	belongs_to :sexo
 	belongs_to :categoria

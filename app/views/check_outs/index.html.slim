@@ -1,0 +1,21 @@
+h1 Listing check_outs
+
+table
+  thead
+    tr
+      th Horaoutput
+      th
+      th
+      th
+
+  tbody
+    - @check_outs.each do |check_out|
+      tr
+        td = check_out.horaOutput
+        td = link_to 'Show', check_out
+        td = link_to 'Edit', edit_check_out_path(check_out)
+        td = link_to 'Destroy', check_out, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Check out', new_check_out_path

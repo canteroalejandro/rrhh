@@ -6,16 +6,18 @@
         - @asistencia.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :entrada
+  .field#check
+    span.lbl  Entrada  
     = f.check_box :entrada
-  .field
-    = f.label :salida
+    span.lbl
+  .field#check
+    span.lbl  Salida  
     = f.check_box :salida
-  .field
-    = f.label :outputAsistencia
-    = f.text_field :outputAsistencia
-  .field
-    = f.label :horasTrabajadas
-    = f.number_field :horasTrabajadas
+    span.lbl
+  / .field
+  /   = f.label :outputAsistencia
+  /   = f.text_field :outputAsistencia
+  / .field
+  /   = f.label :horasTrabajadas
+  /   = f.text_field :horasTrabajadas
   .actions = f.submit

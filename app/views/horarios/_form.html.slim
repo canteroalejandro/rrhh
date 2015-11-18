@@ -8,13 +8,51 @@
 
   .field
     = f.label :codigo, "Código:"
-    = f.text_field :codigo
+    = f.text_field :codigo, :value => @horario.codigo_horario
   .field
     = f.label :nombre, "Nombre"
     = f.text_field :nombre
   .field
     = f.label :dia, "Día"
-  / .field#check
+  .field#check
+    - for i in 0..6
+      span.lbl
+        = @horario.numeros_por_dias(i)
+      = check_box_tag 'horario[dia][]', i, id: 'dia_#{i}' 
+    span.lbl
+  .field
+    = f.label :horaEntrada, "Hora de Entrada:"
+    = f.time_select :horaEntrada
+  .field
+    = f.label :horaSalida, "Hora de Salida"
+    = f.time_select :horaSalida
+  br
+  .field#check
+    span.lbl Posee margen de Entrada:  
+    = f.check_box :margenEntradaCheck, id: 'mg_entrada'
+    span.lbl 
+  .field#mg_entrada_select
+    = f.label :inicioMargenEntrada, "Desde"
+    = f.time_select :inicioMargenEntrada, id: 'mg_entrada_select'
+  .field#mg_entrada_select
+    = f.label :finMargenEntrada, "Hasta"
+    = f.time_select :finMargenEntrada, id: 'mg_entrada_select'
+  br
+  .field#check
+    span.lbl Posee margen de Salida  
+    = f.check_box :margenSalidaCheck
+    span.lbl
+  .field
+    = f.label :inicioMargenSalida, "Desde"
+    = f.time_select :inicioMargenSalida
+  .field
+    = f.label :finMargenSalida, "Hasta"
+    = f.time_select :finMargenSalida
+  .actions = f.submit
+
+
+
+/ .field#check
   /   span.lbl Lunes 
   /   = check_box_tag 'horario[dia][]', '1', checked = false, id: 'dia_lunes'
   /   span.lbl   Martes  
@@ -30,38 +68,3 @@
   /   span.lbl   Domingo   
   /   = check_box_tag 'horario[dia][]', '7',checked = false, id: 'dia_domingo'
   /   span.lbl
-  .field#check
-    - for i in 0..6
-      span.lbl
-        = @horario.numeros_por_dias(i)
-      = check_box_tag 'horario[dia][]', i, checked = false, id: 'dia_{#@horario.numeros_por_dias(i)}' 
-    span.lbl
-  .field
-    = f.label :horaEntrada, "Hora de Entrada:"
-    = f.time_select :horaEntrada
-  .field
-    = f.label :horaSalida, "Hora de Salida"
-    = f.time_select :horaSalida
-  br
-  .field#check
-    span.lbl Posee margen de Entrada:  
-    = f.check_box :margenEntradaCheck
-    span.lbl 
-  .field
-    = f.label :inicioMargenEntrada, "Desde"
-    = f.time_select :inicioMargenEntrada
-  .field
-    = f.label :finMargenEntrada, "Hasta"
-    = f.time_select :finMargenEntrada
-  br
-  .field#check
-    span.lbl Posee margen de Salida  
-    = f.check_box :margenSalidaCheck
-    span.lbl
-  .field
-    = f.label :inicioMargenSalida, "Desde"
-    = f.time_select :inicioMargenSalida
-  .field
-    = f.label :finMargenSalida, "Hasta"
-    = f.time_select :finMargenSalida
-  .actions = f.submit

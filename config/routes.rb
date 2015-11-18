@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  
+  resources :check_outs
+  resources :check_ins
+  resources :asistencias
   resources :horarios
   resources :sexos
   resources :historia_medicas
@@ -8,9 +12,9 @@ Rails.application.routes.draw do
   resources :proyectos
   resources :departamentos
   resources :empleados
+  resources :horario_empleados
   resources :categorias
   resources :historia_medicas
-  resources :asistencias
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   resources :sessions

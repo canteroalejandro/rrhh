@@ -1,0 +1,23 @@
+h1 Listing check_ins
+
+table
+  thead
+    tr
+      th Tardanza
+      th Horaoutput
+      th
+      th
+      th
+
+  tbody
+    - @check_ins.each do |check_in|
+      tr
+        td = check_in.tardanza
+        td = check_in.horaOutput
+        td = link_to 'Show', check_in
+        td = link_to 'Edit', edit_check_in_path(check_in)
+        td = link_to 'Destroy', check_in, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Check in', new_check_in_path

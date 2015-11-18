@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151115193250) do
+ActiveRecord::Schema.define(version: 20151118050006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,13 +20,17 @@ ActiveRecord::Schema.define(version: 20151115193250) do
     t.boolean  "entrada"
     t.boolean  "salida"
     t.string   "outputAsistencia"
-    t.integer  "horasTrabajadas"
+    t.decimal  "horasTrabajadas"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "empleado_id"
+    t.integer  "horario_id"
+    t.integer  "usuario_id"
   end
 
   add_index "asistencias", ["empleado_id"], name: "index_asistencias_on_empleado_id", using: :btree
+  add_index "asistencias", ["horario_id"], name: "index_asistencias_on_horario_id", using: :btree
+  add_index "asistencias", ["usuario_id"], name: "index_asistencias_on_usuario_id", using: :btree
 
   create_table "categorias", force: :cascade do |t|
     t.string   "codigo"
@@ -35,6 +39,29 @@ ActiveRecord::Schema.define(version: 20151115193250) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "check_ins", force: :cascade do |t|
+    t.boolean  "tardanza"
+    t.datetime "horaOutput"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "horario_empleado_id"
+    t.integer  "usuario_id"
+  end
+
+  add_index "check_ins", ["horario_empleado_id"], name: "index_check_ins_on_horario_empleado_id", using: :btree
+  add_index "check_ins", ["usuario_id"], name: "index_check_ins_on_usuario_id", using: :btree
+
+  create_table "check_outs", force: :cascade do |t|
+    t.datetime "horaOutput"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "horario_empleado_id"
+    t.integer  "usuario_id"
+  end
+
+  add_index "check_outs", ["horario_empleado_id"], name: "index_check_outs_on_horario_empleado_id", using: :btree
+  add_index "check_outs", ["usuario_id"], name: "index_check_outs_on_usuario_id", using: :btree
 
   create_table "departamentos", force: :cascade do |t|
     t.string   "codigo"
@@ -73,6 +100,17 @@ ActiveRecord::Schema.define(version: 20151115193250) do
   end
 
   add_index "historia_medicas", ["empleado_id"], name: "index_historia_medicas_on_empleado_id", using: :btree
+
+  create_table "horario_empleados", force: :cascade do |t|
+    t.date     "fechaInicio"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "horario_id"
+    t.integer  "empleado_id"
+  end
+
+  add_index "horario_empleados", ["empleado_id"], name: "index_horario_empleados_on_empleado_id", using: :btree
+  add_index "horario_empleados", ["horario_id"], name: "index_horario_empleados_on_horario_id", using: :btree
 
   create_table "horarios", force: :cascade do |t|
     t.string   "codigo"
@@ -121,10 +159,18 @@ ActiveRecord::Schema.define(version: 20151115193250) do
   add_index "usuarios", ["empleado_id"], name: "index_usuarios_on_empleado_id", using: :btree
 
   add_foreign_key "asistencias", "empleados"
+  add_foreign_key "asistencias", "horarios"
+  add_foreign_key "asistencias", "usuarios"
+  add_foreign_key "check_ins", "horario_empleados"
+  add_foreign_key "check_ins", "usuarios"
+  add_foreign_key "check_outs", "horario_empleados"
+  add_foreign_key "check_outs", "usuarios"
   add_foreign_key "departamentos", "empleados"
   add_foreign_key "empleados", "categorias"
   add_foreign_key "empleados", "sexos"
   add_foreign_key "historia_medicas", "empleados"
+  add_foreign_key "horario_empleados", "empleados"
+  add_foreign_key "horario_empleados", "horarios"
   add_foreign_key "horarios", "empleados"
   add_foreign_key "proyectos", "departamentos"
   add_foreign_key "usuarios", "empleados"

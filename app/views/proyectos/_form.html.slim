@@ -12,4 +12,7 @@
   .field
     = f.label :nombre
     = f.text_field :nombre
+  .field
+    = f.label :departamento_id, 'Departamento al cual pertenece:'
+    = f.collection_select :departamento_id, Departamento.all, :id, :nombre
   .actions = f.submit

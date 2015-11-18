@@ -21,3 +21,15 @@ Empleado.create!([
   {codigo: "EMP-00008", dni: "38994567", nombre: "Matilde", apellido: "Santos", fechaNacimiento: "1994-08-08", direccion: "Ombu 4942", categoria_id: 4, sexo_id: 2},
   {codigo: "EMP-00009", dni: "35666222", nombre: "Luis", apellido: "Ribeiro", fechaNacimiento: "1990-01-03", direccion: "Colombia 2351", categoria_id: 3, sexo_id: 1}
 ])
+
+Horario.create!([
+  {codigo: "HR-00001", nombre: "Mañana", dia: "0, 1, 2, 3, 4", horaEntrada: "2000-01-01 08:00:00", horaSalida: "2000-01-01 12:00:00", margenEntradaCheck: true, margenSalidaCheck: true, inicioMargenEntrada: "2000-01-01 07:50:00", finMargenEntrada: "2000-01-01 08:10:00", inicioMargenSalida: "2000-01-01 12:00:00", finMargenSalida: "2000-01-01 12:15:00", empleado_id: nil},
+  {codigo: "HR-00002", nombre: "Tarde", dia: "0, 1, 2, 3, 4", horaEntrada: "2000-01-01 16:00:00", horaSalida: "2000-01-01 20:00:00", margenEntradaCheck: true, margenSalidaCheck: true, inicioMargenEntrada: "2000-01-01 15:50:00", finMargenEntrada: "2000-01-01 16:10:00", inicioMargenSalida: "2000-01-01 20:00:00", finMargenSalida: "2000-01-01 20:15:00", empleado_id: nil}
+])
+
+HorarioEmpleado.create!([
+  {fechaInicio: "2015-07-01", horario_id: 1, empleado_id: 1},
+  {fechaInicio: "2015-11-17", horario_id: 2, empleado_id: 1},
+  {fechaInicio: "2015-09-01", horario_id: 1, empleado_id: 2},
+  {fechaInicio: "2015-09-01", horario_id: 2, empleado_id: 2}
+])

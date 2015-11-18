@@ -16,6 +16,9 @@ rails g scaffold HistoriaMedica codigo:string fecha:date doctor:string
 
 rails g scaffold Sexo sexo:string
 
+rails g scaffold CheckIn tardanza:boolean horaOutput:datetime
+
+rails g scaffold CheckOut horaOutput:datetime
 
 # Model to Table, nombre del modelo sin camelcase
 rails generate migration AddEmpleadoRefToHistoriaMedica empleado:references
@@ -35,3 +38,16 @@ rails generate migration AddDepartamentoRefToEmpleado departamento:references
 rails generate migration AddDepartamentoRefToProyecto departamento:references
 
 rails generate migration AddSexoRefToEmpleado sexo:references
+
+rails generate migration AddHorarioRefToAsistencia horario:references
+
+rails generate migration AddUsuarioRefToAsistencia usuario:references
+
+rails generate migration AddHorarioRefToHorarioEmpleado horario:references
+rails generate migration AddEmpleadoRefToHorarioEmpleado empleado:references
+
+rails generate migration AddHorarioEmpleadoRefToCheckIn horario_empleado:references
+rails generate migration AddHorarioEmpleadoRefToCheckOut horario_empleado:references
+
+rails generate migration AddUsuarioRefToCheckIn usuario:references
+rails generate migration AddUsuarioRefToCheckOut usuario:references

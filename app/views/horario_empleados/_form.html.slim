@@ -1,0 +1,22 @@
+= form_for @horario_empleado do |f|
+  - if @horario_empleado.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@horario_empleado.errors.count, "error")} prohibited this horario_empleado from being saved:"
+      ul
+        - @horario_empleado.errors.full_messages.each do |message|
+          li = message
+
+  br
+  .field
+  	p#empleado 
+  	  'Empleado:  
+	  = @horario_empleado.get_nombre_empleado(@horario_empleado.empleado_id)
+   	= f.hidden_field :empleado_id, :value => @horario_empleado.empleado_id
+  .field
+	= f.label :horario_id, 'Horario:'
+	= f.collection_select :horario_id, Horario.all, :id, :nombre
+  .field
+    = f.label :fechaInicio, 'Inicio de Actividades:'
+    = f.date_select :fechaInicio
+  .actions = f.submit
+

@@ -1,0 +1,12 @@
+= form_for @check_out do |f|
+  - if @check_out.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@check_out.errors.count, "error")} prohibited this check_out from being saved:"
+      ul
+        - @check_out.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :horaOutput
+    = f.datetime_select :horaOutput
+  .actions = f.submit

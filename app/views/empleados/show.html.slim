@@ -28,3 +28,8 @@ p
 = link_to 'Editar', edit_empleado_path(@empleado)
 '|
 = link_to 'Volver', empleados_path
+br
+br
+= link_to 'Asignar Horario', new_horario_empleado_path(:horario_empleado => { empleado_id: @empleado.id } )
+br
+/= link_to 'Ver Horarios Asignados', 'horarios_index'

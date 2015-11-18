@@ -7,11 +7,14 @@
           li = message
 
   .field
+    = f.label :empleado_id, 'Elegir Empleado:'
+    = f.collection_select :empleado_id, Empleado.all, :id, :nombre_y_apellido
+  .field
     = f.label :userName
     = f.text_field :userName
   .field
     = f.label :password
-    = f.text_field :password
+    = f.password_field :password
   .field
     = f.label :rol
     = f.text_field :rol

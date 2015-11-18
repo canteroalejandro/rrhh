@@ -1,5 +1,5 @@
 class Proyecto < ActiveRecord::Base
-
+	belongs_to :departamento
 	#format
 	validates :codigo, :format => { :with => /(PR-)\d*/, :message => "El formato del Código es incorrecto" }
 

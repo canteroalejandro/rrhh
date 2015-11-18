@@ -4,10 +4,10 @@ one:
   entrada: false
   salida: false
   outputAsistencia: MyString
-  horasTrabajadas: 1
+  horasTrabajadas: 9.99
 
 two:
   entrada: false
   salida: false
   outputAsistencia: MyString
-  horasTrabajadas: 1
+  horasTrabajadas: 9.99

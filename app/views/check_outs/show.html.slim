@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Horaoutput:
+  = @check_out.horaOutput
+
+= link_to 'Edit', edit_check_out_path(@check_out)
+'|
+= link_to 'Back', check_outs_path
