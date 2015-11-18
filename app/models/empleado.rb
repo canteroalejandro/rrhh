@@ -1,4 +1,6 @@
 class Empleado < ActiveRecord::Base
+	include VerificationAssociations
+	
 	has_many :historia_medicas
 	has_many :horarioEmpleados
 	has_many :horarios, through: :horarioEmpleados

@@ -29,3 +29,7 @@
     submit:
       create: "Crear %{model}"
       update: "Actualizar %{model}"
+
+   errors:
+    messages:
+     delete_association: 'No se puede eliminar el %{model} porque esta asociado a %{association_name}'
