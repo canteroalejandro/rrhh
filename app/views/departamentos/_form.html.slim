@@ -13,9 +13,12 @@
     = f.label :nombre, "Nombre:"
     = f.text_field :nombre
   .field
-    = f.label :empleado_id, 'Empleado:'
+    = f.label :empleado_id, 'Empleado Supervisor:'
     = f.collection_select :empleado_id, Empleado.all, :id, :nombre
   .field
     = f.label :fechaEnQueDirige, "Fecha desde que dirige:"
     = f.date_select :fechaEnQueDirige, :start_year => 1900, :end_year => Date.today.year
+  .field
+    = f.label :empleado_id, 'Otros Empleados:'
+    = f.collection_select :empleado_id , Empleado.all, :id, :nombre, {}, {:multiple => true, :id => 'empleado_multiple'} 
   .actions = f.submit

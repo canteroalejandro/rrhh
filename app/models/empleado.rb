@@ -1,12 +1,13 @@
 class Empleado < ActiveRecord::Base
 	include VerificationAssociations
-	
+
 	has_many :historia_medicas
 	has_many :horarioEmpleados
 	has_many :horarios, through: :horarioEmpleados
 	has_one :categoria
 	belongs_to :sexo
 	belongs_to :categoria
+	belongs_to :departamento
 
 	#format
 	validates :codigo, :format => { :with => /(EMP-)\d*/, :message => "El formato del Código es incorrecto" }

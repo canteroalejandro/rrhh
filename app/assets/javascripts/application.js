@@ -12,6 +12,8 @@
 //
 
 //= require jquery_ujs
+//= require select2
+
 
 $.rails.allowAction = function(link) {
   if (!link.attr('data-confirm')) {
