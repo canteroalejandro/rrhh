@@ -3,11 +3,12 @@ h1 Listing check_ins
 table
   thead
     tr
+      th Usuario que realizó la acción
+      th Empleado
+      th Horario en que trabaja
       th Tardanza
-      th Horaoutput
-      th
-      th
-      th
+      th Hora Output
+      th colspan="3" Acciones
 
   tbody
     - @check_ins.each do |check_in|

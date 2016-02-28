@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codigo: MyString
+  nombre: MyString
+  dia: MyString
+  horaInicio: 2016-01-22 18:12:42
+  horaFin: 2016-01-22 18:12:42
+  precio: 1.5
+
+two:
+  codigo: MyString
+  nombre: MyString
+  dia: MyString
+  horaInicio: 2016-01-22 18:12:42
+  horaFin: 2016-01-22 18:12:42
+  precio: 1.5

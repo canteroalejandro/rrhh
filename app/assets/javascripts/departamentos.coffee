@@ -5,4 +5,15 @@
 
 $(document).ready ->
   $('select#empleado_multiple').select2 {}
-  return
+  $("#empleado_supervisor").change ->
+  	val = $(this).val()
+  	$("#empleado_multiple option").each (index, value)->
+  		if $(value).val() == val
+  			$(value).attr("selected", true)
+  		else
+  		 	$(value).attr("selected", false)
+  	  #console.log "index", index
+  	  #console.log "value", value
+
+  	#.prop("disabled", true)
+

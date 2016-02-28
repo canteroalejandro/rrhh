@@ -1,0 +1,27 @@
+= form_for @hora_extra do |f|
+  - if @hora_extra.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@hora_extra.errors.count, "error")} prohibited this hora_extra from being saved:"
+      ul
+        - @hora_extra.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :codigo
+    = f.text_field :codigo
+  .field
+    = f.label :nombre
+    = f.text_field :nombre
+  .field
+    = f.label :dia
+    = f.text_field :dia
+  .field
+    = f.label :horaInicio
+    = f.time_select :horaInicio
+  .field
+    = f.label :horaFin
+    = f.time_select :horaFin
+  .field
+    = f.label :precio
+    = f.text_field :precio
+  .actions = f.submit

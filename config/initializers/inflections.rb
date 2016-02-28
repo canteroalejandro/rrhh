@@ -19,4 +19,6 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'categoria', 'categorias'
 	inflect.irregular 'asistencia', 'asistencias'
 	inflect.irregular 'error', 'errores'
+	inflect.irregular 'rol', 'roles'
+	inflect.irregular 'incidencia', 'incidencias'
 end

@@ -9,19 +9,55 @@
   
   .field
     p#horaOutput 
-      'Usuario:  
+      = f.label :usuario_id, "Usuario: "
+      = f.hidden_field :usuario_id, :value => current_user.id
+      = current_user.userName
   .field
     p#horaOutput 
-      'Empleado:  
+      = f.label :empleado_id, "Empleado: "
+      -if current_user.rol? :Empleado
+        = @check_in.get_empleado(current_user)
+        = f.hidden_field :empleado_id, :value => current_user.empleado_id
+        p 98765
+      -elsif current_user.rol? :Administrador
+        .col-sm-9
+          select#empleado_id.form-control.select2 style="width:50%" name="check_in[empleado_id]"
+            - Empleado.all.each do |empleado|
+              - if @check_in.empleado == empleado
+                option selected='' value=(empleado.id) = empleado.nombre_y_apellido
+              - else
+                option value=(empleado.id) = empleado.nombre_y_apellido
   .field
     p#horaOutput 
-      'Horario:                
-  .field
-    = f.label :tardanza
-    = f.check_box :tardanza
+      = f.label :horario_empleado_id, "Horario: "
+      -if current_user.rol? :Empleado
+        = f.collection_select :horario_empleado_id, HorarioEmpleado.where(:empleado_id => current_user.empleado_id), :id, :id
+        select#horario_empleado_id.form-control.select2 style="width:50%" name="check_in[horario_empleado_id]"
+          - HorarioEmpleado.where(:empleado_id => current_user.empleado_id).each do |horario_empleado|
+            - if @check_in.horario_empleado == horario_empleado
+              option selected='' class=(horario_empleado.empleado_id) value=(horario_empleado.id) = horario_empleado.get_horario(horario_id)
+            - else
+              - aux = horario_empleado.horario_id
+              option class=(horario_empleado.empleado_id) value=(horario_empleado.id) = horario_empleado.get_horario(aux)
+      -elsif current_user.rol? :Administrador
+        select#horario_empleado_id.form-control.select2 style="width:50%" name="check_in[horario_empleado_id]"
+          - HorarioEmpleado.all.each do |horario_empleado|
+            - if @check_in.horario_empleado == horario_empleado
+              - aux = @check_in.horario_empleado.horario_id
+              option selected='' class=(horario_empleado.empleado_id) value=(horario_empleado.id) = horario_empleado.get_horario(aux)
+            - else
+              - aux = horario_empleado.horario_id
+              option class=(horario_empleado.empleado_id) value=(horario_empleado.id) = horario_empleado.get_horario(aux)      
+  /.field
+    / = f.label :tardanza
+    / = @check_in.set_tardanza(@check_in.horario_empleado.horario_id)
+    / /= f.hidden_field :tardanza, :value => @check_in.set_tardanza(@check_in.horario_empleado.horario_id)
   .field
     p#horaOutput 
       'Dia y Hora de Entrada:  
+    -if current_user.rol? :Empleado
       = DateTime.now.strftime('%d-%m-%y %I:%M %p')
-    = f.hidden_field :horaOutput, :value => DateTime.now
+      = f.hidden_field :horaOutput, :value => DateTime.now
+    -elsif current_user.rol? :Administrador
+      = f.datetime_select :horaOutput
   .actions = f.submit

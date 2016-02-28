@@ -1,5 +1,6 @@
 class HorarioEmpleadosController < ApplicationController
   before_action :set_horario_empleado, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /horario_empleados
   # GET /horario_empleados.json

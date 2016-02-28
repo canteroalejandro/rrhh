@@ -3,6 +3,7 @@ h1 Listing usuarios
 table
   thead
     tr
+      th Empleado
       th Username
       th Password
       th Rol
@@ -13,9 +14,10 @@ table
   tbody
     - @usuarios.each do |usuario|
       tr
+        td = usuario.empleado.nombre_y_apellido
         td = usuario.userName
         td = usuario.password
-        td = usuario.rol
+        td = usuario.rol.nombre
         td = link_to 'Show', usuario
         td = link_to 'Edit', edit_usuario_path(usuario)
         td = link_to 'Destroy', usuario, data: {:confirm => 'Are you sure?'}, :method => :delete

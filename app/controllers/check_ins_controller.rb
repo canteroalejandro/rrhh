@@ -1,5 +1,6 @@
 class CheckInsController < ApplicationController
   before_action :set_check_in, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /check_ins
   # GET /check_ins.json
@@ -28,6 +29,13 @@ class CheckInsController < ApplicationController
 
     respond_to do |format|
       if @check_in.save
+        @asistencia = Asistencia.new
+        @asistencia.entrada = true
+        @asistencia.empleado_id = @check_in.empleado_id
+        @hor_emp = HorarioEmpleado.find(@check_in.horario_empleado_id)
+        @asistencia.horario_id = @hor_emp.horario_id
+        @asistencia.check_in_id = @check_in.id
+        @asistencia.save
         format.html { redirect_to @check_in, notice: 'Check in was successfully created.' }
         format.json { render :show, status: :created, location: @check_in }
       else
@@ -69,6 +77,6 @@ class CheckInsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def check_in_params
-      params.require(:check_in).permit(:tardanza, :horaOutput)
+      params.require(:check_in).permit(:tardanza, :horaOutput, :flag, :empleado_id, :horario_empleado_id, :usuario_id)
     end
 end

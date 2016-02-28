@@ -1,5 +1,9 @@
 class Proyecto < ActiveRecord::Base
 	belongs_to :departamento
+	belongs_to :empleado
+	has_many :empleado_proyectos , inverse_of: :proyecto, dependent: :destroy
+	has_many :empleados, through: :empleado_proyectos
+	#has_many :empleados, inverse_of: :proyecto
 	#format
 	validates :codigo, :format => { :with => /(PR-)\d*/, :message => "El formato del Código es incorrecto" }
 

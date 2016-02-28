@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  empleado_id: 1
+  proyecto_id: 1
+
+two:
+  empleado_id: 1
+  proyecto_id: 1

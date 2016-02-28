@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codigo: MyString
+  nombre: MyString
+  nroDuracion: 1
+  tiempoDuracion: MyString
+  tieneCondiciones: false
+  fechaInicioHabilitacion: 2016-01-24
+  fechaFinHabilitacion: 2016-01-24
+  nroAntiguedadMayor: 1
+  tiempoAntiguedadMayor: MyString
+  nroAntiguedadMenor: 1
+  tiempoAntiguedadMenor: MyString
+  vecesPermitidasPorAño: 1
+
+two:
+  codigo: MyString
+  nombre: MyString
+  nroDuracion: 1
+  tiempoDuracion: MyString
+  tieneCondiciones: false
+  fechaInicioHabilitacion: 2016-01-24
+  fechaFinHabilitacion: 2016-01-24
+  nroAntiguedadMayor: 1
+  tiempoAntiguedadMayor: MyString
+  nroAntiguedadMenor: 1
+  tiempoAntiguedadMenor: MyString
+  vecesPermitidasPorAño: 1

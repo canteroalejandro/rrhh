@@ -1,6 +1,7 @@
 class DepartamentosController < ApplicationController
   before_action :set_departamento, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
+  
   # GET /departamentos
   # GET /departamentos.json
   def index
@@ -69,6 +70,6 @@ class DepartamentosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def departamento_params
-      params.require(:departamento).permit(:codigo, :nombre, :fechaEnQueDirige, :empleado_id)
+      params.require(:departamento).permit(:codigo, :nombre, :fechaEnQueDirige, {:empleado_ids => []}, :supervisor_id)
     end
 end

@@ -7,8 +7,17 @@ p
   strong Nombre: 
   = @departamento.nombre
 p
+  strong Nombre: 
+  = @departamento.supervisor.nombre_y_apellido
+p
   strong Fecha desde que dirige: 
   = @departamento.fechaEnQueDirige
+p
+  strong Empleados: 
+  -unless @departamento.empleados.empty?
+  	-@departamento.empleados.each do |d|
+  		= d.nombre_y_apellido
+  		br
 
 = link_to 'Editar', edit_departamento_path(@departamento)
 '|

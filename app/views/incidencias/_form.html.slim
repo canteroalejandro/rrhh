@@ -1,0 +1,76 @@
+= form_for @incidencia do |f|
+  - if @incidencia.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@incidencia.errors.count, "error")} prohibited this incidencia from being saved:"
+      ul
+        - @incidencia.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :codigo
+    = f.text_field :codigo
+  .field
+    = f.label :nombre
+    = f.text_field :nombre
+  .field
+    = f.label :nroDuracion, "Duración: "
+    = f.number_field :nroDuracion
+    = f.text_field :tiempoDuracion
+  .field#check
+    span.lbl Condiciones  
+    = f.check_box :tieneCondiciones, :checked => true
+    span.lbl
+  br
+  .field#panel
+    .widget-box
+      .widget-header 
+        h4.widget-title Periodo de Habilitación
+      .widget-body
+        .widget-main
+          .field.form-inline
+            .field#check
+            span.lbl Posee periodo de habilitación:  
+            = f.check_box :tienePeriodoHabilitacion
+            span.lbl
+            br
+            = f.label :fechaInicioHabilitacion, "Habilitado desde: "
+            = f.date_select :fechaInicioHabilitacion
+            br
+            = f.label :fechaFinHabilitacion, "Hasta: "
+            = f.date_select :fechaFinHabilitacion
+    br
+    .widget-box
+      .widget-header 
+        h4.widget-title Condiciones de Antigüedad
+      .widget-body
+        .widget-main
+          .field#check
+            span.lbl Posee condiciones de Antigüedad:  
+            = f.check_box :tieneRestriccionAntiguedad
+            span.lbl
+          .field
+            = f.label :nroAntiguedadMayor
+            = f.number_field :nroAntiguedadMayor
+          .field
+            = f.label :tiempoAntiguedadMayor
+            = f.text_field :tiempoAntiguedadMayor
+          .field
+            = f.label :nroAntiguedadMenor
+            = f.number_field :nroAntiguedadMenor
+          .field
+            = f.label :tiempoAntiguedadMenor
+            = f.text_field :tiempoAntiguedadMenor
+    br
+    .widget-box
+      .widget-header 
+        h4.widget-title Cantidad de veces permitidas por año
+      .widget-body
+        .widget-main
+          .field#check
+            span.lbl Tiene cierta cantidad permitidas por año:  
+            = f.check_box :tieneCantPermitidasPorAnio
+            span.lbl
+          .field
+            = f.label :vecesPermitidasPorAnio
+            = f.number_field :vecesPermitidasPorAnio
+  .actions = f.submit

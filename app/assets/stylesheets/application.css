@@ -14,5 +14,10 @@
  *= require_self
  */
 
-*= require select2
-*= require select2-bootstrap
+
+@import "select2.min";
+@import "select2";
+
+div#sidebar-shortcuts.sidebar-shortcuts{
+  background-color: #222A2D;
+}

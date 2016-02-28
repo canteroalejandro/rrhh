@@ -1,4 +1,4 @@
-= form_for @asistencia do |f|
+= form_for([@asistencia.empleado, @asistencia]) do |f|
   - if @asistencia.errors.any?
     #error_explanation
       h2 = "#{pluralize(@asistencia.errors.count, "error")} prohibited this asistencia from being saved:"

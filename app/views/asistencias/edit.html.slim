@@ -2,7 +2,7 @@ h1 Editing asistencia
 
 == render 'form'
 
-= link_to 'Show', @asistencia
+= link_to 'Show', [@asistencia.empleado, @asistencia]
 '|
-= link_to 'Back', asistencias_path
+= link_to 'Back', empleado_asistencias_path(@asistencia.empleado)
 

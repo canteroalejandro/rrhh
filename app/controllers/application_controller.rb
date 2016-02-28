@@ -16,4 +16,10 @@ class ApplicationController < ActionController::Base
   def current_user
 	  @current_user ||= Usuario.find(session[:usuario_id]) if session[:usuario_id]
   end
+
+  before_filter do
+    resource = controller_path.singularize.gsub('/', '_').to_sym
+    method = "#{resource}_params"
+    params[resource] &&= send(method) if respond_to?(method, true)
+  end
 end

@@ -1,0 +1,42 @@
+p#notice = notice
+
+p
+  strong Codigo:
+  = @incidencia.codigo
+p
+  strong Nombre:
+  = @incidencia.nombre
+p
+  strong Nroduracion:
+  = @incidencia.nroDuracion
+p
+  strong Tiempoduracion:
+  = @incidencia.tiempoDuracion
+p
+  strong Tienecondiciones:
+  = @incidencia.tieneCondiciones
+p
+  strong Fechainiciohabilitacion:
+  = @incidencia.fechaInicioHabilitacion
+p
+  strong Fechafinhabilitacion:
+  = @incidencia.fechaFinHabilitacion
+p
+  strong Nroantiguedadmayor:
+  = @incidencia.nroAntiguedadMayor
+p
+  strong Tiempoantiguedadmayor:
+  = @incidencia.tiempoAntiguedadMayor
+p
+  strong Nroantiguedadmenor:
+  = @incidencia.nroAntiguedadMenor
+p
+  strong Tiempoantiguedadmenor:
+  = @incidencia.tiempoAntiguedadMenor
+p
+  strong Vecespermitidasporaño:
+  = @incidencia.vecesPermitidasPorAño
+
+= link_to 'Editar', edit_incidencia_path(@incidencia)
+'|
+= link_to 'Volver', incidencias_path

@@ -2,19 +2,23 @@ Rails.application.routes.draw do
 
 
   
+  resources :incidencias
+  resources :hora_extras
+  resources :roles
   resources :check_outs
   resources :check_ins
-  resources :asistencias
   resources :horarios
-  resources :sexos
   resources :historia_medicas
   resources :usuarios
   resources :proyectos
   resources :departamentos
-  resources :empleados
+  resources :empleados do
+    resources :asistencias
+  end
   resources :horario_empleados
   resources :categorias
   resources :historia_medicas
+  root :to => 'sessions#new'
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   resources :sessions
@@ -25,7 +29,7 @@ Rails.application.routes.draw do
   resources :departamentos
   resources :empleados
   
-  root 'empleados#index'
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

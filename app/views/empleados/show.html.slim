@@ -13,9 +13,6 @@ p
   strong Apellido: 
   = @empleado.apellido
 p
-  strong Sexo: 
-  = @empleado.sexo.sexo
-p
   strong Fecha de nacimiento: 
   = @empleado.fechaNacimiento
 p
@@ -29,6 +26,8 @@ p
 '|
 = link_to 'Volver', empleados_path
 br
+br
+= link_to 'Ver Asistencias', empleado_asistencias_path(@empleado) 
 br
 = link_to 'Asignar Horario', new_horario_empleado_path(:horario_empleado => { empleado_id: @empleado.id } )
 br

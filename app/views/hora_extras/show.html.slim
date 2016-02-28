@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Codigo:
+  = @hora_extra.codigo
+p
+  strong Nombre:
+  = @hora_extra.nombre
+p
+  strong Dia:
+  = @hora_extra.dia
+p
+  strong Horainicio:
+  = @hora_extra.horaInicio
+p
+  strong Horafin:
+  = @hora_extra.horaFin
+p
+  strong Precio:
+  = @hora_extra.precio
+
+= link_to 'Edit', edit_hora_extra_path(@hora_extra)
+'|
+= link_to 'Back', hora_extras_path

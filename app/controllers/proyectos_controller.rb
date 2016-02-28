@@ -1,5 +1,6 @@
 class ProyectosController < ApplicationController
   before_action :set_proyecto, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /proyectos
   # GET /proyectos.json
@@ -19,11 +20,13 @@ class ProyectosController < ApplicationController
 
   # GET /proyectos/1/edit
   def edit
+    #puts 'params[:empleado_proyecto]', params[:empleado_proyecto]
   end
 
   # POST /proyectos
   # POST /proyectos.json
   def create
+
     @proyecto = Proyecto.new(proyecto_params)
 
     respond_to do |format|
@@ -69,6 +72,6 @@ class ProyectosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def proyecto_params
-      params.require(:proyecto).permit(:codigo, :nombre)
+      params.require(:proyecto).permit(:codigo, :nombre, :departamento_id, {:empleado_ids => []})
     end
 end

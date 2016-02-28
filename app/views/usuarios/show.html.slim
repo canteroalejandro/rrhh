@@ -2,13 +2,16 @@ p#notice = notice
 
 p
   strong Username:
+  = @usuario.empleado.nombre_y_apellido
+p
+  strong Username:
   = @usuario.userName
 p
   strong Password:
   = @usuario.password
 p
   strong Rol:
-  = @usuario.rol
+  = @usuario.rol.nombre
 
 = link_to 'Edit', edit_usuario_path(@usuario)
 '|

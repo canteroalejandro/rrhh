@@ -13,6 +13,6 @@ p
   strong Horastrabajadas:
   = @asistencia.horasTrabajadas
 
-= link_to 'Edit', edit_asistencia_path(@asistencia)
+= link_to 'Edit', edit_empleado_asistencia_path(@asistencia.empleado, @asistencia)
 '|
-= link_to 'Back', asistencias_path
+= link_to 'Back', empleado_asistencias_path(@asistencia.empleado)

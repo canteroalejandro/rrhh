@@ -10,12 +10,12 @@
     = f.label :empleado_id, 'Elegir Empleado:'
     = f.collection_select :empleado_id, Empleado.all, :id, :nombre_y_apellido
   .field
-    = f.label :userName
+    = f.label :userName, 'Nombre de Usuario: '
     = f.text_field :userName
   .field
-    = f.label :password
+    = f.label :password, 'Contraseña: '
     = f.password_field :password
   .field
-    = f.label :rol
-    = f.text_field :rol
+    = f.label :rol_id, 'Rol:'
+    = f.collection_select :rol_id, Rol.all, :id, :nombre
   .actions = f.submit

@@ -1,76 +1,83 @@
 ul.nav.nav-list
 
-  li class=(is_active?("index"))
-    a href=(asistencias_path)
-      i.icon-list
-      span.menu-text
-        | Asistencias 
+  - if can? :read, CheckIn
+    li class=(is_active?("index"))
+      a href=(new_check_in_path)
+        i.icon-list
+        span.menu-text
+          | Check In 
 
-  li class=(is_active?("index"))
-    a href=(new_check_in_path)
-      i.icon-list
-      span.menu-text
-        | Check In 
+  - if can? :read, CheckOut
+    li class=(is_active?("index"))
+      a href=(new_check_out_path)
+        i.icon-list
+        span.menu-text
+          | Check Out 
 
-  li class=(is_active?("index"))
-    a href=(new_check_out_path)
-      i.icon-list
-      span.menu-text
-        | Check Out 
+  - if can? :read, Categoria
+    li class=(is_active?("index"))
+      a href=(categorias_path)
+        i.icon-list
+        span.menu-text
+          | Categorias 
+    
+  - if can? :read, Empleado  
+    li class=(is_active?("index"))
+      a.dropdown-toggle href=(empleados_path)
+        i.icon-list
+        span.menu-text
+          | Empleados
+        b.arrow.icon-angle-down
 
+  - if can? :read, HistoriaMedica
+    li class=(is_active?("index"))
+      a href=(historia_medicas_path)
+        i.icon-list
+        span.menu-text
+          | Historias Medicas
 
-  li class=(is_active?("index"))
-    a href=(categorias_path)
-      i.icon-list
-      span.menu-text
-        | Categorias 
-  
-  li class=(is_active?("index"))
-    a.dropdown-toggle href=(empleados_path)
-      i.icon-list
-      span.menu-text
-        | Empleados
-      b.arrow.icon-angle-down
+  - if can? :read, Departamento
+    li class=(is_active?("index"))
+      a href=(departamentos_path)
+        i.icon-list
+        span.menu-text
+          | Departamentos
 
-  li class=(is_active?("index"))
-    a href=(historia_medicas_path)
-      i.icon-list
-      span.menu-text
-        |  Historias Medicas
+  - if can? :read, Proyecto
+    li class=(is_active?("index"))
+      a href=(proyectos_path)
+        i.icon-list
+        span.menu-text
+          | Proyectos
 
-  li class=(is_active?("index"))
-    a href=(sexos_path)
-      i.icon-list
-      span.menu-text
-        |  Sexo
-      / li
-      /   a href=(departamentos_path)
-      /     i.icon-double-angle-right
-      /     |  Departamentos
+  - if can? :read, Horario
+    li class=(is_active?("index"))
+      a href=(horarios_path)
+        i.icon-list
+        span.menu-text
+          | Horarios
 
-  li class=(is_active?("index"))
-    a href=(departamentos_path)
-      i.icon-list
-      span.menu-text
-        | Departamentos
+  - if can? :read, Incidencia
+    li class=(is_active?("index"))
+      a href=(incidencias_path)
+        i.icon-list
+        span.menu-text
+          | Incidencias
 
-  li class=(is_active?("index"))
-    a href=(proyectos_path)
-      i.icon-list
-      span.menu-text
-        | Proyectos
+  - if can? :read, HoraExtra
+    li class=(is_active?("index"))
+      a href=(hora_extras_path)
+        i.icon-list
+        span.menu-text
+          | Horas Extra
 
-  li class=(is_active?("index"))
-    a href=(horarios_path)
-      i.icon-list
-      span.menu-text
-        | Horarios
+  - if can? :read, Usuario
+    li class=(is_active?("index"))
+      a href=(usuarios_path)
+        i.icon-list
+        span.menu-text
+          | Usuarios
 
-  li class=(is_active?("index"))
-    a href=(usuarios_path)
-      i.icon-list
-      span.menu-text
-        | Usuarios
   
   / li class=(is_active?("index"))
   /   a href=(proyectos_path)

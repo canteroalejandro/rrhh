@@ -1,27 +1,27 @@
 h1 Listing asistencias
 
-table
+table class="table table-striped table-bordered table-hover"
   thead
     tr
+      th Empleado
       th Entrada
       th Salida
       th Outputasistencia
       th Horastrabajadas
-      th
-      th
-      th
+      th colspan="3" Acciones
 
   tbody
     - @asistencias.each do |asistencia|
       tr
+        td = asistencia.empleado.nombre_y_apellido
         td = asistencia.entrada
         td = asistencia.salida
         td = asistencia.outputAsistencia
         td = asistencia.horasTrabajadas
-        td = link_to 'Show', asistencia
-        td = link_to 'Edit', edit_asistencia_path(asistencia)
-        td = link_to 'Destroy', asistencia, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Show', [asistencia.empleado, asistencia]
+        td = link_to 'Edit', edit_empleado_asistencia_path(asistencia.empleado, asistencia)
+        td = link_to 'Destroy', [asistencia.empleado, asistencia], data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
-= link_to 'New Asistencia', new_asistencia_path
+= link_to 'New Asistencia', new_empleado_asistencia_path

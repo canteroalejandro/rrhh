@@ -1,0 +1,43 @@
+h1 Listar Incidencias
+
+table
+  thead
+    tr
+      th Codigo
+      th Nombre
+      th Nroduracion
+      th Tiempoduracion
+      th Tienecondiciones
+      th Fechainiciohabilitacion
+      th Fechafinhabilitacion
+      th Nroantiguedadmayor
+      th Tiempoantiguedadmayor
+      th Nroantiguedadmenor
+      th Tiempoantiguedadmenor
+      th Vecespermitidasporaño
+      th
+      th
+      th
+
+  tbody
+    - @incidencias.each do |incidencia|
+      tr
+        td = incidencia.codigo
+        td = incidencia.nombre
+        td = incidencia.nroDuracion
+        td = incidencia.tiempoDuracion
+        td = incidencia.tieneCondiciones
+        td = incidencia.fechaInicioHabilitacion
+        td = incidencia.fechaFinHabilitacion
+        td = incidencia.nroAntiguedadMayor
+        td = incidencia.tiempoAntiguedadMayor
+        td = incidencia.nroAntiguedadMenor
+        td = incidencia.tiempoAntiguedadMenor
+        td = incidencia.vecesPermitidasPorAño
+        td = link_to 'Mostrar', incidencia
+        td = link_to 'Editar', edit_incidencia_path(incidencia)
+        td = link_to 'Eliminar', incidencia, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'Nueva Incidencia', new_incidencia_path

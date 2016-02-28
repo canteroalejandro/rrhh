@@ -1,0 +1,1 @@
+json.extract! @incidencia, :id, :codigo, :nombre, :nroDuracion, :tiempoDuracion, :tieneCondiciones, :fechaInicioHabilitacion, :fechaFinHabilitacion, :nroAntiguedadMayor, :tiempoAntiguedadMayor, :nroAntiguedadMenor, :tiempoAntiguedadMenor, :vecesPermitidasPorAño, :created_at, :updated_at

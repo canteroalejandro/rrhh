@@ -1,0 +1,31 @@
+h1 Listing hora_extras
+
+table
+  thead
+    tr
+      th Codigo
+      th Nombre
+      th Dia
+      th Horainicio
+      th Horafin
+      th Precio
+      th
+      th
+      th
+
+  tbody
+    - @hora_extras.each do |hora_extra|
+      tr
+        td = hora_extra.codigo
+        td = hora_extra.nombre
+        td = hora_extra.dia
+        td = hora_extra.horaInicio
+        td = hora_extra.horaFin
+        td = hora_extra.precio
+        td = link_to 'Show', hora_extra
+        td = link_to 'Edit', edit_hora_extra_path(hora_extra)
+        td = link_to 'Destroy', hora_extra, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Hora extra', new_hora_extra_path

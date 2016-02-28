@@ -11,23 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118050006) do
+ActiveRecord::Schema.define(version: 20160224042609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "abilities", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "asistencias", force: :cascade do |t|
     t.boolean  "entrada"
     t.boolean  "salida"
     t.string   "outputAsistencia"
-    t.decimal  "horasTrabajadas"
+    t.float    "horasTrabajadas"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "empleado_id"
     t.integer  "horario_id"
     t.integer  "usuario_id"
+    t.integer  "check_in_id"
+    t.integer  "check_out_id"
   end
 
+  add_index "asistencias", ["check_in_id"], name: "index_asistencias_on_check_in_id", using: :btree
+  add_index "asistencias", ["check_out_id"], name: "index_asistencias_on_check_out_id", using: :btree
   add_index "asistencias", ["empleado_id"], name: "index_asistencias_on_empleado_id", using: :btree
   add_index "asistencias", ["horario_id"], name: "index_asistencias_on_horario_id", using: :btree
   add_index "asistencias", ["usuario_id"], name: "index_asistencias_on_usuario_id", using: :btree
@@ -43,24 +52,34 @@ ActiveRecord::Schema.define(version: 20151118050006) do
   create_table "check_ins", force: :cascade do |t|
     t.boolean  "tardanza"
     t.datetime "horaOutput"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.boolean  "flag",                default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "horario_empleado_id"
     t.integer  "usuario_id"
+    t.integer  "empleado_id"
   end
 
+  add_index "check_ins", ["empleado_id"], name: "index_check_ins_on_empleado_id", using: :btree
   add_index "check_ins", ["horario_empleado_id"], name: "index_check_ins_on_horario_empleado_id", using: :btree
   add_index "check_ins", ["usuario_id"], name: "index_check_ins_on_usuario_id", using: :btree
 
   create_table "check_outs", force: :cascade do |t|
     t.datetime "horaOutput"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.integer  "horasTrabajadasProyecto"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "horario_empleado_id"
     t.integer  "usuario_id"
+    t.integer  "empleado_id"
+    t.integer  "check_in_id"
+    t.integer  "proyecto_id"
   end
 
+  add_index "check_outs", ["check_in_id"], name: "index_check_outs_on_check_in_id", using: :btree
+  add_index "check_outs", ["empleado_id"], name: "index_check_outs_on_empleado_id", using: :btree
   add_index "check_outs", ["horario_empleado_id"], name: "index_check_outs_on_horario_empleado_id", using: :btree
+  add_index "check_outs", ["proyecto_id"], name: "index_check_outs_on_proyecto_id", using: :btree
   add_index "check_outs", ["usuario_id"], name: "index_check_outs_on_usuario_id", using: :btree
 
   create_table "departamentos", force: :cascade do |t|
@@ -70,9 +89,17 @@ ActiveRecord::Schema.define(version: 20151118050006) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "empleado_id"
+    t.integer  "supervisor_id"
   end
 
   add_index "departamentos", ["empleado_id"], name: "index_departamentos_on_empleado_id", using: :btree
+
+  create_table "empleado_proyectos", force: :cascade do |t|
+    t.integer  "empleado_id"
+    t.integer  "proyecto_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "empleados", force: :cascade do |t|
     t.string   "codigo"
@@ -84,11 +111,13 @@ ActiveRecord::Schema.define(version: 20151118050006) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "categoria_id"
-    t.integer  "sexo_id"
+    t.integer  "departamento_id"
+    t.integer  "proyecto_id"
   end
 
   add_index "empleados", ["categoria_id"], name: "index_empleados_on_categoria_id", using: :btree
-  add_index "empleados", ["sexo_id"], name: "index_empleados_on_sexo_id", using: :btree
+  add_index "empleados", ["departamento_id"], name: "index_empleados_on_departamento_id", using: :btree
+  add_index "empleados", ["proyecto_id"], name: "index_empleados_on_proyecto_id", using: :btree
 
   create_table "historia_medicas", force: :cascade do |t|
     t.string   "codigo"
@@ -100,6 +129,17 @@ ActiveRecord::Schema.define(version: 20151118050006) do
   end
 
   add_index "historia_medicas", ["empleado_id"], name: "index_historia_medicas_on_empleado_id", using: :btree
+
+  create_table "hora_extras", force: :cascade do |t|
+    t.string   "codigo"
+    t.string   "nombre"
+    t.string   "dia"
+    t.time     "horaInicio"
+    t.time     "horaFin"
+    t.float    "precio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "horario_empleados", force: :cascade do |t|
     t.date     "fechaInicio"
@@ -131,18 +171,41 @@ ActiveRecord::Schema.define(version: 20151118050006) do
 
   add_index "horarios", ["empleado_id"], name: "index_horarios_on_empleado_id", using: :btree
 
+  create_table "incidencias", force: :cascade do |t|
+    t.string   "codigo"
+    t.string   "nombre"
+    t.integer  "nroDuracion"
+    t.string   "tiempoDuracion"
+    t.boolean  "tieneCondiciones"
+    t.boolean  "tienePeriodoHabilitacion"
+    t.date     "fechaInicioHabilitacion"
+    t.date     "fechaFinHabilitacion"
+    t.boolean  "tieneRestriccionAntiguedad"
+    t.integer  "nroAntiguedadMayor"
+    t.string   "tiempoAntiguedadMayor"
+    t.integer  "nroAntiguedadMenor"
+    t.string   "tiempoAntiguedadMenor"
+    t.boolean  "tieneCantPermitidasPorAnio"
+    t.integer  "vecesPermitidasPorAnio"
+    t.integer  "descuento"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "proyectos", force: :cascade do |t|
     t.string   "codigo"
     t.string   "nombre"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "departamento_id"
+    t.integer  "empleado_id"
   end
 
   add_index "proyectos", ["departamento_id"], name: "index_proyectos_on_departamento_id", using: :btree
+  add_index "proyectos", ["empleado_id"], name: "index_proyectos_on_empleado_id", using: :btree
 
-  create_table "sexos", force: :cascade do |t|
-    t.string   "sexo"
+  create_table "roles", force: :cascade do |t|
+    t.string   "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -150,28 +213,38 @@ ActiveRecord::Schema.define(version: 20151118050006) do
   create_table "usuarios", force: :cascade do |t|
     t.string   "userName"
     t.string   "password"
-    t.string   "rol"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "empleado_id"
+    t.integer  "rol_id"
   end
 
   add_index "usuarios", ["empleado_id"], name: "index_usuarios_on_empleado_id", using: :btree
+  add_index "usuarios", ["rol_id"], name: "index_usuarios_on_rol_id", using: :btree
 
+  add_foreign_key "asistencias", "check_ins"
+  add_foreign_key "asistencias", "check_outs"
   add_foreign_key "asistencias", "empleados"
   add_foreign_key "asistencias", "horarios"
   add_foreign_key "asistencias", "usuarios"
+  add_foreign_key "check_ins", "empleados"
   add_foreign_key "check_ins", "horario_empleados"
   add_foreign_key "check_ins", "usuarios"
+  add_foreign_key "check_outs", "check_ins"
+  add_foreign_key "check_outs", "empleados"
   add_foreign_key "check_outs", "horario_empleados"
+  add_foreign_key "check_outs", "proyectos"
   add_foreign_key "check_outs", "usuarios"
   add_foreign_key "departamentos", "empleados"
   add_foreign_key "empleados", "categorias"
-  add_foreign_key "empleados", "sexos"
+  add_foreign_key "empleados", "departamentos"
+  add_foreign_key "empleados", "proyectos"
   add_foreign_key "historia_medicas", "empleados"
   add_foreign_key "horario_empleados", "empleados"
   add_foreign_key "horario_empleados", "horarios"
   add_foreign_key "horarios", "empleados"
   add_foreign_key "proyectos", "departamentos"
+  add_foreign_key "proyectos", "empleados"
   add_foreign_key "usuarios", "empleados"
+  add_foreign_key "usuarios", "roles"
 end

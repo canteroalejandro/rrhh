@@ -1,13 +1,17 @@
 class Empleado < ActiveRecord::Base
 	include VerificationAssociations
 
+	has_many :asistencias
 	has_many :historia_medicas
 	has_many :horarioEmpleados
 	has_many :horarios, through: :horarioEmpleados
 	has_one :categoria
-	belongs_to :sexo
-	belongs_to :categoria
 	belongs_to :departamento
+	has_many :empleado_proyectos
+	has_many :proyectos, through: :empleado_proyectos
+	belongs_to :categoria
+
+	#has_one :encargado, :class_name => "Empleado", :foreign_key => "encargado_id"
 
 	#format
 	validates :codigo, :format => { :with => /(EMP-)\d*/, :message => "El formato del Código es incorrecto" }

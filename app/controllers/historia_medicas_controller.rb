@@ -1,5 +1,6 @@
 class HistoriaMedicasController < ApplicationController
   before_action :set_historia_medica, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /historia_medicas
   # GET /historia_medicas.json
