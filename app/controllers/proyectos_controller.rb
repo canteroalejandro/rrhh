@@ -20,7 +20,7 @@ class ProyectosController < ApplicationController
 
   # GET /proyectos/1/edit
   def edit
-    #puts 'params[:empleado_proyecto]', params[:empleado_proyecto]
+    puts 'params[:empleado_proyecto]', params[:empleado_proyecto]
   end
 
   # POST /proyectos

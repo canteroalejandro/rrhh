@@ -14,27 +14,10 @@
     = f.text_field :nombre
   .field
     = f.label :departamento_id, 'Departamento al cual pertenece:'
-    select#departamento_id.form-control.select2 style="width:50%" name="proyecto[departamento_id]"
-      - Departamento.all.each do |departamento|
-        - if @proyecto.departamento == departamento
-          option selected='' value=(departamento.id) = departamento.nombre
-        - else
-          option value=(departamento.id) = departamento.nombre
-  .field
-    =f.label :empleado_ids, 'Empleados que forman parte de este Proyecto: '
-    select#empleado_ids.form-control.select2 style="width:50%" name="proyecto[empleado_ids][]" multiple="true"
-      - Empleado.all.each do |empleado|
-        - if @proyecto.empleado == empleado
-          option selected='' class=(empleado.departamento_id) value=(empleado.id) =empleado.nombre_y_apellido
-        - else
-          option class=(empleado.departamento_id) value=(empleado.id) =empleado.nombre_y_apellido
-      /- else
-        / - ep = EmpleadoProyecto.where(proyecto_id: @proyecto.id)
-        / - Empleado.find(ep.pluck(:empleado_id)).each do |empleado|
-        /   - if @proyecto.empleado == empleado
-        /     option selected=@proyecto.empleado class=(empleado.departamento_id) value=(empleado.id) =empleado.nombre_y_apellido
-        /   - else
-        /     option class=(empleado.departamento_id) value=(empleado.id) =empleado.nombre_y_apellido
-
-    /= f.collection_select :empleado_ids , Empleado.all, :id, :nombre_y_apellido, {}, {:multiple => true, :id => 'empleado_id', :name => "proyecto[empleado_id]"}
+    = f.collection_select :departamento_id, Departamento.all, :id, :nombre, {:prompt => "Seleccione un Departamento..."}, {:id => 'departamento_id'}
+    
+  p#empleado_field
+    = f.label :empleado_ids, 'Empleados que forman parte de este Proyecto: '
+    = f.grouped_collection_select :empleado_ids, Departamento.all, :empleados, :nombre, :id, :nombre_y_apellido, {:prompt => 'Seleccione Empleados...', :selected => @proyecto.empleado_ids}, {:multiple => true, :id => 'empleado_ids'}
+    
   .actions = f.submit

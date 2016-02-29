@@ -8,4 +8,7 @@ module ApplicationHelper
 	  ((count == 1 || count =~ /^1(\.0+)?$/) ? singular : (plural || singular.pluralize))
 	end
 
+	def javascript(*files)
+	  content_for(:head) { javascript_include_tag(*files) }
+	end
 end
