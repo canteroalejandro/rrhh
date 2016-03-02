@@ -1,18 +1,21 @@
 h1 Listing check_outs
 
-table
+table class="table table-striped table-bordered table-hover"
   thead
     tr
       th Usuario que realizó la acción
       th Empleado
-      th Horario en que trabaja
-      th Hora Output
+      th Día y hora de salida:
+      th Actividad Realizada
       th colspan="3" Acciones
 
   tbody
     - @check_outs.each do |check_out|
       tr
-        td = check_out.horaOutput
+        td = @current_user.userName
+        td = check_out.empleado.nombre_y_apellido
+        td = check_out.horaOutput.strftime("%a, %e de %B de %Y, %H:%M hs")
+        td = check_out.empleado_proyecto.get_proyecto(check_out.empleado_proyecto.proyecto_id)
         td = link_to 'Show', check_out
         td = link_to 'Edit', edit_check_out_path(check_out)
         td = link_to 'Destroy', check_out, data: {:confirm => 'Are you sure?'}, :method => :delete

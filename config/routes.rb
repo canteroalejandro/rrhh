@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  
+  resources :contratos
   resources :incidencias
   resources :hora_extras
   resources :roles
@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :departamentos
   resources :empleados do
     resources :asistencias
+    resources :incidencia_empleados
+    resources :contrato_empleados
   end
   resources :horario_empleados
   resources :categorias

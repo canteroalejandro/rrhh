@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  inicio: 2016-03-01 10:05:19
+
+two:
+  inicio: 2016-03-01 10:05:19

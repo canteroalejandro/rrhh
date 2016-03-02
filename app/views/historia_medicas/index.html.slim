@@ -1,14 +1,12 @@
 h1 Listing historia_medicas
 
-table
+table class="table table-striped table-bordered table-hover"
   thead
     tr
       th Codigo
       th Fecha
       th Doctor
-      th
-      th
-      th
+      th colspan="3" Acciones
 
   tbody
     - @historia_medicas.each do |historia_medica|

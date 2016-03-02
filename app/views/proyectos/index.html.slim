@@ -1,23 +1,26 @@
-h1 Listing proyectos
+h1 Listar Proyectos
 
-table
+table class="table table-striped table-bordered table-hover"
   thead
     tr
       th Codigo
       th Nombre
-      th
-      th
-      th
+      th Empleados que Participan del Proyecto
+      th colspan="3" Acciones
 
   tbody
     - @proyectos.each do |proyecto|
       tr
         td = proyecto.codigo
         td = proyecto.nombre
-        td = link_to 'Show', proyecto
-        td = link_to 'Edit', edit_proyecto_path(proyecto)
-        td = link_to 'Destroy', proyecto, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td
+          ul
+            - proyecto.empleado_proyectos.each do |ep|
+                li = ep.empleado.nombre_y_apellido
+        td = link_to 'Mostrar', proyecto
+        td = link_to 'Editar', edit_proyecto_path(proyecto)
+        td = link_to 'Eliminar', proyecto, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
-= link_to 'New Proyecto', new_proyecto_path
+= link_to 'Nuevo Proyecto', new_proyecto_path

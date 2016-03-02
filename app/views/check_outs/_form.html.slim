@@ -50,22 +50,25 @@
     p#ActividadesRealizadas
     = f.label :proyecto_id, "Proyecto: "
     -if current_user.rol? :Empleado
-      select#proyecto_id.form-control.select2 style="width:50%" name="check_out[proyecto_id]"
-        - Proyecto.where(:empleado_id => current_user.empleado_id).each do |proyecto|
-          - if @check_out.proyecto == proyecto
-            option selected='' class=("#{proyecto.empleado_id}\\#{proyecto.horario_empleado_id}") value=( proyecto.id) =proyecto.nombre
+      select#empleado_proyecto_id.form-control.select2 style="width:50%" name="check_out[empleado_proyecto_id]"
+        - EmpleadoProyecto.where(:empleado_id => current_user.empleado_id).each do |empleado_proyecto|
+          - if @check_out.empleado_proyecto == empleado_proyecto
+            option selected='' class=(empleado_proyecto.empleado_id) value=(empleado_proyecto.id) = empleado_proyecto.get_proyecto(proyecto_id)
           - else
-            option class=("#{proyecto.empleado_id}\\#{proyecto.horario_empleado_id}") value=( proyecto.id) =proyecto.nombre
+            - aux = empleado_proyecto.proyecto_id
+            option class=(proyecto.emplproyectoeado_id) value=(empleado_proyecto.id) = empleado_proyecto.get_proyecto(aux)
     -elsif current_user.rol? :Administrador
-      select#proyecto_id.form-control.select2 style="width:50%" name="check_out[proyecto_id]"
-        - Proyecto.all.each do |proyecto|
-          - if @check_out.proyecto == proyecto
-            option selected='' class=("#{proyecto.empleado_id}\\#{proyecto.horario_empleado_id}") value=( proyecto.id) =proyecto.nombre
+      select#empleado_proyecto_id.form-control.select2 style="width:50%" name="check_out[empleado_proyecto_id]"
+        - EmpleadoProyecto.all.each do |empleado_proyecto|
+          - if @check_out.empleado_proyecto == empleado_proyecto
+            - aux = @check_out.empleado_proyecto.proyecto_id
+            option selected='' class=(empleado_proyecto.empleado_id) value=(empleado_proyecto.id) = empleado_proyecto.get_proyecto(aux)
           - else
-            option class=("#{proyecto.empleado_id}\\#{proyecto.horario_empleado_id}") value=( proyecto.id) =proyecto.nombre
+            - aux = empleado_proyecto.proyecto_id
+            option class=(empleado_proyecto.empleado_id) value=(empleado_proyecto.id) = empleado_proyecto.get_proyecto(aux)
   .field
     p#horaOutput 
-      'Dia y Hora de Entrada:  
+      'Dia y Hora de Salida:  
     -if current_user.rol? :Empleado
       = DateTime.now.strftime('%d-%m-%y %I:%M %p')
       = f.hidden_field :horaOutput, :value => DateTime.now

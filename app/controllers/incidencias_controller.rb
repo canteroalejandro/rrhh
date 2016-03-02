@@ -69,6 +69,6 @@ class IncidenciasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def incidencia_params
-      params.require(:incidencia).permit(:codigo, :nombre, :nroDuracion, :tiempoDuracion, :tieneCondiciones, :fechaInicioHabilitacion, :fechaFinHabilitacion, :nroAntiguedadMayor, :tiempoAntiguedadMayor, :nroAntiguedadMenor, :tiempoAntiguedadMenor, :vecesPermitidasPorAño)
+      params.require(:incidencia).permit(:codigo, :nombre, :nroDuracion, :tiempoDuracion, :tieneCondiciones, :tienePeriodoHabilitacion, :fechaInicioHabilitacion, :fechaFinHabilitacion, :tieneRestriccionAntiguedad, :nroAntiguedadMayor, :tiempoAntiguedadMayor, :nroAntiguedadMenor, :tiempoAntiguedadMenor, :tieneCantPermitidasPorAnio, :vecesPermitidasPorAnio, :descuento)
     end
 end

@@ -22,4 +22,5 @@ class Proyecto < ActiveRecord::Base
 			return self.codigo
 		end
 	end
+
 end

@@ -7,7 +7,7 @@ class Asistencia < ActiveRecord::Base
 	def set_salida_en_pantalla
 		check_in = CheckIn.find(self.check_in_id)
 		check_out = CheckOut.find(self.check_out_id)
-		return"Entrada: #{check_in.horaOutput.strftime("%e/%b/%y %H:%M")} - Salida: #{check_out.horaOutput.strftime("%e/%b/%y %H:%M")}"		
+		return"Entrada: #{check_in.horaOutput.strftime("%e/%m/%y %H:%M")} - Salida: #{check_out.horaOutput.strftime("%e/%m/%y %H:%M")}"		
 	end
 
 	def calcular_horas_trabajadas

@@ -1,0 +1,26 @@
+= form_for ([@incidencia_empleado.empleado, @incidencia_empleado]) do |f|
+  - if @incidencia_empleado.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@incidencia_empleado.errors.count, "error")} prohibited this incidencia_empleado from being saved:"
+      ul
+        - @incidencia_empleado.errors.full_messages.each do |message|
+          li = message
+
+  br
+  .field
+    p#empleado 
+      'Empleado:  
+    = @incidencia_empleado.get_nombre_empleado(@incidencia_empleado.empleado_id)
+    = f.hidden_field :empleado_id, :value => @incidencia_empleado.empleado_id 
+  .field
+    = f.label :incidencia_id, 'Incidencia: '
+    = f.collection_select :incidencia_id, Incidencia.all, :id, :nombre
+  .field#incidencia_con_cantidad_de_veces
+    p
+    = @incidencia_empleado.get_cantidad_veces_restantes(@incidencia_empleado.incidencia_id) unless @incidencia_empleado.new_record?
+  .field
+    = f.label :inicio
+    = f.datetime_select :inicio
+  /.field
+  /  = f.hidden_field :fin, :value => @incidencia_empleado.set_finalizacion(@incidencia_empleado.incidencia_id) 
+  .actions = f.submit

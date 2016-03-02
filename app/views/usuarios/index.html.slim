@@ -1,15 +1,13 @@
 h1 Listing usuarios
 
-table
+table class="table table-striped table-bordered table-hover"
   thead
     tr
       th Empleado
       th Username
       th Password
       th Rol
-      th
-      th
-      th
+      th colspan="3" Acciones
 
   tbody
     - @usuarios.each do |usuario|

@@ -23,7 +23,7 @@ ul.nav.nav-list
     
   - if can? :read, Empleado  
     li class=(is_active?("index"))
-      a.dropdown-toggle href=(empleados_path)
+      a href=(empleados_path)
         i.icon-list
         span.menu-text
           | Empleados
@@ -57,12 +57,12 @@ ul.nav.nav-list
         span.menu-text
           | Horarios
 
-  - if can? :read, Incidencia
+  - if can? :read, Contrato
     li class=(is_active?("index"))
-      a href=(incidencias_path)
+      a href=(contratos_path)
         i.icon-list
         span.menu-text
-          | Incidencias
+          | Contratos
 
   - if can? :read, HoraExtra
     li class=(is_active?("index"))
@@ -70,6 +70,13 @@ ul.nav.nav-list
         i.icon-list
         span.menu-text
           | Horas Extra
+
+  - if can? :read, Incidencia
+    li class=(is_active?("index"))
+      a href=(incidencias_path)
+        i.icon-list
+        span.menu-text
+          | Incidencias
 
   - if can? :read, Usuario
     li class=(is_active?("index"))

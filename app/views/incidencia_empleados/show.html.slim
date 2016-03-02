@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Incidencia asignada:
+  = @incidencia_empleado.incidencia.nombre
+p
+  strong Fecha de Inicio:
+  = @incidencia_empleado.inicio
+p
+  strong Fecha en que Termina:
+  = @incidencia_empleado.fin
+
+= link_to 'Edit', edit_empleado_incidencia_empleado_path(@incidencia_empleado.empleado, @incidencia_empleado)
+'|
+= link_to 'Back', empleado_incidencia_empleados_path(@incidencia_empleado.empleado)

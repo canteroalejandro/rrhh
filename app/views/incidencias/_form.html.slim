@@ -8,17 +8,17 @@
 
   .field
     = f.label :codigo
-    = f.text_field :codigo
+    = f.text_field :codigo, :value => @incidencia.codigo_incidencia
   .field
     = f.label :nombre
     = f.text_field :nombre
   .field
     = f.label :nroDuracion, "Duración: "
     = f.number_field :nroDuracion
-    = f.text_field :tiempoDuracion
-  .field#check
+    = f.select :tiempoDuracion, options_for_select(@incidencia.tiempos_array)
+  .field#check_condiciones
     span.lbl Condiciones  
-    = f.check_box :tieneCondiciones, :checked => true
+    = f.check_box :tieneCondiciones
     span.lbl
   br
   .field#panel
@@ -34,10 +34,10 @@
             span.lbl
             br
             = f.label :fechaInicioHabilitacion, "Habilitado desde: "
-            = f.date_select :fechaInicioHabilitacion
+            = f.date_select :fechaInicioHabilitacion, discard_year:true
             br
             = f.label :fechaFinHabilitacion, "Hasta: "
-            = f.date_select :fechaFinHabilitacion
+            = f.date_select :fechaFinHabilitacion, discard_year:true
     br
     .widget-box
       .widget-header 
@@ -49,17 +49,13 @@
             = f.check_box :tieneRestriccionAntiguedad
             span.lbl
           .field
-            = f.label :nroAntiguedadMayor
+            = f.label :nroAntiguedadMayor, "Mayor a: "
             = f.number_field :nroAntiguedadMayor
+            = f.select :tiempoAntiguedadMayor, options_for_select(@incidencia.tiempos_array)
           .field
-            = f.label :tiempoAntiguedadMayor
-            = f.text_field :tiempoAntiguedadMayor
-          .field
-            = f.label :nroAntiguedadMenor
+            = f.label :nroAntiguedadMenor, "Menor a: "
             = f.number_field :nroAntiguedadMenor
-          .field
-            = f.label :tiempoAntiguedadMenor
-            = f.text_field :tiempoAntiguedadMenor
+            = f.select :tiempoAntiguedadMenor, options_for_select(@incidencia.tiempos_array)
     br
     .widget-box
       .widget-header 
@@ -71,6 +67,15 @@
             = f.check_box :tieneCantPermitidasPorAnio
             span.lbl
           .field
-            = f.label :vecesPermitidasPorAnio
+            = f.label :vecesPermitidasPorAnio, "Número de veces permitidas por año: "
             = f.number_field :vecesPermitidasPorAnio
+    br
+    .widget-box
+      .widget-header 
+        h4.widget-title Descuentos
+      .widget-body
+        .widget-main
+          .field
+            = f.label :descuento, "Porcentaje de descuento: "
+            = f.number_field :descuento
   .actions = f.submit

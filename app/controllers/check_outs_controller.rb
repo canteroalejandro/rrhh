@@ -70,6 +70,6 @@ class CheckOutsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def check_out_params
-      params.require(:check_out).permit(:horaOutput, :empleado_id, :horario_empleado_id, :usuario_id, :check_in_id, :proyecto_id)
+      params.require(:check_out).permit(:horaOutput, :empleado_id, :horario_empleado_id, :usuario_id, :check_in_id, :empleado_proyecto_id)
     end
 end

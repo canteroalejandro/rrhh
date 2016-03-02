@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Tipo de Contrato: 
+  = @contrato_empleado.contrato.nombre
+p
+  strong Fecha de Inicio: 
+  = @contrato_empleado.inicio
+p
+  strong Fecha en que Termina: 
+  = @contrato_empleado.fin
+
+= link_to 'Edit', edit_empleado_contrato_empleado_path(@contrato_empleado.empleado, @contrato_empleado)
+'|
+= link_to 'Back', empleado_contrato_empleados_path(@contrato_empleado.empleado)

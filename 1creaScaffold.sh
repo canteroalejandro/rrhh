@@ -22,6 +22,11 @@ rails g scaffold HoraExtra codigo:string nombre:string dia:string horaInicio:tim
 
 rails g scaffold Incidencia codigo:string nombre:string nroDuracion:integer tiempoDuracion:string tieneCondiciones:boolean fechaInicioHabilitacion:date fechaFinHabilitacion:date nroAntiguedadMayor:integer tiempoAntiguedadMayor:string nroAntiguedadMenor:integer tiempoAntiguedadMenor:string vecesPermitidasPorAño:integer
 
+rails g scaffold IncidenciaEmpleado inicio:datetime
+
+rails g scaffold Contrato codigo:string nombre:string nroDuracion:integer tiempoDuracion:string horasDia:integer edadMinima:integer 
+
+rails g scaffold ContratoEmpleado inicio:date
 # Model to Table, nombre del modelo sin camelcase
 rails generate migration AddEmpleadoRefToHistoriaMedica empleado:references
 
@@ -65,13 +70,18 @@ rails generate migration AddCheckOutRefToAsistencia check_out:references
 
 rails generate migration AddDepartamentoRefToEmpleado departamento:references
 
-rails generate migration AddProyectoRefToCheckOut proyecto:references
+rails generate migration AddEmpleadoProyectoRefToCheckOut empleado_proyecto:references
 
 rails generate migration AddProyectoRefToEmpleado proyecto:references
 
 #rails generate migration AddProyectoRefToEmpleadoProyecto proyecto:references
 #rails generate migration AddEmpleadoRefToEmpleadoProyecto empleado:references
 
+rails generate migration AddIncidenciaRefToIncidenciaEmpleado incidencia:references
+rails generate migration AddEmpleadoRefToIncidenciaEmpleado empleado:references
+
+rails generate migration AddContratoRefToContratoEmpleado contrato:references
+rails generate migration AddEmpleadoRefToContratoEmpleado empleado:references
 #FOREIGN KEY
 
 rails generate migration AddSupervisorIdToDepartamento supervisor_id:integer

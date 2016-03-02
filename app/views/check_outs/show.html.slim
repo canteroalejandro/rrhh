@@ -1,8 +1,8 @@
 p#notice = notice
 
 p
-  strong Horaoutput:
-  = @check_out.horaOutput
+  strong Día y hora de salida:
+  = @check_out.horaOutput.strftime("%a, %e de %B de %Y, %H:%M hs")
 
 = link_to 'Edit', edit_check_out_path(@check_out)
 '|

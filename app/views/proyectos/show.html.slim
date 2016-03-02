@@ -1,11 +1,17 @@
 p#notice = notice
 
 p
-  strong Codigo:
+  strong Codigo: 
   = @proyecto.codigo
 p
-  strong Nombre:
+  strong Nombre: 
   = @proyecto.nombre
+p
+  strong Empleados que participan del Proyecto  
+  -unless @proyecto.empleado_proyectos.empty?
+  	-@proyecto.empleado_proyectos.each do |ep|
+  		br
+  		= ep.empleado.nombre_y_apellido
 
 = link_to 'Edit', edit_proyecto_path(@proyecto)
 '|

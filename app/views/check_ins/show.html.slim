@@ -1,11 +1,14 @@
 p#notice = notice
 
 p
-  strong Tardanza:
-  = @check_in.tardanza
+  strong Tardanza: 
+  - if@check_in.tardanza == true
+  	= 'Sí'
+  -else
+  	= 'No'
 p
-  strong Horaoutput:
-  = @check_in.horaOutput
+  strong Día y hora de entrada:
+  = @check_in.horaOutput.strftime("%a, %e de %B de %Y, %H:%M hs")
 
 = link_to 'Edit', edit_check_in_path(@check_in)
 '|

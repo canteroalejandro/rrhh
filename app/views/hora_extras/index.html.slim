@@ -1,6 +1,6 @@
 h1 Listing hora_extras
 
-table
+table class="table table-striped table-bordered table-hover"
   thead
     tr
       th Codigo
@@ -9,9 +9,7 @@ table
       th Horainicio
       th Horafin
       th Precio
-      th
-      th
-      th
+      th colspan="3" Acciones
 
   tbody
     - @hora_extras.each do |hora_extra|

@@ -1,0 +1,2 @@
+module IncidenciaEmpleadosHelper
+end

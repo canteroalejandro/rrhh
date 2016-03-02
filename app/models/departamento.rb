@@ -10,7 +10,7 @@ class Departamento < ActiveRecord::Base
 	#uniqueness
 	validates :codigo, uniqueness: { case_sensitive: false, message: "El %{attribute} ya existe"}
 	validates :nombre, uniqueness: { :scope => :codigo, message: "El %{attribute} ya existe con éste Código"}
-	validates :empleados, presence: true
+	#validates :empleados, presence: true
 	
 	def codigo_departamento
 		if self.codigo == nil

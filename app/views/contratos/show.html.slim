@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Codigo:
+  = @contrato.codigo
+p
+  strong Nombre:
+  = @contrato.nombre
+p
+  strong Nroduracion:
+  = @contrato.nroDuracion
+p
+  strong Tiempoduracion:
+  = @contrato.tiempoDuracion
+p
+  strong Horasdia:
+  = @contrato.horasDia
+p
+  strong Edadminima:
+  = @contrato.edadMinima
+
+= link_to 'Edit', edit_contrato_path(@contrato)
+'|
+= link_to 'Back', contratos_path

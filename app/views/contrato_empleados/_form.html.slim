@@ -1,0 +1,21 @@
+= form_for([@contrato_empleado.empleado, @contrato_empleado]) do |f|
+  - if @contrato_empleado.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@contrato_empleado.errors.count, "error")} prohibited this contrato_empleado from being saved:"
+      ul
+        - @contrato_empleado.errors.full_messages.each do |message|
+          li = message
+
+  br
+  .field
+    p#empleado 
+      'Empleado:  
+    = @contrato_empleado.get_nombre_empleado(@contrato_empleado.empleado_id)
+    = f.hidden_field :empleado_id, :value => @contrato_empleado.empleado_id 
+  .field
+    = f.label :contrato_id, 'Contrato: '
+    = f.collection_select :contrato_id, Contrato.all, :id, :nombre        
+  .field
+    = f.label :inicio, 'Fecha de Inicio del Contrato: '
+    = f.date_select :inicio, :start_year => 1950
+  .actions = f.submit

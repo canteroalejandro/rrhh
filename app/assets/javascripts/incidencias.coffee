@@ -4,7 +4,11 @@
 
 
 $(document).ready ->
-	$('#check').change ->
-	  	$("#panel").toggle(@checked)
+	if $('#check_condiciones').is(':checked') 
+		$('#panel').show()
+	else
+		$('#panel').hide()
+	$('#check_condiciones').change ->
+		$("#panel").toggle(@checked)
 
   

@@ -1,0 +1,29 @@
+h1 Listing contratos
+
+table class="table table-striped table-bordered table-hover"
+  thead
+    tr
+      th Codigo
+      th Nombre
+      th Nroduracion
+      th Tiempoduracion
+      th Horasdia
+      th Edadminima
+      th colspan="3" Acciones
+
+  tbody
+    - @contratos.each do |contrato|
+      tr
+        td = contrato.codigo
+        td = contrato.nombre
+        td = contrato.nroDuracion
+        td = contrato.tiempoDuracion
+        td = contrato.horasDia
+        td = contrato.edadMinima
+        td = link_to 'Show', contrato
+        td = link_to 'Edit', edit_contrato_path(contrato)
+        td = link_to 'Destroy', contrato, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Contrato', new_contrato_path

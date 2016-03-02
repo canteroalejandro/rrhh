@@ -8,7 +8,7 @@
 $(document).ready ->
   $('select#empleado_id').select2 {}
   $('select#horario_empleado_id').select2 {}
-  $('select#proyecto_id').select2 {}
+  $('select#empleado_proyecto_id').select2 {}
   $("#horario_empleado_id").chained("#empleado_id")
-  $("#proyecto_id").chained("#empleado_id, #horario_empleado_id")
+  $("#empleado_proyecto_id").chained("#empleado_id")
   

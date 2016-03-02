@@ -7,6 +7,7 @@ class CreateEmpleados < ActiveRecord::Migration
       t.string :apellido
       t.date :fechaNacimiento
       t.string :direccion
+      t.integer :antiguedad
 
       t.timestamps null: false
     end

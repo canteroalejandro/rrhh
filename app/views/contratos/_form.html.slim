@@ -1,0 +1,25 @@
+= form_for @contrato do |f|
+  - if @contrato.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@contrato.errors.count, "error")} prohibited this contrato from being saved:"
+      ul
+        - @contrato.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :codigo, 'Código: '
+    = f.text_field :codigo, :value => @contrato.codigo_contrato
+  .field
+    = f.label :nombre, 'Nombre: '
+    = f.text_field :nombre
+  .field
+    = f.label :nroDuracion, 'Duración del contrato: '
+    = f.number_field :nroDuracion
+    = f.select :tiempoDuracion, options_for_select(@contrato.tiempos_array)
+  .field
+    = f.label :horasDia, 'Horas al dia para el trabajador: '
+    = f.number_field :horasDia
+  .field
+    = f.label :edadMinima, 'Edad mínima del trabajador: '
+    = f.number_field :edadMinima
+  .actions = f.submit

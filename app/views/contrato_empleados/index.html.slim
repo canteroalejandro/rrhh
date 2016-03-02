@@ -1,0 +1,23 @@
+h1 Listing contrato_empleados
+
+table class="table table-striped table-bordered table-hover"
+  thead
+    tr
+      th Tipo de contrato
+      th Inicio
+      th Fin
+      th colspan="3" Acciones
+
+  tbody
+    - @contrato_empleados.each do |contrato_empleado|
+      tr
+        td = contrato_empleado.contrato.nombre
+        td = contrato_empleado.inicio
+        td = contrato_empleado.fin
+        td = link_to 'Show', [contrato_empleado.empleado, contrato_empleado]
+        td = link_to 'Edit', edit_empleado_contrato_empleado_path(contrato_empleado.empleado, contrato_empleado)
+        td = link_to 'Destroy', [contrato_empleado.empleado, contrato_empleado], data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Contrato Empleado', new_empleado_contrato_empleado_path
