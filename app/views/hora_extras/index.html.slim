@@ -16,7 +16,7 @@ table class="table table-striped table-bordered table-hover"
       tr
         td = hora_extra.codigo
         td = hora_extra.nombre
-        td = hora_extra.dia
+        td = hora_extra.string_por_dias(hora_extra.dia)
         td = hora_extra.horaInicio
         td = hora_extra.horaFin
         td = hora_extra.precio

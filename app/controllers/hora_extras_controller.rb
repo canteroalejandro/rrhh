@@ -69,6 +69,6 @@ class HoraExtrasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hora_extra_params
-      params.require(:hora_extra).permit(:codigo, :nombre, :dia, :horaInicio, :horaFin, :precio)
+      params.require(:hora_extra).permit(:codigo, :nombre, :horaInicio, :horaFin, :precio, dia:[])
     end
 end

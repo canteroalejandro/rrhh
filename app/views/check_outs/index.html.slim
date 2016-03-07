@@ -10,15 +10,40 @@ table class="table table-striped table-bordered table-hover"
       th colspan="3" Acciones
 
   tbody
-    - @check_outs.each do |check_out|
-      tr
-        td = @current_user.userName
-        td = check_out.empleado.nombre_y_apellido
-        td = check_out.horaOutput.strftime("%a, %e de %B de %Y, %H:%M hs")
-        td = check_out.empleado_proyecto.get_proyecto(check_out.empleado_proyecto.proyecto_id)
-        td = link_to 'Mostrar', check_out
-        td = link_to 'Editar', edit_check_out_path(check_out)
-        td = link_to 'Eliminar', check_out, data: {:confirm => '¿Está Seguro que desea eliminar este Check Out?'}, :method => :delete
+    -if current_user.rol? :Administrador
+      - @check_outs.each do |check_out|
+        tr
+          td = check_out.usuario.userName
+          td = check_out.empleado.nombre_y_apellido
+          td = check_out.horaOutput.strftime("%a, %e de %B de %Y, %H:%M hs")
+          td = check_out.empleado_proyecto.proyecto.nombre
+          td = link_to 'Mostrar', check_out
+          td = link_to 'Editar', edit_check_out_path(check_out)
+          td = link_to 'Eliminar', check_out, data: {:confirm => '¿Está Seguro que desea eliminar esta Salida?'}, :method => :delete
+
+    -elsif current_user.rol? :Supervisor
+      - Departamento.where(supervisor_id: @current_user.empleado_id).each do |dep|
+        - Empleado.where(departamento_id: dep.id).each do |emp|
+          - CheckOut.where(empleado_id: emp.id).each do |check_out|
+            tr
+              td = check_out.usuario.userName
+              td = check_out.empleado.nombre_y_apellido
+              td = check_out.horaOutput.strftime("%a, %e de %B de %Y, %H:%M hs")
+              td = check_out.empleado_proyecto.proyecto.nombre
+              td = link_to 'Mostrar', check_out
+              td = link_to 'Editar', edit_check_out_path(check_out)
+              td = link_to 'Eliminar', check_out, data: {:confirm => '¿Está Seguro que desea eliminar esta Salida?'}, :method => :delete
+
+    -elsif current_user.rol? :Empleado
+      - CheckOut.where(empleado_id: @current_user.empleado_id).each do |check_out|
+        tr
+          td = check_out.usuario.userName
+          td = check_out.empleado.nombre_y_apellido
+          td = check_out.horaOutput.strftime("%a, %e de %B de %Y, %H:%M hs")
+          td = check_out.empleado_proyecto.proyecto.nombre
+          td = link_to 'Mostrar', check_out
+          td = link_to 'Editar', edit_check_out_path(check_out)
+          td = link_to 'Eliminar', check_out, data: {:confirm => '¿Está Seguro que desea eliminar esta Salida?'}, :method => :delete
 
 br
 

@@ -7,8 +7,9 @@ p
   strong Nombre:
   = @hora_extra.nombre
 p
-  strong Dia:
-  = @hora_extra.dia
+  strong Día: 
+  /= @horario.dia
+  = @hora_extra.string_por_dias(@hora_extra.dia)
 p
   strong Horainicio:
   = @hora_extra.horaInicio
