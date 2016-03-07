@@ -1,0 +1,13 @@
+table class="table table-striped table-bordered table-hover"
+  thead
+    tr
+      th Descripción de entrada y salida
+      th Horas Trabajadas
+      th Horas Extras trabajadas
+
+  tbody
+    - @asistencias.each do |asistencia|
+      tr
+        td = asistencia.outputAsistencia
+        td = asistencia.horasTrabajadas
+        td
