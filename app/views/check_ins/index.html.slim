@@ -12,24 +12,52 @@ table class="table table-striped table-bordered table-hover"
       th colspan="3" Acciones
 
   tbody
-    - @check_ins.each do |check_in|
-      tr
-        td = @current_user.userName
-        td = check_in.empleado.nombre_y_apellido
-        td
-          -if check_in.tardanza == true
-            = 'Sí'
-          -else
-            = 'No'
-        / td
-        /   - check_in.empleado.horario_empleado do |hor_emp|
-        /     = hor_emp.id
-          /  = hor_emp.horario.string_por_dias(horario.dia)
-        / td = "#{check_in.horario_empleado.horario.horaEntrada.strftime("%H:%M %P")} - #{check_in.horario_empleado.horario.horaSalida.strftime("%H:%M %P")}"
-        td = check_in.horaOutput.strftime("%a, %e de %B de %Y, %H:%M hs")
-        td = link_to 'Mostrar', check_in
-        td = link_to 'Editar', edit_check_in_path(check_in)
-        td = link_to 'Eliminar', check_in, data: {:confirm => '¿Está Seguro que desea eliminar esta Entrada'}, :method => :delete
+    -if current_user.rol? :Administrador
+      - @check_ins.each do |check_in|
+        tr
+          td = check_in.usuario.userName
+          td = check_in.empleado.nombre_y_apellido
+          td
+            -if check_in.tardanza == true
+              = 'Sí'
+            -else
+              = 'No'
+          td = check_in.horaOutput.strftime("%a, %e de %B de %Y, %H:%M hs")
+          td = link_to 'Mostrar', check_in
+          td = link_to 'Editar', edit_check_in_path(check_in)
+          td = link_to 'Eliminar', check_in, data: {:confirm => '¿Está Seguro que desea eliminar esta Entrada?'}, :method => :delete
+
+    -elsif current_user.rol? :Supervisor
+      - Departamento.where(supervisor_id: @current_user.empleado_id).each do |dep|
+        - Empleado.where(departamento_id: dep.id).each do |emp|
+          - CheckIn.where(empleado_id: emp.id).each do |check_in|
+            tr
+              td = check_in.usuario.userName
+              td = check_in.empleado.nombre_y_apellido
+              td
+                -if check_in.tardanza == true
+                  = 'Sí'
+                -else
+                  = 'No'
+              td = check_in.horaOutput.strftime("%a, %e de %B de %Y, %H:%M hs")
+              td = link_to 'Mostrar', check_in
+              td = link_to 'Editar', edit_check_in_path(check_in)
+              td = link_to 'Eliminar', check_in, data: {:confirm => '¿Está Seguro que desea eliminar esta Entrada?'}, :method => :delete
+
+    -elsif current_user.rol? :Empleado
+      - CheckIn.where(empleado_id: @current_user.empleado_id).each do |check_in|
+        tr
+          td = check_in.usuario.userName
+          td = check_in.empleado.nombre_y_apellido
+          td
+            -if check_in.tardanza == true
+              = 'Sí'
+            -else
+              = 'No'
+          td = check_in.horaOutput.strftime("%a, %e de %B de %Y, %H:%M hs")
+          td = link_to 'Mostrar', check_in
+          td = link_to 'Editar', edit_check_in_path(check_in)
+          td = link_to 'Eliminar', check_in, data: {:confirm => '¿Está Seguro que desea eliminar esta Entrada?'}, :method => :delete
 
 br
 

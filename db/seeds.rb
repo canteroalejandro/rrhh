@@ -124,7 +124,11 @@ EmpleadoProyecto.create!([
   {empleado_id: 9, proyecto_id: 3}
 ])
 
+HoraExtra.create!([
+  {codigo: "H.EXT-00001", nombre: "Matutino Lunes a Viernes", dia: "0, 1, 2, 3, 4", horaInicio: "2000-01-01 08:00:00", horaFin: "2000-01-01 22:00:00", precio: 50.0},
+  {codigo: "H.EXT-00002", nombre: "Sábados 8-13pm", dia: "5", horaInicio: "2000-01-01 08:00:00", horaFin: "2000-01-01 12:59:00", precio: 50.0},
+  {codigo: "H.EXT-00003", nombre: "Sábados 13pm", dia: "5", horaInicio: "2000-01-01 13:00:00", horaFin: "2000-01-01 23:59:00", precio: 100.0},
+  {codigo: "H.EXT-00004", nombre: "Domingos", dia: "6", horaInicio: "2000-01-01 00:00:00", horaFin: "2000-01-01 23:59:00", precio: 100.0},
+  {codigo: "H.EXT-00005", nombre: "Feriados", dia: "0, 1, 2, 3, 4, 5, 6", horaInicio: "2000-01-01 00:00:00", horaFin: "2000-01-01 23:59:00", precio: 100.0}
+])
 #---------------------------------------------------------------------------
-
-
-

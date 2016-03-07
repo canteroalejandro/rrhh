@@ -8,13 +8,18 @@
 
   .field
     = f.label :codigo
-    = f.text_field :codigo
+    = f.text_field :codigo, :value => @hora_extra.codigo_hora_extra
   .field
     = f.label :nombre
     = f.text_field :nombre
   .field
     = f.label :dia
-    = f.text_field :dia
+    .field#check
+      - for i in 0..6
+        span.lbl
+          = @hora_extra.numeros_por_dias(i)
+        = check_box_tag 'hora_extra[dia][]', i, id: 'dia_#{i}' 
+      span.lbl
   .field
     = f.label :horaInicio
     = f.time_select :horaInicio
