@@ -124,7 +124,8 @@ EmpleadoProyecto.create!([
   {empleado_id: 9, proyecto_id: 3}
 ])
 
+Feriado.create!([
+  {descripcion: "San Martin", fecha: "2016-03-07"}
+])
+
 #---------------------------------------------------------------------------
-
-
-

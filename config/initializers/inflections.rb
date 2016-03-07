@@ -21,4 +21,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 	inflect.irregular 'error', 'errores'
 	inflect.irregular 'rol', 'roles'
 	inflect.irregular 'incidencia', 'incidencias'
+	inflect.irregular 'feriado', 'feriados'
 end

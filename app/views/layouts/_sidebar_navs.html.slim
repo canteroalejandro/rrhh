@@ -77,6 +77,13 @@ ul.nav.nav-list
         span.menu-text
           | Incidencias
 
+  - if can? :read, Feriado
+    li class=(is_active?("index"))
+      a href=(feriados_path)
+        i.icon-list
+        span.menu-text
+          | Feriados 
+
   - if can? :read, Usuario
     li class=(is_active?("index"))
       a href=(usuarios_path)

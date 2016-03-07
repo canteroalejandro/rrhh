@@ -85,3 +85,6 @@ rails generate migration AddEmpleadoRefToContratoEmpleado empleado:references
 #FOREIGN KEY
 
 rails generate migration AddSupervisorIdToDepartamento supervisor_id:integer
+
+
+rails g scaffold Feriado descripcion:string fecha:datetime

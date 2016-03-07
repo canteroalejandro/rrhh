@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :feriados
   resources :contratos
   resources :incidencias
   resources :hora_extras

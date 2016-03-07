@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Descripcion:
+  = @feriado.descripcion
+p
+  strong Fecha:
+  = @feriado.fecha
+
+= link_to 'Edit', edit_feriado_path(@feriado)
+'|
+= link_to 'Back', feriados_path

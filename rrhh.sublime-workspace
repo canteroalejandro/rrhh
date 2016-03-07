@@ -40,10 +40,16 @@
 	},
 	"expanded_folders":
 	[
-		"/media/alejandro/Data/Proyectos/rrhh"
+		"/media/alejandro/Data/Proyectos/rrhh",
+		"/media/alejandro/Data/Proyectos/rrhh/config",
+		"/media/alejandro/Data/Proyectos/rrhh/db"
 	],
 	"file_history":
 	[
+		"/media/alejandro/Data/Proyectos/rrhh/config/initializers/inflections.rb",
+		"/media/alejandro/Data/Proyectos/rrhh/config/database1.yml",
+		"/media/alejandro/Data/Proyectos/rrhh/1creaScaffold.sh",
+		"/media/alejandro/Data/Proyectos/rrhh/config/database.yml"
 	],
 	"find":
 	{
@@ -137,6 +143,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"infle",
+				"config/initializers/inflections.rb"
+			],
+			[
+				"scaffold",
+				"1creaScaffold.sh"
+			]
 		],
 		"width": 0.0
 	},
