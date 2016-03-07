@@ -14,4 +14,6 @@ db/development.sqlite3
 /.gitignore~
 /vendor/assets/javascripts/angular-mocks.js
 /log
-config/database.yml
+/config/database.yml
+/Gemfile.lock
+/rrhh/rrhh.sublime-workspace
