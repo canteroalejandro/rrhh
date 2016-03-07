@@ -1,4 +1,4 @@
-h1 Listing check_ins
+h1 Listar Entradas
 
 table class="table table-striped table-bordered table-hover"
   thead
@@ -27,10 +27,10 @@ table class="table table-striped table-bordered table-hover"
           /  = hor_emp.horario.string_por_dias(horario.dia)
         / td = "#{check_in.horario_empleado.horario.horaEntrada.strftime("%H:%M %P")} - #{check_in.horario_empleado.horario.horaSalida.strftime("%H:%M %P")}"
         td = check_in.horaOutput.strftime("%a, %e de %B de %Y, %H:%M hs")
-        td = link_to 'Show', check_in
-        td = link_to 'Edit', edit_check_in_path(check_in)
-        td = link_to 'Destroy', check_in, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Mostrar', check_in
+        td = link_to 'Editar', edit_check_in_path(check_in)
+        td = link_to 'Eliminar', check_in, data: {:confirm => '¿Está Seguro que desea eliminar esta Entrada'}, :method => :delete
 
 br
 
-= link_to 'New Check in', new_check_in_path
+= link_to 'Registrar Nueva Entrada', new_check_in_path

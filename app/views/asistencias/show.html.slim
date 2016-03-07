@@ -7,12 +7,12 @@ p
   strong Salida:
   = @asistencia.salida
 p
-  strong Outputasistencia:
+  strong Descripción de entrada y salida:
   = @asistencia.outputAsistencia
 p
-  strong Horastrabajadas:
+  strong Horas Trabajadas:
   = @asistencia.horasTrabajadas
 
-= link_to 'Edit', edit_empleado_asistencia_path(@asistencia.empleado, @asistencia)
+= link_to 'Editar', edit_empleado_asistencia_path(@asistencia.empleado, @asistencia)
 '|
-= link_to 'Back', empleado_asistencias_path(@asistencia.empleado)
+= link_to 'Volver', empleado_asistencias_path(@asistencia.empleado)

@@ -1,7 +1,7 @@
 = form_for @check_in do |f|
   - if @check_in.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@check_in.errors.count, "error")} prohibited this check_in from being saved:"
+      h2 = "#{pluralize(@check_in.errors.count, "error")} #{pluralize_without_count(@check_in.errors.count, "prohibe", "prohiben")} registrar esta Entrada:"
       ul
         - @check_in.errors.full_messages.each do |message|
           li = message
@@ -18,7 +18,14 @@
       -if current_user.rol? :Empleado
         = @check_in.get_empleado(current_user)
         = f.hidden_field :empleado_id, :value => current_user.empleado_id
-        p 98765
+      -elsif current_user.rol? :Supervisor
+        .col-sm-9
+          select#empleado_id.form-control.select2 style="width:50%" name="check_in[empleado_id]"
+            - Empleado.where(:departamento_id => current_user.empleado.departamento_id).each do |empleado|
+              - if @check_in.empleado == empleado
+                option selected='' value=(empleado.id) = empleado.nombre_y_apellido
+              - else
+                option value=(empleado.id) = empleado.nombre_y_apellido
       -elsif current_user.rol? :Administrador
         .col-sm-9
           select#empleado_id.form-control.select2 style="width:50%" name="check_in[empleado_id]"
@@ -31,7 +38,6 @@
     p#horaOutput 
       = f.label :horario_empleado_id, "Horario: "
       -if current_user.rol? :Empleado
-        = f.collection_select :horario_empleado_id, HorarioEmpleado.where(:empleado_id => current_user.empleado_id), :id, :id
         select#horario_empleado_id.form-control.select2 style="width:50%" name="check_in[horario_empleado_id]"
           - HorarioEmpleado.where(:empleado_id => current_user.empleado_id).each do |horario_empleado|
             - if @check_in.horario_empleado == horario_empleado
@@ -39,7 +45,8 @@
             - else
               - aux = horario_empleado.horario_id
               option class=(horario_empleado.empleado_id) value=(horario_empleado.id) = horario_empleado.get_horario(aux)
-      -elsif current_user.rol? :Administrador
+      /-elsif current_user.rol? :Supervisor
+      -elsif current_user.rol? :Administrador or current_user.rol? :Supervisor
         select#horario_empleado_id.form-control.select2 style="width:50%" name="check_in[horario_empleado_id]"
           - HorarioEmpleado.all.each do |horario_empleado|
             - if @check_in.horario_empleado == horario_empleado
@@ -58,6 +65,6 @@
     -if current_user.rol? :Empleado
       = DateTime.now.strftime('%d-%m-%y %I:%M %p')
       = f.hidden_field :horaOutput, :value => DateTime.now
-    -elsif current_user.rol? :Administrador
+    -elsif current_user.rol? :Administrador or current_user.rol? :Supervisor
       = f.datetime_select :horaOutput
   .actions = f.submit
