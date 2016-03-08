@@ -1,4 +1,3 @@
-
 table class="table table-striped table-bordered table-hover"
   thead
     tr
@@ -7,8 +6,12 @@ table class="table table-striped table-bordered table-hover"
       th Horas Trabajadas
 
   tbody
-    - @asistencias.each do |asistencia|
+    - asistencias.each do |asistencia|
       tr
         td = asistencia.outputAsistencia
-        td =
+        td = asistencia.try(:proyecto).try(:codigo)
         td = asistencia.horasTrabajadas
+    tr
+      td
+      th Total de Horas Trabajadas
+      td = @total_horas

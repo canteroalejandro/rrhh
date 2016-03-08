@@ -70,6 +70,33 @@ class AsistenciasController < ApplicationController
     end
   end
 
+  def show_por_mes
+    @empleado = Empleado.find params[:empleado_id]
+    render "show_por_mes.html"
+  end
+
+  def ajax_table_por_mes
+    @empleado = Empleado.find(params[:empleado_id])
+    fecha = params[:fecha].to_date
+    @asistencias = []
+    @total_horas = 0
+    if params[:proyecto][:id] != "all"
+      @proyecto = Proyecto.find params[:proyecto][:id]
+      @asistencias = @empleado.asistencias_by_mes_and_project fecha, @proyecto
+    else
+      @asistencias = @empleado.asistencias_by_mes_and_project fecha, "all"
+    end
+    horas = @asistencias.map { |a| a.calcular_horas_trabajadas } 
+    @total_horas = horas.reduce(:+)
+    render :partial => "table_por_mes.html", :locals => { asistencias: @asistencias }
+  end
+
+  def table_por_tipo_hora_extra
+    @movil = Movil.find(params[:id])
+    @partidas = @movil.partidas.limit(1).order('id desc')
+    render :partial => "entregas/ajax_table_hojas_de_rutas", :locals => { partidas: @partidas }
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_asistencia

@@ -1,0 +1,44 @@
+.page-header
+  h1
+    | Asistencias Mensuales y por Proyecto de: 
+    = @empleado.nombre_y_apellido
+    i.ace-icon.fa.fa-angle-double-right
+    | &nbsp;
+    .pull-right.no-print
+      
+
+/ .page-header
+/   h1
+/     | 
+
+/   h3.header
+/     = 
+
+= hidden_field_tag "empleado_id", @empleado.id
+
+.row-fluid
+  form#parametros.form-inline
+    label Mes/Año 
+    #fecha.input-append
+      input type="text" name="fecha"
+      span.add-on
+        i data-date-icon="icon-calendar" data-time-icon="icon-time" 
+    |&nbsp;
+    label Proyecto&nbsp; 
+    = select_tag "proyecto[id]", 
+      content_tag(:option,'Todos',value: "all") + options_from_collection_for_select(@empleado.proyectos, "id", "codigo")
+    |&nbsp;
+    |&nbsp;
+    |&nbsp;
+    a#bt-filtrar.btn.btn-success
+      | Filtrar
+    
+div#spin-ajax.center style="display: none;"
+  .alert.alert-warning
+    span.orange 
+      | Cargando Datos...
+
+#table-customized
+
+= javascript_include_tag "#{params[:controller]}/#{params[:action]}"
+= stylesheet_link_tag "#{params[:controller]}/#{params[:action]}"

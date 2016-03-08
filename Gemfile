@@ -118,3 +118,7 @@ group :development, :test do
 end
 
 gem 'rails-i18n'
+
+gem 'momentjs-rails'
+
+gem 'bootstrap-datetimepicker-rails'

@@ -1,5 +1,4 @@
 module ApplicationHelper
-
 	def is_active?(page_name)
 	  "active" if params[:controller] == page_name
 	end
@@ -10,5 +9,9 @@ module ApplicationHelper
 
 	def javascript(*files)
 	  content_for(:head) { javascript_include_tag(*files) }
+	end
+
+	def date_server
+	  return DateTime.now.httpdate
 	end
 end

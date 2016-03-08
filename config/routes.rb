@@ -13,7 +13,10 @@ Rails.application.routes.draw do
   resources :usuarios
   resources :proyectos
   resources :departamentos
+
   resources :empleados do
+    get "asistencias_por_mes" => "asistencias#show_por_mes", as: "asistencias_por_mes"
+    post "ajax_table_por_mes" => "asistencias#ajax_table_por_mes"
     resources :asistencias
     resources :incidencia_empleados
     resources :contrato_empleados

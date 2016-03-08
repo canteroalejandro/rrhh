@@ -3,8 +3,10 @@ class CheckOut < ActiveRecord::Base
 	belongs_to :horario_empleado 
 	belongs_to :usuario 
 	belongs_to :empleado 
-	belongs_to :empleado_proyecto
 	belongs_to :check_in
+
+	belongs_to :empleado_proyecto
+	has_one :proyecto, through: :empleado_proyecto
 
 	validate :hay_entrada
 	before_save :set_check_in_id

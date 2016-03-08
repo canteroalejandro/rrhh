@@ -3,6 +3,7 @@ class Asistencia < ActiveRecord::Base
 	belongs_to :empleado
 	belongs_to :check_in
 	belongs_to :check_out
+	has_one :proyecto, through: :check_out
 	
 	def set_salida_en_pantalla
 		check_in = CheckIn.find(self.check_in_id)
@@ -16,5 +17,4 @@ class Asistencia < ActiveRecord::Base
 		diferencia = TimeDifference.between(check_in.horaOutput, check_out.horaOutput).in_hours
 		return diferencia
 	end
-
 end
