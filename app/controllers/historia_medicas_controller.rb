@@ -5,7 +5,8 @@ class HistoriaMedicasController < ApplicationController
   # GET /historia_medicas
   # GET /historia_medicas.json
   def index
-    @historia_medicas = HistoriaMedica.all
+    @empleado = Empleado.find(params[:empleado_id])
+    @historia_medicas = @empleado.historia_medicas.all
   end
 
   # GET /historia_medicas/1
@@ -15,7 +16,8 @@ class HistoriaMedicasController < ApplicationController
 
   # GET /historia_medicas/new
   def new
-    @historia_medica = HistoriaMedica.new
+	  @empleado = Empleado.find(params[:empleado_id])
+    @historia_medica = @empleado.historia_medicas.new
   end
 
   # GET /historia_medicas/1/edit
@@ -25,11 +27,12 @@ class HistoriaMedicasController < ApplicationController
   # POST /historia_medicas
   # POST /historia_medicas.json
   def create
-    @historia_medica = HistoriaMedica.new(historia_medica_params)
+    @empleado = Empleado.find(params[:empleado_id])
+    @historia_medica = @empleado.historia_medicas.new(historia_medica_params)
 
     respond_to do |format|
       if @historia_medica.save
-        format.html { redirect_to @historia_medica, notice: 'Historia Médica fue creada exitosamente.' }
+        format.html { redirect_to [@historia_medica.empleado, @historia_medica], notice: 'Historia Médica was successfully created.' }
         format.json { render :show, status: :created, location: @historia_medica }
       else
         format.html { render :new }
@@ -41,9 +44,12 @@ class HistoriaMedicasController < ApplicationController
   # PATCH/PUT /historia_medicas/1
   # PATCH/PUT /historia_medicas/1.json
   def update
+    @empleado = Empleado.find(params[:empleado_id])
+    @historia_medica = @empleado.historia_medicas.find(params[:id])
+
     respond_to do |format|
       if @historia_medica.update(historia_medica_params)
-        format.html { redirect_to @historia_medica, notice: 'Historia Médica fue actualizada exitosamente.' }
+        format.html { redirect_to [@historia_medica.empleado, @historia_medica], notice: 'Historia Médica was successfully updated.' }
         format.json { render :show, status: :ok, location: @historia_medica }
       else
         format.html { render :edit }
@@ -55,9 +61,11 @@ class HistoriaMedicasController < ApplicationController
   # DELETE /historia_medicas/1
   # DELETE /historia_medicas/1.json
   def destroy
+    @empleado = Empleado.find(params[:empleado_id])
+    @historia_medica = @empleado.historia_medicas.find(params[:id])
     @historia_medica.destroy
     respond_to do |format|
-      format.html { redirect_to historia_medicas_url, notice: 'Historia Médica fue eliminada exitosamente.' }
+      format.html { redirect_to empleado_historia_medicas_url, notice: 'Historia Médica was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,11 +73,12 @@ class HistoriaMedicasController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_historia_medica
-      @historia_medica = HistoriaMedica.find(params[:id])
+      @empleado = Empleado.find(params[:empleado_id])
+      @historia_medica = @empleado.historia_medicas.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def historia_medica_params
-      params.require(:historia_medica).permit(:codigo, :fecha, :doctor)
+      params.require(:historia_medica).permit(:codigo, :fecha, :doctor, :empleado_id)
     end
 end

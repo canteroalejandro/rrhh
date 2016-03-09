@@ -2,6 +2,8 @@ class Empleado < ActiveRecord::Base
   include VerificationAssociations
 
   has_many :asistencias
+  has_many :check_ins
+  has_many :check_outs
   has_many :historia_medicas
   has_many :horarioEmpleados
   has_many :horarios, through: :horarioEmpleados

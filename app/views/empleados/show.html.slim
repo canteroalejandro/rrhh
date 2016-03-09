@@ -72,13 +72,29 @@ br
             td = horario_empleado.get_horario(horario_empleado.horario_id)
             td = horario_empleado.fechaInicio.strftime('%d-%m-%y')
 
-= link_to 'Editar', edit_empleado_path(@empleado)
-'|
-= link_to 'Volver', empleados_path
 br
+a.btn.btn-sm.btn-primary href=(empleado_asistencias_path(@empleado))
+  | Ver Asistencias
+a.btn.btn-sm.btn-primary href=(empleado_contrato_empleados_path(@empleado))
+  | Ver Contratos
+a.btn.btn-sm.btn-primary href=(empleado_incidencia_empleados_path(@empleado))
+  | Ver Incidencias  
+a.btn.btn-sm.btn-primary href=(new_horario_empleado_path(:horario_empleado => { empleado_id: @empleado.id } ))
+  | Asignar Horario
+a.btn.btn-sm.btn-primary href=(empleado_historia_medicas_path(@empleado))
+  | Historias Médicas
 br
-= link_to 'Ver Asistencias', empleado_asistencias_path(@empleado) 
-br
-= link_to 'Asignar Horario', new_horario_empleado_path(:horario_empleado => { empleado_id: @empleado.id } )
-br
+br  
+a.btn.btn-sm.btn-primary href=(edit_empleado_path(@empleado))
+  | Editar
+  
+a.btn.btn-sm.btn-primary href=(empleados_path)
+  | Volver
+
+
+
+/ = link_to 'Ver Asistencias', empleado_asistencias_path(@empleado) 
+/ br
+/ = link_to 'Asignar Horario', new_horario_empleado_path(:horario_empleado => { empleado_id: @empleado.id } )
+/ br
 /= link_to 'Ver Horarios Asignados', 'horarios_index'

@@ -1,4 +1,4 @@
-h1 Listing hora_extras
+h1 Listar Tipos de Hora Extra
 
 table class="table table-striped table-bordered table-hover"
   thead
@@ -6,9 +6,9 @@ table class="table table-striped table-bordered table-hover"
       th Codigo
       th Nombre
       th Dia
-      th Horainicio
-      th Horafin
-      th Precio
+      th Hora de Inicio
+      th Hora de Finalización
+      th Porcentaje del Salario
       th colspan="3" Acciones
 
   tbody
@@ -17,13 +17,13 @@ table class="table table-striped table-bordered table-hover"
         td = hora_extra.codigo
         td = hora_extra.nombre
         td = hora_extra.string_por_dias(hora_extra.dia)
-        td = hora_extra.horaInicio
-        td = hora_extra.horaFin
+        td = hora_extra.horaInicio.strftime("%X")
+        td = hora_extra.horaFin.strftime("%X")
         td = hora_extra.precio
-        td = link_to 'Show', hora_extra
-        td = link_to 'Edit', edit_hora_extra_path(hora_extra)
-        td = link_to 'Destroy', hora_extra, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Mostrar', hora_extra
+        td = link_to 'Editar', edit_hora_extra_path(hora_extra)
+        td = link_to 'Eliminar', hora_extra, data: {:confirm => '¿Está Seguro que desea Eliminar la Hora Extra?'}, :method => :delete
 
 br
 
-= link_to 'New Hora extra', new_hora_extra_path
+= link_to 'Nueva Hora extra', new_hora_extra_path

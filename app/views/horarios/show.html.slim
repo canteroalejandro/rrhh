@@ -1,40 +1,86 @@
 p#notice = notice
 
-p
-  strong Código: 
-  = @horario.codigo
-p
-  strong Nombre: 
-  = @horario.nombre
-p
-  strong Día: 
-  /= @horario.dia
-  = @horario.string_por_dias(@horario.dia)
-p
-  strong Hora de Entrada: 
-  = @horario.horaEntrada.strftime("%H:%M %P")  
-p
-  strong Hora de Salida: 
-  = @horario.horaSalida.strftime("%H:%M %P")  
-p
-  strong Posee Margen de Entrada: 
-  = @horario.margenEntradaCheck
-p
-  strong Inicio de Margen de Entrada: 
-  = @horario.inicioMargenEntrada.strftime("%H:%M %P")  
-p
-  strong Fin de Margen de Entrada: 
-  = @horario.finMargenEntrada.strftime("%H:%M %P")  
-p
-  strong Posee Margen de Salida: 
-  = @horario.margenSalidaCheck
-p
-  strong Inicio de Margen de Salida: 
-  = @horario.inicioMargenSalida.strftime("%H:%M %P")  
-p
-  strong Fin de Margen de Salida: 
-  = @horario.finMargenSalida.strftime("%H:%M %P")  
+/ p
+/   strong Código: 
+/   = @horario.codigo
+/ p
+/   strong Nombre: 
+/   = @horario.nombre
+/ p
+/   strong Día: 
+/   /= @horario.dia
+/   = @horario.string_por_dias(@horario.dia)
+/ p
+/   strong Hora de Entrada: 
+/   = @horario.horaEntrada.strftime("%H:%M %P")  
+/ p
+/   strong Hora de Salida: 
+/   = @horario.horaSalida.strftime("%H:%M %P")  
+/ p
+/   strong Posee Margen de Entrada: 
+/   = @horario.margenEntradaCheck
+/ p
+/   strong Inicio de Margen de Entrada: 
+/   = @horario.inicioMargenEntrada.strftime("%H:%M %P")  
+/ p
+/   strong Fin de Margen de Entrada: 
+/   = @horario.finMargenEntrada.strftime("%H:%M %P")  
+/ p
+/   strong Posee Margen de Salida: 
+/   = @horario.margenSalidaCheck
+/ p
+/   strong Inicio de Margen de Salida: 
+/   = @horario.inicioMargenSalida.strftime("%H:%M %P")  
+/ p
+/   strong Fin de Margen de Salida: 
+/   = @horario.finMargenSalida.strftime("%H:%M %P")
 
-= link_to 'Editar', edit_horario_path(@horario)
-'|
-= link_to 'Volver', horarios_path
+widget-box
+  .widget-header 
+    h4.widget-title Datos del Horario
+  .widget-body
+    table class="table table-striped table-bordered table-hover"
+      tbody
+          tr
+            td#titulo Código
+            td = @horario.codigo
+          tr
+            td#titulo Nombre
+            td = @horario.nombre
+          tr
+            td#titulo Día
+            td = @horario.string_por_dias(@horario.dia)
+          tr
+            td#titulo Hora de Entrada
+            td = @horario.horaEntrada.strftime("%H:%M %P") 
+          tr
+            td#titulo Hora de Salida
+            td = @horario.horaSalida.strftime("%H:%M %P") 
+          tr
+            td#titulo Posee Margen de Entrada
+            -if @horario.margenEntradaCheck == true
+              td Sí
+            -else
+              td No
+          -if @horario.margenEntradaCheck == true
+            tr
+              td#titulo Margen de Entrada
+              td = "#{@horario.inicioMargenEntrada.strftime("%H:%M %P")} - #{@horario.finMargenEntrada.strftime("%H:%M %P")}" 
+          tr
+            td#titulo Posee Margen de Salida
+            -if @horario.margenSalidaCheck == true
+              td Sí
+            -else
+              td No
+          -if @horario.margenSalidaCheck == true    
+            tr
+              td#titulo Margen de Salida
+              td = "#{@horario.inicioMargenSalida.strftime("%H:%M %P")} - #{@horario.finMargenSalida.strftime("%H:%M %P")}"
+
+br
+
+button.btn.btn-sm.btn-primary
+  = link_to 'Editar', edit_horario_path(@horario)
+
+button.btn.btn-sm.btn-primary
+  = link_to 'Volver', horarios_path

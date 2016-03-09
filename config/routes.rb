@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   resources :check_outs
   resources :check_ins
   resources :horarios
-  resources :historia_medicas
   resources :usuarios
   resources :proyectos
   resources :departamentos
@@ -20,6 +19,7 @@ Rails.application.routes.draw do
     resources :asistencias
     resources :incidencia_empleados
     resources :contrato_empleados
+    resources :historia_medicas
   end
   resources :horario_empleados
   resources :categorias

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307062327) do
+ActiveRecord::Schema.define(version: 20160309043358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -202,6 +202,17 @@ ActiveRecord::Schema.define(version: 20160307062327) do
 
   add_index "horarios", ["empleado_id"], name: "index_horarios_on_empleado_id", using: :btree
 
+  create_table "inasistencias", force: :cascade do |t|
+    t.date     "fecha"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "empleado_id"
+    t.integer  "horario_empleado_id"
+  end
+
+  add_index "inasistencias", ["empleado_id"], name: "index_inasistencias_on_empleado_id", using: :btree
+  add_index "inasistencias", ["horario_empleado_id"], name: "index_inasistencias_on_horario_empleado_id", using: :btree
+
   create_table "incidencia_empleados", force: :cascade do |t|
     t.datetime "inicio"
     t.datetime "fin"
@@ -288,6 +299,8 @@ ActiveRecord::Schema.define(version: 20160307062327) do
   add_foreign_key "horario_empleados", "empleados"
   add_foreign_key "horario_empleados", "horarios"
   add_foreign_key "horarios", "empleados"
+  add_foreign_key "inasistencias", "empleados"
+  add_foreign_key "inasistencias", "horario_empleados"
   add_foreign_key "incidencia_empleados", "empleados"
   add_foreign_key "incidencia_empleados", "incidencias"
   add_foreign_key "proyectos", "departamentos"

@@ -1,25 +1,53 @@
 p#notice = notice
 
-p
-  strong Codigo:
-  = @hora_extra.codigo
-p
-  strong Nombre:
-  = @hora_extra.nombre
-p
-  strong Día: 
-  /= @horario.dia
-  = @hora_extra.string_por_dias(@hora_extra.dia)
-p
-  strong Horainicio:
-  = @hora_extra.horaInicio
-p
-  strong Horafin:
-  = @hora_extra.horaFin
-p
-  strong Precio:
-  = @hora_extra.precio
+/ p
+/   strong Codigo:
+/   = @hora_extra.codigo
+/ p
+/   strong Nombre:
+/   = @hora_extra.nombre
+/ p
+/   strong Día: 
+/   /= @horario.dia
+/   = @hora_extra.string_por_dias(@hora_extra.dia)
+/ p
+/   strong Horainicio:
+/   = @hora_extra.horaInicio
+/ p
+/   strong Horafin:
+/   = @hora_extra.horaFin
+/ p
+/   strong Precio:
+/   = @hora_extra.precio
 
-= link_to 'Edit', edit_hora_extra_path(@hora_extra)
-'|
-= link_to 'Back', hora_extras_path
+.widget-box
+  .widget-header 
+    h4.widget-title Datos de Hora Extra
+  .widget-body
+    table class="table table-striped table-bordered table-hover"
+      tbody
+          tr
+            td#titulo Codigo
+            td = @hora_extra.codigo
+          tr
+            td#titulo Nombre
+            td = @hora_extra.nombre
+          tr
+            td#titulo Dia
+            td = @hora_extra.string_por_dias(@hora_extra.dia)
+          tr
+            td#titulo Hora de Inicio
+            td = @hora_extra.horaInicio.strftime("%X")
+          tr
+            td#titulo Hora de Finalización
+            td = @hora_extra.horaFin.strftime("%X")
+          tr
+            td#titulo Porcentaje del Salario
+            td = @hora_extra.precio
+
+br
+a.btn.btn-sm.btn-primary href=(edit_hora_extra_path(@hora_extra))
+  | Editar
+
+a.btn.btn-sm.btn-primary href=(hora_extras_path)
+  | Volver 

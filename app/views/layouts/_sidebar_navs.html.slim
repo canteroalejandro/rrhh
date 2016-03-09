@@ -28,13 +28,6 @@ ul.nav.nav-list
         span.menu-text
           | Empleados
 
-  - if can? :read, HistoriaMedica
-    li class=(is_active?("index"))
-      a href=(historia_medicas_path)
-        i.icon-list
-        span.menu-text
-          | Historias Medicas
-
   - if can? :read, Departamento
     li class=(is_active?("index"))
       a href=(departamentos_path)

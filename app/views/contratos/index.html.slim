@@ -1,14 +1,13 @@
-h1 Listing contratos
+h1 Listar Contratos
 
 table class="table table-striped table-bordered table-hover"
   thead
     tr
-      th Codigo
+      th Código
       th Nombre
-      th Nroduracion
-      th Tiempoduracion
-      th Horasdia
-      th Edadminima
+      th Duración del Contrato
+      th Duracion por Día
+      th Edad mínima del trabajador
       th colspan="3" Acciones
 
   tbody
@@ -16,14 +15,13 @@ table class="table table-striped table-bordered table-hover"
       tr
         td = contrato.codigo
         td = contrato.nombre
-        td = contrato.nroDuracion
-        td = contrato.tiempoDuracion
-        td = contrato.horasDia
-        td = contrato.edadMinima
-        td = link_to 'Show', contrato
-        td = link_to 'Edit', edit_contrato_path(contrato)
-        td = link_to 'Destroy', contrato, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = "#{contrato.nroDuracion} #{contrato.tiempoDuracion}"
+        td = "#{contrato.horasDia} horas"
+        td = "#{contrato.edadMinima} años"
+        td = link_to 'Mostrar', contrato
+        td = link_to 'Editar', edit_contrato_path(contrato)
+        td = link_to 'Eliminar', contrato, data: {:confirm => '¿Está Seguro que desea Eliminar el Contrato?'}, :method => :delete
 
 br
 
-= link_to 'New Contrato', new_contrato_path
+= link_to 'Nuevo Contrato', new_contrato_path

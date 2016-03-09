@@ -1,23 +1,53 @@
 p#notice = notice
 
-p
-  strong Código: 
-  = @departamento.codigo
-p
-  strong Nombre: 
-  = @departamento.nombre
-p
-  strong Nombre: 
-  = @departamento.supervisor.nombre_y_apellido
-p
-  strong Fecha desde que dirige: 
-  = @departamento.fechaEnQueDirige
-p
-  strong Empleados: 
-  -unless @departamento.empleados.empty?
-  	-@departamento.empleados.each do |d|
-  		= d.nombre_y_apellido
-  		br
+/ p
+/   strong Código: 
+/   = @departamento.codigo
+/ p
+/   strong Nombre: 
+/   = @departamento.nombre
+/ p
+/   strong Nombre: 
+/   = @departamento.supervisor.nombre_y_apellido
+/ p
+/   strong Fecha desde que dirige: 
+/   = @departamento.fechaEnQueDirige
+/ p
+/   strong Empleados: 
+/   -unless @departamento.empleados.empty?
+/   	-@departamento.empleados.each do |d|
+/   		= d.nombre_y_apellido
+/   		br
+
+.widget-box
+  .widget-header 
+    h4.widget-title Datos del Departamento
+  .widget-body
+    table class="table table-striped table-bordered table-hover"
+      / thead class="thin-border-bottom"
+      /   tr
+      /     th Atributo
+      /     th Descripción
+      tbody
+          tr
+            td#titulo Código
+            td = @departamento.codigo
+          tr
+            td#titulo Nombre
+            td = @departamento.nombre
+          tr
+            td#titulo Supervisor
+            td = @departamento.supervisor.nombre_y_apellido
+          tr
+            td#titulo Fecha desde que dirige
+            td = @departamento.fechaEnQueDirige
+          tr
+            td#titulo Empleados:
+            td
+              ul
+                -unless @departamento.empleados.empty?
+                  -@departamento.empleados.each do |d|
+                    li = d.nombre_y_apellido
 
 = link_to 'Editar', edit_departamento_path(@departamento)
 '|
