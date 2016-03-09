@@ -1,4 +1,4 @@
-h1 Listing historia_medicas
+h1 Listar Historias Médicas
 
 table class="table table-striped table-bordered table-hover"
   thead
@@ -12,12 +12,12 @@ table class="table table-striped table-bordered table-hover"
     - @historia_medicas.each do |historia_medica|
       tr
         td = historia_medica.codigo
-        td = historia_medica.fecha
+        td =l historia_medica.fecha
         td = historia_medica.doctor
-        td = link_to 'Show', historia_medica
-        td = link_to 'Edit', edit_historia_medica_path(historia_medica)
-        td = link_to 'Destroy', historia_medica, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Mostrar', [historia_medica.empleado, historia_medica]
+        td = link_to 'Editar', edit_empleado_historia_medica_path(historia_medica.empleado, historia_medica)
+        td = link_to 'Eliminar', [historia_medica.empleado, historia_medica], data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
-= link_to 'New Historia medica', new_historia_medica_path
+= link_to 'Nueva Historia Médica', new_empleado_historia_medica_path

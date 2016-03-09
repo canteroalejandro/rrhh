@@ -1,9 +1,31 @@
 p#notice = notice
 
-p
-  strong Día y hora de salida:
-  = @check_out.horaOutput.strftime("%a, %e de %B de %Y, %H:%M hs")
+/ p
+/   strong Día y hora de salida:
+/   = l @check_out.horaOutput, format: :short
 
-= link_to 'Editar', edit_check_out_path(@check_out)
-'|
-= link_to 'Volver', check_outs_path
+.widget-box
+  .widget-header 
+    h4.widget-title Datos del Check Out
+  .widget-body
+    table class="table table-striped table-bordered table-hover"
+      tbody
+      	  tr
+            td#titulo Usuario que realizo el Check Out
+            td = @check_out.usuario.userName
+          tr
+            td#titulo Empleado
+            td = @check_out.empleado.nombre_y_apellido
+          tr
+            td#titulo Día y hora de entrada
+            td = l @check_out.horaOutput, format: :short
+          tr
+            td#titulo Actividad Realizada
+            td = @check_out.empleado_proyecto.proyecto.nombre
+          
+br
+a.btn.btn-sm.btn-primary href=(edit_check_out_path(@check_out))
+  | Editar
+a.btn.btn-sm.btn-primary href=(check_outs_path)
+  | Volver
+

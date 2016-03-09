@@ -1,8 +1,8 @@
-h1 Editing historia_medica
+h1 Editar Historia Médica
 
 == render 'form'
 
-= link_to 'Show', @historia_medica
+= link_to 'Mostrar', [@historia_medica.empleado, @historia_medica]
 '|
-= link_to 'Back', historia_medicas_path
+= link_to 'Volver', empleado_historia_medicas_path(@historia_medica.empleado)
 

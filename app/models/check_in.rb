@@ -1,4 +1,5 @@
 class CheckIn < ActiveRecord::Base
+
 	has_one :asistencia, dependent: :destroy
 	has_one :check_out, dependent: :destroy
 	

@@ -1,42 +1,101 @@
 p#notice = notice
 
-p
-  strong Codigo:
-  = @incidencia.codigo
-p
-  strong Nombre:
-  = @incidencia.nombre
-p
-  strong Nroduracion:
-  = @incidencia.nroDuracion
-p
-  strong Tiempoduracion:
-  = @incidencia.tiempoDuracion
-p
-  strong Tienecondiciones:
-  = @incidencia.tieneCondiciones
-p
-  strong Fechainiciohabilitacion:
-  = @incidencia.fechaInicioHabilitacion
-p
-  strong Fechafinhabilitacion:
-  = @incidencia.fechaFinHabilitacion
-p
-  strong Nroantiguedadmayor:
-  = @incidencia.nroAntiguedadMayor
-p
-  strong Tiempoantiguedadmayor:
-  = @incidencia.tiempoAntiguedadMayor
-p
-  strong Nroantiguedadmenor:
-  = @incidencia.nroAntiguedadMenor
-p
-  strong Tiempoantiguedadmenor:
-  = @incidencia.tiempoAntiguedadMenor
-p
-  strong Vecespermitidasporaño:
-  = @incidencia.vecesPermitidasPorAnio
+/ p
+/   strong Codigo:
+/   = @incidencia.codigo
+/ p
+/   strong Nombre:
+/   = @incidencia.nombre
+/ p
+/   strong Nroduracion:
+/   = @incidencia.nroDuracion
+/ p
+/   strong Tiempoduracion:
+/   = @incidencia.tiempoDuracion
+/ p
+/   strong Tienecondiciones:
+/   = @incidencia.tieneCondiciones
+/ p
+/   strong Fechainiciohabilitacion:
+/   = @incidencia.fechaInicioHabilitacion
+/ p
+/   strong Fechafinhabilitacion:
+/   = @incidencia.fechaFinHabilitacion
+/ p
+/   strong Nroantiguedadmayor:
+/   = @incidencia.nroAntiguedadMayor
+/ p
+/   strong Tiempoantiguedadmayor:
+/   = @incidencia.tiempoAntiguedadMayor
+/ p
+/   strong Nroantiguedadmenor:
+/   = @incidencia.nroAntiguedadMenor
+/ p
+/   strong Tiempoantiguedadmenor:
+/   = @incidencia.tiempoAntiguedadMenor
+/ p
+/   strong Vecespermitidasporaño:
+/   = @incidencia.vecesPermitidasPorAnio
 
-= link_to 'Editar', edit_incidencia_path(@incidencia)
-'|
-= link_to 'Volver', incidencias_path
+.widget-box
+  .widget-header 
+    h4.widget-title Datos de la Incidencia
+  .widget-body
+    table class="table table-striped table-bordered table-hover"
+      tbody
+          tr
+            td#titulo Codigo
+            td = @incidencia.codigo
+          tr
+            td#titulo Nombre
+            td = @incidencia.nombre
+          tr
+            td#titulo Duración
+            td = "#{@incidencia.nroDuracion} #{@incidencia.tiempoDuracion}"
+          tr
+            td#titulo Tiene Condiciones
+            -if @incidencia.tieneCondiciones == true
+              td Sí
+            -else
+              td No
+          -if @incidencia.tieneCondiciones == true
+            tr
+            td#titulo Tiene periodo de habilitación
+            -if @incidencia.tienePeriodoHabilitacion == true
+              td Sí
+            -else
+              td No
+            -if @incidencia.tienePeriodoHabilitacion == true
+              tr
+                td#titulo Periodo de Habilitación
+                td = "#{@incidencia.fechaInicioHabilitacion} #{@incidencia.fechaFinHabilitacion}"
+            tr
+            td#titulo Tiene restricciones de antigüedad
+            -if @incidencia.tieneRestriccionAntiguedad == true
+              td Sí
+            -else
+              td No
+            -if @incidencia.tieneRestriccionAntiguedad == true
+              tr
+                td#titulo Antigüedad mínima y máxima
+                td = "#{@incidencia.nroAntiguedadMayor}-#{@incidencia.nroAntiguedadMenor} años"
+            tr
+            td#titulo Tiene cantidad máxima por año
+            -if @incidencia.tieneCantPermitidasPorAnio == true
+              td Sí
+            -else
+              td No
+            -if @incidencia.tieneCantPermitidasPorAnio == true
+              tr
+                td#titulo Cantidad permitida por año
+                td = "#{@incidencia.vecesPermitidasPorAnio}"
+            tr
+            td#titulo Descuento
+            td = @incidencia.descuento
+
+br
+a.btn.btn-sm.btn-primary href=(edit_incidencia_path(@incidencia))
+  | Editar
+
+a.btn.btn-sm.btn-primary href=(incidencias_path)
+  | Volver

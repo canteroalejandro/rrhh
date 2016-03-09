@@ -82,6 +82,9 @@ rails generate migration AddEmpleadoRefToIncidenciaEmpleado empleado:references
 
 rails generate migration AddContratoRefToContratoEmpleado contrato:references
 rails generate migration AddEmpleadoRefToContratoEmpleado empleado:references
+
+rails generate migration AddEmpleadoRefToInasistencia empleado:references
+rails generate migration AddHorarioEmpleadoRefToInasistencia horario_empleado:references
 #FOREIGN KEY
 
 rails generate migration AddSupervisorIdToDepartamento supervisor_id:integer

@@ -1,24 +1,50 @@
 p#notice = notice
 
-p
-  strong Codigo:
-  = @contrato.codigo
-p
-  strong Nombre:
-  = @contrato.nombre
-p
-  strong Nroduracion:
-  = @contrato.nroDuracion
-p
-  strong Tiempoduracion:
-  = @contrato.tiempoDuracion
-p
-  strong Horasdia:
-  = @contrato.horasDia
-p
-  strong Edadminima:
-  = @contrato.edadMinima
+/ p
+/   strong Codigo:
+/   = @contrato.codigo
+/ p
+/   strong Nombre:
+/   = @contrato.nombre
+/ p
+/   strong Nroduracion:
+/   = @contrato.nroDuracion
+/ p
+/   strong Tiempoduracion:
+/   = @contrato.tiempoDuracion
+/ p
+/   strong Horasdia:
+/   = @contrato.horasDia
+/ p
+/   strong Edadminima:
+/   = @contrato.edadMinima
 
-= link_to 'Edit', edit_contrato_path(@contrato)
-'|
-= link_to 'Back', contratos_path
+.widget-box
+  .widget-header 
+    h4.widget-title Datos del Contrato
+  .widget-body
+    table class="table table-striped table-bordered table-hover"
+      tbody
+          tr
+            td#titulo Código
+            td = @contrato.codigo
+          tr
+            td#titulo Nombre
+            td = @contrato.nombre
+          tr
+            td#titulo Duración del Contrato
+            td = "#{@contrato.nroDuracion} #{@contrato.tiempoDuracion}"
+          tr
+            td#titulo Duracion por Día
+            td = "#{@contrato.horasDia} horas"
+          tr
+            td#titulo Edad mínima del trabajador
+            td = "#{@contrato.edadMinima} años"
+
+br
+
+button.btn.btn-sm.btn-primary
+  = link_to 'Editar', edit_contrato_path(@contrato)
+
+button.btn.btn-sm.btn-primary
+  = link_to 'Volver', contratos_path

@@ -1,15 +1,38 @@
 p#notice = notice
 
-p
-  strong Incidencia asignada:
-  = @incidencia_empleado.incidencia.nombre
-p
-  strong Fecha de Inicio:
-  = @incidencia_empleado.inicio
-p
-  strong Fecha en que Termina:
-  = @incidencia_empleado.fin
+/ p
+/   strong Incidencia asignada:
+/   = @incidencia_empleado.incidencia.nombre
+/ p
+/   strong Fecha de Inicio:
+/   = @incidencia_empleado.inicio
+/ p
+/   strong Fecha en que Termina:
+/   = @incidencia_empleado.fin
 
-= link_to 'Edit', edit_empleado_incidencia_empleado_path(@incidencia_empleado.empleado, @incidencia_empleado)
-'|
-= link_to 'Back', empleado_incidencia_empleados_path(@incidencia_empleado.empleado)
+
+.widget-box
+  .widget-header 
+    h4.widget-title Datos de la Incidencia Asignada a Empleado
+  .widget-body
+    table class="table table-striped table-bordered table-hover"
+      tbody
+      	  tr
+            td#titulo Tipo de Incidencia
+            td = @incidencia_empleado.incidencia.nombre
+          tr
+            td#titulo Fecha de Inicio
+            td =l @incidencia_empleado.inicio
+          tr
+            td#titulo Fecha en que Termina
+            td =l @incidencia_empleado.fin
+
+br
+a.btn.btn-sm.btn-primary href=(edit_empleado_incidencia_empleado_path(@incidencia_empleado.empleado, @incidencia_empleado))
+  | Editar
+a.btn.btn-sm.btn-primary href=(empleado_incidencia_empleados_path(@incidencia_empleado.empleado))
+  | Volver
+
+/ = link_to 'Edit', edit_empleado_incidencia_empleado_path(@incidencia_empleado.empleado, @incidencia_empleado)
+/ '|
+/ = link_to 'Back', empleado_incidencia_empleados_path(@incidencia_empleado.empleado)

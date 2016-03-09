@@ -1,12 +1,28 @@
 p#notice = notice
 
-p
-  strong Descripcion:
-  = @feriado.descripcion
-p
-  strong Fecha:
-  = @feriado.fecha
+/ p
+/   strong Descripcion:
+/   = @feriado.descripcion
+/ p
+/   strong Fecha:
+/   = @feriado.fecha
 
-= link_to 'Edit', edit_feriado_path(@feriado)
-'|
-= link_to 'Back', feriados_path
+.widget-box
+  .widget-header 
+    h4.widget-title Datos del Feriado
+  .widget-body
+    table class="table table-striped table-bordered table-hover"
+      tbody
+          tr
+            td#titulo Descripción
+            td = @feriado.descripcion
+          tr
+            td#titulo Fecha
+            td = @feriado.fecha
+
+br
+a.btn.btn-sm.btn-primary href=(edit_feriado_path(@feriado))
+	| Editar
+
+a.btn.btn-sm.btn-primary href=(feriados_path)
+	| Volver 

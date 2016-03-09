@@ -1,19 +1,19 @@
 = form_for @hora_extra do |f|
   - if @hora_extra.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@hora_extra.errors.count, "error")} prohibited this hora_extra from being saved:"
+      h2 = "#{pluralize(@hora_extra.errors.count, "error")} #{pluralize_without_count(@hora_extra.errors.count, "prohibe", "prohiben")} almacenar esta Hora Extra:"
       ul
         - @hora_extra.errors.full_messages.each do |message|
           li = message
 
   .field
-    = f.label :codigo
+    = f.label :codigo, "Código"
     = f.text_field :codigo, :value => @hora_extra.codigo_hora_extra
   .field
     = f.label :nombre
     = f.text_field :nombre
   .field
-    = f.label :dia
+    = f.label :dia, "Días"
     .field#check
       - for i in 0..6
         span.lbl
@@ -21,12 +21,12 @@
         = check_box_tag 'hora_extra[dia][]', i, id: 'dia_#{i}' 
       span.lbl
   .field
-    = f.label :horaInicio
+    = f.label :horaInicio, "Hora de Inicio"
     = f.time_select :horaInicio
   .field
-    = f.label :horaFin
+    = f.label :horaFin, "Hora de finalización" 
     = f.time_select :horaFin
   .field
-    = f.label :precio
+    = f.label :precio, "Porcentaje del Salario"
     = f.text_field :precio
   .actions = f.submit

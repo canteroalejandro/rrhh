@@ -1,18 +1,41 @@
 p#notice = notice
 
-p
-  strong Codigo: 
-  = @proyecto.codigo
-p
-  strong Nombre: 
-  = @proyecto.nombre
-p
-  strong Empleados que participan del Proyecto  
-  -unless @proyecto.empleado_proyectos.empty?
-  	-@proyecto.empleado_proyectos.each do |ep|
-  		br
-  		= ep.empleado.nombre_y_apellido
+/ p
+/   strong Codigo: 
+/   = @proyecto.codigo
+/ p
+/   strong Nombre: 
+/   = @proyecto.nombre
+/ p
+/   strong Empleados que participan del Proyecto  
+/   -unless @proyecto.empleado_proyectos.empty?
+/   	-@proyecto.empleado_proyectos.each do |ep|
+/   		br
+/   		= ep.empleado.nombre_y_apellido
 
-= link_to 'Edit', edit_proyecto_path(@proyecto)
-'|
-= link_to 'Back', proyectos_path
+.widget-box
+  .widget-header 
+    h4.widget-title Datos del Proyecto
+  .widget-body
+    table class="table table-striped table-bordered table-hover"
+      tbody
+          tr
+            td#titulo Código
+            td = @proyecto.codigo
+          tr
+            td#titulo Nombre
+            td = @proyecto.nombre
+          tr
+            td#titulo Empleados:
+            td
+              ul
+                -unless @proyecto.empleados.empty?
+                  -@proyecto.empleados.each do |d|
+                    li = d.nombre_y_apellido
+
+br
+a.btn.btn-sm.btn-primary href=(edit_proyecto_path(@proyecto))
+  | Editar
+
+a.btn.btn-sm.btn-primary href=(proyectos_path)
+  | Volver

@@ -1,7 +1,7 @@
 = form_for ([@incidencia_empleado.empleado, @incidencia_empleado]) do |f|
   - if @incidencia_empleado.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@incidencia_empleado.errors.count, "error")} prohibited this incidencia_empleado from being saved:"
+      h2 = "#{pluralize(@incidencia_empleado.errors.count, "error")} #{pluralize_without_count(@incidencia_empleado.errors.count, "prohibe", "prohiben")} almacenar esta Incidencia:"
       ul
         - @incidencia_empleado.errors.full_messages.each do |message|
           li = message

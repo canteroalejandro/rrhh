@@ -1,4 +1,4 @@
-h1 Listing incidencia_empleados
+h1 Listar Incidencias Asignadas
 
 table class="table table-striped table-bordered table-hover"
   thead
@@ -16,10 +16,10 @@ table class="table table-striped table-bordered table-hover"
         td = incidencia_empleado.incidencia.nombre
         td = incidencia_empleado.inicio
         td = incidencia_empleado.fin
-        td = link_to 'Show', [incidencia_empleado.empleado, incidencia_empleado]
-        td = link_to 'Edit', edit_empleado_incidencia_empleado_path(incidencia_empleado.empleado, incidencia_empleado)
-        td = link_to 'Destroy', [incidencia_empleado.empleado, incidencia_empleado], data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Mostar', [incidencia_empleado.empleado, incidencia_empleado]
+        td = link_to 'Editar', edit_empleado_incidencia_empleado_path(incidencia_empleado.empleado, incidencia_empleado)
+        td = link_to 'Eliminar', [incidencia_empleado.empleado, incidencia_empleado], data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
-= link_to 'New Incidencia Empleado', new_empleado_incidencia_empleado_path
+= link_to 'Asignar Nueva Incidencia', new_empleado_incidencia_empleado_path

@@ -1,4 +1,4 @@
-h1 Listing contrato_empleados
+h1 Listar Contratos Asignados
 
 table class="table table-striped table-bordered table-hover"
   thead
@@ -14,10 +14,10 @@ table class="table table-striped table-bordered table-hover"
         td = contrato_empleado.contrato.nombre
         td = contrato_empleado.inicio
         td = contrato_empleado.fin
-        td = link_to 'Show', [contrato_empleado.empleado, contrato_empleado]
-        td = link_to 'Edit', edit_empleado_contrato_empleado_path(contrato_empleado.empleado, contrato_empleado)
-        td = link_to 'Destroy', [contrato_empleado.empleado, contrato_empleado], data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Mostrar', [contrato_empleado.empleado, contrato_empleado]
+        td = link_to 'Editar', edit_empleado_contrato_empleado_path(contrato_empleado.empleado, contrato_empleado)
+        td = link_to 'Eliminar', [contrato_empleado.empleado, contrato_empleado], data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
-= link_to 'New Contrato Empleado', new_empleado_contrato_empleado_path
+= link_to 'Asignar Nuevo Contrato', new_empleado_contrato_empleado_path

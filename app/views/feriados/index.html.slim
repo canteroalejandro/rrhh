@@ -11,10 +11,10 @@ table class="table table-striped table-bordered table-hover"
       tr
         td = feriado.descripcion
         td = l feriado.fecha
-        td = link_to 'Show', feriado
-        td = link_to 'Edit', edit_feriado_path(feriado)
-        td = link_to 'Destroy', feriado, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Mostrar', feriado
+        td = link_to 'Editar', edit_feriado_path(feriado)
+        td = link_to 'Eliminar', feriado, data: {:confirm => '¿Está Seguro que desea Eliminar el Feriado?'}, :method => :delete
 
 br
 
-= link_to 'New Feriado', new_feriado_path
+= link_to 'Nuevo Feriado', new_feriado_path
