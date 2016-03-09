@@ -1,0 +1,12 @@
+/* line 5, /media/alejandro/Data/Proyectos/rrhh/app/assets/stylesheets/historia_medicas.scss */
+.table {
+  margin-bottom: 0px;
+}
+
+/* line 9, /media/alejandro/Data/Proyectos/rrhh/app/assets/stylesheets/historia_medicas.scss */
+a.btn.btn-sm.btn-primary {
+  color: #FFF;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+  font-family: sans-serif;
+  margin-right: 10px;
+}

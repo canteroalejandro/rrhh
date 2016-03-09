@@ -1,0 +1,23 @@
+/* line 5, /media/alejandro/Data/Proyectos/rrhh/app/assets/stylesheets/empleados.scss */
+.table {
+  margin-bottom: 0px;
+}
+
+/* line 9, /media/alejandro/Data/Proyectos/rrhh/app/assets/stylesheets/empleados.scss */
+.widget-box {
+  width: 65%;
+}
+
+/* line 13, /media/alejandro/Data/Proyectos/rrhh/app/assets/stylesheets/empleados.scss */
+#titulo {
+  color: #707070;
+  font-weight: bold;
+}
+
+/* line 18, /media/alejandro/Data/Proyectos/rrhh/app/assets/stylesheets/empleados.scss */
+a.btn.btn-sm.btn-primary {
+  color: #FFF;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+  font-family: sans-serif;
+  margin-right: 10px;
+}
