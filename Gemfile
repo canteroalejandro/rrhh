@@ -122,3 +122,5 @@ gem 'rails-i18n'
 gem 'momentjs-rails'
 
 gem 'bootstrap-datetimepicker-rails'
+
+gem 'settingslogic'

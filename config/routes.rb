@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
 
+  get 'setting/root', as: :setting
+  post 'setting/update', as: :setting_post
+
   resources :feriados
   resources :contratos
   resources :incidencias
