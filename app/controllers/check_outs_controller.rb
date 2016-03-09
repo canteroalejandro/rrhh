@@ -29,6 +29,8 @@ class CheckOutsController < ApplicationController
 
     respond_to do |format|
       if @check_out.save
+        @check_out.asistencia.setHoraExtra
+        @check_out.save
         format.html { redirect_to @check_out, notice: 'Check out was successfully created.' }
         format.json { render :show, status: :created, location: @check_out }
       else

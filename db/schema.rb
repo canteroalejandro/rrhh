@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307062327) do
+ActiveRecord::Schema.define(version: 20160309034535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,11 +33,13 @@ ActiveRecord::Schema.define(version: 20160307062327) do
     t.integer  "usuario_id"
     t.integer  "check_in_id"
     t.integer  "check_out_id"
+    t.integer  "hora_extra_id"
   end
 
   add_index "asistencias", ["check_in_id"], name: "index_asistencias_on_check_in_id", using: :btree
   add_index "asistencias", ["check_out_id"], name: "index_asistencias_on_check_out_id", using: :btree
   add_index "asistencias", ["empleado_id"], name: "index_asistencias_on_empleado_id", using: :btree
+  add_index "asistencias", ["hora_extra_id"], name: "index_asistencias_on_hora_extra_id", using: :btree
   add_index "asistencias", ["horario_id"], name: "index_asistencias_on_horario_id", using: :btree
   add_index "asistencias", ["usuario_id"], name: "index_asistencias_on_usuario_id", using: :btree
 
@@ -268,6 +270,7 @@ ActiveRecord::Schema.define(version: 20160307062327) do
   add_foreign_key "asistencias", "check_ins"
   add_foreign_key "asistencias", "check_outs"
   add_foreign_key "asistencias", "empleados"
+  add_foreign_key "asistencias", "hora_extras"
   add_foreign_key "asistencias", "horarios"
   add_foreign_key "asistencias", "usuarios"
   add_foreign_key "check_ins", "empleados"

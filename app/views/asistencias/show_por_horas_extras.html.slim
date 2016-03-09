@@ -1,6 +1,6 @@
 .page-header
   h1
-    | Asistencias Mensuales y por Proyecto de: 
+    | Asistencias Por Horas Extras de: 
     = @empleado.nombre_y_apellido
     i.ace-icon.fa.fa-angle-double-right
     | &nbsp;
@@ -15,8 +15,8 @@
       span.add-on
         i data-date-icon="icon-calendar" data-time-icon="icon-time" 
     |&nbsp;
-    label Proyecto&nbsp; 
-    = select_tag "hora_extra[id]", options_from_collection_for_select(HoraExtra.all, "id", "codigo")
+    label Tipo de Hora Extra&nbsp; 
+    = select_tag "hora_extra[id]", options_from_collection_for_select(HoraExtra.all, "id", "nombre")
     |&nbsp;
     |&nbsp;
     |&nbsp;

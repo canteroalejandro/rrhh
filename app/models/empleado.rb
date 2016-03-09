@@ -83,17 +83,13 @@ class Empleado < ActiveRecord::Base
     return retorno
   end
 
-  def asistencias_by_hora_extra(unaHoraExtra)
+  def asistencias_by_hora_extra(unaFecha, unaHoraExtra)
     retorno = nil
-    # if unProyecto != "all"
-    #   retorno = asistencias.joins(:proyecto)
-    #     .where(
-    #       created_at: unaFecha.beginning_of_month..unaFecha.end_of_month,
-    #       proyectos: { id: unProyecto})
-    # else
-    #   retorno = asistencias.joins(:proyecto)
-    #     .where(created_at: unaFecha.beginning_of_month..unaFecha.end_of_month)
-    # end
+    retorno = asistencias.joins(:hora_extra)
+      .where(
+        created_at: unaFecha.beginning_of_month..unaFecha.end_of_month,
+        hora_extra: unaHoraExtra
+      )
     return retorno
   end
 end

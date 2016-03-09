@@ -18,7 +18,7 @@ $(document).ready ->
 
   $("#bt-filtrar").click ->
     $("#spin-ajax").show()
-    $.post( "/empleados/#{$("#empleado_id").val()}/ajax_table_por_mes", $("#parametros").serialize())
+    $.post( "/empleados/#{$("#empleado_id").val()}/ajax_table_por_horas_extras", $("#parametros").serialize())
       .done (data) ->
         $("#spin-ajax").hide()
         $("#table-customized").empty()

@@ -53,4 +53,18 @@ class HoraExtra < ActiveRecord::Base
 			return self.codigo
 		end
 	end
+
+	# Retorna que Tipo de Hora Extra corresponde segun fecha, hora_inicio, hora_fin
+	def self.whichByFecha(unaFecha, hora_inicio, hora_fin)
+		@horas_extras = self.all
+		@horas_extras.select do |e|
+			if e.dia.split(", ").include? (unaFecha.strftime("%w").to_i - 1).to_s
+				h_inicio = e.horaInicio.strftime("%X") < hora_inicio.strftime("%X")
+				h_fin = e.horaFin.strftime("%X") > hora_fin.strftime("%X")
+				if h_inicio and h_fin
+					return e
+				end
+			end
+		end
+	end
 end

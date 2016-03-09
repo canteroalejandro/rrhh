@@ -10,4 +10,8 @@ table class="table table-striped table-bordered table-hover"
       tr
         td = asistencia.outputAsistencia
         td = asistencia.horasTrabajadas
-        td
+        td = asistencia.getHorasExtras
+    tr
+      td
+      th Total de Horas Trabajadas
+      td = @total_horas

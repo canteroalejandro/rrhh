@@ -105,17 +105,11 @@ class AsistenciasController < ApplicationController
     @total_horas = 0
 
     @hora_extra = HoraExtra.find params[:hora_extra][:id]
-    @asistencias = @empleado.asistencias_by_mes_and_project fecha, @proyecto
+    @asistencias = @empleado.asistencias_by_hora_extra fecha, @hora_extra
 
-    horas = @asistencias.map { |a| a.calcular_horas_trabajadas } 
+    horas = @asistencias.map { |a| a.getHorasExtras } 
     @total_horas = horas.reduce(:+)
-    render :partial => "table_por_mes.html", :locals => { asistencias: @asistencias }
-  end
-
-  def table_por_tipo_hora_extra
-    @movil = Movil.find(params[:id])
-    @partidas = @movil.partidas.limit(1).order('id desc')
-    render :partial => "entregas/ajax_table_hojas_de_rutas", :locals => { partidas: @partidas }
+    render :partial => "table_por_tipo_horas_extras.html", :locals => { asistencias: @asistencias }
   end
 
   private
