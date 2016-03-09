@@ -11,11 +11,16 @@ class Asistencia < ActiveRecord::Base
 
 	def setHoraExtra
 		if is_horas_extra?
-			he = HoraExtra.whichByFecha(
-				DateTime.now.to_date, 
-				check_out.horaOutput - getHorasExtras.hours,
-				check_out.horaOutput
-			)
+			he = nil
+			if Feriado.is_feriado? check_out.horaOutput.to_date
+				he = HoraExtra.find Setting.feriado_id
+			else
+				he = HoraExtra.whichByFecha(
+					check_out.horaOutput.to_date, 
+					check_out.horaOutput - getHorasExtras.hours,
+					check_out.horaOutput
+				)
+			end
 			update_attribute(:hora_extra, he)
 		end
 	end

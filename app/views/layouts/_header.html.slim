@@ -15,6 +15,11 @@ a.brand href="#"
         i.icon-caret-down
 
       ul.user-menu.pull-right.dropdown-menu.dropdown-yellow.dropdown-caret.dropdown-closer
+        - if can? :update, Setting
+          li
+            a href="/setting/root" 
+              i.icon-cog
+              | Configuracion  
         li
           a href="log_out" 
             i.icon-off
