@@ -56,5 +56,7 @@ class Horario < ActiveRecord::Base
 		end
 	end
 
-	
+	def getHorasDeTrabajo
+		TimeDifference.between(horaEntrada, horaSalida).in_hours
+	end
 end

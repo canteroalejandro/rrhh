@@ -1,7 +1,10 @@
 class Asistencia < ActiveRecord::Base
 
 	belongs_to :empleado
+	
 	belongs_to :check_in
+	has_one	:horario, through: :check_in
+
 	belongs_to :check_out
 	has_one :proyecto, through: :check_out
 	
@@ -16,5 +19,13 @@ class Asistencia < ActiveRecord::Base
 		check_out = CheckOut.find(self.check_out_id)
 		diferencia = TimeDifference.between(check_in.horaOutput, check_out.horaOutput).in_hours
 		return diferencia
+	end
+
+	def getHorasExtras
+		if calcular_horas_trabajadas > horario.getHorasDeTrabajo
+			return calcular_horas_trabajadas - horario.getHorasDeTrabajo
+		else
+			return 0
+		end
 	end
 end

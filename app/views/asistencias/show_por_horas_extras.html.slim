@@ -4,9 +4,7 @@
     = @empleado.nombre_y_apellido
     i.ace-icon.fa.fa-angle-double-right
     | &nbsp;
-    .pull-right.no-print
       
-
 = hidden_field_tag "empleado_id", @empleado.id
 
 .row-fluid
@@ -18,8 +16,7 @@
         i data-date-icon="icon-calendar" data-time-icon="icon-time" 
     |&nbsp;
     label Proyecto&nbsp; 
-    = select_tag "proyecto[id]", 
-      content_tag(:option,'Todos',value: "all") + options_from_collection_for_select(@empleado.proyectos, "id", "codigo")
+    = select_tag "hora_extra[id]", options_from_collection_for_select(HoraExtra.all, "id", "codigo")
     |&nbsp;
     |&nbsp;
     |&nbsp;

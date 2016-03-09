@@ -1,7 +1,10 @@
 class CheckIn < ActiveRecord::Base
 	has_one :asistencia, dependent: :destroy
 	has_one :check_out, dependent: :destroy
+	
 	belongs_to :horario_empleado 
+	has_one :horario, through: :horario_empleado
+
 	belongs_to :usuario 
 	belongs_to :empleado 
 

@@ -70,6 +70,8 @@ class AsistenciasController < ApplicationController
     end
   end
 
+  # Filtros AJAX
+
   def show_por_mes
     @empleado = Empleado.find params[:empleado_id]
     render "show_por_mes.html"
@@ -86,6 +88,25 @@ class AsistenciasController < ApplicationController
     else
       @asistencias = @empleado.asistencias_by_mes_and_project fecha, "all"
     end
+    horas = @asistencias.map { |a| a.calcular_horas_trabajadas } 
+    @total_horas = horas.reduce(:+)
+    render :partial => "table_por_mes.html", :locals => { asistencias: @asistencias }
+  end
+
+  def show_por_horas_extras
+    @empleado = Empleado.find params[:empleado_id]
+    render "show_por_horas_extras.html"
+  end
+
+  def ajax_table_por_horas_extras
+    @empleado = Empleado.find(params[:empleado_id])
+    fecha = params[:fecha].to_date
+    @asistencias = []
+    @total_horas = 0
+
+    @hora_extra = HoraExtra.find params[:hora_extra][:id]
+    @asistencias = @empleado.asistencias_by_mes_and_project fecha, @proyecto
+
     horas = @asistencias.map { |a| a.calcular_horas_trabajadas } 
     @total_horas = horas.reduce(:+)
     render :partial => "table_por_mes.html", :locals => { asistencias: @asistencias }
