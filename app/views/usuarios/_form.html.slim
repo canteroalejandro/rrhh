@@ -1,4 +1,4 @@
-= form_for @usuario do |f|
+= form_for @usuario, :html => {:class => "form-horizontal"} do |f|
   - if @usuario.errors.any?
     #error_explanation
       h2 = "#{pluralize(@usuario.errors.count, "error")} #{pluralize_without_count(@usuario.errors.count, "prohibe", "prohiben")} almacenar este Usuario:"
@@ -6,16 +6,18 @@
         - @usuario.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :empleado_id, 'Elegir Empleado:'
+  .form-group
+    = f.label :empleado_id, 'Elegir Empleado:', {class: "col-sm-3 control-label"}
     = f.collection_select :empleado_id, Empleado.all, :id, :nombre_y_apellido
-  .field
-    = f.label :userName, 'Nombre de Usuario: '
+  .form-group
+    = f.label :userName, 'Nombre de Usuario: ', {class: "col-sm-3 control-label"}
     = f.text_field :userName
-  .field
-    = f.label :password, 'Contraseña: '
+  .form-group
+    = f.label :password, 'Contraseña: ', {class: "col-sm-3 control-label"}
     = f.password_field :password
-  .field
-    = f.label :rol_id, 'Rol:'
+  .form-group
+    = f.label :rol_id, 'Rol:', {class: "col-sm-3 control-label"}
     = f.collection_select :rol_id, Rol.all, :id, :nombre
-  .actions = f.submit
+  .clearfix.form-actions
+    .col-md-offset-3.col-md-9
+      = f.submit "Crear Usuario", class: "btn btn-info"

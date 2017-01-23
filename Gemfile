@@ -64,6 +64,9 @@ gem 'rails_12factor', group: :production
 gem 'rails', '4.2.1'
 # Use mysql as the database for Active Record
 #gem 'mysql2'
+
+gem 'sass', '~>3.4'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -86,7 +89,7 @@ gem 'slim-rails'
 
 gem 'jquery-ui-rails'
 
-gem 'bootstrap-sass', '~> 3.3.5'
+gem 'bootstrap-sass', '~> 3'
 
 gem 'bootstrap_form'
 
@@ -125,6 +128,10 @@ gem 'rails-i18n'
 
 gem 'momentjs-rails'
 
-gem 'bootstrap-datetimepicker-rails'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 
 gem 'settingslogic'
+
+gem 'font-awesome-rails', '4.5'
+
+gem 'autoprefixer-rails'

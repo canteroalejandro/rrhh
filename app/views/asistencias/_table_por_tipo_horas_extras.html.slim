@@ -9,9 +9,12 @@ table class="table table-striped table-bordered table-hover"
     - @asistencias.each do |asistencia|
       tr
         td = asistencia.outputAsistencia
-        td = asistencia.horasTrabajadas
-        td = asistencia.getHorasExtras
+        td = Time.at((asistencia.horasTrabajadas*60)*60).utc.strftime("%H:%M:%S") 
+        td = Time.at((asistencia.getHorasExtras*60)*60).utc.strftime("%H:%M:%S")
     tr
       td
       th Total de Horas Trabajadas
-      td = @total_horas
+      - if @total_horas != nil
+        td = Time.at((@total_horas*60)*60).utc.strftime("%H:%M:%S")
+      - else 
+        td 00:00:00

@@ -1,4 +1,4 @@
-= form_for @contrato do |f|
+= form_for @contrato, :html => {:class => "form-horizontal"} do |f|
   - if @contrato.errors.any?
     #error_explanation
       h2 = "#{pluralize(@contrato_empleado.errors.count, "error")} #{pluralize_without_count(@contrato.errors.count, "prohibe", "prohiben")} almacenar este Contrato:"
@@ -6,20 +6,23 @@
         - @contrato.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :codigo, 'Código: '
+  .form-group
+    = f.label :codigo, 'Código: ', {class: "col-sm-3 control-label"}
     = f.text_field :codigo, :value => @contrato.codigo_contrato
-  .field
-    = f.label :nombre, 'Nombre: '
+  .form-group
+    = f.label :nombre, 'Nombre: ', {class: "col-sm-3 control-label"}
     = f.text_field :nombre
-  .field
-    = f.label :nroDuracion, 'Duración del contrato: '
+  .form-group
+    = f.label :nroDuracion, 'Duración del contrato: ', {class: "col-sm-3 control-label"}
     = f.number_field :nroDuracion
     = f.select :tiempoDuracion, options_for_select(@contrato.tiempos_array)
-  .field
-    = f.label :horasDia, 'Horas al dia para el trabajador: '
+  .form-group
+    = f.label :horasDia, 'Horas al dia para el trabajador: ', {class: "col-sm-3 control-label"}
     = f.number_field :horasDia
-  .field
-    = f.label :edadMinima, 'Edad mínima del trabajador: '
+  .form-group
+    = f.label :edadMinima, 'Edad mínima del trabajador: ', {class: "col-sm-3 control-label"}
     = f.number_field :edadMinima
-  .actions = f.submit
+  
+  .clearfix.form-actions
+    .col-md-offset-3.col-md-9
+      = f.submit "Crear Contrato", class: "btn btn-info"

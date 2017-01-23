@@ -6,14 +6,21 @@ $(document).ready ->
   fecha = new Date dateServerRender()
 
   $('#fecha').datetimepicker
-    defaultDate: new Date()
-    format: 'MM/yyyy'
-    pickTime: false
-    endDate: fecha
+    format: "MM/YYYY"
     viewMode: "months"
-    minViewMode: "months"
+    date: fecha
+    # startView: "month",
 
-  $('#fecha').datetimepicker('setValue', fecha)
+  # $('#fecha').datetimepicker()
+  #   defaultDate: new Date()
+  #   format: 'MM/yyyy'
+  #   pickTime: false
+  #   endDate: fecha
+  #   viewMode: "months"
+  #   minViewMode: "months"
+
+  # $('#fecha').Datetimepicker('setValue', fecha)
+
 
 
   $("#bt-filtrar").click ->

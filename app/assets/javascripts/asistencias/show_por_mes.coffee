@@ -5,16 +5,14 @@
 $(document).ready ->
   fecha = new Date dateServerRender()
 
+  # $('#fecha').datetimepicker
+  #   format: 'MM/YYYY'
+  #   date: fecha
+
   $('#fecha').datetimepicker
-    defaultDate: new Date()
-    format: 'MM/yyyy'
-    pickTime: false
-    endDate: fecha
+    format: "MM/YYYY"
     viewMode: "months"
-    minViewMode: "months"
-
-  $('#fecha').datetimepicker('setValue', fecha)
-
+    date: fecha
 
   $("#bt-filtrar").click ->
     $("#spin-ajax").show()

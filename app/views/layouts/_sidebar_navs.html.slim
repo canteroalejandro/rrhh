@@ -1,125 +1,439 @@
-ul.nav.nav-list
+- if can? :read, CheckIn
+  li class=(is_active?("index"))
+    a href=(check_ins_path)
+      i.menu-icon.fa.fa-check-square-o
+      span.menu-text Check In
+    b.arrow
 
-  - if can? :read, CheckIn
-    li class=(is_active?("index"))
-      a href=(check_ins_path)
-        i.icon-list
-        span.menu-text
-          | Check In 
+- if can? :read, CheckOut
+  li class=(is_active?("index"))
+    a href=(check_outs_path)
+      i.menu-icon.fa.ion-android-walk
+      span.menu-text
+        | Check Out 
 
-  - if can? :read, CheckOut
-    li class=(is_active?("index"))
-      a href=(check_outs_path)
-        i.icon-list
-        span.menu-text
-          | Check Out 
-
-  - if can? :read, Categoria
-    li class=(is_active?("index"))
-      a href=(categorias_path)
-        i.icon-list
-        span.menu-text
-          | Categorias 
-    
-  - if can? :read, Empleado  
-    li class=(is_active?("index"))
-      a href=(empleados_path)
-        i.icon-list
-        span.menu-text
-          | Empleados
-
-  - if can? :read, Departamento
-    li class=(is_active?("index"))
-      a href=(departamentos_path)
-        i.icon-list
-        span.menu-text
-          | Departamentos
-
-  - if can? :read, Proyecto
-    li class=(is_active?("index"))
-      a href=(proyectos_path)
-        i.icon-list
-        span.menu-text
-          | Proyectos
-
-  - if can? :read, Horario
-    li class=(is_active?("index"))
-      a href=(horarios_path)
-        i.icon-list
-        span.menu-text
-          | Horarios
-
-  - if can? :read, Contrato
-    li class=(is_active?("index"))
-      a href=(contratos_path)
-        i.icon-list
-        span.menu-text
-          | Contratos
-
-  - if can? :read, HoraExtra
-    li class=(is_active?("index"))
-      a href=(hora_extras_path)
-        i.icon-list
-        span.menu-text
-          | Horas Extra
-
-  - if can? :read, Incidencia
-    li class=(is_active?("index"))
-      a href=(incidencias_path)
-        i.icon-list
-        span.menu-text
-          | Incidencias
-
-  - if can? :read, Feriado
-    li class=(is_active?("index"))
-      a href=(feriados_path)
-        i.icon-list
-        span.menu-text
-          | Feriados 
-
-  - if can? :read, Usuario
-    li class=(is_active?("index"))
-      a href=(usuarios_path)
-        i.icon-list
-        span.menu-text
-          | Usuarios
-
+- if can? :read, Categoria
+  li class=(is_active?("index"))
+    a href=(categorias_path)
+      i.menu-icon.fa.fa-th
+      span.menu-text
+        | Categorias 
   
-  / li class=(is_active?("index"))
-  /   a href=(proyectos_path)
-  /     i.icon-plus-sign
-  /     span.menu-text
-  /       | Proyectos
+- if can? :read, Empleado  
+  li class=(is_active?("index"))
+    a href=(empleados_path)
+      i.menu-icon.fa.fa-users
+      span.menu-text
+        | Empleados
 
-  / li class=(is_active?("index"))
-  /   a href=(contadores_path)
-  /     i.icon-cogs
-  /     span.menu-text
-  /       | Contadores
+- if can? :read, Departamento
+  li class=(is_active?("index"))
+    a href=(departamentos_path)
+      i.menu-icon.fa.fa-square
+      span.menu-text
+        | Departamentos
 
-  / li class=(is_active?("index"))
-  /   a.dropdown-toggle
-  /     i.icon-flag
-  /     span.menu-text 
-  /       |  Ubicaciones
-  /     b.arrow.icon-angle-down
+- if can? :read, Proyecto
+  li class=(is_active?("index"))
+    a href=(proyectos_path)
+      i.menu-icon.fa.fa-product-hunt
+      span.menu-text
+        | Proyectos
 
-  /   ul.submenu
-  /     li
-  /       a href=(localidades_path)
-  /         i.icon-double-angle-right
-  /         |  Localidades
-  /     li
-  /       a href=(departamentos_path)
-  /         i.icon-double-angle-right
-  /         |  Departamentos
+- if can? :read, Horario
+  li class=(is_active?("index"))
+    a href=(horarios_path)
+      i.menu-icon.fa.fa-clock-o
+      span.menu-text
+        | Horarios
 
-  /     li
-  /       a href=(provincias_path)
-  /         i.icon-double-angle-right
-  /         |  Provincias
+- if can? :read, Contrato
+  li class=(is_active?("index"))
+    a href=(contratos_path)
+      i.menu-icon.fa.fa-file-text-o
+      span.menu-text
+        | Contratos
 
-  /     li
-  /       a.dropdown-toggle href=(paises_path)
-  /         i.icon-double-angle-right
-  /         |  Paises
+- if can? :read, HoraExtra
+  li class=(is_active?("index"))
+    a href=(hora_extras_path)
+      i.menu-icon.fa.ion-clock
+      span.menu-text
+        | Horas Extra
+
+- if can? :read, Incidencia
+  li class=(is_active?("index"))
+    a href=(incidencias_path)
+      i.menu-icon.fa.fa-calendar-check-o
+      span.menu-text
+        | Incidencias
+
+- if can? :read, Feriado
+  li class=(is_active?("index"))
+    a href=(feriados_path)
+      i.menu-icon.fa.fa-calendar-times-o
+      span.menu-text
+        | Feriados 
+
+- if can? :read, Usuario
+  li class=(is_active?("index"))
+    a href=(usuarios_path)
+      i.menu-icon.fa.ion-android-people
+      span.menu-text
+        | Usuarios
+
+/ li class=(is_active?("pedidos", "new"))
+/     a href=(new_pedido_path)
+/       i.menu-icon.fa.fa-file-o
+/       span.menu-text
+/         | Nuevo Pedido &nbsp;
+/         i.fa.fa-plus.icon-on-right.green
+/     b.arrow
+
+/ - if can? :new, Movimiento
+/   li class=(is_active?("movimientos", "new"))
+/     a href=(new_movimiento_path)
+/       i.menu-icon.glyphicon.glyphicon-play-circle
+/       span.menu-text 
+/         | Nuevo Movimiento &nbsp;
+/         i.fa.fa-plus.icon-on-right.green
+/     b.arrow
+
+/ - if can? :new, Paquete
+/   li class=(is_active?("paquetes", "nuevo_by_empleado"))
+/     a href=(paquetes_nuevo_by_empleado_path)
+/       i.menu-icon.fa.fa-archive
+/       span.menu-text Nuevo Paquete &nbsp;
+/       i.fa.fa-plus.icon-on-right.green
+/     b.arrow
+
+/ / - if can? :entrega, Pedido
+/ /   li class=(is_active?("pedidos", "entregar_by_empleado"))
+/ /     a href=(entregar_pedido_by_empleado_path)
+/ /       i.menu-icon.glyphicon.glyphicon-tags
+/ /       span.menu-text 
+/ /         | Nueva Entrega &nbsp;
+/ /         i.fa.fa-plus.icon-on-right.green
+/ /     b.arrow
+    
+/ - if can? :sin_entregar, Pedido or can? :index, Pedido or can? :by_fecha, Pedido or can? :by_states, Estadistica 
+/   li class=( is_open?( {"pedidos" => ["index", "by_fecha"], "estadisticas" => ["pedidos_by_states"] } ))
+/     a.dropdown-toggle href="#" 
+/       i.menu-icon.glyphicon.glyphicon-list-alt
+/       span.menu-text Pedidos
+/       b.arrow.fa.fa-angle-down
+/     b.arrow
+/     ul.submenu    
+/       - if can? :index, Pedido
+/         li class=(is_active?("pedidos","index"))
+/           a href=(pedidos_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Todos los Pedidos
+/           b.arrow
+
+/       - if can? :by_fecha, Pedido
+/         li class=(is_active?("pedidos","by_fecha"))
+/           a href=(by_fecha_pedidos_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Ver Por Fecha
+      
+/       - if can? :by_states, Estadistica
+/         li class=(is_active?("estadisticas","pedidos_by_states"))
+/           a href=(estadisticas_pedidos_by_states_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Ver Pedidos por Estados
+/           b.arrow
+
+/       - if can? :index, Remito
+/         li class=(is_active?("remitos","index"))
+/           a href=(remitos_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Todos los Remitos
+/           b.arrow 
+
+/ - if can? :index, Paquete or can? :sin_asignar, Pedido
+/   li class=( is_open?( {"ordenes_de_embalaje" => ["new"], "paquetes" => ["index"], "tipos_de_paquetes" => ["index"]} ))
+/     a.dropdown-toggle href="#" 
+/       i.menu-icon.fa.fa-th-large  
+/       span.menu-text Embalaje
+/       b.arrow.fa.fa-angle-down
+/     b.arrow
+/     ul.submenu
+/       - if can? :new, OrdenDeEmbalaje
+/         li class=(is_active?("ordenes_de_embalaje","new"))
+/           a href=(new_orden_de_embalaje_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Asignar Embalaje
+/           b.arrow
+/       - if can? :index, TipoDePaquete
+/         li class=(is_active?("tipos_de_paquetes","index"))
+/           a href=(tipos_de_paquetes_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Tipos de Paquete
+/           b.arrow
+/       - if can? :index, Paquete
+/         li class=(is_active?("paquetes","index"))
+/           a href=(paquetes_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Todos los Paquetes
+/           b.arrow
+
+
+/ - if can? :new, Partida or can? :index, Entrega or can? :new, Entrega
+/   li class=( is_open?( {"entregas" => ["new", "index"], "partidas" =>["new", "index"] } ))
+/     a.dropdown-toggle href="#" 
+/       i.menu-icon.glyphicon.glyphicon-tags
+/       span.menu-text 
+/         | Entregas
+/       b.arrow.fa.fa-angle-down
+/     b.arrow
+/     ul.submenu
+/       - if can? :new, Partida
+/         li class=(is_active?("partidas","new"))
+/           a href=(new_partida_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Nueva Hoja de Ruta
+/           b.arrow
+          
+/       - if can? :new, Entrega
+/         li class=(is_active?("entregas","new"))
+/           a href=(new_entrega_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Registrar Entrega
+/           b.arrow 
+
+/       - if can? :index, Partida
+/         li class=(is_active?("partidas","index"))
+/           a href=(partidas_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Todas las Hojas de Ruta
+/           b.arrow 
+
+/       - if can? :index, Entrega
+/         li class=(is_active?("entregas","index"))
+/           a href=(entrega_index_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Todas las Entregas
+/           b.arrow 
+
+
+/ - if can_in_collection? :index, [MotivoMovimiento, Movimiento, MovimientoEntrada, MovimientoSalida]
+/   li class=( is_open?( {"movimientos" => ["index","by_fecha"], "motivos_movimientos" => ["index"] } ))
+/     a.dropdown-toggle href="#" 
+/       i.menu-icon.fa.fa-list
+/       span.menu-text Movimientos
+/       b.arrow.fa.fa-angle-down
+/     b.arrow
+/     ul.submenu
+/       li class=(is_active?("movimientos","index"))
+/         a href=(movimientos_path)
+/           i.menu-icon.fa.fa-caret-right
+/           | Todos los Movimientos
+/         b.arrow
+/       li class=(is_active?("movimientos","by_fecha"))
+/         a href=(by_fecha_movimientos_path)
+/           i.menu-icon.fa.fa-caret-right
+/           | Ver Por Fecha
+/         b.arrow
+/       li class=(is_active?("motivos_movimientos","index"))
+/         a href=(motivos_movimientos_path)
+/           i.menu-icon.fa.fa-caret-right
+/           | Motivos
+/         b.arrow
+
+
+/ - if can_in_collection? :nav, [Producto, MarcaComercial, TipoDeProducto]
+/   li class=( is_open?( {"productos" => ["index"], "marcas_comerciales" => ["index"], "tipos_de_productos" => ["index"] } ))
+/     a.dropdown-toggle href="#" 
+/       i.menu-icon.fa.fa-trophy
+/       span.menu-text 
+/         | Productos
+/         - if can? :notificaciones, Producto
+/           - if Producto.is_minimo_existencia?
+/             - cant_min = Producto.minimo_existencia.count
+/             span.badge.badge-warning.tooltip-warning data-original-title=("#{cant_min} Producto en minima existencia") title="" = cant_min
+/           - if Producto.is_sin_existencia?
+/             - cant_sin_exis = Producto.sin_existencia.count
+/             span.badge.badge-danger.tooltip-error data-original-title=("#{cant_sin_exis} Productos sin existencia") title="" = cant_sin_exis
+/       b.arrow.fa.fa-angle-down
+/     b.arrow
+/     ul.submenu      
+/       - if can? :index, Producto
+/         li class=(is_active?("productos", "index"))
+/           a href=(productos_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Todos los Productos
+/           b.arrow
+/       - if can? :index, TipoDeProducto
+/         li class=(is_active?("tipos_de_productos", "index"))
+/           a href=(tipos_de_productos_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Tipos de Producto
+/           b.arrow
+     
+/       - if can? :index, MarcaComercial
+/         li class=(is_active?("marcas_comerciales", "index"))
+/           a href=(marcas_comerciales_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Marcas Comerciales
+/           b.arrow
+
+/ - if can? :productividad, Estadistica
+/   li class=( is_open?( {"estadisticas" => ["productividad"] } ))
+/     a.dropdown-toggle href="#" 
+/       i.menu-icon.fa.fa-bar-chart 
+/       span.menu-text 
+/         | Estadisticas
+/       b.arrow.fa.fa-angle-down
+/     b.arrow
+/     ul.submenu      
+/       - if can? :productividad, Estadistica
+/         li class=(is_active?("estadisticas", "productividad"))
+/           a href=(productividad_estadistica_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Productividad
+/           b.arrow
+
+/ - if can? :index, Proveedor
+/   li class=(is_active?("proveedores", "index"))
+/     a href=(proveedores_path)
+/       i.menu-icon.fa.fa-truck
+/       span.menu-text Proveedores
+/     b.arrow
+
+/ - if can? :index, Cliente  
+/   li class=(is_active?("clientes", "index"))
+/     a href=(clientes_path)
+/       i.menu-icon.fa.fa-users
+/       span.menu-text
+/         | Clientes
+/     b.arrow
+
+/ - if can? :index, Empleado
+/   li class=(is_active?("empleados", "index"))
+/     a href=(empleados_path)
+/       i.menu-icon.fa.fa-black-tie
+/       span.menu-text Empleados
+/     b.arrow
+
+/ - if can? :new, TipoDeIdentidad
+/   li class=(is_active?("tipos_de_identidad", "index"))
+/     a href=(tipos_de_identidad_path)
+/       i.menu-icon.glyphicon.glyphicon-bookmark
+/       span.menu-text Tipos de Identidad
+/     b.arrow
+
+/ - if can? :index, Movil
+/   li class=( is_open?( {"moviles" => ["index"]} ))
+/     a.dropdown-toggle href="#" 
+/       i.menu-icon.fa.fa-truck
+/       span.menu-text 
+/         | Moviles
+/       b.arrow.fa.fa-angle-down
+/     b.arrow
+/     ul.submenu
+/       - if can? :index, Movil
+/         li class=(is_active?("moviles", "index"))
+/           a href=(moviles_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Todos los Moviles
+/           b.arrow 
+/       - if can? :index, MarcaMovil
+/         li class=(is_active?("marcas_moviles", "index"))
+/           a href=(marcas_moviles_path)
+/             i.menu-icon.fa.fa-caret-right
+/             |   Marcas de Moviles
+/           b.arrow 
+
+/ - if can? :index, Departamento
+/   li class=(is_active?("departamentos", "index"))
+/     a href=(departamentos_path)
+/       i.menu-icon.fa.fa-black-tie
+/       span.menu-text Departamentos
+/     b.arrow
+
+/ / - if can? :index, OrdenDeEmbalaje
+/ /   li class=(is_active?("ordenes_de_embalaje", "index"))
+/ /     a href=(ordenes_de_embalaje_path)
+/ /       i.menu-icon.fa.fa-truck
+/ /       span.menu-text Ordenes de Embalaje
+/ /     b.arrow
+
+/ / - if can? :index, TipoDeEntrega
+/ /   li class=(is_active?("tipos_de_entrega", "index"))
+/ /     a href=(tipos_de_entrega_path)
+/ /       i.menu-icon.fa.fa-hand-lizard-o 
+/ /       span.menu-text Tipos de Entrega
+/ /     b.arrow
+
+/ - if can? :index, User or can? :index, Role or can? :index, Modelo or can? :index, Accion
+/     li class=( is_open?( {"users" => ["index"], "roles" => ["index"], "modelos" => ["index"], "acciones" => ["index"]} ))
+/       a.dropdown-toggle href="#" 
+/         i.menu-icon.fa.fa-users
+/         span.menu-text Control de Acceso
+/         b.arrow.fa.fa-angle-down
+/       b.arrow
+/       ul.submenu
+/         - if can? :index, User
+/           li class=(is_active?("users", "index"))
+/             a href=("/users")
+/               i.menu-icon.fa.fa-caret-right
+/               | Usuarios
+/             b.arrow
+
+/         - if can? :index, Role
+/           li class=(is_active?("roles", "index"))
+/             a href=(roles_path)
+/               i.menu-icon.fa.fa-caret-right
+/               | Roles
+/             b.arrow
+
+/         - if can? :index, Modelo
+/           li class=(is_active?("modelos", "index"))
+/             a href=(modelos_path)
+/               i.menu-icon.fa.fa-caret-right
+/               | Modelos
+/             b.arrow
+
+/         - if can? :index, Accion
+/           li class=(is_active?("acciones", "index"))
+/             a href=(acciones_path)
+/               i.menu-icon.fa.fa-caret-right
+/               | Acciones
+/             b.arrow
+
+/ - if can_in_collection? :index, [Localidad, Provincia, Pais]
+/   li class=( is_open?( {"paises" => ["index"], "provincias" => ["index"], "localidades"=>["index"] } ))
+/     a.dropdown-toggle href="#" 
+/       i.menu-icon.fa.fa-flag
+/       span.menu-text Ubicaciones
+/       b.arrow.fa.fa-angle-down
+/     b.arrow
+/     ul.submenu
+/       - if can? :index, Localidad
+/         li class=(is_active?("localidades", "index"))
+/           a href=(localidades_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Localidades
+/           b.arrow
+     
+/       - if can? :index, Provincia
+/         li class=(is_active?("provincias", "index"))
+/           a href=(provincias_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Provincias
+/           b.arrow
+      
+/       - if can? :index, Pais
+/         li class=(is_active?("paises", "index"))
+/           a href=(paises_path)
+/             i.menu-icon.fa.fa-caret-right
+/             | Paises
+/           b.arrow
+
+/ - if can? :new, Backup
+/   li class=(is_active?("backup", "new"))
+/     a href=(new_backup_path)
+/       i.menu-icon.fa.fa-download 
+/       span.menu-text BackUp
+/     b.arrow

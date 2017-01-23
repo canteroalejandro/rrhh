@@ -11,6 +11,8 @@ class EmpleadosController < ApplicationController
   # GET /empleados/1
   # GET /empleados/1.json
   def show
+    @array = []
+    @array << { y: '03/2016', a: 100, i: 300}
   end
 
   # GET /empleados/new

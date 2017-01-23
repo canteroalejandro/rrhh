@@ -1,4 +1,12 @@
-h1 Listar Empleados
+.page-header
+  h1
+    | Empleados
+    small
+      i.ace-icon.fa.fa-angle-double-right
+      -if can? :create, @empleado
+        small
+          a.btn.btn-xs.btn-success href=new_empleado_path
+            | Nuevo Empleado
 
 table class="table table-striped table-bordered table-hover"
   thead
@@ -6,6 +14,7 @@ table class="table table-striped table-bordered table-hover"
       th Código
       th DNI
       th Nombre y Apellido
+      th Antiguedad
       th Categoría
       th colspan="3" Acciones
 
@@ -15,6 +24,10 @@ table class="table table-striped table-bordered table-hover"
         td = empleado.codigo
         td = empleado.dni
         td = empleado.nombre_y_apellido
+        td 
+          -if empleado.antiguedad != nil
+              = "#{empleado.antiguedad}  años"
+
         td = empleado.categoria.nombre
         -if can? :read, empleado
           td = link_to 'Mostrar', empleado
@@ -25,5 +38,3 @@ table class="table table-striped table-bordered table-hover"
 
 br
 
--if can? :create, @empleado
-  = link_to 'Nuevo Empleado', new_empleado_path

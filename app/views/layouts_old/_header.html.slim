@@ -1,0 +1,39 @@
+a.brand href="#"
+  small
+    i.icon-briefcase
+    |   Sistema de Asistencia de Empleados
+
+-if current_user
+  ul.nav.ace-nav.pull-right
+    li.light-blue
+      a.dropdown-toggle data-toggle="dropdown" href="#" 
+        /img.nav-user-photo alt=("Carina's Photo") src="/assets/cari.jpg" /
+        span.user-info
+          small Usuario,
+          | 
+          = current_user.userName
+        i.icon-caret-down
+
+      ul.user-menu.pull-right.dropdown-menu.dropdown-yellow.dropdown-caret.dropdown-closer
+        - if can? :update, Setting
+          li
+            a href="/setting/root" 
+              i.icon-cog
+              | Configuracion  
+        li
+          a href="/log_out" 
+            i.icon-off
+            | Logout
+        / li
+        /   a href="#" 
+        /     i.icon-cog
+        /     | Settings
+        / li
+        /   a href="#" 
+        /     i.icon-user
+        /     | Profile  
+        / li.divider  
+        /   li
+        /     a href="log_out" 
+        /       i.icon-off
+        /       | Logout

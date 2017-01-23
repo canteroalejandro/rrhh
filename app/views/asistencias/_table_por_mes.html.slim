@@ -10,8 +10,11 @@ table class="table table-striped table-bordered table-hover"
       tr
         td = asistencia.outputAsistencia
         td = asistencia.try(:proyecto).try(:codigo)
-        td = asistencia.horasTrabajadas
+        td = Time.at((asistencia.try(:horasTrabajadas)*60)*60).utc.strftime("%H:%M:%S")
     tr
       td
       th Total de Horas Trabajadas
-      td = @total_horas
+      - if @total_horas != nil
+        td = Time.at((@total_horas*60)*60).utc.strftime("%H:%M:%S")
+      - else 
+        td 00:00:00

@@ -1,14 +1,42 @@
-h1 Log in
+= stylesheet_link_tag "css/bootstrap.min.css", "css/bootstrap-responsive.min.css"
+| <link href="//maxcdn.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+= stylesheet_link_tag  "css/ace.min.css", "css/ace-responsive.min.css", "css/ace-skins.min.css"
+
 = form_tag sessions_path do
 
-  p
-    = label_tag :userName
-    br
-    = text_field_tag :userName, params[:userName]
-  p
-    = label_tag :password
-    br
-    = password_field_tag :password
-
-  p.button= submit_tag "Log in"
- 
+  .login-layout
+    .main-container
+      .main-content
+        .row
+          .col-sm-10.col-sm-offset-1
+            .login-container
+              .center
+                h1
+                  i.ace-icon.fa.fa-leaf.green
+                  span.red RRHH
+                  span#id-text2.white App
+                h4#id-company-text.blue UNaM - FCEQyN
+              .space-6
+              .position-relative
+                #login-box.login-box.visible.widget-box.no-border
+                  .widget-body
+                    .widget-main
+                      h4.header.blue.lighter.bigger.center
+                        i.ace-icon.fa.fa-coffee.green
+                        | Ingrese sus Datos
+                      .space-6
+                      form
+                        fieldset
+                          label.block.clearfix
+                            span.block.input-icon.input-icon-right.center
+                              = text_field_tag :userName, params[:userName], placeholder: "Usuario"
+                              i.fa.fa-user
+                          label.block.clearfix
+                            span.block.input-icon.input-icon-right.center
+                              = password_field_tag :password, placeholder: "Contraseña"
+                              i.ace-icon.fa.fa-lock
+                          .space
+                          .clearfix.center
+                            button.btn.btn-sm.btn-primary type="submit" 
+                              i.ace-icon.fa.fa-key
+                              span.bigger-110 Iniciar Sesion

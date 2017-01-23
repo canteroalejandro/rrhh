@@ -1,4 +1,4 @@
-= form_for @incidencia do |f|
+= form_for @incidencia, :html => {:class => "form-horizontal"} do |f|
   - if @incidencia.errors.any?
     #error_explanation
       h2 = "#{pluralize(@incidencia.errors.count, "error")} #{pluralize_without_count(@incidencia.errors.count, "prohibe", "prohiben")} almacenar esta Incidencia:"
@@ -6,37 +6,37 @@
         - @incidencia.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :codigo
+  .form-group
+    = f.label :codigo, {class: "col-sm-3 control-label"}
     = f.text_field :codigo, :value => @incidencia.codigo_incidencia
-  .field
-    = f.label :nombre
+  .form-group
+    = f.label :nombre, {class: "col-sm-3 control-label"}
     = f.text_field :nombre
-  .field
-    = f.label :nroDuracion, "Duración: "
+  .form-group
+    = f.label :nroDuracion, "Duración: ", {class: "col-sm-3 control-label"}
     = f.number_field :nroDuracion
     = f.select :tiempoDuracion, options_for_select(@incidencia.tiempos_array)
-  .field#check_condiciones
-    span.lbl Condiciones  
+  .form-group#check_condiciones
+    span.lbl.col-sm-3.control-label Condiciones 
     = f.check_box :tieneCondiciones
     span.lbl
   br
-  .field#panel
+  .form-group#panel
     .widget-box
       .widget-header 
         h4.widget-title Periodo de Habilitación
       .widget-body
         .widget-main
-          .field.form-inline
-            .field#check
+          .form-group.form-inline
+            .form-group#check
             span.lbl Posee periodo de habilitación:  
             = f.check_box :tienePeriodoHabilitacion
             span.lbl
             br
-            = f.label :fechaInicioHabilitacion, "Habilitado desde: "
+            = f.label :fechaInicioHabilitacion, "Habilitado desde: ", {class: "col-sm-3 control-label"}
             = f.date_select :fechaInicioHabilitacion, discard_year:true
             br
-            = f.label :fechaFinHabilitacion, "Hasta: "
+            = f.label :fechaFinHabilitacion, "Hasta: ", {class: "col-sm-3 control-label"}
             = f.date_select :fechaFinHabilitacion, discard_year:true
     br
     .widget-box
@@ -44,16 +44,16 @@
         h4.widget-title Condiciones de Antigüedad
       .widget-body
         .widget-main
-          .field#check
+          .form-group#check
             span.lbl Posee condiciones de Antigüedad:  
             = f.check_box :tieneRestriccionAntiguedad
             span.lbl
-          .field
-            = f.label :nroAntiguedadMayor, "Mayor a: "
+          .form-group
+            = f.label :nroAntiguedadMayor, "Mayor a: ", {class: "col-sm-3 control-label"}
             = f.number_field :nroAntiguedadMayor
             = f.select :tiempoAntiguedadMayor, options_for_select(@incidencia.tiempos_array)
-          .field
-            = f.label :nroAntiguedadMenor, "Menor a: "
+          .form-group
+            = f.label :nroAntiguedadMenor, "Menor a: ", {class: "col-sm-3 control-label"}
             = f.number_field :nroAntiguedadMenor
             = f.select :tiempoAntiguedadMenor, options_for_select(@incidencia.tiempos_array)
     br
@@ -62,12 +62,12 @@
         h4.widget-title Cantidad de veces permitidas por año
       .widget-body
         .widget-main
-          .field#check
+          .form-group#check
             span.lbl Tiene cierta cantidad permitidas por año:  
             = f.check_box :tieneCantPermitidasPorAnio
             span.lbl
-          .field
-            = f.label :vecesPermitidasPorAnio, "Número de veces permitidas por año: "
+          .form-group
+            = f.label :vecesPermitidasPorAnio, "Número de veces permitidas por año: ", {class: "col-sm-3 control-label"}
             = f.number_field :vecesPermitidasPorAnio
     br
     .widget-box
@@ -75,7 +75,9 @@
         h4.widget-title Descuentos
       .widget-body
         .widget-main
-          .field
-            = f.label :descuento, "Porcentaje de descuento: "
+          .form-group
+            = f.label :descuento, "Porcentaje de descuento: ", {class: "col-sm-3 control-label"}
             = f.number_field :descuento
-  .actions = f.submit
+  .clearfix.form-actions
+    .col-md-offset-3.col-md-9
+      = f.submit "Crear Incidencia", class: "btn btn-info"

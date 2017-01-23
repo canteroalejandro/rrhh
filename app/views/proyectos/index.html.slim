@@ -1,4 +1,12 @@
-h1 Listar Proyectos
+.page-header
+  h1
+    | Listar Proyectos
+    small
+      i.ace-icon.fa.fa-angle-double-right
+      small
+        a.btn.btn-xs.btn-success href=new_proyecto_path
+          | Nuevo Proyecto
+
 
 table class="table table-striped table-bordered table-hover"
   thead
@@ -20,7 +28,3 @@ table class="table table-striped table-bordered table-hover"
         td = link_to 'Mostrar', proyecto
         td = link_to 'Editar', edit_proyecto_path(proyecto)
         td = link_to 'Eliminar', proyecto, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'Nuevo Proyecto', new_proyecto_path

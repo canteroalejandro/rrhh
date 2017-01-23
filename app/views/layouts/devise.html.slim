@@ -1,0 +1,49 @@
+doctype html
+html lang="en" 
+  head
+    meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /
+    meta charset="utf-8" /
+    title Inicio de Sesion - Coatí Sistema de Logistica
+    meta content=("Inicio de Sesion") name="description" /
+    meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport" /
+
+    link href="//fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" /
+    /! ace styles
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = javascript_include_tag params[:controller]
+  body.login-layout
+    .main-container
+      .main-content
+        br
+        br
+        br
+        br
+        .row
+          .col-sm-10.col-sm-offset-1
+            .login-container
+              .center
+                h1
+                  img.nav-user-photo height="50" src="/assets/logo92x92-white.png" width="60"
+                  br
+                  span.green
+                    | Coatí
+                  small
+                    span#id-text2.white - Sistema de Logistica
+
+                / h1
+                /   i.ace-icon.fa.fa-leaf.green
+                /   span.red Ace
+                /   span#id-text2.white Application
+                / h4#id-company-text.blue &copy; Company Name
+              .space-6
+              .position-relative
+                #login-box.login-box.visible.widget-box.no-border
+                  .widget-body
+                    .widget-main
+                      h4.header.blue.lighter.bigger
+                        i.ace-icon.fa.fa-coffee.green
+                        | Ingrese sus Datos
+                      .space-6
+                      
+                      = yield 

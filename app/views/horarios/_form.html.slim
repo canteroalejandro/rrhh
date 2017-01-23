@@ -1,4 +1,4 @@
-= form_for @horario do |f|
+= form_for @horario, :html => {:class => "form-horizontal"} do |f|
   - if @horario.errors.any?
     #error_explanation
       h2 = "#{pluralize(@horario.errors.count, "error")} #{pluralize_without_count(@horario.errors.count, "prohibe", "prohiben")} almacenar este Horario:"
@@ -6,10 +6,11 @@
         - @horario.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :codigo, "Código:"
+  .form-group
+    = f.label :codigo, "Código:", {class: "col-sm-3 control-label"}
     = f.text_field :codigo, :value => @horario.codigo_horario
-    = f.label :nombre, "Nombre"
+  .form-group
+    = f.label :nombre, "Nombre", {class: "col-sm-3 control-label"}
     = f.text_field :nombre
   .widget-box
       .widget-header 
@@ -62,7 +63,11 @@
           .field
             = f.label :finMargenSalida, "Hasta"
             = f.time_select :finMargenSalida
-  .actions = f.submit
+  
+  .clearfix.form-actions
+    .col-md-offset-3.col-md-9
+      = f.submit "Crear Horario", class: "btn btn-info"            
+  / .actions = f.submit
 
 
 

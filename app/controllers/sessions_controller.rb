@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-    
 	
 	def new
 		render layout: false
@@ -9,7 +8,7 @@ class SessionsController < ApplicationController
 	  user = Usuario.authenticate(params[:userName], params[:password])
 	  if user
 	    session[:usuario_id] = user.id
-	    redirect_to check_ins_path, :notice => "Logged in!"
+	    redirect_to index_path
 	  else
 	    flash.now.alert = "Invalid email or password"
 	    render "new"
@@ -18,7 +17,7 @@ class SessionsController < ApplicationController
 
 	def destroy
 	  session[:usuario_id] = nil
-	  redirect_to log_in_path, :notice => "Logged out!"
+	  redirect_to log_in_path
 	end
 
 end

@@ -31,7 +31,11 @@ Rails.application.routes.draw do
   resources :horario_empleados
   resources :categorias
   resources :historia_medicas
+  
   root :to => 'sessions#new'
+
+  get "index" => "root#index", :as => "index"
+
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   resources :sessions

@@ -59,4 +59,10 @@ class Horario < ActiveRecord::Base
 	def getHorasDeTrabajo
 		TimeDifference.between(horaEntrada, horaSalida).in_hours
 	end
+
+	def is_laboral_day?(fecha)
+		texto = self.dia
+		aux = texto.split(", ").map {|e| (e.to_i) +1 }
+		aux.include? fecha.wday
+	end
 end

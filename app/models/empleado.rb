@@ -76,22 +76,80 @@ class Empleado < ActiveRecord::Base
     if unProyecto != "all"
       retorno = asistencias.joins(:proyecto)
         .where(
-          created_at: unaFecha.beginning_of_month..unaFecha.end_of_month,
+          check_outs: { horaOutput: unaFecha.beginning_of_month..unaFecha.end_of_month },
           proyectos: { id: unProyecto})
+
+        # created_at: unaFecha.beginning_of_month..unaFecha.end_of_month,
+        # .joins(:check_outs).where(check_outs:{ horaOutput: "07/03/2016 00:00"to_datetime.."12/03/2016 23:59".to_datetime})
     else
       retorno = asistencias.joins(:proyecto)
-        .where(created_at: unaFecha.beginning_of_month..unaFecha.end_of_month)
+        .where(check_outs: { horaOutput: unaFecha.beginning_of_month..unaFecha.end_of_month })
     end
     return retorno
   end
 
   def asistencias_by_hora_extra(unaFecha, unaHoraExtra)
     retorno = nil
-    retorno = asistencias.joins(:hora_extra)
+    retorno = asistencias.joins(:hora_extra, :check_out)
       .where(
-        created_at: unaFecha.beginning_of_month..unaFecha.end_of_month,
+        check_outs:{ horaOutput: unaFecha.beginning_of_month..unaFecha.end_of_month},
         hora_extra: unaHoraExtra
       )
     return retorno
+  end
+
+  def has_check_in?(unaFecha, unHorario)
+    hora_inicio = (unaFecha.to_time).change(
+      { 
+        hour: unHorario.horaEntrada.hour, 
+        min: unHorario.horaEntrada.min, 
+        sec: unHorario.horaEntrada.sec
+      })
+    
+    hora_salida = (unaFecha.to_time).change(
+      { 
+        hour: unHorario.horaSalida.hour, 
+        min: unHorario.horaSalida.min, 
+        sec: unHorario.horaSalida.sec
+      })
+
+    ret = CheckIn.where horaOutput: hora_inicio..hora_salida, empleado_id: self.id
+    ret.size > 0
+  end
+
+  def has_incidencia?(fecha)
+    incidencia_asociada = IncidenciaEmpleado.where(empleado_id: self.id)
+    indicencias = []
+    incidencia_asociada.each do |incidencia|
+      if incidencia.inicio >= fecha and incidencia.fin >= fecha
+        indicencias.push incidencia
+      end
+    end
+    indicencias.size > 0
+  end
+
+  def getCantInasistencias(unaFechaInicio, unaFechaFin)
+    inasistencias = 0
+    # Itera sobre una coleccion de Fechas
+    (unaFechaInicio..unaFechaFin).each do |fecha|
+      # Por cada fecha, consulta los horarios de trabajo del empleado.
+      self.horarios.each do |horario|
+        # Si tiene Check-In se descarta, pues fue al lugar de trabajo
+        if not self.has_check_in? fecha, horario
+          # Comprueba si el dia de ausencia es un dia laboral dentro de su horario
+          if horario.is_laboral_day?(fecha)
+            # Comprueba si el dia de ausencia es un Feriado
+            if not Feriado.is_feriado?(fecha)
+              # Comprueba que no tenga incidencias en esa fecha
+              if not has_incidencia? fecha
+                inasistencias += 1
+              end
+            end
+          end
+        end
+
+      end
+    end
+    inasistencias
   end
 end

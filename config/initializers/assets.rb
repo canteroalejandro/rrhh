@@ -16,7 +16,7 @@ Rails.application.config.assets.precompile += %w( css/ace.min.css )
 Rails.application.config.assets.precompile += %w( css/ace-responsive.min.css )
 Rails.application.config.assets.precompile += %w( css/ace-skins.min.css )
 
-Rails.application.config.assets.precompile += %w( js/jquery-2.0.3.min.js )
+Rails.application.config.assets.precompile += %w( jquery-2.0.3.min.js )
 Rails.application.config.assets.precompile += %w( js/bootstrap.min.js )
 Rails.application.config.assets.precompile += %w( js/jquery-ui-1.10.3.custom.min.js )
 Rails.application.config.assets.precompile += %w( js/jquery-ui-1.10.3.custom.min.js )
@@ -34,6 +34,10 @@ Rails.application.config.assets.precompile += %w( asistencias/*.js )
 Rails.application.config.assets.precompile += %w( asistencias/*.css )
 Rails.application.config.assets.precompile += %w( setting.css )
 Rails.application.config.assets.precompile += %w( setting.js )
+
+Rails.application.config.assets.precompile += %w( root.css )
+Rails.application.config.assets.precompile += %w( root.js )
+
 
 %w( categorias departamentos empleados proyectos horarios usuarios sessions asistencias historia_medicas sexos horario_empleados check_ins check_outs roles hora_extras incidencias incidencia_empleados contratos contrato_empleados feriados).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]

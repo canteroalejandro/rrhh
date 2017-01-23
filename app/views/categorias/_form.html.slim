@@ -1,4 +1,4 @@
-= form_for @categoria do |f|
+= form_for @categoria, :html => {:class => "form-horizontal"} do |f|
   - if @categoria.errors.any?
     #error_explanation
       h2 = "#{pluralize(@categoria.errors.count, "error")}  #{pluralize_without_count(@categoria.errors.count, "prohibe", "prohiben")} almacenar esta Categoría:"
@@ -6,13 +6,15 @@
         - @categoria.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :codigo, "Código:"
+  .form-group
+    = f.label :codigo, "Código:", {class: "col-sm-3 control-label"}
     = f.text_field :codigo,:value => @categoria.codigo_categoria
-  .field
-    = f.label :nombre, "Nombre:"
+  .form-group
+    = f.label :nombre, "Nombre:", {class: "col-sm-3 control-label"}
     = f.text_field :nombre
-  .field
-    = f.label :salarioBase, "Salario Básico:"
+  .form-group
+    = f.label :salarioBase, "Salario Básico:", {class: "col-sm-3 control-label"}
     = f.text_field :salarioBase
-  .actions = f.submit
+  .clearfix.form-actions
+    .col-md-offset-3.col-md-9
+      = f.submit "Crear Categoría", class: "btn btn-info"

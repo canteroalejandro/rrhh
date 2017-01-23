@@ -1,39 +1,36 @@
-a.brand href="#"
-  small
-    i.icon-briefcase
-    |   Sistema de Asistencia de Empleados
+#navbar-container.navbar-container.ace-save-state
+  button#menu-toggler.navbar-toggle.menu-toggler.pull-left data-target="#sidebar" type="button" 
+    span.sr-only Toggle sidebar
+    span.icon-bar
+    span.icon-bar
+    span.icon-bar
+  .navbar-header.pull-left
+    a.navbar-brand href="index" 
+      small
+        i.fa.fa-users
+        i Sistema de Asistencia de Empleados 
 
--if current_user
+
+.navbar-buttons.navbar-header.pull-right role="navigation" 
+  / -if current_user
   ul.nav.ace-nav.pull-right
     li.light-blue
       a.dropdown-toggle data-toggle="dropdown" href="#" 
-        /img.nav-user-photo alt=("Carina's Photo") src="/assets/cari.jpg" /
         span.user-info
           small Usuario,
-          | 
-          = current_user.userName
-        i.icon-caret-down
+          -if current_user
+            | 
+            = current_user.userName
+        i.ace-icon.fa.fa-caret-down
 
       ul.user-menu.pull-right.dropdown-menu.dropdown-yellow.dropdown-caret.dropdown-closer
         - if can? :update, Setting
           li
             a href="/setting/root" 
-              i.icon-cog
-              | Configuracion  
+              i.ace-icon.fa.fa-gears
+              | Configuracion
         li
           a href="/log_out" 
-            i.icon-off
-            | Logout
-        / li
-        /   a href="#" 
-        /     i.icon-cog
-        /     | Settings
-        / li
-        /   a href="#" 
-        /     i.icon-user
-        /     | Profile  
-        / li.divider  
-        /   li
-        /     a href="log_out" 
-        /       i.icon-off
-        /       | Logout
+            i.ace-icon.fa.fa-power-off
+            | Cerrar Sesion  
+

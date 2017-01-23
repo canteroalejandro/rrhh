@@ -1,4 +1,4 @@
-= form_for @feriado do |f|
+= form_for @feriado, :html => {:class => "form-horizontal"} do |f|
   - if @feriado.errors.any?
     #error_explanation
       h2 = "#{pluralize(@feriado.errors.count, "error")} #{pluralize_without_count(@feriado.errors.count, "prohibe", "prohiben")} almacenar este Feriado:"
@@ -6,14 +6,16 @@
         - @feriado.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :fecha
+  .form-group
+    = f.label :fecha, {class: "col-sm-3 control-label"}
     = f.date_select :fecha
 
-  .field
-    = f.label :descripcion
+  .form-group
+    = f.label :descripcion, {class: "col-sm-3 control-label"}
     = f.text_field :descripcion
-  .actions = f.submit
+  .clearfix.form-actions
+    .col-md-offset-3.col-md-9
+      = f.submit "Crear Feriado", class: "btn btn-info"
 
 javascript:
   $("#feriado_descripcion").val( $("#feriado_fecha_1i").val() + "-")

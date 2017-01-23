@@ -1,4 +1,4 @@
-= form_for @proyecto do |f|
+= form_for @proyecto, :html => {:class => "form-horizontal"} do |f|
   - if @proyecto.errors.any?
     #error_explanation
       h2 = "#{pluralize(@proyecto.errors.count, "error")} #{pluralize_without_count(@proyecto.errors.count, "prohibe", "prohiben")} almacenar este Proyecto:"
@@ -6,18 +6,21 @@
         - @proyecto.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :codigo
+  .form-group
+    = f.label :codigo, {class: "col-sm-3 control-label"}
     = f.text_field :codigo,:value => @proyecto.codigo_proyecto
-  .field
-    = f.label :nombre
+  .form-group
+    = f.label :nombre, {class: "col-sm-3 control-label"}
     = f.text_field :nombre
-  .field
-    = f.label :departamento_id, 'Departamento al cual pertenece:'
+  .form-group
+    = f.label :departamento_id, 'Departamento al cual pertenece:', {class: "col-sm-3 control-label"}
     = f.collection_select :departamento_id, Departamento.all, :id, :nombre, {:prompt => "Seleccione un Departamento..."}, {:id => 'departamento_id'}
     
-  p#empleado_field
-    = f.label :empleado_ids, 'Empleados que forman parte de este Proyecto: '
-    = f.grouped_collection_select :empleado_ids, Departamento.all, :empleados, :nombre, :id, :nombre_y_apellido, {:prompt => 'Seleccione Empleados...', :selected => @proyecto.empleado_ids}, {:multiple => true, :id => 'empleado_ids'}
-    
-  .actions = f.submit
+  .form-group
+    p#empleado_field
+      = f.label :empleado_ids, 'Empleados que forman parte de este Proyecto: ', {class: "col-sm-3 control-label"}
+      = f.grouped_collection_select :empleado_ids, Departamento.all, :empleados, :nombre, :id, :nombre_y_apellido, {:prompt => 'Seleccione Empleados...', :selected => @proyecto.empleado_ids}, {:multiple => true, :id => 'empleado_ids'}
+      
+  .clearfix.form-actions
+    .col-md-offset-3.col-md-9
+      = f.submit "Crear Proyecto", class: "btn btn-info"

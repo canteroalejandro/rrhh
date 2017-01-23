@@ -10,10 +10,10 @@
 .row-fluid
   form#parametros.form-inline
     label Mes/Año 
-    #fecha.input-append
-      input type="text" name="fecha"
-      span.add-on
-        i data-date-icon="icon-calendar" data-time-icon="icon-time" 
+    #fecha.input-group.date
+      input.form-control type="text" name="fecha"
+      span.input-group-addon.no-print
+        span.glyphicon.glyphicon-calendar
     |&nbsp;
     label Tipo de Hora Extra&nbsp; 
     = select_tag "hora_extra[id]", options_from_collection_for_select(HoraExtra.all, "id", "nombre")
@@ -29,6 +29,8 @@ div#spin-ajax.center style="display: none;"
       | Cargando Datos...
 
 #table-customized
+
+#stats-chart
 
 = javascript_include_tag "#{params[:controller]}/#{params[:action]}"
 = stylesheet_link_tag "#{params[:controller]}/#{params[:action]}"

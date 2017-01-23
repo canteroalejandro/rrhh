@@ -12,10 +12,10 @@
 .row-fluid
   form#parametros.form-inline
     label Mes/Año 
-    #fecha.input-append
-      input type="text" name="fecha"
-      span.add-on
-        i data-date-icon="icon-calendar" data-time-icon="icon-time" 
+    #fecha.input-group.date
+      input.form-control type="text" name="fecha"
+      span.input-group-addon.no-print
+        span.glyphicon.glyphicon-calendar
     |&nbsp;
     label Proyecto&nbsp; 
     = select_tag "proyecto[id]", 
