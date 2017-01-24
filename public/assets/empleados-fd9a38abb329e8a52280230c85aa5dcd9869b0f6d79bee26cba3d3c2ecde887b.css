@@ -1,0 +1,53 @@
+/* line 1, /media/alejandro/Data/Proyectos/rrhh/vendor/assets/stylesheets/morris.css */
+.morris-hover {
+  position: absolute;
+  z-index: 1000;
+}
+
+/* line 1, /media/alejandro/Data/Proyectos/rrhh/vendor/assets/stylesheets/morris.css */
+.morris-hover.morris-default-style {
+  border-radius: 10px;
+  padding: 6px;
+  color: #666;
+  background: rgba(255, 255, 255, 0.8);
+  border: solid 2px rgba(230, 230, 230, 0.8);
+  font-family: sans-serif;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* line 1, /media/alejandro/Data/Proyectos/rrhh/vendor/assets/stylesheets/morris.css */
+.morris-hover.morris-default-style .morris-hover-row-label {
+  font-weight: bold;
+  margin: 0.25em 0;
+}
+
+/* line 2, /media/alejandro/Data/Proyectos/rrhh/vendor/assets/stylesheets/morris.css */
+.morris-hover.morris-default-style .morris-hover-point {
+  white-space: nowrap;
+  margin: 0.1em 0;
+}
+
+/* line 7, /media/alejandro/Data/Proyectos/rrhh/app/assets/stylesheets/empleados.scss */
+.table {
+  margin-bottom: 0px;
+}
+
+/* line 11, /media/alejandro/Data/Proyectos/rrhh/app/assets/stylesheets/empleados.scss */
+.widget-box {
+  width: 65%;
+}
+
+/* line 15, /media/alejandro/Data/Proyectos/rrhh/app/assets/stylesheets/empleados.scss */
+#titulo {
+  color: #707070;
+  font-weight: bold;
+}
+
+/* line 20, /media/alejandro/Data/Proyectos/rrhh/app/assets/stylesheets/empleados.scss */
+a.btn.btn-sm.btn-primary {
+  color: #FFF;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+  font-family: sans-serif;
+  margin-right: 10px;
+}
