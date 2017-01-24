@@ -66,6 +66,8 @@ GEM
     execjs (2.7.0)
     font-awesome-rails (4.5.0.0)
       railties (>= 3.2, < 5.0)
+    font-ionicons-rails (2.0.1.5)
+      railties (>= 3.2, < 6.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -202,6 +204,7 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 4.1.0)
   font-awesome-rails (= 4.5)
+  font-ionicons-rails
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails
@@ -226,4 +229,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.13.6
+   1.13.7

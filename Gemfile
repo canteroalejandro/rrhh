@@ -135,3 +135,5 @@ gem 'settingslogic'
 gem 'font-awesome-rails', '4.5'
 
 gem 'autoprefixer-rails'
+
+gem "font-ionicons-rails"
