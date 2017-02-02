@@ -9,9 +9,10 @@ class CheckIn < ActiveRecord::Base
 	belongs_to :usuario 
 	belongs_to :empleado 
 
-	before_save :set_tardanza
-
 	validate :hay_incidencia
+	validate :tiene_horario
+
+	before_save :set_tardanza
 
 	def get_empleado(user)
 		aux= Empleado.find(user.empleado_id)
@@ -37,6 +38,12 @@ class CheckIn < ActiveRecord::Base
 			if (self.horaOutput > i.inicio) and (self.horaOutput < i.fin)
 				errors.add(:base, "El empleado se encuentra temporalmente inhabilitado para registrar asistencias. Ver Incidencias asociadas al Empleado")
 			end
+		end
+	end
+
+	def tiene_horario
+		if horario.kind_of? NilClass
+			errors.add(:base, "El empleado No posee un horario asignado para realizar el Check-In.")
 		end
 	end
 end

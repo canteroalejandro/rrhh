@@ -53,6 +53,24 @@ class Empleado < ActiveRecord::Base
 
   #earliest = Model.first(:order => 'column asc')
 
+  def get_antiguedad
+    if self.contrato_empleados.exists?
+      contratos = self.contrato_empleados.all
+      duracion_contratos = 0
+      for c in contratos do
+        if(c.fin < Time.now)
+          duracion_contratos = duracion_contratos + TimeDifference.between(c.inicio, c.fin).in_years
+        else
+          duracion_contratos = duracion_contratos + TimeDifference.between(c.inicio, Time.now).in_years
+        end
+      end
+      antiguedad = duracion_contratos.to_i
+    else
+      antiguedad = 0
+    end
+    return antiguedad
+  end
+
   def set_antiguedad
     if self.contrato_empleados.exists?
       contratos = self.contrato_empleados.all
@@ -151,5 +169,21 @@ class Empleado < ActiveRecord::Base
       end
     end
     inasistencias
+  end
+
+  def self.empleadosDelDepartamento(departamento_id)
+    if not departamento_id == nil
+      self.where departamento: departamento_id
+    else
+      return []
+    end
+  end
+
+  def self.empleadosSinDptoAsignado
+    self.where departamento: nil
+  end
+
+  def vinculo_actual
+    self.contrato_empleados.last
   end
 end

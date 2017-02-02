@@ -14,4 +14,12 @@ module ApplicationHelper
 	def date_server
 	  return DateTime.now.httpdate
 	end
+
+	def ldate(dt, hash = {})
+	  dt ? l(dt, hash) : nil
+	end
+
+	def human_boolean(boolean)
+	    boolean ? 'Si' : 'No'
+	end
 end

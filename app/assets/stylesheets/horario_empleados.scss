@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+@import "jquery-ui.min";
+@import "fullcalendar.min";
+
+
+
 p#empleado{
   font-size: 14px;
 }

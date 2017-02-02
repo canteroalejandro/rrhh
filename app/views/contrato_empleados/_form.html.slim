@@ -1,23 +1,32 @@
 = form_for([@contrato_empleado.empleado, @contrato_empleado], :html => {:class => "form-horizontal"}) do |f|
   - if @contrato_empleado.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@contrato_empleado.errors.count, "error")} #{pluralize_without_count(@contrato_empleado.errors.count, "prohibe", "prohiben")} almacenar este Contrato:"
-      ul
-        - @contrato_empleado.errors.full_messages.each do |message|
-          li = message
+      .alert.alert-warning
+        button.close data-dismiss="alert" type="button" 
+          i.ace-icon.fa.fa-times
+        strong = "#{pluralize(@contrato_empleado.errors.count, "error")} #{pluralize_without_count(@contrato_empleado.errors.count, "prohibe", "prohiben")} almacenar este Contrato:"
+
+        ul
+          - @contrato_empleado.errors.full_messages.each do |message|
+            li = message
 
   br
+  
   .form-group
-    p#empleado.col-sm-3.control-label
-      | Empleado
-    = @contrato_empleado.get_nombre_empleado(@contrato_empleado.empleado_id)
-    = f.hidden_field :empleado_id, :value => @contrato_empleado.empleado_id 
+    label.col-sm-3
+      .pull-right
+        | Empleado:  
+    / label.col-lg-2.control-label for="ejemplo_email_3"  Email
+    .col-sm-9
+      label = @contrato_empleado.get_nombre_empleado(@contrato_empleado.empleado_id)
+      = f.hidden_field :empleado_id, :value => @contrato_empleado.empleado_id     
   .form-group
     = f.label :contrato_id, 'Contrato: ', {class: "col-sm-3 control-label"}
     = f.collection_select :contrato_id, Contrato.all, :id, :nombre        
   .form-group
     = f.label :inicio, 'Fecha de Inicio del Contrato: ', {class: "col-sm-3 control-label"}
-    = f.date_select :inicio, :start_year => 1950
+    = f.date_select :inicio, :start_year => 1950, default: next_day(@vinculo_anterior.try(:fin))
+  
 
   .clearfix.form-actions
     .col-md-offset-3.col-md-9

@@ -6,25 +6,121 @@
         - @departamento.errors.full_messages.each do |message|
           li = message
 
-  .form-group
-    = f.label :codigo, "Código:", {class: "col-sm-3 control-label"}
-    = f.text_field :codigo,:value => @departamento.codigo_departamento
-  .form-group
-    = f.label :nombre, "Nombre:", {class: "col-sm-3 control-label"}
-    = f.text_field :nombre
+  #wizard-container.widget-box
+    .widget-header.widget-header-blue.widget-header-flat
+      h4.widget-title.lighter Asistente de Pedidos
+    .widget-body
+      .widget-main
+        #fuelux-wizard-container.no-steps-container
+          div
+            ul.steps
+              li.active data-step="1" 
+                span.step 1
+                span.title Datos Generales
+              li data-step="2" 
+                span.step 2
+                span.title Asignacion de Empleados
+              li data-step="3" 
+                span.step 3
+                span.title Supervisor
+              li data-step="4" 
+                span.step 4
+                span.title Resumen
+          hr/
+          .step-content.pos-rel
+            .step-pane.active data-step="1"
+              .row
+                .col-sm-2
+                  = f.label :codigo, {class: "pull-right control-label"}               
+                .col-sm-9
+                  = f.text_field :codigo, :value => @departamento.codigo_departamento, class: "form-control"
+              br/
+              .row
+                .col-sm-2 
+                  = f.label :nombre, {class: "pull-right control-label"} 
+                .col-sm-9
+                  = f.text_field :nombre, class: "form-control"
 
-  .form-group#Supervisor
-    = f.label :empleado_id, 'Empleado Supervisor:', {class: "col-sm-3 control-label"}
-    = f.collection_select :supervisor_id, Empleado.all, :id, :nombre_y_apellido, {:prompt => 'Elija un Supervisor...'}, {:id => 'empleado_supervisor'} unless @departamento.new_record?
-    = f.collection_select :supervisor_id, Empleado.where(:departamento_id => nil), :id, :nombre_y_apellido, {:prompt => 'Elija un Supervisor...'}, {:id => 'empleado_supervisor'} if @departamento.new_record?
-  .form-group#FechaSupervisor
-    = f.label :fechaEnQueDirige, "Fecha desde que dirige:", {class: "col-sm-3 control-label"}
-    = f.date_select :fechaEnQueDirige, :start_year => 1900, :end_year => Date.today.year
+              br/
+              
+            .step-pane data-step="2" style="padding-bottom: 0px;"
 
-  .form-group#Empleados
-    = f.label :empleado_ids, 'Otros Empleados:', {class: "col-sm-3 control-label"}
-    = f.collection_select :empleado_ids , Empleado.all, :id, :nombre_y_apellido, {:prompt => 'Seleccione Empleados...'}, {:multiple => true, :id => 'empleado_multiple'} unless @departamento.new_record?
-    = f.collection_select :empleado_ids , Empleado.where(:departamento_id => nil), :id, :nombre_y_apellido, {:prompt => 'Seleccione Empleados...'}, {:multiple => true, :id => 'empleado_multiple'} if @departamento.new_record?
-  .clearfix.form-actions
-    .col-md-offset-3.col-md-9
-      = f.submit "Crear Departamento", class: "btn btn-info"
+              .form-group
+                .col-sm-1
+                .col-sm-9
+                  select#duallist multiple="multiple" name="empleado_ids[]" size="10" style="height: 250px"
+                    - Empleado.empleadosDelDepartamento(@departamento.id).each do |empleado|
+                      option selected="selected" value=empleado.id = empleado.nombre_y_apellido
+                    end                                          
+                    - Empleado.empleadosSinDptoAsignado.each do |empleado|
+                      option value=empleado.id = empleado.nombre_y_apellido
+                    end
+
+            .step-pane data-step="3" 
+              .row
+                .col-sm-3
+                  = f.label :supervisor_id, 'Empleado Supervisor:', {class: "pull-right control-label"}
+                .col-sm-6
+                  select#supervisor_id.col-xs-6 name="supervisor_id"
+                  
+                  - unless @departamento.new_record?
+                    input#dpto_supervisor_id value=(@departamento.supervisor_id) style="visibility: hidden;"
+
+                  / = f.select :tipo_de_entrega_id, TipoDeEntrega.all.map { |e| [e.descripcion, e.id] },{},
+                    {class: "form-control select2", style: "width:80%;"}
+              br/
+
+            .step-pane data-step="4" 
+              .row
+                .col-sm-4
+                  .pull-right
+                    label Codigo
+                    br
+                    label Nombre
+                    br
+                    label Supervisor
+                    br
+                    label Empleados a Cargo
+                .col-sm-6
+                  label#lblCodigo
+                  br 
+                  label#lblNombre
+                  br
+                  label#lblSupervisor
+                  br
+                  label
+                    ul#ulEmpleados
+              br
+        
+        hr/
+        
+        .wizard-actions
+          a.btn.btn-prev disabled="disabled" 
+            i.ace-icon.fa.fa-arrow-left
+            | Atras
+          ' |
+          a.btn.btn-success.btn-next data-last="Guardar" 
+            | Siguiente
+            i.ace-icon.fa.fa-arrow-right.icon-on-right
+  br
+
+javascript:
+
+  jQuery(function($){
+            var demo1 = $('select[name="empleado_ids[]"]')
+              .bootstrapDualListbox({
+                infoTextFiltered: '<span class="label label-purple label-lg">Filtered</span>',
+                nonSelectedListLabel: 'Empleados (Sin dpto Asignado)',
+                selectedListLabel: 'Asignados a este Departamento',
+                preserveSelectionOnMove: 'moved',
+                infoText: 'Mostrando {0}',
+                infoTextEmpty: 'No hay Empleados'
+              });
+
+          var container1 = demo1.bootstrapDualListbox('getContainer');
+          container1.find('.btn').addClass('btn-white btn-info btn-bold');
+        
+          
+
+    
+    });

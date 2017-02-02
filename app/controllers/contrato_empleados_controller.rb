@@ -15,7 +15,8 @@ class ContratoEmpleadosController < ApplicationController
 
   # GET /contrato_empleados/new
   def new
-	@empleado = Empleado.find(params[:empleado_id])
+    @empleado = Empleado.find(params[:empleado_id])
+    @vinculo_anterior = @empleado.contrato_empleados.last
     @contrato_empleado = @empleado.contrato_empleados.new
   end
 

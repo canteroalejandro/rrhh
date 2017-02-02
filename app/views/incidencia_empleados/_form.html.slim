@@ -7,10 +7,24 @@
           li = message
 
   br
+    / #empleado.col-sm-3.control-label
   .form-group
-    p#empleado.col-sm-3.control-label
-      | Empleado  
-    = @incidencia_empleado.get_nombre_empleado(@incidencia_empleado.empleado_id)
+    label.col-sm-3
+      .pull-right
+        | Empleado:  
+    / label.col-lg-2.control-label for="ejemplo_email_3"  Email
+    .col-sm-9
+      label = @incidencia_empleado.get_nombre_empleado(@incidencia_empleado.empleado_id)
+      
+      / input#ejemplo_email_3.form-control placeholder="Email" type="email" /
+
+  / .form-group
+  /   p
+  /     #empleado.col-sm-3.control-label
+  /       | Empleado  
+  /     .col-sm-9
+  /       = @incidencia_empleado.get_nombre_empleado(@incidencia_empleado.empleado_id)
+
     = f.hidden_field :empleado_id, :value => @incidencia_empleado.empleado_id 
   .form-group
     = f.label :incidencia_id, 'Incidencia: ', {class: "col-sm-3 control-label"}

@@ -2,7 +2,7 @@ class Categoria < ActiveRecord::Base
 	has_many :empleados
 
 	#format
-	validates :codigo, :format => { :with => /(CA-)\d*/, :message => "El formato del Código es incorrecto" }
+	validates :codigo, :format => { :with => /(CAT-)\d*/, :message => "El formato del Código es incorrecto" }
 	#prescence
 	validates :codigo, :nombre, presence: {message: "El campo %{attribute} debe ser completado"}
 	validates :salarioBase, presence: {message: "El campo Salario Básico debe ser completado"}
@@ -20,7 +20,7 @@ class Categoria < ActiveRecord::Base
 			while "#{categoria}".length < 5
 				categoria = "0" + "#{categoria}"
 			end
-			return "CA-#{categoria}"
+			return "CAT-#{categoria}"
 		else
 			return self.codigo
 		end

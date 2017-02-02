@@ -6,6 +6,8 @@
       small
         = @empleado.codigo
 
+    p#notice = notice
+
 .user-profile
   .tabbable
     ul.nav.nav-tabs.padding-18
@@ -20,7 +22,7 @@
       li
         a aria-expanded="false" data-toggle="tab" href="#contrato" 
           i.pink.ace-icon.fa.fa-picture-o.bigger-120
-          | Contratos
+          | Contrato
 
 
     .tab-content.no-border.padding-10
@@ -84,19 +86,19 @@
           .col-xs-12.col-sm-9
             h4.blue
               span.middle 
-                = @empleado.contratos.last.nombre
+                = @empleado.try(:contratos).try(:last).try(:nombre)
             .profile-user-info
               .profile-info-row
                 .profile-info-name Fecha Inicio
                 .profile-info-value
                   span 
-                    = l @empleado.contrato_empleados.last.inicio
+                    = ldate @empleado.vinculo_actual.try(:inicio)
             .profile-user-info
               .profile-info-row
                 .profile-info-name Fecha Fin
                 .profile-info-value
                   span 
-                    = l @empleado.contrato_empleados.last.fin
+                    = ldate @empleado.vinculo_actual.try(:fin)
 
         .hr.dotted.hr-6
         .row
@@ -104,7 +106,7 @@
             a.btn.btn-sm.btn-primary href=(empleado_contrato_empleados_path(@empleado))
               | Ver Mas
 
-p#notice = notice
+
 
 / p
 /   strong Código: 

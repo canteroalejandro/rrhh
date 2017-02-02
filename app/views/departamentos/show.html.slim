@@ -24,30 +24,32 @@ p#notice = notice
     h4.widget-title Datos del Departamento
   .widget-body
     table class="table table-striped table-bordered table-hover"
-      / thead class="thin-border-bottom"
-      /   tr
-      /     th Atributo
-      /     th Descripción
       tbody
           tr
-            td#titulo Código
+            td#titulo.col-sm-4
+              .pull-right Código
             td = @departamento.codigo
           tr
-            td#titulo Nombre
+            td#titulo 
+              .pull-right Nombre
             td = @departamento.nombre
           tr
-            td#titulo Supervisor
+            td#titulo 
+              .pull-right Supervisor
             td = @departamento.supervisor.nombre_y_apellido
           tr
-            td#titulo Fecha desde que dirige
-            td = @departamento.fechaEnQueDirige
+            td#titulo 
+              .pull-right Fecha desde que dirige
+            td = ldate @departamento.fechaEnQueDirige
           tr
-            td#titulo Empleados:
+            td#titulo 
+              .pull-right Empleados a Cargo
             td
               ul
                 -unless @departamento.empleados.empty?
                   -@departamento.empleados.each do |d|
-                    li = d.nombre_y_apellido
+                    - if @departamento.supervisor != d
+                      li = d.nombre_y_apellido
 
 = link_to 'Editar', edit_departamento_path(@departamento)
 '|

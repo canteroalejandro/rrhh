@@ -137,3 +137,7 @@ gem 'font-awesome-rails', '4.5'
 gem 'autoprefixer-rails'
 
 gem "font-ionicons-rails"
+
+gem "rails-erd"
+
+gem 'money', '~> 6.8', '>= 6.8.1'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309043358) do
+ActiveRecord::Schema.define(version: 20170201021125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20160309043358) do
     t.decimal  "salarioBase"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "descripcion"
   end
 
   create_table "check_ins", force: :cascade do |t|
@@ -105,6 +106,7 @@ ActiveRecord::Schema.define(version: 20160309043358) do
     t.integer  "edadMinima"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.boolean  "renovable"
   end
 
   create_table "departamentos", force: :cascade do |t|

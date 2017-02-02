@@ -15,10 +15,13 @@
     = f.text_field :descripcion
   .clearfix.form-actions
     .col-md-offset-3.col-md-9
-      = f.submit "Crear Feriado", class: "btn btn-info"
+      = f.submit class: "btn btn-info"
 
 javascript:
-  $("#feriado_descripcion").val( $("#feriado_fecha_1i").val() + "-")
+  if ( $("#feriado_descripcion").val() == "" ) {
+    $("#feriado_descripcion").val( $("#feriado_fecha_1i").val() + "-")
+  }
+
   $("#feriado_descripcion").keydown(function(e) {
     var oldvalue=$(this).val();
     var field=this;
@@ -28,7 +31,7 @@ javascript:
         } 
     }, 1);
   });
-
+  
 coffee:
   $("#feriado_fecha_1i").change ->
     texto = $("#feriado_descripcion").val()

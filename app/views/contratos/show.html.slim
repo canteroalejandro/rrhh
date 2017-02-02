@@ -41,6 +41,9 @@ p#notice = notice
             td#titulo Edad mínima del trabajador
             td = "#{@contrato.edadMinima} años"
 
+          tr
+            td Es Renovable?
+            td = human_boolean( @contrato.renovable )
 br
 
 button.btn.btn-sm.btn-primary

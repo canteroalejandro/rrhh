@@ -28,7 +28,7 @@ table class="table table-striped table-bordered table-hover"
           -if empleado.antiguedad != nil
               = "#{empleado.antiguedad}  años"
 
-        td = empleado.categoria.nombre
+        td = empleado.try(:categoria).try(:nombre)
         -if can? :read, empleado
           td = link_to 'Mostrar', empleado
         -if can? :update, empleado

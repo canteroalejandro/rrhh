@@ -7,22 +7,354 @@
           li = message
 
   br
-  .form-group
-  	p#empleado.col-sm-4.control-label
-  	  'Empleado:  
-	  = @horario_empleado.get_nombre_empleado(@horario_empleado.empleado_id)
-   	= f.hidden_field :empleado_id, :value => @horario_empleado.empleado_id
-  .form-group
-	= f.label :horario_id, 'Horario:', {class: "col-sm-3 control-label"}
-	= f.collection_select :horario_id, Horario.all, :id, :nombre
-  .form-group
-    = f.label :fechaInicio, 'Inicio de Actividades:', {class: "col-sm-3 control-label"}
-    - @empleado = Empleado.find @horario_empleado.empleado_id
-    - if @empleado.antiguedad
-      = f.date_select :fechaInicio, start_year: (Date.today - @empleado.antiguedad.years).year
-    - else
-      = f.date_select :fechaInicio
 
-  .clearfix.form-actions
-    .col-md-offset-3.col-md-9
-      = f.submit "Asignar Horario a Empleado", class: "btn btn-info"
+  .row
+    .col-xs-12
+      /! PAGE CONTENT BEGINS
+      .row
+        .col-sm-9
+          .space
+          #calendar.fc.fc-ltr.fc-unthemed
+            
+        .col-sm-3
+          .widget-box.transparent
+            .widget-header
+              h4 Draggable events
+            .widget-body
+              .widget-main.no-padding
+                #external-events
+                  .external-event.label-success.ui-draggable.ui-draggable-handle data-class="label-success" style=("position: relative;") 
+                    i.ace-icon.fa.fa-arrows
+                    | Horario de Trabajo
+          
+          br
+
+          .widget-box
+            .widget-header 
+              h4.widget-title Margen de Entrada
+            .widget-body
+              .widget-main
+                .field#check
+                  span.lbl Posee margen de Entrada:  
+                  / = f.check_box :margenEntradaCheck, id: 'mg_entrada'
+                  span.lbl 
+                .field#mg_entrada_select
+                  / = f.label :inicioMargenEntrada, "Desde"
+                  / = f.time_select :inicioMargenEntrada, id: 'mg_entrada_select'
+                .field#mg_entrada_select
+                  / = f.label :finMargenEntrada, "Hasta"
+                  / = f.time_select :finMargenEntrada, id: 'mg_entrada_select'
+
+          br
+
+          .widget-box
+            .widget-header 
+              h4.widget-title Margen de Salida
+            .widget-body
+              .widget-main
+                .field#check
+                  span.lbl Posee margen de Entrada:  
+                  / = f.check_box :margenEntradaCheck, id: 'mg_entrada'
+                  span.lbl 
+                .field#mg_entrada_select
+                  / = f.label :inicioMargenEntrada, "Desde"
+                  / = f.time_select :inicioMargenEntrada, id: 'mg_entrada_select'
+                .field#mg_entrada_select
+                  / = f.label :finMargenEntrada, "Hasta"
+                  / = f.time_select :finMargenEntrada, id: 'mg_entrada_select'
+
+      /! PAGE CONTENT ENDS
+    /! /.col
+
+
+  / #main-widget-container
+  /   .row
+  /     #widget-container-col-1.col-xs-6.widget-container-col
+  /       #widget-box-1.widget-box.ui-sortable-handle
+  /         .widget-header
+  /           h5.widget-title Default Widget Box
+  /           .widget-toolbar
+  /             a data-action="close" href="#" 
+  /               i.ace-icon.fa.fa-times
+  /         .widget-body
+  /           .widget-main
+
+  /             .form-group
+  /               = f.label :horario_id, 'Horario:', {class: "col-sm-3 control-label"}
+  /               = f.select :horario_id, Horario.all.map {|e| ["#{e.horaEntrada.strftime("%H:%M %P")} - #{e.horaSalida.strftime("%H:%M %P")} Dias: #{e.getInicialesDias} | #{e.nombre}", e.id]}
+
+  /               / = f.collection_select :horario_id, Horario.all, :id, :nombre
+  /             .form-group
+  /               = f.label :fechaInicio, 'Inicio de Actividades:', {class: "col-sm-3 control-label"}
+  /               / - @empleado = Empleado.find @horario_empleado.empleado_id
+  /               / - if @empleado.antiguedad
+  /               /   = f.date_select :fechaInicio, start_year: (Date.today - @empleado.antiguedad.years).year
+  /               / - else
+  /               /   = f.date_select :fechaInicio
+                
+  /               - if @empleado.antiguedad
+  /                 = f.date_select :fechaInicio, default: @empleado.vinculo_actual.inicio
+  /               - else
+  /                 = f.date_select :fechaInicio
+              
+
+  /     #widget-container-col-1.col-xs-6.widget-container-col
+  /       #widget-box-1.widget-box.ui-sortable-handle
+  /         .widget-header
+  /           h5.widget-title Default Widget Box
+  /           .widget-toolbar
+  /             .widget-menu
+  /               a data-action="settings" data-toggle="dropdown" href="#" 
+  /                 i.ace-icon.fa.fa-bars
+  /               ul.dropdown-menu.dropdown-menu-right.dropdown-light-blue.dropdown-caret.dropdown-closer
+  /                 li
+  /                   a data-toggle="tab" href="#dropdown1"  Option#1
+  /                 li
+  /                   a data-toggle="tab" href="#dropdown2"  Option#2
+  /             a.orange2 data-action="fullscreen" href="#" 
+  /               i.ace-icon.fa.fa-expand
+  /             a data-action="reload" href="#" 
+  /               i.ace-icon.fa.fa-refresh
+  /             a data-action="collapse" href="#" 
+  /               i.ace-icon.fa.fa-chevron-up
+  /             a data-action="close" href="#" 
+  /               i.ace-icon.fa.fa-times
+  /         .widget-body
+  /           .widget-main
+
+  /             .alert.alert-info
+  /               .form-group
+  /                 label.col-sm-4
+  /                   .pull-right
+  /                     | Empleado:  
+  /                 .col-sm-8
+  /                   label = @horario_empleado.get_nombre_empleado(@horario_empleado.empleado_id)
+  /                   = f.hidden_field :empleado_id, :value => @horario_empleado.empleado_id
+
+  /               .form-group
+  /                 label.col-sm-4
+  /                   .pull-right
+  /                     | Contrato Actual:  
+  /                 .col-sm-8
+  /                   label = @empleado.try(:contratos).try(:last).try(:nombre)
+
+  /               .form-group
+  /                 label.col-sm-6
+  /                   .pull-right
+  /                     | Maxima Cantidad de Horas Diarias:  
+  /                 .col-sm-6
+  /                   label = @empleado.try(:contratos).try(:last).try(:horasDia)
+
+  /               .form-group
+  /                 label.col-sm-4
+  /                   .pull-right
+  /                     | Inicio de Contrato
+  /                 .col-sm-8
+  /                   label = ldate @empleado.vinculo_actual.try(:inicio)
+                
+  /               .form-group
+  /                 label.col-sm-4
+  /                   .pull-right
+  /                     | Fin de Contrato
+  /                 .col-sm-8
+  /                   label = ldate @empleado.vinculo_actual.try(:fin)
+      
+
+  
+
+  / .clearfix.form-actions
+  /   .col-md-offset-3.col-md-9
+  /     = f.submit "Asignar Horario a Empleado", class: "btn btn-info"
+
+javascript:
+  jQuery(function($) {
+
+  /* initialize the external events
+    -----------------------------------------------------------------*/
+
+    $('#external-events div.external-event').each(function() {
+
+      // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+      // it doesn't need to have a start or end
+      var eventObject = {
+        title: $.trim($(this).text()) // use the element's text as the event title
+      };
+
+      // store the Event Object in the DOM element so we can get to it later
+      $(this).data('eventObject', eventObject);
+
+      // make the event draggable using jQuery UI
+      $(this).draggable({
+        zIndex: 999,
+        revert: true,      // will cause the event to go back to its
+        revertDuration: 0  //  original position after the drag
+      });
+      
+    });
+
+
+
+
+    /* initialize the calendar
+    -----------------------------------------------------------------*/
+    // new Date(year, month, day, hours, minutes, seconds, milliseconds);
+    var date = new Date(2017,0,1);
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+
+
+    var calendar = $('#calendar').fullCalendar({
+      //isRTL: true,
+      //firstDay: 1,// >> change first day of week 
+      
+      buttonHtml: {
+        prev: '<i class="ace-icon fa fa-chevron-left"></i>',
+        next: '<i class="ace-icon fa fa-chevron-right"></i>'
+      },
+    
+      header: {},
+      allDaySlot: false,
+      defaultView: 'agendaWeek',
+      firstDay: 1,
+      events: [
+        // {
+        // title: 'Some Event',
+        // start: new Date(y, m, d, 16, 0),
+        // allDay: false,
+        // className: 'label-info'
+        // }
+      ],
+      /**eventResize: function(event, delta, revertFunc) {
+
+        alert(event.title + " end is now " + event.end.format());
+
+        if (!confirm("is this okay?")) {
+          revertFunc();
+        }
+
+      },*/
+      timeFormat: {agenda: 'H:mm'},
+      slotLabelFormat:"HH:mm",
+      editable: true,
+      droppable: true, // this allows things to be dropped onto the calendar !!!
+      drop: function(date) { // this function is called when something is dropped
+      
+        // retrieve the dropped element's stored Event Object
+        var originalEventObject = $(this).data('eventObject');
+        var $extraEventClass = $(this).attr('data-class');
+        
+        console.log(originalEventObject);
+        
+        // we need to copy it, so that multiple events don't have a reference to the same object
+        var copiedEventObject = $.extend({}, originalEventObject);
+
+        // assign it the date that was reported
+        var tempDate = new Date(date);
+        copiedEventObject.start = date;
+        // copiedEventObject.end = new Date(tempDate.setHours(tempDate.getHours()+1));
+
+
+        copiedEventObject.allDay = false;
+        if($extraEventClass) copiedEventObject['className'] = [$extraEventClass];
+        
+        // render the event on the calendar
+        // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+        $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+        
+        // // is the "remove after drop" checkbox checked?
+        // if ($('#drop-remove').is(':checked')) {
+        //   // if so, remove the element from the "Draggable Events" list
+        //   $(this).remove();
+        // }
+        
+      }
+      ,
+      // selectable: true,
+      // selectHelper: true,
+      select: function(start, end, allDay) {
+        
+        bootbox.prompt("New Event Title:", function(title) {
+          if (title !== null) {
+            calendar.fullCalendar('renderEvent',
+              {
+                title: title,
+                start: start,
+                end: end,
+                allDay: allDay,
+                className: 'label-info'
+              },
+              true // make the event "stick"
+            );
+          }
+        });
+        
+
+        calendar.fullCalendar('unselect');
+      }
+      ,
+      eventClick: function(calEvent, jsEvent, view) {
+
+        //display a modal
+        var modal = 
+        '<div class="modal fade">\
+          <div class="modal-dialog">\
+           <div class="modal-content">\
+           <div class="modal-body">\
+             <button type="button" class="close" data-dismiss="modal" style="margin-top:-10px;">&times;</button>\
+             <form class="no-margin">\
+              <label>Change event name &nbsp;</label>\
+              <input class="middle" autocomplete="off" type="text" value="' + calEvent.title + '" />\
+             <button type="submit" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> Save</button>\
+             </form>\
+           </div>\
+           <div class="modal-footer">\
+            <button type="button" class="btn btn-sm btn-danger" data-action="delete"><i class="ace-icon fa fa-trash-o"></i> Delete Event</button>\
+            <button type="button" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Cancel</button>\
+           </div>\
+          </div>\
+         </div>\
+        </div>';
+      
+      
+        var modal = $(modal).appendTo('body');
+        modal.find('form').on('submit', function(ev){
+          ev.preventDefault();
+
+          calEvent.title = $(this).find("input[type=text]").val();
+          calendar.fullCalendar('updateEvent', calEvent);
+          modal.modal("hide");
+        });
+        modal.find('button[data-action=delete]').on('click', function() {
+          calendar.fullCalendar('removeEvents' , function(ev){
+            return (ev._id == calEvent._id);
+          })
+          modal.modal("hide");
+        });
+        
+        modal.modal('show').on('hidden', function(){
+          modal.remove();
+        });
+
+
+        //console.log(calEvent.id);
+        //console.log(jsEvent);
+        //console.log(view);
+
+        // change the border color just for fun
+        //$(this).css('border-color', 'red');
+
+      }
+      
+    });
+  
+    $(".fc-day-header.fc-sun").html("Domingo");
+    $(".fc-day-header.fc-mon").html("Lunes");
+    $(".fc-day-header.fc-tue").html("Martes");
+    $(".fc-day-header.fc-wed").html("Miercoles");
+    $(".fc-day-header.fc-thu").html("Jueves");
+    $(".fc-day-header.fc-fri").html("Viernes");
+    $(".fc-day-header.fc-sat").html("sabado");
+    $(".fc-toolbar").hide();
+    
+  })

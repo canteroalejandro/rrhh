@@ -65,4 +65,11 @@ class Horario < ActiveRecord::Base
 		aux = texto.split(", ").map {|e| (e.to_i) +1 }
 		aux.include? fecha.wday
 	end
+
+	def getInicialesDias
+		dias_string = self.string_por_dias(self.dia)
+		list_dias = dias_string.split(", ")
+		list_dias = list_dias.map { |e| e[0..1] }
+		list_dias.join(", ")
+	end
 end
