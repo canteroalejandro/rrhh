@@ -91,3 +91,5 @@ rails generate migration AddSupervisorIdToDepartamento supervisor_id:integer
 
 
 rails g scaffold Feriado descripcion:string fecha:datetime
+
+rails g model DetalleHorario dia:integer horaEntrada:time horaSalida:time horario:references

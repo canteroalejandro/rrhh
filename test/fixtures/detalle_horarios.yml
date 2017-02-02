@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dia: 1
+  horaEntrada: 2017-02-02 17:36:21
+  horaSalida: 2017-02-02 17:36:21
+  horario_id: 
+
+two:
+  dia: 1
+  horaEntrada: 2017-02-02 17:36:21
+  horaSalida: 2017-02-02 17:36:21
+  horario_id: 

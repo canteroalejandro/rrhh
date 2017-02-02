@@ -27,7 +27,7 @@ $(document).ready ->
 
   $('#fuelux-wizard-container')
     .on 'finished.fu.wizard', (evt, data) ->
-      console.log $("form").serializeArray()
+      $("form").submit()
     .on 'actionclicked.fu.wizard', (evt, data) ->
       $('html, body').animate
         scrollTop: $('#wizard-container').offset().top
@@ -35,14 +35,14 @@ $(document).ready ->
       
       if data.step == 2 and data.direction == 'next'
         # Validacion para continuar el sgte paso.
-        if $("select[name='empleado_ids[]_helper2'] option").length == 0
+        if $("select[name='departamento[empleado_ids][]_helper2'] option").length == 0
           evt.preventDefault()
           alert "No ha seleccionado ningun empleado."
         else
           # Prepara el combo para la seleccion del supervisor.
           # Cargando los nuevos empleados asignados.
           $("#supervisor_id").empty()
-          $("select[name='empleado_ids[]_helper2'] option").each (index, value)->
+          $("select[name='departamento[empleado_ids][]_helper2'] option").each (index, value)->
             $("#supervisor_id").append $(value).clone()
 
             # Comprueba si esta en modo edit.
@@ -62,7 +62,7 @@ $(document).ready ->
           
           $("#ulEmpleados").empty()
           
-          $("select[name='empleado_ids[]_helper2'] option").each (index, value)->
+          $("select[name='departamento[empleado_ids][]_helper2'] option").each (index, value)->
             if $(value).val() != $("#supervisor_id").val()
               $("#ulEmpleados").append($("<li>").append( $(value).clone().text() ) )
 

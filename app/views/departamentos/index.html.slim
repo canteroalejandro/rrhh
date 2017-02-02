@@ -22,7 +22,7 @@ table class="table table-striped table-bordered table-hover"
         td = departamento.codigo
         td = departamento.nombre
         td = link_to departamento.supervisor.nombre_y_apellido, departamento.supervisor
-        td = l departamento.fechaEnQueDirige
+        td = ldate departamento.fechaEnQueDirige
         td = link_to 'Mostrar', departamento
         td = link_to 'Editar', edit_departamento_path(departamento)
         td = link_to 'Eliminar', departamento, data: {:confirm => '¿Está Seguro que desea Eliminar el Departamento?'}, :method => :delete

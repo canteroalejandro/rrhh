@@ -59,7 +59,7 @@
               .profile-info-name Categoría
               .profile-info-value
                 span 
-                  = @empleado.categoria.nombre
+                  = @empleado.try(:categoria).try(:nombre)
           
             -if @empleado.antiguedad != nil
               .profile-info-row

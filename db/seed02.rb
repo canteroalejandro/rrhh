@@ -62,7 +62,6 @@ Feriado.create!([
 Empleado.create!([
   {codigo: "EMP-00005", dni: "30444512", nombre: "Juliana", apellido: "Castiglione", fechaNacimiento: "1980-12-09", direccion: "Brisas 3280", antiguedad: 12, categoria_id: 3, departamento_id: 1, proyecto_id: nil},
   {codigo: "EMP-00001", dni: "33958772", nombre: "Berta", apellido: "Rivera", fechaNacimiento: "1989-04-11", direccion: "Leandro Gomez 5886", antiguedad: 4, categoria_id: 2, departamento_id: 3, proyecto_id: nil},
-  {codigo: "EMP-00010", dni: "36063076", nombre: "Ana", apellido: "Canteros", fechaNacimiento: "1991-11-05", direccion: "Calle 176 Nro. 7141", antiguedad: 2, categoria_id: 5, departamento_id: 4, proyecto_id: nil},
   {codigo: "EMP-00002", dni: "19423568", nombre: "Nahuel", apellido: "Estevez", fechaNacimiento: "1966-11-28", direccion: "Av. Alta Gracia 5332", antiguedad: 3, categoria_id: 1, departamento_id: 1, proyecto_id: nil},
   {codigo: "EMP-00003", dni: "25334991", nombre: "Hilda", apellido: "Zielinski", fechaNacimiento: "1970-04-07", direccion: "Joaquin Suarez 6863", antiguedad: 8, categoria_id: 1, departamento_id: 3, proyecto_id: nil},
   {codigo: "EMP-00004", dni: "25221305", nombre: "Pablo", apellido: "Gomez", fechaNacimiento: "1970-03-05", direccion: "Neruda 7393", antiguedad: 9, categoria_id: 1, departamento_id: 2, proyecto_id: nil},
@@ -70,6 +69,8 @@ Empleado.create!([
   {codigo: "EMP-00007", dni: "36063876", nombre: "Lara", apellido: "Riveros", fechaNacimiento: "1991-10-22", direccion: "Colon 123", antiguedad: 0, categoria_id: 4, departamento_id: 1, proyecto_id: nil},
   {codigo: "EMP-00008", dni: "38994567", nombre: "Matilde", apellido: "Santos", fechaNacimiento: "1994-08-08", direccion: "Ombu 4942", antiguedad: 0, categoria_id: 4, departamento_id: 2, proyecto_id: nil},
   {codigo: "EMP-00009", dni: "35666222", nombre: "Luis", apellido: "Ribeiro", fechaNacimiento: "1990-01-03", direccion: "Colombia 2351", antiguedad: 0, categoria_id: 3, departamento_id: 3, proyecto_id: nil}
+  
+  {codigo: "EMP-00010", dni: "36060390", nombre: "Alejandro", apellido: "Cantero", fechaNacimiento: "1992-03-30", direccion: "Colombia 521"}
 ])
 
 ContratoEmpleado.create!([

@@ -48,7 +48,7 @@
               .form-group
                 .col-sm-1
                 .col-sm-9
-                  select#duallist multiple="multiple" name="empleado_ids[]" size="10" style="height: 250px"
+                  select#duallist multiple="multiple" name="departamento[empleado_ids][]" size="10" style="height: 250px"
                     - Empleado.empleadosDelDepartamento(@departamento.id).each do |empleado|
                       option selected="selected" value=empleado.id = empleado.nombre_y_apellido
                     end                                          
@@ -61,10 +61,17 @@
                 .col-sm-3
                   = f.label :supervisor_id, 'Empleado Supervisor:', {class: "pull-right control-label"}
                 .col-sm-6
-                  select#supervisor_id.col-xs-6 name="supervisor_id"
+                  select#supervisor_id.col-xs-6 name="departamento[supervisor_id]"
                   
                   - unless @departamento.new_record?
                     input#dpto_supervisor_id value=(@departamento.supervisor_id) style="visibility: hidden;"
+
+              br
+              .row
+                .col-sm-3
+                  = f.label :fechaEnQueDirige, "Fecha desde que dirige:",  {class: "pull-right control-label"} 
+                .col-sm-6
+                  = f.date_select :fechaEnQueDirige, :start_year => 1900, :end_year => Date.today.year
 
                   / = f.select :tipo_de_entrega_id, TipoDeEntrega.all.map { |e| [e.descripcion, e.id] },{},
                     {class: "form-control select2", style: "width:80%;"}
@@ -107,7 +114,7 @@
 javascript:
 
   jQuery(function($){
-            var demo1 = $('select[name="empleado_ids[]"]')
+            var demo1 = $('select[name="departamento[empleado_ids][]"]')
               .bootstrapDualListbox({
                 infoTextFiltered: '<span class="label label-purple label-lg">Filtered</span>',
                 nonSelectedListLabel: 'Empleados (Sin dpto Asignado)',
