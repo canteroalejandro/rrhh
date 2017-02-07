@@ -22,4 +22,14 @@ module ApplicationHelper
 	def human_boolean(boolean)
 	    boolean ? 'Si' : 'No'
 	end
+
+	# Metodo comun para los modelos: Empleado y Horarios
+	# para el manejo del calendario.
+	def detalles_for_calendar(horario)
+		horario.detalle_horarios.map do |det|
+			aux = det.as_json
+			aux[:nombre] = det.try(:proyecto).try(:nombre)
+			aux
+		end
+	end
 end

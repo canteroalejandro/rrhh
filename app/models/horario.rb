@@ -1,16 +1,22 @@
 class Horario < ActiveRecord::Base
 
 	has_many :horario_empleados
-	has_many :empleados, through: :horario_empleados
+	# has_many :empleados, through: :horario_empleados
+	belongs_to :empleado
+
+	has_many :detalle_horarios
+
+	accepts_nested_attributes_for :detalle_horarios
 
 	before_save do
 	  self.dia.gsub!(/[\[\]\"]/, "") if attribute_present?("dia")
 	end
 
 	#format
-	validates :codigo, :format => { :with => /(HR-)\d*/, :message => "El formato del Código es incorrecto" }
+	# validates :codigo, :format => { :with => /(HR-)\d*/, :message => "El formato del Código es incorrecto" }
+	validate :empleado_id, :presence
 	#prescence
-	validates :codigo, :nombre, presence: {message: "El campo %{attribute} debe ser completado"}
+	# validates :codigo, :nombre, presence: {message: "El campo %{attribute} debe ser completado"}
 
 	def numeros_por_dias(nro)
 		if nro == 0
@@ -56,7 +62,27 @@ class Horario < ActiveRecord::Base
 		end
 	end
 
-	def getHorasDeTrabajo
+	# def method_name
+	# 	# Detectar que horario le corresponde
+	# 	# 1. segun la fecha y hora del check in o el check-Out
+	# 	# 2. 
+	# 	detalle_horarios.each do |dh|
+	# 		dh.horaEntrada + 
+			
+	# 		if   or dh.horaSalida
+
+	# 		end
+	# 	end
+	# end
+
+	def getHorasDeTrabajo(fecha)
+		dia_integer = fecha.wday
+		if dia_integer == 0
+			dia_integer = 7
+		else
+			dia_integer -= 1
+		end
+
 		TimeDifference.between(horaEntrada, horaSalida).in_hours
 	end
 

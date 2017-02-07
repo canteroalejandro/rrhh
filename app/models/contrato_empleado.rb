@@ -39,7 +39,7 @@ class ContratoEmpleado < ActiveRecord::Base
 				if ultimo_vinculo.contrato.nroDuracion != 0
 					if contrato == ultimo_vinculo.contrato
 						# Este es el mismo contato anterior y no es Renovable.
-						errors.add :base, "No es posible asignar el mismo contrto a este Empleado.\nEl Periodo de Prueba no es posible Renovarlo.\nL.C.T. Ley Nro 20.744 Rep. Arg."
+						errors.add :base, "No es posible asignar el mismo contrato a este Empleado.\nEl Periodo de Prueba no es posible Renovarlo.\nL.C.T. Ley Nro 20.744 Rep. Arg."
 					end
 				else
 					# Es un Contrato Indeterminado

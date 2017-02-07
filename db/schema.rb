@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202203621) do
+ActiveRecord::Schema.define(version: 20170206203642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,16 +55,16 @@ ActiveRecord::Schema.define(version: 20170202203621) do
   create_table "check_ins", force: :cascade do |t|
     t.boolean  "tardanza"
     t.datetime "horaOutput"
-    t.boolean  "flag",                default: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "horario_empleado_id"
+    t.boolean  "flag",        default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "usuario_id"
     t.integer  "empleado_id"
+    t.integer  "horario_id"
   end
 
   add_index "check_ins", ["empleado_id"], name: "index_check_ins_on_empleado_id", using: :btree
-  add_index "check_ins", ["horario_empleado_id"], name: "index_check_ins_on_horario_empleado_id", using: :btree
+  add_index "check_ins", ["horario_id"], name: "index_check_ins_on_horario_id", using: :btree
   add_index "check_ins", ["usuario_id"], name: "index_check_ins_on_usuario_id", using: :btree
 
   create_table "check_outs", force: :cascade do |t|
@@ -123,14 +123,16 @@ ActiveRecord::Schema.define(version: 20170202203621) do
 
   create_table "detalle_horarios", force: :cascade do |t|
     t.integer  "dia"
-    t.time     "horaEntrada"
-    t.time     "horaSalida"
+    t.datetime "horaEntrada"
+    t.datetime "horaSalida"
     t.integer  "horario_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "proyecto_id"
   end
 
   add_index "detalle_horarios", ["horario_id"], name: "index_detalle_horarios_on_horario_id", using: :btree
+  add_index "detalle_horarios", ["proyecto_id"], name: "index_detalle_horarios_on_proyecto_id", using: :btree
 
   create_table "empleado_proyectos", force: :cascade do |t|
     t.integer  "empleado_id"
@@ -294,7 +296,7 @@ ActiveRecord::Schema.define(version: 20170202203621) do
   add_foreign_key "asistencias", "horarios"
   add_foreign_key "asistencias", "usuarios"
   add_foreign_key "check_ins", "empleados"
-  add_foreign_key "check_ins", "horario_empleados"
+  add_foreign_key "check_ins", "horarios"
   add_foreign_key "check_ins", "usuarios"
   add_foreign_key "check_outs", "check_ins"
   add_foreign_key "check_outs", "empleado_proyectos"
@@ -305,6 +307,7 @@ ActiveRecord::Schema.define(version: 20170202203621) do
   add_foreign_key "contrato_empleados", "empleados"
   add_foreign_key "departamentos", "empleados"
   add_foreign_key "detalle_horarios", "horarios"
+  add_foreign_key "detalle_horarios", "proyectos"
   add_foreign_key "empleados", "categorias"
   add_foreign_key "empleados", "departamentos"
   add_foreign_key "empleados", "proyectos"

@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resources :roles
   resources :check_outs
   resources :check_ins
-  resources :horarios
   resources :usuarios
   resources :proyectos
   resources :departamentos
@@ -27,6 +26,10 @@ Rails.application.routes.draw do
     resources :incidencia_empleados
     resources :contrato_empleados
     resources :historia_medicas
+    resources :horarios do
+      get "new_from" => "horarios#new_from", as: "horario_new_from"
+      post "create_from" => "horarios#create_from", as: "horario_create_from"
+    end
   end
   resources :horario_empleados
   resources :categorias

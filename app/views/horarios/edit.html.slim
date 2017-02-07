@@ -1,13 +1,21 @@
 .page-header
-  h1
-    | Horario
-    small
-      i.ace-icon.fa.fa-angle-double-right
-      | Editar
+  .row
+    .col-sm-6
+      h1
+        | Horarios
+        small
+          i.ace-icon.fa.fa-angle-double-right
+          | Editar
+
+    .col-sm-offset-6
+      .search-actions
+        span.text-info Total De Horas Semanales: 
+        span#horas-semanal.green.bolder.bigger-150 00:00 hs
+
 
 == render 'form'
 
-= link_to 'Mostrar', @horario
-'|
-= link_to 'Volver', horarios_path
+/ = link_to 'Mostrar', @horario
+/ '|
+/ = link_to 'Volver', horarios_path
 

@@ -7,3 +7,4 @@
 //= require moment
 //= require fullcalendar.min
 //= require bootbox
+

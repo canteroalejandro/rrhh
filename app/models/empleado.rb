@@ -5,8 +5,10 @@ class Empleado < ActiveRecord::Base
   has_many :check_ins
   has_many :check_outs
   has_many :historia_medicas
-  has_many :horarioEmpleados
-  has_many :horarios, through: :horarioEmpleados
+  
+  # has_many :horarioEmpleados
+  has_many :horarios
+
   has_one :categoria
   belongs_to :departamento
   has_many :empleado_proyectos
@@ -185,5 +187,13 @@ class Empleado < ActiveRecord::Base
 
   def vinculo_actual
     self.contrato_empleados.last
+  end
+
+  def tiene_contrato_vigente(fecha)
+    if vinculo_actual.fin >= fecha then
+      return true
+    else
+      return false
+    end
   end
 end

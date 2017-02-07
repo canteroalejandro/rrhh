@@ -32,8 +32,10 @@ class CheckInsController < ApplicationController
         @asistencia = Asistencia.new
         @asistencia.entrada = true
         @asistencia.empleado_id = @check_in.empleado_id
-        @hor_emp = HorarioEmpleado.find(@check_in.horario_empleado_id)
-        @asistencia.horario_id = @hor_emp.horario_id
+        
+        @asistencia.horario_id = @check_in.horario_id
+        # @hor_emp = HorarioEmpleado.find(@check_in.horario_empleado_id)
+        # @asistencia.horario_id = @hor_emp.horario_id
         @asistencia.check_in_id = @check_in.id
         @asistencia.save
         format.html { redirect_to @check_in, notice: 'Check in was successfully created.' }

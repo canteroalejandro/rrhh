@@ -40,12 +40,12 @@
       span.menu-text
         | Proyectos
 
-- if can? :read, Horario
-  li class=(is_active?("index"))
-    a href=(horarios_path)
-      i.menu-icon.fa.fa-clock-o
-      span.menu-text
-        | Horarios
+/ - if can? :read, Horario
+/   li class=(is_active?("index"))
+/     a href=(horarios_path)
+/       i.menu-icon.fa.fa-clock-o
+/       span.menu-text
+/         | Horarios
 
 - if can? :read, Contrato
   li class=(is_active?("index"))

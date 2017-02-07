@@ -1,0 +1,23 @@
+Categorias (Agrupamientos y Categorias)
+
+- Se cargaron datos reales de las categorias actuales del faecys
+
+Departamentos
+
+- Asistente para la creacion de Departamentos.
+- Se mejoro la IU.
+	* Queda claro los empleados a cargo y el supervisor del Dpto.
+
+Contratos
+
+- Validaciones: Para no renovacion de contratos de prueba, por tiempo indeterminado.
+- Validaciones: Para contratos de plazo fijo, pueden hasta un maximo de 5 años.
+
+	= Conforme la Ley 20.744 LCT. Rep. Arg
+
+Horarios
+
+- Un maximo de 8 hs diarias, o 9 horas distribuyendo la carga horaria y que este no supere las 48 hs semanales.
+- Las Excepciones a esta regla no rige para empleados de comercio.
+
+	= Conforme la Ley 11.544. LJT. Rep. Arg

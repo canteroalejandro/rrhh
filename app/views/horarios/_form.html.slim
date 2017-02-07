@@ -1,10 +1,15 @@
-= form_for @horario, :html => {:class => "form-horizontal"} do |f|
+= form_for [@empleado, @horario], :html => {:class => "form-horizontal"} do |f|
+  
   - if @horario.errors.any?
     #error_explanation
       h2 = "#{pluralize(@horario.errors.count, "error")} #{pluralize_without_count(@horario.errors.count, "prohibe", "prohiben")} almacenar este Horario:"
       ul
         - @horario.errors.full_messages.each do |message|
           li = message
+  
+  = f.hidden_field :empleado_id, value: @empleado.id
+
+  #detalles_de_horario
 
   .row
     .col-xs-12
@@ -17,14 +22,16 @@
         .col-sm-3
           .widget-box.transparent
             .widget-header
-              h4 Draggable events
+              h4 Proyectos del Departamento
             .widget-body
               .widget-main.no-padding
                 #external-events
-                  - [0,0,0].each do |variable|                  
-                    .external-event.label-success.ui-draggable.ui-draggable-handle data-class="label-success" data-id-proyecto="1" style=("position: relative;") 
+                  - q = Queue.new
+                  - Proyecto.all.each do |proyecto|  
+                    - color = get_color_label(q)                
+                    .external-event.ui-draggable.ui-draggable-handle class=("label-#{color}") data-class=("label-#{color}") data-id-proyecto=(proyecto.id) style=("position: relative;") 
                       i.ace-icon.fa.fa-arrows
-                      | Horario de Trabajo
+                      = proyecto.nombre
           
           br
 
@@ -38,10 +45,10 @@
                   = f.check_box :margenEntradaCheck, id: 'mg_entrada'
                   span.lbl 
                 .form-group#mg_entrada_select style="padding-left: 12px;padding-bottom: 6px"
-                  = f.label :inicioMargenEntrada, "Desde: "
+                  = f.label :inicioMargenEntrada, "Antes: "
                   = f.time_select :inicioMargenEntrada, {default: "00:00:00".to_time, end_hour: 1, minute_step: 5 }, id: 'mg_entrada_select'
                 .form-group#mg_entrada_select style="padding-left: 12px;padding-bottom: 6px"
-                  = f.label :finMargenEntrada, "Hasta: "
+                  = f.label :finMargenEntrada, "Despues: "
                   = f.time_select :finMargenEntrada, {default: "00:00:00".to_time, end_hour: 1, minute_step: 5 }, id: 'mg_entrada_select'
 
           br
@@ -52,124 +59,40 @@
             .widget-body
               .widget-main
                 .form-group#check style="padding-left: 12px;padding-bottom: 6px"
-                  span.lbl Posee margen de Entrada:  
-                  = f.check_box :margenEntradaCheck, id: 'mg_entrada'
-                  span.lbl 
+                  span.lbl Posee margen de Salida:   
+                  = f.check_box :margenSalidaCheck
+                  span.lbl
                 .form-group#mg_entrada_select style="padding-left: 12px;padding-bottom: 6px"
-                  = f.label :inicioMargenEntrada, "Desde: "
-                  = f.time_select :inicioMargenEntrada, {default: "00:00:00".to_time, end_hour: 1, minute_step: 5 }, id: 'mg_entrada_select'
+                  = f.label :inicioMargenSalida, "Antes: "
+                  = f.time_select :inicioMargenSalida, {default: "00:00:00".to_time, end_hour: 1, minute_step: 5 }
                 .form-group#mg_entrada_select style="padding-left: 12px;padding-bottom: 6px"
-                  = f.label :finMargenEntrada, "Hasta: "
-                  = f.time_select :finMargenEntrada, {default: "00:00:00".to_time, end_hour: 1, minute_step: 5 }, id: 'mg_entrada_select'
+                  = f.label :finMargenSalida, "Despues: "
+                  = f.time_select :finMargenSalida, {default: "00:00:00".to_time, end_hour: 1, minute_step: 5 }
 
-      /! PAGE CONTENT ENDS
-    /! /.col
-
-
-  / #main-widget-container
-  /   .row
-  /     #widget-container-col-1.col-xs-6.widget-container-col
-  /       #widget-box-1.widget-box.ui-sortable-handle
-  /         .widget-header
-  /           h5.widget-title Default Widget Box
-  /           .widget-toolbar
-  /             a data-action="close" href="#" 
-  /               i.ace-icon.fa.fa-times
-  /         .widget-body
-  /           .widget-main
-
-  /             .form-group
-  /               = f.label :horario_id, 'Horario:', {class: "col-sm-3 control-label"}
-  /               = f.select :horario_id, Horario.all.map {|e| ["#{e.horaEntrada.strftime("%H:%M %P")} - #{e.horaSalida.strftime("%H:%M %P")} Dias: #{e.getInicialesDias} | #{e.nombre}", e.id]}
-
-  /               / = f.collection_select :horario_id, Horario.all, :id, :nombre
-  /             .form-group
-  /               = f.label :fechaInicio, 'Inicio de Actividades:', {class: "col-sm-3 control-label"}
-  /               / - @empleado = Empleado.find @horario_empleado.empleado_id
-  /               / - if @empleado.antiguedad
-  /               /   = f.date_select :fechaInicio, start_year: (Date.today - @empleado.antiguedad.years).year
-  /               / - else
-  /               /   = f.date_select :fechaInicio
-                
-  /               - if @empleado.antiguedad
-  /                 = f.date_select :fechaInicio, default: @empleado.vinculo_actual.inicio
-  /               - else
-  /                 = f.date_select :fechaInicio
-              
-
-  /     #widget-container-col-1.col-xs-6.widget-container-col
-  /       #widget-box-1.widget-box.ui-sortable-handle
-  /         .widget-header
-  /           h5.widget-title Default Widget Box
-  /           .widget-toolbar
-  /             .widget-menu
-  /               a data-action="settings" data-toggle="dropdown" href="#" 
-  /                 i.ace-icon.fa.fa-bars
-  /               ul.dropdown-menu.dropdown-menu-right.dropdown-light-blue.dropdown-caret.dropdown-closer
-  /                 li
-  /                   a data-toggle="tab" href="#dropdown1"  Option#1
-  /                 li
-  /                   a data-toggle="tab" href="#dropdown2"  Option#2
-  /             a.orange2 data-action="fullscreen" href="#" 
-  /               i.ace-icon.fa.fa-expand
-  /             a data-action="reload" href="#" 
-  /               i.ace-icon.fa.fa-refresh
-  /             a data-action="collapse" href="#" 
-  /               i.ace-icon.fa.fa-chevron-up
-  /             a data-action="close" href="#" 
-  /               i.ace-icon.fa.fa-times
-  /         .widget-body
-  /           .widget-main
-
-  /             .alert.alert-info
-  /               .form-group
-  /                 label.col-sm-4
-  /                   .pull-right
-  /                     | Empleado:  
-  /                 .col-sm-8
-  /                   label = @horario_empleado.get_nombre_empleado(@horario_empleado.empleado_id)
-  /                   = f.hidden_field :empleado_id, :value => @horario_empleado.empleado_id
-
-  /               .form-group
-  /                 label.col-sm-4
-  /                   .pull-right
-  /                     | Contrato Actual:  
-  /                 .col-sm-8
-  /                   label = @empleado.try(:contratos).try(:last).try(:nombre)
-
-  /               .form-group
-  /                 label.col-sm-6
-  /                   .pull-right
-  /                     | Maxima Cantidad de Horas Diarias:  
-  /                 .col-sm-6
-  /                   label = @empleado.try(:contratos).try(:last).try(:horasDia)
-
-  /               .form-group
-  /                 label.col-sm-4
-  /                   .pull-right
-  /                     | Inicio de Contrato
-  /                 .col-sm-8
-  /                   label = ldate @empleado.vinculo_actual.try(:inicio)
-                
-  /               .form-group
-  /                 label.col-sm-4
-  /                   .pull-right
-  /                     | Fin de Contrato
-  /                 .col-sm-8
-  /                   label = ldate @empleado.vinculo_actual.try(:fin)
-      
-
-  
-
-  / .clearfix.form-actions
-  /   .col-md-offset-3.col-md-9
-  /     = f.submit "Asignar Horario a Empleado", class: "btn btn-info"
+  .clearfix.form-actions
+    .col-md-offset-3.col-md-9
+      = f.submit "Asignar Horario a Empleado", class: "btn btn-info"
 
 javascript:
   jQuery(function($) {
+    data = '#{raw(detalles_for_calendar(@horario).to_json)}'
+    data = JSON.parse(data);
+    detalles = []
 
-  /* initialize the external events
-    -----------------------------------------------------------------*/
+    if (data[0].horaSalida != undefined ){
+      for (var i = data.length - 1; i >= 0; i--) {
+        data[i]
+        detalles.push({
+          title: data[i].nombre,
+          start: data[i].horaEntrada,
+          end: data[i].horaSalida,
+          proyecto_id: data[i].proyecto_id,
+          className: 'label-success'
+        })
+      }
+    } else {
+      data = {};
+    }
 
     $('#external-events div.external-event').each(function() {
 
@@ -191,18 +114,9 @@ javascript:
       
     });
 
-
-
-
     /* initialize the calendar
     -----------------------------------------------------------------*/
     // new Date(year, month, day, hours, minutes, seconds, milliseconds);
-    var date = new Date(2017,0,1);
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
-
-
     var calendar = $('#calendar').fullCalendar({
       //isRTL: true,
       //firstDay: 1,// >> change first day of week 
@@ -211,34 +125,19 @@ javascript:
         prev: '<i class="ace-icon fa fa-chevron-left"></i>',
         next: '<i class="ace-icon fa fa-chevron-right"></i>'
       },
-    
+      defaultDate: moment('2017-05-01'),
       header: {},
       allDaySlot: false,
       defaultView: 'agendaWeek',
       firstDay: 1,
-      events: [
-        // {
-        // title: 'Some Event',
-        // start: new Date(y, m, d, 16, 0),
-        // allDay: false,
-        // className: 'label-info'
-        // }
-      ],
-      /**eventResize: function(event, delta, revertFunc) {
-
-        alert(event.title + " end is now " + event.end.format());
-
-        if (!confirm("is this okay?")) {
-          revertFunc();
-        }
-
-      },*/
+      events: detalles,
       timeFormat: {agenda: 'H:mm'},
       slotLabelFormat:"HH:mm",
       allDayDefault: false,
       forceEventDuration: true,
       editable: true,
       droppable: true, // this allows things to be dropped onto the calendar !!!
+      scrollTime :  "07:00:00", 
       drop: function(date) { // this function is called when something is dropped
       
         // retrieve the dropped element's stored Event Object
@@ -246,9 +145,6 @@ javascript:
         var $extraEventClass = $(this).attr('data-class');
         var proyecto_id = $(this).attr('data-id-proyecto');
 
-        
-        // console.log(originalEventObject);
-        
         // we need to copy it, so that multiple events don't have a reference to the same object
         var copiedEventObject = $.extend({}, originalEventObject);
 
@@ -260,18 +156,68 @@ javascript:
         copiedEventObject.allDay = false;
         if($extraEventClass) copiedEventObject['className'] = [$extraEventClass];
         
-        // render the event on the calendar
-        // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
         $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+      },
+
+      eventAfterAllRender: function function_name(view) {
+        dayTotals = {
+          1: moment.duration(),
+          2: moment.duration(),
+          3: moment.duration(),
+          4: moment.duration(),
+          5: moment.duration(),
+          6: moment.duration(),
+          7: moment.duration(),
+        };
+        duration_semanal = 0;
         
-        // // is the "remove after drop" checkbox checked?
-        // if ($('#drop-remove').is(':checked')) {
-        //   // if so, remove the element from the "Draggable Events" list
-        //   $(this).remove();
-        // }
+        $("#detalles_de_horario").empty();
         
-      }
-      ,
+        $($('#calendar').fullCalendar('clientEvents')).each(function(index, value){
+          // Manejo del calculo de Horas
+          dia_integer = value.start.format("E")
+          dayTotals[dia_integer].add( moment(value.end).diff(moment(value.start)) )
+
+          // Manejo del Formulario.
+          $("#detalles_de_horario").append(get_html(index, value));
+        })
+
+        if ($(".fc-day-header").length !=7){
+          $(".fc-day-header").slice(-7).each(function(i, v){
+            duration_milliseconds = dayTotals[i+1].asMilliseconds()
+            duration_semanal += duration_milliseconds
+            // Control Diario
+            $(v).html(moment.utc(duration_milliseconds).format("HH:mm") + " hs")
+            if (32400000 < duration_milliseconds){
+              $(v).css("background-color", "red")
+              $(v).css("color", "white")
+            } else {
+              $(v).css("background-color", "#aeff70")
+              $(v).css("color", "black")
+            }            
+          })
+          // Control Semanal
+          dias = moment.duration(duration_semanal).days() 
+          horas = moment.duration(duration_semanal).hours() 
+          minutos = moment.duration(duration_semanal).minutes() 
+          
+          hora_semanal = ("00" + ((dias * 24) + horas)).slice(-2) + ":" + ("00" + minutos ).slice(-2)
+
+          if  (duration_semanal > 172800000){
+            $("#horas-semanal")
+              .html(hora_semanal + " hs Exedido!")
+              .removeClass("green")
+              .addClass("red")
+
+          } else {
+            $("#horas-semanal")
+              .html(hora_semanal + " hs")
+              .removeClass("red")
+              .addClass("green")
+          }
+        }
+
+      },
       // selectable: true,
       // selectHelper: true,
       select: function(start, end, allDay) {
@@ -304,14 +250,9 @@ javascript:
            <div class="modal-content">\
            <div class="modal-body">\
              <button type="button" class="close" data-dismiss="modal" style="margin-top:-10px;">&times;</button>\
-             <form class="no-margin">\
-              <label>Change event name &nbsp;</label>\
-              <input class="middle" autocomplete="off" type="text" value="' + calEvent.title + '" />\
-             <button type="submit" class="btn btn-sm btn-success"><i class="ace-icon fa fa-check"></i> Save</button>\
-             </form>\
            </div>\
            <div class="modal-footer">\
-            <button type="button" class="btn btn-sm btn-danger" data-action="delete"><i class="ace-icon fa fa-trash-o"></i> Delete Event</button>\
+            <button type="button" class="btn btn-sm btn-danger" data-action="delete"><i class="ace-icon fa fa-trash-o"></i> Borrar Proyecto del Horario</button>\
             <button type="button" class="btn btn-sm" data-dismiss="modal"><i class="ace-icon fa fa-times"></i> Cancel</button>\
            </div>\
           </div>\
@@ -337,26 +278,82 @@ javascript:
         modal.modal('show').on('hidden', function(){
           modal.remove();
         });
-
-
-        //console.log(calEvent.id);
-        //console.log(jsEvent);
-        //console.log(view);
-
-        // change the border color just for fun
-        //$(this).css('border-color', 'red');
-
       }
       
     });
-  
-    $(".fc-day-header.fc-sun").html("Domingo");
-    $(".fc-day-header.fc-mon").html("Lunes");
-    $(".fc-day-header.fc-tue").html("Martes");
-    $(".fc-day-header.fc-wed").html("Miercoles");
-    $(".fc-day-header.fc-thu").html("Jueves");
-    $(".fc-day-header.fc-fri").html("Viernes");
-    $(".fc-day-header.fc-sat").html("sabado");
+    
+    function get_html(indice, json) {
+      html = '<div id=fields>\
+          <input type="hidden" name="horario[detalle_horarios_attributes][XXX][dia]" id="horario_detalle_horarios_attributes_XXX_dia" value="">\
+          <input type="hidden" id="horario_detalle_horarios_attributes_XXX_horaEntrada_1i" name="horario[detalle_horarios_attributes][XXX][horaEntrada(1i)]" value="">\
+          <input type="hidden" id="horario_detalle_horarios_attributes_XXX_horaEntrada_2i" name="horario[detalle_horarios_attributes][XXX][horaEntrada(2i)]" value="">\
+          <input type="hidden" id="horario_detalle_horarios_attributes_XXX_horaEntrada_3i" name="horario[detalle_horarios_attributes][XXX][horaEntrada(3i)]" value="">\
+          <input type="hidden" id="horario_detalle_horarios_attributes_XXX_horaEntrada_4i" name="horario[detalle_horarios_attributes][XXX][horaEntrada(4i)]" value="">\
+          <input type="hidden" id="horario_detalle_horarios_attributes_XXX_horaEntrada_5i" name="horario[detalle_horarios_attributes][XXX][horaEntrada(5i)]" value="">\
+          <input type="hidden" id="horario_detalle_horarios_attributes_XXX_horaSalida_1i" name="horario[detalle_horarios_attributes][XXX][horaSalida(1i)]" value="">\
+          <input type="hidden" id="horario_detalle_horarios_attributes_XXX_horaSalida_2i" name="horario[detalle_horarios_attributes][XXX][horaSalida(2i)]" value="">\
+          <input type="hidden" id="horario_detalle_horarios_attributes_XXX_horaSalida_3i" name="horario[detalle_horarios_attributes][XXX][horaSalida(3i)]" value="">\
+          <input type="hidden" id="horario_detalle_horarios_attributes_XXX_horaSalida_4i" name="horario[detalle_horarios_attributes][XXX][horaSalida(4i)]" value="">\
+          <input type="hidden" id="horario_detalle_horarios_attributes_XXX_horaSalida_5i" name="horario[detalle_horarios_attributes][XXX][horaSalida(5i)]" value="">\
+          <input type="hidden" id="horario_detalle_horarios_attributes_XXX_proyecto_id" name="horario[detalle_horarios_attributes][XXX][proyecto_id]" value="">\
+          </div>';
+
+      // new_id = (new Date).getTime()
+      // Reemplaza los indices.
+      html = html.replace(new RegExp('XXX', 'g'), indice)
+      $detalle = $(html)
+      
+      $detalle.find("#horario_detalle_horarios_attributes_"+ indice +"_dia")
+        .val(json.start.format("E") - 1)
+
+      $detalle.find("#horario_detalle_horarios_attributes_"+ indice +"_horaEntrada_1i")
+        .val(json.start.format("YYYY"))
+      $detalle.find("#horario_detalle_horarios_attributes_"+ indice +"_horaEntrada_2i")
+        .val(json.start.format("MM"))
+      $detalle.find("#horario_detalle_horarios_attributes_"+ indice +"_horaEntrada_3i")
+        .val(json.start.format("DD"))
+      $detalle.find("#horario_detalle_horarios_attributes_"+ indice +"_horaEntrada_4i")
+        .val(json.start.format("HH"))
+      $detalle.find("#horario_detalle_horarios_attributes_"+ indice +"_horaEntrada_5i")
+        .val(json.start.format("mm"))
+      
+      $detalle.find("#horario_detalle_horarios_attributes_"+ indice +"_horaSalida_1i")
+        .val(json.start.format("YYYY"))
+      $detalle.find("#horario_detalle_horarios_attributes_"+ indice +"_horaSalida_2i")
+        .val(json.start.format("MM"))
+      $detalle.find("#horario_detalle_horarios_attributes_"+ indice +"_horaSalida_3i")
+        .val(json.start.format("DD"))
+      $detalle.find("#horario_detalle_horarios_attributes_"+ indice +"_horaSalida_4i")
+        .val(json.end.format("HH"))
+      $detalle.find("#horario_detalle_horarios_attributes_"+ indice +"_horaSalida_5i")
+        .val(json.end.format("mm"))
+
+      $detalle.find("#horario_detalle_horarios_attributes_"+ indice +"_proyecto_id")
+        .val(json.proyecto_id)
+
+      return $($detalle).html()
+    }
     $(".fc-toolbar").hide();
     
+    header = $(".fc-row.fc-widget-header tr:first").clone()
+    $(".fc-row.fc-widget-header thead").append(header)
+
+    $(".fc-day-header.fc-sun:first").html("Domingo")
+    $(".fc-day-header.fc-mon:first").html("Lunes");
+    $(".fc-day-header.fc-tue:first").html("Martes");
+    $(".fc-day-header.fc-wed:first").html("Miercoles");
+    $(".fc-day-header.fc-thu:first").html("Jueves");
+    $(".fc-day-header.fc-fri:first").html("Viernes");
+    $(".fc-day-header.fc-sat:first").html("Sabado");
+
+    $(".fc-day-header").slice(-7)
+      .html("00:00 hs")
+      .css("background-color", "#aeff70")
+      .css("color", "black")
+    
+
+    
+    // end: moment().subtract(1, 'days').format('YYYY-MM-DD'),
+    // .fullCalendar( 'renderEvent',
+
   })

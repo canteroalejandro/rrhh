@@ -3,6 +3,13 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 //= require bootstrap
+//= require jquery-ui.custom.min
+//= require jquery.ui.touch-punch.min
+//= require moment
+//= require fullcalendar.min
+//= require bootbox
+
+
 # //= require raphael.min
 # //= require morris.min
 

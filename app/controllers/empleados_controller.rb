@@ -13,6 +13,8 @@ class EmpleadosController < ApplicationController
   def show
     @array = []
     @array << { y: '03/2016', a: 100, i: 300}
+
+    @horario = @empleado.horarios.last
   end
 
   # GET /empleados/new

@@ -11,12 +11,12 @@
 .user-profile
   .tabbable
     ul.nav.nav-tabs.padding-18
-      li.active
-        a aria-expanded="true" data-toggle="tab" href="#empleado" 
+      li
+        a#empleado-tab aria-expanded="true" data-toggle="tab" href="#empleado" 
           i.green.ace-icon.fa.fa-user.bigger-120
           | Empleado
       li
-        a aria-expanded="false" data-toggle="tab" href="#horario" 
+        a#horario-tab.active aria-expanded="false" data-toggle="tab" href="#horario" 
           i.orange.ace-icon.fa.fa-clock-o.bigger-120
           | Horario Asignado
       li
@@ -69,16 +69,24 @@
                     = "#{@empleado.antiguedad}  años"
 
       #horario.tab-pane
-        .row
-          .col-sm-6
-            - @empleado.horarioEmpleados.each do |horario_empleado|
-              .profile-activity.clearfix
-                div.center
-                  = horario_empleado.get_horario(horario_empleado.horario_id)
-                  .time
-                    i.ace-icon.fa.fa-calendar.bigger-110 style="margin-right: 6px;"
-                    | Incio de Actividades 
-                    = l horario_empleado.fechaInicio
+        - if @empleado.horarios.empty?
+          .row
+            .col-sm-1
+            .col-sm-3
+              a.btn.btn-sm.btn-primary href=(empleado_horario_horario_new_from_path(@empleado, @horario))
+                | Asignar Horario
+        - else
+          .row
+            .col-sm-1
+            .col-sm-8
+              #calendar.fc.fc-ltr.fc-unthemed
+            .col-sm-3
+              .search-actions
+                span.text-info Total Hs Semanales: 
+                span#horas-semanal.green.bolder.bigger-150 00:00 hs
+              br
+              a.btn.btn-sm.btn-primary href=(empleado_horario_horario_new_from_path(@empleado, @horario))
+                | Modificar Este Horario
 
       #contrato.tab-pane
         .row
@@ -105,7 +113,6 @@
           .col-xs-6.center
             a.btn.btn-sm.btn-primary href=(empleado_contrato_empleados_path(@empleado))
               | Ver Mas
-
 
 
 / p
@@ -183,12 +190,12 @@
 br
 a.btn.btn-sm.btn-primary href=(empleado_asistencias_path(@empleado))
   | Ver Asistencias
-a.btn.btn-sm.btn-primary href=(empleado_contrato_empleados_path(@empleado))
-  | Ver Contratos
+/ a.btn.btn-sm.btn-primary href=(empleado_contrato_empleados_path(@empleado))
+/   | Ver Contratos
 a.btn.btn-sm.btn-primary href=(empleado_incidencia_empleados_path(@empleado))
   | Ver Incidencias  
-a.btn.btn-sm.btn-primary href=(new_horario_empleado_path(:horario_empleado => { empleado_id: @empleado.id } ))
-  | Asignar Horario
+/ a.btn.btn-sm.btn-primary href=(new_horario_empleado_path(:horario_empleado => { empleado_id: @empleado.id } ))
+/   | Asignar Horario
 a.btn.btn-sm.btn-primary href=(empleado_historia_medicas_path(@empleado))
   | Historias Médicas
 br
@@ -206,3 +213,122 @@ a.btn.btn-sm.btn-primary href=(empleados_path)
 / br
 /= link_to 'Ver Horarios Asignados', 'horarios_index'
 
+javascript:
+  jQuery(function($) {
+    data = '#{raw(detalles_for_calendar(@horario).to_json)}'
+    data = JSON.parse(data);
+    detalles = []
+
+    if (data[0].horaSalida != undefined ){
+      for (var i = data.length - 1; i >= 0; i--) {
+        data[i]
+        detalles.push({
+          title: data[i].nombre,
+          start: data[i].horaEntrada,
+          end: data[i].horaSalida,
+          className: 'label-success'
+        })
+      }
+    } else {
+      data = {};
+    }
+
+    $("#horario-tab").click();
+
+    /* initialize the calendar
+    -----------------------------------------------------------------*/
+    // new Date(year, month, day, hours, minutes, seconds, milliseconds);
+    var calendar = $('#calendar').fullCalendar({
+      //isRTL: true,
+      //firstDay: 1,// >> change first day of week 
+      
+      buttonHtml: {
+        prev: '<i class="ace-icon fa fa-chevron-left"></i>',
+        next: '<i class="ace-icon fa fa-chevron-right"></i>'
+      },
+      defaultDate: moment('2017-05-01'),
+      header: {},
+      allDaySlot: false,
+      defaultView: 'agendaWeek',
+      firstDay: 1,
+      events: detalles,
+      timeFormat: {agenda: 'H:mm'},
+      slotLabelFormat:"HH:mm",
+      allDayDefault: false,
+      forceEventDuration: true,      
+      scrollTime :  "07:00:00", 
+      eventAfterAllRender: function (view) {
+        dayTotals = {
+          1: moment.duration(),
+          2: moment.duration(),
+          3: moment.duration(),
+          4: moment.duration(),
+          5: moment.duration(),
+          6: moment.duration(),
+          7: moment.duration(),
+        };
+        duration_semanal = 0;
+        
+        $($('#calendar').fullCalendar('clientEvents')).each(function(index, value){
+          // Manejo del calculo de Horas
+          dia_integer = value.start.format("E")
+          dayTotals[dia_integer].add( moment(value.end).diff(moment(value.start)) )
+        })
+      }
+    });
+    
+    $(".fc-toolbar").hide();
+    
+    header = $(".fc-row.fc-widget-header tr:first").clone()
+    $(".fc-row.fc-widget-header thead").append(header)
+
+    $(".fc-day-header.fc-sun:first").html("Domingo")
+    $(".fc-day-header.fc-mon:first").html("Lunes");
+    $(".fc-day-header.fc-tue:first").html("Martes");
+    $(".fc-day-header.fc-wed:first").html("Miercoles");
+    $(".fc-day-header.fc-thu:first").html("Jueves");
+    $(".fc-day-header.fc-fri:first").html("Viernes");
+    $(".fc-day-header.fc-sat:first").html("Sabado");
+
+    // CALCULO DE LAS HORAS DE LOS DETALLES DEL HORARIO
+    // Y SETEO. TODO ESTO SE HACE DESPUES DEL RENDERIZADO.
+    $(".fc-day-header").slice(-7)
+      .html("00:00 hs")
+      .css("background-color", "#aeff70")
+      .css("color", "black")
+
+    $(".fc-day-header").slice(-7).each(function(i, v){
+      duration_milliseconds = dayTotals[i+1].asMilliseconds()
+      duration_semanal += duration_milliseconds
+      // Control Diario
+      $(v).html(moment.utc(duration_milliseconds).format("HH:mm") + " hs")
+      if (32400000 < duration_milliseconds){
+        $(v).css("background-color", "red")
+        $(v).css("color", "white")
+      } else {
+        $(v).css("background-color", "#aeff70")
+        $(v).css("color", "black")
+      }            
+    })
+    // Control Semanal
+    dias = moment.duration(duration_semanal).days() 
+    horas = moment.duration(duration_semanal).hours() 
+    minutos = moment.duration(duration_semanal).minutes() 
+    
+    hora_semanal = ("00" + ((dias * 24) + horas)).slice(-2) + ":" + ("00" + minutos ).slice(-2)
+
+    if  (duration_semanal > 172800000){
+      $("#horas-semanal")
+        .html(hora_semanal + " hs Exedido!")
+        .removeClass("green")
+        .addClass("red")
+
+    } else {
+      $("#horas-semanal")
+        .html(hora_semanal + " hs")
+        .removeClass("red")
+        .addClass("green")
+    }
+
+    $("#empleado-tab").click();
+  })
