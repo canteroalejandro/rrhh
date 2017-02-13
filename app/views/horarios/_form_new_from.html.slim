@@ -21,12 +21,14 @@
         .col-sm-3
           .widget-box.transparent
             .widget-header
-              h4 Proyectos del Departamento
+              h4 = @empleado.nombre_y_apellido
+              h4 Proyectos 
+              h5 = @empleado.departamento.nombre
             .widget-body
               .widget-main.no-padding
                 #external-events
                   - q = Queue.new
-                  - Proyecto.all.each do |proyecto|  
+                  - @empleado.departamento.proyectos.each do |proyecto|  
                     - color = get_color_label(q)                
                     .external-event.ui-draggable.ui-draggable-handle class=("label-#{color}") data-class=("label-#{color}") data-id-proyecto=(proyecto.id) style=("position: relative;") 
                       i.ace-icon.fa.fa-arrows

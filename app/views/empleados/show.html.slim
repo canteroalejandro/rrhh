@@ -89,30 +89,39 @@
                 | Modificar Este Horario
 
       #contrato.tab-pane
-        .row
-          .col-xs-12.col-sm-1.center
-          .col-xs-12.col-sm-9
-            h4.blue
-              span.middle 
-                = @empleado.try(:contratos).try(:last).try(:nombre)
-            .profile-user-info
-              .profile-info-row
-                .profile-info-name Fecha Inicio
-                .profile-info-value
-                  span 
-                    = ldate @empleado.vinculo_actual.try(:inicio)
-            .profile-user-info
-              .profile-info-row
-                .profile-info-name Fecha Fin
-                .profile-info-value
-                  span 
-                    = ldate @empleado.vinculo_actual.try(:fin)
+        - if @empleado.contratos.size != 0
+          .row
+            .col-xs-12.col-sm-1.center
+            .col-xs-12.col-sm-9
+              h4.blue
+                span.middle 
+                  = @empleado.try(:contratos).try(:last).try(:nombre)
+              .profile-user-info
+                .profile-info-row
+                  .profile-info-name Fecha Inicio
+                  .profile-info-value
+                    span 
+                      = ldate @empleado.vinculo_actual.try(:inicio)
+              .profile-user-info
+                .profile-info-row
+                  .profile-info-name Fecha Fin
+                  .profile-info-value
+                    span 
+                      = ldate @empleado.vinculo_actual.try(:fin)
+          .hr.dotted.hr-6
+          .row
+            .col-xs-6.center
+              a.btn.btn-sm.btn-primary href=(empleado_contrato_empleados_path(@empleado))
+                | Ver Mas
 
-        .hr.dotted.hr-6
-        .row
-          .col-xs-6.center
-            a.btn.btn-sm.btn-primary href=(empleado_contrato_empleados_path(@empleado))
-              | Ver Mas
+        - else
+          .row
+            .col-sm-1
+            .col-sm-3
+              a.btn.btn-xs.btn-primary href=new_empleado_contrato_empleado_path(@empleado)
+                | Asignar Contrato
+
+
 
 
 / p

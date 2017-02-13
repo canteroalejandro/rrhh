@@ -1,17 +1,16 @@
 .page-header
   .row
-    .col-sm-6
+    .col-sm-3
       h1
         | Horarios
         small
           i.ace-icon.fa.fa-angle-double-right
           | Nuevo
-
+    .col-sm-3
+      h4 = @empleado.nombre_y_apellido
     .col-sm-offset-6
       .search-actions
         span.text-info Total De Horas Semanales: 
         span#horas-semanal.green.bolder.bigger-150 00:00 hs
 
 == render 'form'
-
-/ = link_to 'Volver', horarios_path

@@ -19,7 +19,7 @@
     |&nbsp;
     label Proyecto&nbsp; 
     = select_tag "proyecto[id]", 
-      content_tag(:option,'Todos',value: "all") + options_from_collection_for_select(@empleado.proyectos, "id", "codigo")
+      content_tag(:option,'Todos',value: "all") + options_from_collection_for_select(@empleado.departamento.proyectos, "id", "codigo")
     |&nbsp;
     |&nbsp;
     |&nbsp;
