@@ -94,15 +94,11 @@ class Empleado < ActiveRecord::Base
   def asistencias_by_mes_and_project(unaFecha, unProyecto)
     retorno = nil
     if unProyecto != "all"
-      retorno = asistencias.joins(:proyecto)
-        .where(
-          check_outs: { horaOutput: unaFecha.beginning_of_month..unaFecha.end_of_month },
-          proyectos: { id: unProyecto})
-
-        # created_at: unaFecha.beginning_of_month..unaFecha.end_of_month,
-        # .joins(:check_outs).where(check_outs:{ horaOutput: "07/03/2016 00:00"to_datetime.."12/03/2016 23:59".to_datetime})
+      retorno = asistencias.joins(:check_out)
+        .where(check_outs: { horaOutput: unaFecha.beginning_of_month..unaFecha.end_of_month })
+      retorno = retorno.select {|a| a.trabajo_en_este_proyecto? unProyecto.id }      
     else
-      retorno = asistencias.joins(:proyecto)
+      retorno = asistencias.joins(:check_out)
         .where(check_outs: { horaOutput: unaFecha.beginning_of_month..unaFecha.end_of_month })
     end
     return retorno

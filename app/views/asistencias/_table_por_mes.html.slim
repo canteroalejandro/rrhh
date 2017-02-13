@@ -2,19 +2,40 @@ table class="table table-striped table-bordered table-hover"
   thead
     tr
       th Descripción de entrada y salida
-      th Proyecto
-      th Horas Trabajadas
+      th Horario del Proyecto
+      th Hs. Trabajadas en el Proyecto
+      th Total de Horas Trabajadas
 
   tbody
-    - asistencias.each do |asistencia|
+    - if @proyecto_id != "all"
+      - asistencias.each do |asistencia|
+        tr
+          td = asistencia.outputAsistencia
+          - asistencia.get_detalle_horario(@proyecto_id.to_i).each do |dh|
+            td = "Entrada: #{dh.horaEntrada.strftime("%H:%M")} Salida: #{dh.horaSalida.strftime("%H:%M")}"
+            td = Time.at(TimeDifference.between(dh.horaEntrada, dh.horaSalida).in_seconds).utc.strftime("%H:%M:%S")
+          td = Time.at((asistencia.try(:horasTrabajadas)*60)*60).utc.strftime("%H:%M:%S")
       tr
-        td = asistencia.outputAsistencia
-        td = asistencia.try(:proyecto).try(:codigo)
-        td = Time.at((asistencia.try(:horasTrabajadas)*60)*60).utc.strftime("%H:%M:%S")
-    tr
-      td
-      th Total de Horas Trabajadas
-      - if @total_horas != nil
-        td = Time.at((@total_horas*60)*60).utc.strftime("%H:%M:%S")
-      - else 
-        td 00:00:00
+        td
+        td
+        th Total de Horas Trabajadas
+        - if @total_horas != nil
+          td = Time.at((@total_horas*60)*60).utc.strftime("%H:%M:%S")
+        - else 
+          td 00:00:00
+    - else 
+      - asistencias.each do |asistencia|
+        - asistencia.horario.get_horarios_correspondientes(asistencia.check_in, asistencia.check_out).each do |dh|
+          tr
+            td = asistencia.outputAsistencia
+            td = "Entrada: #{dh.horaEntrada.strftime("%H:%M")} Salida: #{dh.horaSalida.strftime("%H:%M")}"
+            td = Time.at(TimeDifference.between(dh.horaEntrada, dh.horaSalida).in_seconds).utc.strftime("%H:%M:%S")
+            td = Time.at((asistencia.try(:horasTrabajadas)*60)*60).utc.strftime("%H:%M:%S")
+      tr
+        td
+        td
+        th Total de Horas Trabajadas
+        - if @total_horas != nil
+          td = Time.at((@total_horas*60)*60).utc.strftime("%H:%M:%S")
+        - else 
+          td 00:00:00

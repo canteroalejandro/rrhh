@@ -1,0 +1,50 @@
+08:00  08:01  07:45
+09:59  09:30  10:14
+
+10:00  		 09:45
+11:59  13:10 12:14 {comprobar si hizo horas extras}
+
+16:00  15:55 15:45
+17:59   	 18:14
+
+18:00  20:00 17:45
+19:59		 20:14
+
+
+00:15
+00:15
+
+
+1. 	Aplicar los margenes a la hora de inicio
+	
+	if  check_in.horaEntrada >= (horaEntrada c/ margen)
+		# Compruebo que el ingreso sea dentro de este horario.
+		if check_in.horaOutput <= (horaSalida c/margen)
+			# Significa que: Empleado entro a trabajar en ese detalle de horario
+			if check_out.horaSalida > (horaSalida c/margen)
+				# Continuo trabajando en el siguiente horario. O hizo horas Extras.
+				# Accion: Este Detalle de Horario entra a la lista.
+			elsif check_out.horaSalida < horaSalida
+				# Salio antes, pero trabajo en este horario.
+				# Accion: Este Detalle de Horario entra a la lista.
+	else
+		# El empleado entro antes trabajar.
+		if check_out.horaSalida <= (horaSalida c/margen)
+			# Aca me aseguro de que el empleado trabajo dentro de este horario.
+			if check_in.horaOutput >= (horaEntrada c/ margen) 
+			# El empleado se fue del trabajo en este detalle de horario.
+			# Accion se agrega este Detalle de Horario a la lista.
+		else
+			# Comprobar si trabajo mas de 1 hora, para que entre como hora extra.
+			if ((horaSalida c/margen) + 1.hours) <= (check_out.horaSalida) 
+				#hizo horas extras.
+			elsif 
+				# Se fue un poco mas tarde, pero dentro de este horario de trabajo.
+				# Accion: Este Detalle de Horario entra a la lista.
+
+
+
+
+
+
+				 

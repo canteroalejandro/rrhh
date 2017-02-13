@@ -34,48 +34,49 @@
                 option selected='' value=(empleado.id) = empleado.nombre_y_apellido
               - else
                 option value=(empleado.id) = empleado.nombre_y_apellido
-  .form-group
-    p#Horario 
-      = f.label :horario_empleado_id, "Horario: ", {class: "col-sm-3 control-label no-padding-right"}
-      .col-sm-6
-        -if current_user.rol? :Empleado
-          select#horario_empleado_id.form-control.select2 style="width:50%" name="check_out[horario_empleado_id]"
-            - HorarioEmpleado.where(:empleado_id => current_user.empleado_id).each do |horario_empleado|
-              - if @check_out.horario_empleado == horario_empleado
-                option selected='' class=(horario_empleado.empleado_id) value=(horario_empleado.id) = horario_empleado.get_horario(horario_id)
-              - else
-                - aux = horario_empleado.horario_id
-                option class=(horario_empleado.empleado_id) value=(horario_empleado.id) = horario_empleado.get_horario(aux)
-        -elsif current_user.rol? :Administrador or current_user.rol? :Supervisor
-          select#horario_empleado_id.form-control.select2 style="width:50%" name="check_out[horario_empleado_id]"
-            - HorarioEmpleado.all.each do |horario_empleado|
-              - if @check_out.horario_empleado == horario_empleado
-                - aux = @check_out.horario_empleado.horario_id
-                option selected='' class=(horario_empleado.empleado_id) value=(horario_empleado.id) = horario_empleado.get_horario(aux)
-              - else
-                - aux = horario_empleado.horario_id
-                option class=(horario_empleado.empleado_id) value=(horario_empleado.id) = horario_empleado.get_horario(aux)      
-  .form-group
-    p#ActividadesRealizadas
-    = f.label :proyecto_id, "Proyecto: ", {class: "col-sm-3 control-label no-padding-right"}
-    .col-sm-6
-      -if current_user.rol? :Empleado
-        select#empleado_proyecto_id.form-control.select2 style="width:50%" name="check_out[empleado_proyecto_id]"
-          - EmpleadoProyecto.where(:empleado_id => current_user.empleado_id).each do |empleado_proyecto|
-            - if @check_out.empleado_proyecto == empleado_proyecto
-              option selected='' class=(empleado_proyecto.empleado_id) value=(empleado_proyecto.id) = empleado_proyecto.get_proyecto(proyecto_id)
-            - else
-              - aux = empleado_proyecto.proyecto_id
-              option class=(proyecto.emplproyectoeado_id) value=(empleado_proyecto.id) = empleado_proyecto.get_proyecto(aux)
-      -elsif current_user.rol? :Administrador or current_user.rol? :Supervisor
-        select#empleado_proyecto_id.form-control.select2 style="width:50%" name="check_out[empleado_proyecto_id]"
-          - EmpleadoProyecto.all.each do |empleado_proyecto|
-            - if @check_out.empleado_proyecto == empleado_proyecto
-              - aux = @check_out.empleado_proyecto.proyecto_id
-              option selected='' class=(empleado_proyecto.empleado_id) value=(empleado_proyecto.id) = empleado_proyecto.get_proyecto(aux)
-            - else
-              - aux = empleado_proyecto.proyecto_id
-              option class=(empleado_proyecto.empleado_id) value=(empleado_proyecto.id) = empleado_proyecto.get_proyecto(aux)
+  / .form-group
+  /   p#Horario 
+  /     = f.label :horario_empleado_id, "Horario: ", {class: "col-sm-3 control-label no-padding-right"}
+  /     .col-sm-6
+  /       -if current_user.rol? :Empleado
+  /         select#horario_empleado_id.form-control.select2 style="width:50%" name="check_out[horario_empleado_id]"
+  /           - HorarioEmpleado.where(:empleado_id => current_user.empleado_id).each do |horario_empleado|
+  /             - if @check_out.horario_empleado == horario_empleado
+  /               option selected='' class=(horario_empleado.empleado_id) value=(horario_empleado.id) = horario_empleado.get_horario(horario_id)
+  /             - else
+  /               - aux = horario_empleado.horario_id
+  /               option class=(horario_empleado.empleado_id) value=(horario_empleado.id) = horario_empleado.get_horario(aux)
+  /       -elsif current_user.rol? :Administrador or current_user.rol? :Supervisor
+  /         select#horario_empleado_id.form-control.select2 style="width:50%" name="check_out[horario_empleado_id]"
+  /           - HorarioEmpleado.all.each do |horario_empleado|
+  /             - if @check_out.horario_empleado == horario_empleado
+  /               - aux = @check_out.horario_empleado.horario_id
+  /               option selected='' class=(horario_empleado.empleado_id) value=(horario_empleado.id) = horario_empleado.get_horario(aux)
+  /             - else
+  /               - aux = horario_empleado.horario_id
+  /               option class=(horario_empleado.empleado_id) value=(horario_empleado.id) = horario_empleado.get_horario(aux)      
+  
+  / .form-group
+  /   p#ActividadesRealizadas
+  /   = f.label :proyecto_id, "Proyecto: ", {class: "col-sm-3 control-label no-padding-right"}
+  /   .col-sm-6
+  /     -if current_user.rol? :Empleado
+  /       select#empleado_proyecto_id.form-control.select2 style="width:50%" name="check_out[empleado_proyecto_id]"
+  /         - EmpleadoProyecto.where(:empleado_id => current_user.empleado_id).each do |empleado_proyecto|
+  /           - if @check_out.empleado_proyecto == empleado_proyecto
+  /             option selected='' class=(empleado_proyecto.empleado_id) value=(empleado_proyecto.id) = empleado_proyecto.get_proyecto(proyecto_id)
+  /           - else
+  /             - aux = empleado_proyecto.proyecto_id
+  /             option class=(proyecto.emplproyectoeado_id) value=(empleado_proyecto.id) = empleado_proyecto.get_proyecto(aux)
+  /     -elsif current_user.rol? :Administrador or current_user.rol? :Supervisor
+  /       select#empleado_proyecto_id.form-control.select2 style="width:50%" name="check_out[empleado_proyecto_id]"
+  /         - EmpleadoProyecto.all.each do |empleado_proyecto|
+  /           - if @check_out.empleado_proyecto == empleado_proyecto
+  /             - aux = @check_out.empleado_proyecto.proyecto_id
+  /             option selected='' class=(empleado_proyecto.empleado_id) value=(empleado_proyecto.id) = empleado_proyecto.get_proyecto(aux)
+  /           - else
+  /             - aux = empleado_proyecto.proyecto_id
+  /             option class=(empleado_proyecto.empleado_id) value=(empleado_proyecto.id) = empleado_proyecto.get_proyecto(aux)
   .form-group
     p#horaOutput 
     = f.label :empleado_id, "Dia y Hora de Entrada: ", {class: "col-sm-3 control-label no-padding-right"}

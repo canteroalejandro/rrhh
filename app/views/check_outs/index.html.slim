@@ -13,7 +13,7 @@ table#check-outs class="table table-striped table-bordered table-hover"
       th Usuario que realizó la acción
       th Empleado
       th Día y hora de salida:
-      th Actividad Realizada
+      / th Actividad Realizada
       th Acciones
 
   tbody
@@ -23,7 +23,7 @@ table#check-outs class="table table-striped table-bordered table-hover"
           td = check_out.usuario.userName
           td = link_to check_out.empleado.nombre_y_apellido, empleado_path(check_out.empleado.id) 
           td = l check_out.horaOutput
-          td = check_out.empleado_proyecto.proyecto.nombre
+          / td = check_out.empleado_proyecto.proyecto.nombre
           td
             = link_to 'Mostrar', check_out
             = link_to 'Editar', edit_check_out_path(check_out)
@@ -37,7 +37,7 @@ table#check-outs class="table table-striped table-bordered table-hover"
               td = check_out.usuario.userName
               td = link_to check_out.empleado.nombre_y_apellido, empleado_path(check_out.empleado.id) 
               td = l check_out.horaOutput
-              td = check_out.empleado_proyecto.proyecto.nombre
+              / td = check_out.empleado_proyecto.proyecto.nombre
               td = link_to 'Mostrar', check_out
               td = link_to 'Editar', edit_check_out_path(check_out)
               td = link_to 'Eliminar', check_out, data: {:confirm => '¿Está Seguro que desea eliminar esta Salida?'}, :method => :delete
@@ -48,7 +48,7 @@ table#check-outs class="table table-striped table-bordered table-hover"
           td = check_out.usuario.userName
           td = link_to check_out.empleado.nombre_y_apellido, empleado_path(check_out.empleado.id) 
           td = l check_out.horaOutput
-          td = check_out.empleado_proyecto.proyecto.nombre
+          / td = check_out.empleado_proyecto.proyecto.nombre
           td = link_to 'Mostrar', check_out
           td = link_to 'Editar', edit_check_out_path(check_out)
           td = link_to 'Eliminar', check_out, data: {:confirm => '¿Está Seguro que desea eliminar esta Salida?'}, :method => :delete

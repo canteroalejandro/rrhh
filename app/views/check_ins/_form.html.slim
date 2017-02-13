@@ -1,13 +1,12 @@
 = bootstrap_form_for @check_in, :html => {:class => "form-horizontal"} do |f|
   - if @check_in.errors.any?
-    #error_explanation
-      .alert.alert-warning
-        button.close data-dismiss="alert" type="button" 
-          i.ace-icon.fa.fa-times
-        strong = "#{pluralize(@check_in.errors.count, "error")} #{pluralize_without_count(@check_in.errors.count, "prohibe", "prohiben")} registrar esta Entrada:"
-        ul
-          - @check_in.errors.full_messages.each do |message|
-            li = message
+    .alert.alert-warning
+      button.close data-dismiss="alert" type="button" 
+        i.ace-icon.fa.fa-times
+      strong = "#{pluralize(@check_in.errors.count, "error")} #{pluralize_without_count(@check_in.errors.count, "prohibe", "prohiben")} registrar esta Entrada:"
+      ul
+        - @check_in.errors.full_messages.each do |message|
+          li = message
 
   .form-group
     p#horaOutput
@@ -37,6 +36,7 @@
                 option selected='' value=(empleado.id) = empleado.nombre_y_apellido
               - else
                 option value=(empleado.id) = empleado.nombre_y_apellido
+
   / .form-group
   /   p#horaOutput 
   /     = f.label :horario_empleado_id, "Horario: ", {class: "col-sm-3 control-label no-padding-right"}

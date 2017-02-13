@@ -19,9 +19,9 @@ p#notice = notice
           tr
             td#titulo Día y hora de entrada
             td = l @check_out.horaOutput, format: :short
-          tr
-            td#titulo Actividad Realizada
-            td = @check_out.empleado_proyecto.proyecto.nombre
+          / tr
+          /   td#titulo Actividad Realizada
+          /   td = @check_out.empleado_proyecto.proyecto.nombre
           
 br
 a.btn.btn-sm.btn-primary href=(edit_check_out_path(@check_out))

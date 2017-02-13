@@ -11,8 +11,10 @@ class CheckIn < ActiveRecord::Base
   belongs_to :usuario 
   belongs_to :empleado 
 
+  before_validation :set_horario
+
   validate :hay_incidencia
-  validate :tiene_horario
+  validate :tiene_horario?
   validate :tiene_contrato_vigente
 
   before_save :set_tardanza
@@ -26,13 +28,8 @@ class CheckIn < ActiveRecord::Base
     return self.current_user.id
   end
 
-  def set_tardanza
-    # self.tardanza = false
-    # hor_emp = HorarioEmpleado.find(self.horario_empleado_id)
-    # aux= Horario.find(hor_emp.horario_id)
-    # if (self.horaOutput.strftime("%H%M%S%N") > aux.finMargenEntrada.strftime("%H%M%S%N"))
-    #   self.tardanza = true
-    # end
+  def set_horario
+    self.horario = empleado.horarios.last
   end
 
   def hay_incidencia
@@ -44,20 +41,25 @@ class CheckIn < ActiveRecord::Base
     end
   end
 
-  def tiene_horario
-    h = empleado.horarios.last
-    
-    if h.kind_of? NilClass
+  def tiene_horario?  
+    if self.horario.kind_of? NilClass
       errors.add(:base, "El empleado No posee un horario asignado para realizar el Check-In.")
-    else
-      self.horario = h
     end
   end
-
 
   def tiene_contrato_vigente
     if not self.empleado.tiene_contrato_vigente(self.horaOutput)
       errors.add(:base, "El empleado No posee un contrato vigente para realizar un Check-In.")
     end
+  end
+
+  def set_tardanza
+    # self.tardanza = false
+    # hor_emp = HorarioEmpleado.find(self.horario_empleado_id)
+    # aux= Horario.find(hor_emp.horario_id)
+    
+    # if (self.horaOutput.strftime("%H%M%S%N") > aux.finMargenEntrada.strftime("%H%M%S%N"))
+    #   self.tardanza = true
+    # end
   end
 end

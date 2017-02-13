@@ -84,12 +84,13 @@ class AsistenciasController < ApplicationController
     @total_horas = 0
     if params[:proyecto][:id] != "all"
       @proyecto = Proyecto.find params[:proyecto][:id]
-      @asistencias = @empleado.asistencias_by_mes_and_project fecha, @proyecto
+      @asistencias = @empleado.asistencias_by_mes_and_project(fecha, @proyecto)
     else
-      @asistencias = @empleado.asistencias_by_mes_and_project fecha, "all"
+      @asistencias = @empleado.asistencias_by_mes_and_project(fecha, "all")
     end
     horas = @asistencias.map { |a| a.calcular_horas_trabajadas } 
     @total_horas = horas.reduce(:+)
+    @proyecto_id = params[:proyecto][:id]
     render :partial => "table_por_mes.html", :locals => { asistencias: @asistencias }
   end
 
@@ -107,7 +108,7 @@ class AsistenciasController < ApplicationController
     @hora_extra = HoraExtra.find params[:hora_extra][:id]
     @asistencias = @empleado.asistencias_by_hora_extra fecha, @hora_extra
 
-    horas = @asistencias.map { |a| a.getHorasExtras } 
+    horas = @asistencias.map { |a| a.getHorasExtras(a.check_in, a.check_out) } 
     @total_horas = horas.reduce(:+)
     render :partial => "table_por_tipo_horas_extras.html", :locals => { asistencias: @asistencias }
   end
