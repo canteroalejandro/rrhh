@@ -182,7 +182,7 @@ class Empleado < ActiveRecord::Base
   end
 
   def vinculo_actual
-    self.contrato_empleados.last
+    contrato_empleados.last
   end
 
   def tiene_contrato_vigente(fecha)
