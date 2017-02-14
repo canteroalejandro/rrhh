@@ -146,4 +146,13 @@ class Horario < ActiveRecord::Base
     det_horarios.map { |e| TimeDifference.between(e.horaEntrada, e.horaSalida).in_hours }.reduce(:+)
   end
 
+  def get_detalle_horarios_by_day(fecha)
+    day_integer = 0
+    if fecha.wday == 0
+      day_integer = 6
+    else
+      day_integer = fecha.wday - 1
+    end
+    detalle_horarios.select {|dh| dh.dia == day_integer }
+  end
 end

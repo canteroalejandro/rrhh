@@ -8,12 +8,18 @@
 //= require moment
 //= require fullcalendar.min
 //= require bootbox
-
+//= require jquery.collapser.min
 
 # //= require raphael.min
 # //= require morris.min
 
-# $(document).ready ->
+$(document).ready ->
+  $("#descripcion-categoria").collapser
+    mode: 'chars'
+    truncate: 30
+    showText: '[ver mas]'
+    hideText: '[ver menos]'
+
 #   tab_estadistica = $("#asistencias")
 #   is_show = $(tab_estadistica).hasClass("active in")
 #   if not is_show

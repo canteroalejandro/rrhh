@@ -60,13 +60,19 @@
               .profile-info-value
                 span 
                   = @empleado.try(:categoria).try(:nombre)
+
+            .profile-info-row
+              .profile-info-name Descripcion Categoria
+              .profile-info-value
+                span#descripcion-categoria 
+                  = @empleado.try(:categoria).try(:descripcion)
           
             -if @empleado.antiguedad != nil
               .profile-info-row
                 .profile-info-name Antigüedad
                 .profile-info-value
                   span 
-                    = "#{@empleado.antiguedad}  años"
+                    = "#{@empleado.get_antiguedad}  años"
             
             -if @empleado.departamento != nil
               .profile-info-row

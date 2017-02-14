@@ -54,12 +54,21 @@ class CheckIn < ActiveRecord::Base
   end
 
   def set_tardanza
-    # self.tardanza = false
-    # hor_emp = HorarioEmpleado.find(self.horario_empleado_id)
-    # aux= Horario.find(hor_emp.horario_id)
+    self.tardanza = false
+    horario = empleado.horarios.last
     
-    # if (self.horaOutput.strftime("%H%M%S%N") > aux.finMargenEntrada.strftime("%H%M%S%N"))
-    #   self.tardanza = true
-    # end
+    horario.get_detalle_horarios_by_day(self.horaOutput).each do |det_horario|
+      if self.horaOutput.strftime("%H%M%S%N") >= det_horario.horaEntrada.strftime("%H%M%S%N") and det_horario.horaSalida.strftime("%H%M%S%N") >= self.horaOutput.strftime("%H%M%S%N")
+        
+        h_entrada_margen = det_horario.horario.finMargenEntrada.hour
+        m_entrada_margen = det_horario.horario.finMargenEntrada.min
+        hora_entrada_c_margen = (det_horario.horaEntrada + (h_entrada_margen).hour) + (m_entrada_margen).minutes
+
+        if self.horaOutput.strftime("%H%M%S%N") > hora_entrada_c_margen.strftime("%H%M%S%N")
+          self.tardanza = true
+          break
+        end
+      end
+    end
   end
 end
