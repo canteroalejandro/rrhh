@@ -23,8 +23,10 @@ module ApplicationHelper
       boolean ? 'Si' : 'No'
   end
 
-  # Metodo comun para los modelos: Empleado y Horarios
-  # para el manejo del calendario.
+  ##########################################################
+  # Metodos comunes para los modelos: Empleado y Horarios  #
+  # para el manejo del calendario.                         #
+  ##########################################################
   def detalles_for_calendar(horario)
     unless horario.kind_of? NilClass
       return horario.detalle_horarios.map do |det|
@@ -35,5 +37,32 @@ module ApplicationHelper
     else
       return []
     end
+  end
+
+  def reset_queue(cola)
+    cola.push("success")
+      .push("danger")
+      .push("purple")
+      .push("yellow")
+      .push("pink")
+      .push("info")
+      .push("grey")
+  end
+
+  def genLabels(proyectos)
+    cola = Queue.new
+    reset_queue(cola)
+    
+    hash_color = {}
+
+    proyectos.each do |proy|
+      if cola.blank?
+        reset_queue(cola)
+        hash_color[proy.id] = cola.pop
+      else
+        hash_color[proy.id] = cola.pop
+      end
+    end
+    hash_color
   end
 end

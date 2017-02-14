@@ -67,6 +67,13 @@
                 .profile-info-value
                   span 
                     = "#{@empleado.antiguedad}  años"
+            
+            -if @empleado.departamento != nil
+              .profile-info-row
+                .profile-info-name Departamento
+                .profile-info-value
+                  span 
+                    = "#{@empleado.departamento.nombre}"
 
       #horario.tab-pane
         - if @empleado.horarios.empty?
@@ -226,6 +233,10 @@ javascript:
   jQuery(function($) {
     data = '#{raw(detalles_for_calendar(@horario).to_json)}'
     data = JSON.parse(data);
+    
+    hash_colores = '#{raw(genLabels(@empleado.departamento.proyectos).to_json)}'
+    hash_colores = JSON.parse(hash_colores)
+
     detalles = []
 
     if (data[0].horaSalida != undefined ){
@@ -235,7 +246,8 @@ javascript:
           title: data[i].nombre,
           start: data[i].horaEntrada,
           end: data[i].horaSalida,
-          className: 'label-success'
+          proyecto_id: data[i].proyecto_id,
+          className: 'label-' + hash_colores[ data[i].proyecto_id ]
         })
       }
     } else {

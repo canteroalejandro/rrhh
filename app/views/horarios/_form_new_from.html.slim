@@ -22,14 +22,13 @@
           .widget-box.transparent
             .widget-header
               h4 = @empleado.nombre_y_apellido
-              h4 Proyectos 
               h5 = @empleado.departamento.nombre
             .widget-body
               .widget-main.no-padding
                 #external-events
-                  - q = Queue.new
+                  - hash_colores = genLabels(@empleado.departamento.proyectos)
                   - @empleado.departamento.proyectos.each do |proyecto|  
-                    - color = get_color_label(q)                
+                    - color = hash_colores[proyecto.id] 
                     .external-event.ui-draggable.ui-draggable-handle class=("label-#{color}") data-class=("label-#{color}") data-id-proyecto=(proyecto.id) style=("position: relative;") 
                       i.ace-icon.fa.fa-arrows
                       = proyecto.nombre
@@ -78,8 +77,12 @@ javascript:
   jQuery(function($) {
     data = '#{raw(detalles_for_calendar(@horario).to_json)}'
     data = JSON.parse(data);
-    detalles = []
+    
+    hash_colores = '#{raw(genLabels(@empleado.departamento.proyectos).to_json)}'
+    hash_colores = JSON.parse(hash_colores)
 
+    detalles = []
+    
     if (data[0].horaSalida != undefined ){
       for (var i = data.length - 1; i >= 0; i--) {
         data[i]
@@ -88,7 +91,7 @@ javascript:
           start: data[i].horaEntrada,
           end: data[i].horaSalida,
           proyecto_id: data[i].proyecto_id,
-          className: 'label-success'
+          className: 'label-' + hash_colores[ data[i].proyecto_id ]
         })
       }
     } else {

@@ -23,7 +23,7 @@ table#categorias class="table table-striped table-bordered table-hover"
       tr
         td = categoria.codigo
         td = categoria.nombre
-        td = truncate( categoria.descripcion)
+        td.descripcion = categoria.descripcion
         td = number_to_currency(categoria.salarioBase)
         td 
           = link_to 'Mostrar', categoria
@@ -31,5 +31,4 @@ table#categorias class="table table-striped table-bordered table-hover"
           = link_to 'Eliminar', categoria, data: {:confirm => '¿Está Seguro que desea Eliminar la Categoría?'}, :method => :delete
 
 br
-
 
