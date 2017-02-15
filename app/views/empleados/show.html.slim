@@ -106,9 +106,10 @@
           .row
             .col-xs-12.col-sm-1.center
             .col-xs-12.col-sm-9
+              h5 Ultimo Contrato
               h4.blue
                 span.middle 
-                  = @empleado.try(:contratos).try(:last).try(:nombre)
+                  = @empleado.contrato_actual.nombre
               .profile-user-info
                 .profile-info-row
                   .profile-info-name Fecha Inicio
@@ -119,8 +120,12 @@
                 .profile-info-row
                   .profile-info-name Fecha Fin
                   .profile-info-value
-                    span 
-                      = ldate @empleado.vinculo_actual.try(:fin)
+                    span
+                      - if @empleado.contrato_actual.try(:indeterminado)
+                        td ------------------
+                      - else
+                        = ldate @empleado.vinculo_actual.try(:fin)
+                         
           .hr.dotted.hr-6
           .row
             .col-xs-6.center
@@ -134,80 +139,6 @@
               a.btn.btn-xs.btn-primary href=new_empleado_contrato_empleado_path(@empleado)
                 | Asignar Contrato
 
-
-
-
-/ p
-/   strong Código: 
-/   = @empleado.codigo
-/ p
-/   strong DNI: 
-/   = @empleado.dni
-/ p
-/   strong Nombre: 
-/   = @empleado.nombre
-/ p
-/   strong Apellido: 
-/   = @empleado.apellido
-/ p
-/   strong Fecha de nacimiento: 
-/   = @empleado.fechaNacimiento
-/ p
-/   strong Dirección: 
-/   = @empleado.direccion
-/ p
-/   strong Categoría: 
-/   = @empleado.categoria.nombre
-
-/ .widget-box
-/   .widget-header 
-/     h4.widget-title Datos del Empleado
-/   .widget-body
-/     table class="table table-striped table-bordered table-hover"
-/       / thead class="thin-border-bottom"
-/       /   tr
-/       /     th Atributo
-/       /     th Descripción
-/       tbody
-/           tr
-/             td#titulo Código
-/             td = @empleado.codigo
-/           tr
-/             td#titulo DNI
-/             td = @empleado.dni
-/           tr
-/             td#titulo Nombre y Apellido
-/             td = @empleado.nombre_y_apellido
-/           tr
-/             td#titulo Fecha de Nacimiento
-/             td = l @empleado.fechaNacimiento
-/           tr
-/             td#titulo Dirección
-/             td = @empleado.direccion
-/           tr
-/             td#titulo Categoría
-/             td = @empleado.categoria.nombre
-/           -if @empleado.antiguedad != nil
-/             tr
-/               td#titulo Antigüedad
-/               td = "#{@empleado.antiguedad}  años"
-
-/ br
-
-/ .widget-box
-/   .widget-header 
-/     h5.widget-title Horarios asignados al Empleado
-/   .widget-body
-/     table class="table table-striped table-bordered table-hover"
-/       thead class="thin-border-bottom"
-/         tr
-/           th Horario Asignado
-/           th Inicio de Actividades 
-/       tbody
-/         - @empleado.horarioEmpleados.each do |horario_empleado|
-/           tr
-/             td = horario_empleado.get_horario(horario_empleado.horario_id)
-/             td = l horario_empleado.fechaInicio
 
 br
 a.btn.btn-sm.btn-primary href=(empleado_asistencias_path(@empleado))

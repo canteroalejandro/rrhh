@@ -1,15 +1,5 @@
 p#notice = notice
 
-/ p
-/   strong Tipo de Contrato: 
-/   = @contrato_empleado.contrato.nombre
-/ p
-/   strong Fecha de Inicio: 
-/   = @contrato_empleado.inicio
-/ p
-/   strong Fecha en que Termina: 
-/   = @contrato_empleado.fin
-
 
 .widget-box
   .widget-header 
@@ -23,8 +13,12 @@ p#notice = notice
           tr
             td#titulo Fecha de Inicio
             td =l @contrato_empleado.inicio
-          tr
-            td#titulo Fecha en que Termina
+          
+          - if @contrato_empleado.try(:contrato).try(:indeterminado)
+            td Fecha en que Termina
+            td ------------------
+          - else
+            td Fecha en que Termina
             td =l @contrato_empleado.fin
 
 / = link_to 'Edit', edit_empleado_contrato_empleado_path(@contrato_empleado.empleado, @contrato_empleado)

@@ -32,9 +32,9 @@ class ContratoEmpleado < ActiveRecord::Base
 
   def es_compatible_el_contrato?
     empleado = Empleado.find(self.empleado_id)
+
     if empleado.contrato_empleados.exists?
       ultimo_vinculo = empleado.contrato_empleados.last
-      
       # Verifica si el empleado tenia un contrato de Prueba
       if ultimo_vinculo.contrato.renovable == false
         if ultimo_vinculo.contrato.nroDuracion != 0
@@ -50,15 +50,14 @@ class ContratoEmpleado < ActiveRecord::Base
         end
       # Verifica si se desea asignar un contrato renovable (Plazo Fijo)
       elsif contrato.renovable
-        
         if empleado.get_antiguedad > 5
           # No se puede realizar un contrato renovable con este empleado
           # porque exede los 5 años de antiguedad.
           errors.add :base, "No es posible asignar otro contrato a este Empleado\nel mismo tiene un contrato por tiempo indetrerminado.\nL.C.T. Ley Nro 20.744 Rep. Arg."
         end
       # En este caso: tenia un contrato Renovable (Probablemente Plazo Fijo)
-      # Y quiere asignar un contrato No  Renovable. ESTO NO SE PUEDE
-      else
+      # Y quiere asignar un contrato No  Renovable (para Periodo de Prueba). ESTO NO SE PUEDE
+      elsif contrato.nombre.upcase.include? "PRUEBA"
         errors.add :base, "No es posible asignar este contrato a este Empleado.\nEl Periodo de Prueba no es posible Renovarlo.\nL.C.T. Ley Nro 20.744 Rep. Arg."
       end
     end

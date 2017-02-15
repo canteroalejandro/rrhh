@@ -9,17 +9,14 @@ class Asistencia < ActiveRecord::Base
   belongs_to :check_out
 
   def setHoraExtra
-    if is_horas_extra?(check_in, check_out)
-      he = nil
-      if Feriado.is_feriado? check_out.horaOutput.to_date
-        he = HoraExtra.find Setting.feriado_id
-      else
-        he = HoraExtra.whichByFecha(
-          check_out.horaOutput.to_date, 
-          check_out.horaOutput - getHorasExtras(check_in, check_out),
-          check_out.horaOutput
-        )
-      end
+    if Feriado.is_feriado? check_out.horaOutput.to_date
+      he = HoraExtra.find Setting.feriado_id
+      update_attribute(:hora_extra, he)
+    elsif is_horas_extra?(check_in, check_out)
+      he = HoraExtra.whichByFecha(
+        check_out.horaOutput.to_date, 
+        check_out.horaOutput - getHorasExtras(check_in, check_out),
+        check_out.horaOutput)
       update_attribute(:hora_extra, he)
     end
   end
@@ -40,12 +37,18 @@ class Asistencia < ActiveRecord::Base
   def is_horas_extra?(check_in_date, check_out_date)
     det_horarios = horario.get_horarios_correspondientes(check_in_date, check_out_date)
     # Calculo la cantidad de horas de los detalles de horarios.
-    horas_proyectos = det_horarios.map { |e| TimeDifference.between(e.horaEntrada, e.horaSalida).in_hours }.reduce(:+)
+    if det_horarios.length > 0
+      horas_proyectos = det_horarios.map { |e| TimeDifference.between(e.horaEntrada, e.horaSalida).in_hours }.reduce(:+)
+    else
+      horas_proyectos = 0
+    end
     calcular_horas_trabajadas >= (horas_proyectos + 1)
    end
 
   def getHorasExtras(check_in_date, check_out_date)
-    if calcular_horas_trabajadas >= (horario.getHorasDeTrabajoAsignado(check_in_date, check_out_date) + 1)
+    if Feriado.is_feriado? check_in_date.horaOutput.to_date
+      return calcular_horas_trabajadas
+    elsif calcular_horas_trabajadas >= (horario.getHorasDeTrabajoAsignado(check_in_date, check_out_date) + 1)
       return calcular_horas_trabajadas - horario.getHorasDeTrabajoAsignado(check_in_date, check_out_date)
     else
       return 0

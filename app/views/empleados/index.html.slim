@@ -28,7 +28,7 @@ table class="table table-striped table-bordered table-hover"
 
         td = empleado.try(:categoria).try(:nombre)
         -if can? :read, empleado
-          td = link_to 'Mostrar', empleado
+          td = link_to 'Ver MAS >>', empleado
         -if can? :update, empleado
           td = link_to 'Editar', edit_empleado_path(empleado)
         -if can? :destroy, empleado

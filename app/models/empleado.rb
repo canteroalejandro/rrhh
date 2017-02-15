@@ -59,11 +59,17 @@ class Empleado < ActiveRecord::Base
     if self.contrato_empleados.exists?
       contratos = self.contrato_empleados.all
       duracion_contratos = 0
-      for c in contratos do
-        if(c.fin < Time.now)
-          duracion_contratos = duracion_contratos + TimeDifference.between(c.inicio, c.fin).in_years
+
+      contratos.each_with_index do |c, index|
+        # Comprueba si todavia no termino el contrato
+        if Time.now < c.fin
+          duracion_contratos += TimeDifference.between(c.inicio, Time.now).in_years
         else
-          duracion_contratos = duracion_contratos + TimeDifference.between(c.inicio, Time.now).in_years
+          if c.try(:contrato).try(:indeterminado)
+            duracion_contratos += TimeDifference.between(c.inicio, Time.now).in_years
+          else
+            duracion_contratos += TimeDifference.between(c.inicio, c.fin).in_years
+          end
         end
       end
       antiguedad = duracion_contratos.to_i
@@ -74,21 +80,7 @@ class Empleado < ActiveRecord::Base
   end
 
   def set_antiguedad
-    if self.contrato_empleados.exists?
-      contratos = self.contrato_empleados.all
-      duracion_contratos = 0
-      for c in contratos do
-        if(c.fin < Time.now)
-          duracion_contratos = duracion_contratos + TimeDifference.between(c.inicio, c.fin).in_years
-        else
-          duracion_contratos = duracion_contratos + TimeDifference.between(c.inicio, Time.now).in_years
-        end
-      end
-      antiguedad = duracion_contratos.to_i
-    else
-      antiguedad = 0
-    end
-    return antiguedad
+    get_antiguedad()
   end
 
   def asistencias_by_mes_and_project(unaFecha, unProyecto)
@@ -181,15 +173,15 @@ class Empleado < ActiveRecord::Base
     self.where departamento: nil
   end
 
+  def contrato_actual
+    vinculo_actual.contrato  
+  end
+
   def vinculo_actual
     contrato_empleados.last
   end
 
   def tiene_contrato_vigente(fecha)
-    if vinculo_actual.fin >= fecha then
-      return true
-    else
-      return false
-    end
+    (vinculo_actual.fin >= fecha) or (vinculo_actual.contrato.indeterminado) ? true : false
   end
 end

@@ -143,7 +143,11 @@ class Horario < ActiveRecord::Base
   # Segun el check-in y check-out
   def getHorasDeTrabajoAsignado(check_in, check_out)
     det_horarios = get_horarios_correspondientes(check_in, check_out)
-    det_horarios.map { |e| TimeDifference.between(e.horaEntrada, e.horaSalida).in_hours }.reduce(:+)
+    if det_horarios.length > 0
+      det_horarios.map { |e| TimeDifference.between(e.horaEntrada, e.horaSalida).in_hours }.reduce(:+)
+    else 
+      0
+    end
   end
 
   def get_detalle_horarios_by_day(fecha)
