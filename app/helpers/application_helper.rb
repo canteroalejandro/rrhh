@@ -41,12 +41,12 @@ module ApplicationHelper
 
   def reset_queue(cola)
     cola.push("success")
-      .push("danger")
-      .push("purple")
-      .push("yellow")
-      .push("pink")
-      .push("info")
-      .push("grey")
+    cola.push("danger")
+    cola.push("purple")
+    cola.push("yellow")
+    cola.push("pink")
+    cola.push("info")
+    cola.push("grey")
   end
 
   def genLabels(proyectos)

@@ -1,0 +1,3 @@
+PGUSER=postgres PGPASSWORD=password heroku pg:pull HEROKU_POSTGRESQL_MAGENTA rrhh02 --app tp-rrhh
+
+PGUSER=postgres PGPASSWORD=gpl- heroku pg:push rrhh02 postgresql-acute-8143 --app tp-rrhh
