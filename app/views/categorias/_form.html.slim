@@ -9,19 +9,52 @@
 
   .form-group
     = f.label :codigo, "Código:", {class: "col-sm-3 control-label"}
-    = f.text_field :codigo,:value => @categoria.codigo_categoria, class: "col-sm-3"
+    = f.text_field :codigo, :value => @categoria.codigo_categoria, class: "col-sm-3", readonly: true
+  - if @categoria.new_record?
+    .form-group
+      = label_tag "agrupacion", "Agrupacion:", {class: "col-sm-3 control-label"}
+      = text_field_tag "agrupacion", nil, {class: "col-sm-3", placeholder: "Ejemplo: Maestranza y Servicios"}
+    .form-group
+      = label_tag "categoria", "Categoria:", {class: "col-sm-3 control-label"}
+      = text_field_tag "categoria", nil, {class: "col-sm-3", maxlength: 1, placeholder: "Ejemplo: A"}
+  - else
+    .form-group
+      = label_tag "agrupacion", "Agrupacion:", {class: "col-sm-3 control-label"}
+      = text_field_tag "agrupacion", get_agrup_render(@categoria.nombre), {class: "col-sm-3", placeholder: "Ejemplo: Maestranza y Servicios"}
+    .form-group
+      = label_tag "categoria", "Categoria:", {class: "col-sm-3 control-label"}
+      = text_field_tag "categoria", get_categ_render(@categoria.codigo), {class: "col-sm-3", maxlength: 1, placeholder: "Ejemplo: A"}
   .form-group
-    = f.label :nombre, "Nombre:", {class: "col-sm-3 control-label"}
-    = f.text_field :nombre, class: "col-sm-3"
+    / = f.label :nombre, "Nombre:", {class: "col-sm-3 control-label"}
+    = f.hidden_field  :nombre, class: "col-sm-3"
   .form-group
     = f.label :descripcion, "Descripcion:", {class: "col-sm-3 control-label"}
     = f.text_area :descripcion, class: "col-sm-6", rows: 8
   .form-group
     = f.label :salarioBase, "Salario Básico:", {class: "col-sm-3 control-label"}
     = f.text_field :salarioBase, class: "col-sm-3"
-    
 
 
   .clearfix.form-actions
     .col-md-offset-3.col-md-9
       = f.submit class: "btn btn-info"
+
+coffee:
+  getIniciales = (string)->
+    iniciales = ""
+    for palabra in string.split(" ")
+      if palabra != ""
+        iniciales += palabra[0]
+    iniciales
+
+  $("#agrupacion, #categoria").keyup (e)->
+    $("#categoria_codigo").val("")
+    value_agrup = $('#agrupacion').val()
+    value_cat = $('#categoria').val()
+    $("#categoria_codigo").val( "CAT-#{getIniciales(value_agrup)}-#{getIniciales(value_cat)}" ) 
+    $("#categoria_nombre").val( "#{value_agrup} (#{value_cat})")
+
+  $("form").submit (event)->
+    if $('#agrupacion').val() == "" or $('#categoria').val() == ""
+      event.preventDefault()
+      alert('No especifico la Agrupacion o la Categoria.')

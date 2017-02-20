@@ -1,28 +1,33 @@
+.page-header
+  h1
+    | Configuracion
+
 - unless notice.to_s.empty?
   .alert.alert-success
     button.close data-dismiss="alert" type="button" 
       i.ace-icon.fa.fa-times
     p#notice = notice
 
-= form_for(:settings, url: setting_post_path) do |f|
+= form_for(:settings, url: setting_post_path, :html => {:class => "form-horizontal"}) do |f|
   - @config.each do |item|
     - case item[0]
     - when "feriado_id"
       .row-fluid
-        = label_tag "Hora Extra para Feriados", nil, class: "col-sm-3 control-label"
-        .col-sm-9
-          select#pais_id.form-control.select2 style="width:50%" name="settings[#{item[0]}]"
-            - HoraExtra.all.each do |he|
-              - if item[1] == he.id.to_s
-                option selected='' value=(he.id) = he.nombre
-              - else
-                option value=(he.id) = he.nombre
+        .form-group
+          = label_tag "Hora Extra para Feriados", nil, class: "col-sm-3 control-label"
+          .col-sm-9
+            select#pais_id.form-control.select2 style="width:50%" name="settings[#{item[0]}]"
+              - HoraExtra.all.each do |he|
+                - if item[1] == he.id.to_s
+                  option selected='' value=(he.id) = he.nombre
+                - else
+                  option value=(he.id) = he.nombre
 
   br
   .clearfix
     .row-fluid
       .col-md-offset-3.col-md-9
-        a.btn.btn-inverse href=(root_path)
+        a.btn.btn-inverse href=(index_path)
           i.ace-icon.fa.fa-chevron-left.bigger-110
           | Volver
         ' |

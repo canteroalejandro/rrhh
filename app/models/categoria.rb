@@ -20,7 +20,7 @@ class Categoria < ActiveRecord::Base
 			while "#{categoria}".length < 5
 				categoria = "0" + "#{categoria}"
 			end
-			return "CAT-#{categoria}"
+			return "CAT-"
 		else
 			return self.codigo
 		end

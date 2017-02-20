@@ -29,11 +29,11 @@
                         fieldset
                           label.block.clearfix
                             span.block.input-icon.input-icon-right.center
-                              = text_field_tag :userName, params[:userName], placeholder: "Usuario"
+                              = text_field_tag :userName, params[:userName], placeholder: "EMP-00000"
                               i.fa.fa-user
                           label.block.clearfix
                             span.block.input-icon.input-icon-right.center
-                              = password_field_tag :password, placeholder: "Contraseña"
+                              = password_field_tag :password, "", placeholder: "Contraseña"
                               i.ace-icon.fa.fa-lock
                           .space
                           .clearfix.center

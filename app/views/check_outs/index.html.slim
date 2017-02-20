@@ -50,7 +50,5 @@ table#check-outs class="table table-striped table-bordered table-hover"
           td = l check_out.horaOutput
           / td = check_out.empleado_proyecto.proyecto.nombre
           td = link_to 'Mostrar', check_out
-          td = link_to 'Editar', edit_check_out_path(check_out)
-          td = link_to 'Eliminar', check_out, data: {:confirm => '¿Está Seguro que desea eliminar esta Salida?'}, :method => :delete
 
 br

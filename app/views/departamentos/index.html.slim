@@ -3,9 +3,10 @@
     | Listar Departamentos
     small
       i.ace-icon.fa.fa-angle-double-right
-      small
-        a.btn.btn-xs.btn-success href=new_departamento_path
-          | Nuevo Departamento
+      -if can? :create, Departamento
+        small
+          a.btn.btn-xs.btn-success href=new_departamento_path
+            | Nuevo Departamento
 
 table class="table table-striped table-bordered table-hover"
   thead
@@ -23,6 +24,13 @@ table class="table table-striped table-bordered table-hover"
         td = departamento.nombre
         td = link_to departamento.supervisor.nombre_y_apellido, departamento.supervisor
         td = ldate departamento.fechaEnQueDirige
-        td = link_to 'Mostrar', departamento
-        td = link_to 'Editar', edit_departamento_path(departamento)
-        td = link_to 'Eliminar', departamento, data: {:confirm => '¿Está Seguro que desea Eliminar el Departamento?'}, :method => :delete
+        
+        -if can? :read, Departamento
+          td = link_to 'Mostrar', departamento
+        -if can? :update, Departamento
+          td = link_to 'Editar', edit_departamento_path(departamento)
+        -if can? :destroy, Departamento
+          td = link_to 'Eliminar', departamento, data: {:confirm => '¿Está Seguro que desea Eliminar el Departamento?'}, :method => :delete
+
+
+
