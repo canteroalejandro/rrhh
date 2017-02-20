@@ -54,15 +54,18 @@ module ApplicationHelper
     reset_queue(cola)
     
     hash_color = {}
-
-    proyectos.each do |proy|
-      if cola.blank?
-        reset_queue(cola)
-        hash_color[proy.id] = cola.pop
-      else
-        hash_color[proy.id] = cola.pop
+    unless proyectos.kind_of? NilClass
+      proyectos.each do |proy|
+        if cola.blank?
+          reset_queue(cola)
+          hash_color[proy.id] = cola.pop
+        else
+          hash_color[proy.id] = cola.pop
+        end
       end
+      return hash_color
+    else
+      return hash_color
     end
-    hash_color
   end
 end

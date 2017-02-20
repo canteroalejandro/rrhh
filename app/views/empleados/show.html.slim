@@ -171,7 +171,7 @@ javascript:
     data = '#{raw(detalles_for_calendar(@horario).to_json)}'
     data = JSON.parse(data);
     
-    hash_colores = '#{raw(genLabels(@empleado.departamento.proyectos).to_json)}'
+    hash_colores = '#{raw(genLabels(@empleado.try(:departamento).try(:proyectos)).to_json)}'
     hash_colores = JSON.parse(hash_colores)
 
     detalles = []
