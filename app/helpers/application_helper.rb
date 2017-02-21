@@ -32,6 +32,7 @@ module ApplicationHelper
       return horario.detalle_horarios.map do |det|
         aux = det.as_json
         aux[:nombre] = det.try(:proyecto).try(:nombre)
+        aux[:codigo_proyecto] = det.try(:proyecto).try(:codigo)
         aux
       end
     else

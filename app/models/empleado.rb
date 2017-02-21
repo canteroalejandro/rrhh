@@ -93,7 +93,7 @@ class Empleado < ActiveRecord::Base
       retorno = asistencias.joins(:check_out)
         .where(check_outs: { horaOutput: unaFecha.beginning_of_month..unaFecha.end_of_month })
     end
-    return retorno
+    return retorno.sort_by &:created_at
   end
 
   def asistencias_by_hora_extra(unaFecha, unaHoraExtra)
@@ -103,7 +103,7 @@ class Empleado < ActiveRecord::Base
         check_outs:{ horaOutput: unaFecha.beginning_of_month..unaFecha.end_of_month},
         hora_extra: unaHoraExtra
       )
-    return retorno
+    return retorno.sort_by &:created_at
   end
 
   def has_check_in?(unaFecha, unHorario)
@@ -179,6 +179,10 @@ class Empleado < ActiveRecord::Base
 
   def vinculo_actual
     contrato_empleados.last
+  end
+
+  def vinculos
+    contrato_empleados
   end
 
   def tiene_contrato_vigente(fecha)

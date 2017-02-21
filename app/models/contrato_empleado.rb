@@ -6,6 +6,7 @@ class ContratoEmpleado < ActiveRecord::Base
   after_save :update_antiguedad_empleado
 
   validate :es_compatible_el_contrato?
+  validate :otro_contrato_en_fecha_seleccionada?
 
   def get_nombre_empleado(emp)
     aux= Empleado.find(emp)
@@ -59,6 +60,18 @@ class ContratoEmpleado < ActiveRecord::Base
       # Y quiere asignar un contrato No  Renovable (para Periodo de Prueba). ESTO NO SE PUEDE
       elsif contrato.nombre.upcase.include? "PRUEBA"
         errors.add :base, "No es posible asignar este contrato a este Empleado.\nEl Periodo de Prueba no es posible Renovarlo.\nL.C.T. Ley Nro 20.744 Rep. Arg."
+      end
+    end
+  end
+
+  def otro_contrato_en_fecha_seleccionada?
+    empleado.vinculos.each do |vinculo|
+      unless vinculo.contrato.indeterminado
+        if vinculo.inicio <= self.inicio and self.inicio <= vinculo.fin
+          errors.add :base, "Este Contrato no puede ser Asignado en la fecha seleccionada.\
+            Existe otro Contrato con fecha: \
+            desde: #{I18n.localize vinculo.inicio} Hasta: #{I18n.localize vinculo.fin}."
+        end
       end
     end
   end

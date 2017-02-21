@@ -74,6 +74,7 @@ class AsistenciasController < ApplicationController
 
   def show_por_mes
     @empleado = Empleado.find params[:empleado_id]
+    @horario = @empleado.horarios.last
     render "show_por_mes.html"
   end
 
@@ -81,16 +82,14 @@ class AsistenciasController < ApplicationController
     @empleado = Empleado.find(params[:empleado_id])
     fecha = params[:fecha].to_date
     @asistencias = []
-    @total_horas = 0
     if params[:proyecto][:id] != "all"
       @proyecto = Proyecto.find params[:proyecto][:id]
       @asistencias = @empleado.asistencias_by_mes_and_project(fecha, @proyecto)
     else
       @asistencias = @empleado.asistencias_by_mes_and_project(fecha, "all")
     end
-    horas = @asistencias.map { |a| a.calcular_horas_trabajadas } 
-    @total_horas = horas.reduce(:+)
     @proyecto_id = params[:proyecto][:id]
+
     render :partial => "table_por_mes.html", :locals => { asistencias: @asistencias }
   end
 

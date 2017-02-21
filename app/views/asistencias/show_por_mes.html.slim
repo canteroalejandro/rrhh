@@ -25,7 +25,19 @@
     |&nbsp;
     a#bt-filtrar.btn.btn-success
       | Filtrar
-    
+
+
+
+br
+.alert.alert-success
+  .center
+    strong Horario Asignado a este Empleado
+br
+= content_tag :div, nil, { id: "calendar", class: "fc fc-ltr fc-unthemed", data: {horario: detalles_for_calendar(@horario).to_json, labels: genLabels(@empleado.try(:departamento).try(:proyectos)).to_json} }
+br
+br
+
+  
 div#spin-ajax.center style="display: none;"
   .alert.alert-warning
     span.orange 
