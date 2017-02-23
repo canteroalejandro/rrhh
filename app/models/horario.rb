@@ -89,7 +89,6 @@ class Horario < ActiveRecord::Base
     detalles = detalles.sort_by {|e| e.horaEntrada }
 
     detalles.select do |dh|
-    
       h_entrada_margen = dh.horario.inicioMargenEntrada.hour
       m_entrada_margen = dh.horario.inicioMargenEntrada.min
       hora_entrada_c_margen = (dh.horaEntrada - (h_entrada_margen).hour) - (m_entrada_margen).minutes
@@ -109,7 +108,7 @@ class Horario < ActiveRecord::Base
         .change(year: dh.horaEntrada.year, 
           month: dh.horaEntrada.month,
           day: dh.horaEntrada.day)
-
+     
       # Comprueba que el ingreso sea dentro de este horario.
       if  check_in_normalizado >= hora_entrada_c_margen
         # Compruebo que el empleado entro a trabajar en este detalle de horario.
@@ -133,6 +132,10 @@ class Horario < ActiveRecord::Base
           if (hora_salida_c_margen + 1.hours) <= check_out_normalizado
             #hizo horas extras.
             true
+          # No hizo horas extras
+          # No Comprobar que, trabajo en este proyecto y solo salio un poco mas tarde.
+          elsif check_out_normalizado > hora_salida_c_margen
+            true 
           end
         end
       end

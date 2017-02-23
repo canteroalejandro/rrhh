@@ -1,23 +1,26 @@
 = form_for @usuario, :html => {:class => "form-horizontal"} do |f|
   - if @usuario.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@usuario.errors.count, "error")} #{pluralize_without_count(@usuario.errors.count, "prohibe", "prohiben")} almacenar este Usuario:"
+    .alert.alert-warning
+      button.close data-dismiss="alert" type="button" 
+        i.ace-icon.fa.fa-times
+      strong = "#{pluralize(@usuario.errors.count, "error")} #{pluralize_without_count(@usuario.errors.count, "prohibe", "prohiben")} almacenar este Usuario:"
       ul
         - @usuario.errors.full_messages.each do |message|
           li = message
 
   .form-group
     = f.label :empleado_id, 'Elegir Empleado:', {class: "col-sm-3 control-label"}
-    = f.collection_select :empleado_id, Empleado.all, :id, :nombre_y_apellido
+    = f.select :empleado_id, Empleado.all.map {|e| [e.nombre_y_apellido, e.id, {:'data-emp-code' => e.codigo}]}
+  
   .form-group
     = f.label :userName, 'Nombre de Usuario: ', {class: "col-sm-3 control-label"}
-    = f.text_field :userName
+    = f.text_field :userName, readonly: true
   .form-group
     = f.label :password, 'Contraseña: ', {class: "col-sm-3 control-label"}
-    = f.password_field :password
+    = f.password_field :password, autocomplete: "off"
   .form-group
     = f.label :rol_id, 'Rol:', {class: "col-sm-3 control-label"}
     = f.collection_select :rol_id, Rol.all, :id, :nombre
   .clearfix.form-actions
     .col-md-offset-3.col-md-9
-      = f.submit "Crear Usuario", class: "btn btn-info"
+      = f.submit class: "btn btn-info"

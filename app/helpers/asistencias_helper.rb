@@ -37,19 +37,3 @@ module AsistenciasHelper
     end
   end
 end
-
-#   # El empleado entro antes trabajar.
-#   else
-#     # Comprueba si el empleado finalizo su jornada en este detalle de horario.
-#     if (check_out_normalizado <= hora_salida_c_margen) and (check_out_normalizado >= hora_entrada_c_margen)
-#       true
-#     # El Empleado continuo trabajando.
-#     else
-#       # Comprobar si trabajo mas de 1 hora, para que entre como hora extra.
-#       if (hora_salida_c_margen + 1.hours) <= check_out_normalizado
-#         #hizo horas extras.
-#         true
-#       end
-#     end
-#   end
-# end

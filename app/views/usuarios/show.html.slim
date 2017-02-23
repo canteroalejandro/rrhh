@@ -1,18 +1,14 @@
 p#notice = notice
 
-/ p
-/   strong Username:
-/   = @usuario.empleado.nombre_y_apellido
-/ p
-/   strong Username:
-/   = @usuario.userName
-/ p
-/   strong Password:
-/   = @usuario.password
-/ p
-/   strong Rol:
-/   = @usuario.rol.nombre
-
+- if @usuario.errors.any?
+  .alert.alert-warning
+    button.close data-dismiss="alert" type="button" 
+      i.ace-icon.fa.fa-times
+    strong = "#{pluralize(@usuario.errors.count, "error")} #{pluralize_without_count(@usuario.errors.count, "prohibe", "prohiben")} almacenar este Usuario:"
+    ul
+      - @usuario.errors.full_messages.each do |message|
+        li = message
+        
 .widget-box
   .widget-header 
     h4.widget-title Datos del usuario
@@ -25,9 +21,6 @@ p#notice = notice
           tr
             td#titulo Nombre de Usuario
             td = @usuario.userName
-          tr
-            td#titulo Contraseña
-            td = @usuario.password
           tr
             td#titulo Rol
             td = @usuario.rol.nombre

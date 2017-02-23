@@ -1,18 +1,5 @@
 p#notice = notice
 
-/ p
-/   strong Codigo: 
-/   = @proyecto.codigo
-/ p
-/   strong Nombre: 
-/   = @proyecto.nombre
-/ p
-/   strong Empleados que participan del Proyecto  
-/   -unless @proyecto.empleado_proyectos.empty?
-/   	-@proyecto.empleado_proyectos.each do |ep|
-/   		br
-/   		= ep.empleado.nombre_y_apellido
-
 .widget-box
   .widget-header 
     h4.widget-title Datos del Proyecto

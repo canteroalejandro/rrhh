@@ -54,10 +54,15 @@ class UsuariosController < ApplicationController
   # DELETE /usuarios/1
   # DELETE /usuarios/1.json
   def destroy
-    @usuario.destroy
     respond_to do |format|
-      format.html { redirect_to usuarios_url, notice: 'Usuario fue eliminado exitosamente.' }
-      format.json { head :no_content }
+      if @usuario.destroy
+        # format.html { redirect_to departamentos_url, notice: 'Departamento fue eliminado exitosamente.' }
+        format.html { redirect_to departamentos_url, notice: 'Usuario fue eliminado exitosamente.' }
+        format.json { head :no_content }
+      else
+        format.html { render :show, notice: 'El Usuario no pudo ser eliminado.' }
+        format.json { head :no_content }
+      end
     end
   end
 

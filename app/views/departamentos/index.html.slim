@@ -6,7 +6,7 @@
       -if can? :create, Departamento
         small
           a.btn.btn-xs.btn-success href=new_departamento_path
-            | Nuevo Departamento
+            | Nuevo
 
 table class="table table-striped table-bordered table-hover"
   thead
@@ -15,6 +15,7 @@ table class="table table-striped table-bordered table-hover"
       th Nombre
       th Supervisor
       th Fecha desde que dirige
+      th Empleados
       th colspan="3" Acciones
 
   tbody
@@ -24,6 +25,15 @@ table class="table table-striped table-bordered table-hover"
         td = departamento.nombre
         td = link_to departamento.supervisor.nombre_y_apellido, departamento.supervisor
         td = ldate departamento.fechaEnQueDirige
+        td
+          ul.list-unstyled
+            -unless departamento.empleados.empty?
+              - departamento.empleados.each do |empleado|
+                - if departamento.supervisor != empleado
+                  li
+                    a href=(empleado_path(empleado))
+                      = empleado.nombre_y_apellido
+
         
         -if can? :read, Departamento
           td = link_to 'Mostrar', departamento

@@ -5,14 +5,14 @@
       i.ace-icon.fa.fa-angle-double-right
       small
         a.btn.btn-xs.btn-success href=new_usuario_path
-          | Nuevo Usuario
+          | Nuevo
 
 table class="table table-striped table-bordered table-hover"
   thead
     tr
       th Empleado
-      th Username
-      th Password
+      th Nombre de Usuario
+      / th Password
       th Rol
       th colspan="3" Acciones
 
@@ -21,10 +21,10 @@ table class="table table-striped table-bordered table-hover"
       tr
         td = usuario.empleado.nombre_y_apellido
         td = usuario.userName
-        td = usuario.password
+        / td = usuario.password
         td = usuario.rol.nombre
-        td = link_to 'Show', usuario
-        td = link_to 'Edit', edit_usuario_path(usuario)
-        td = link_to 'Destroy', usuario, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Mostrar', usuario
+        td = link_to 'Editar', edit_usuario_path(usuario)
+        td = link_to 'Eliminar', usuario, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br

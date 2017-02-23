@@ -1,3 +1,9 @@
+.alert.alert-info
+  button.close data-dismiss="alert" type="button" 
+    i.ace-icon.fa.fa-times
+  .center
+    | Para quitar un proyecto del horario. Haga click sobre y le aparecera la opcion.
+    
 = form_for [@empleado, @horario], url: empleado_horario_horario_create_from_path, method: :post, :html => {:class => "form-horizontal"} do |f|  
   - if @horario.errors.any?
     #error_explanation

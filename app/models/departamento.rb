@@ -1,11 +1,9 @@
 class Departamento < ActiveRecord::Base
-  #format
-
   belongs_to :supervisor, :class_name => "Empleado", :foreign_key => "supervisor_id"
 
-  has_many :empleados, inverse_of: :departamento
+  has_many :empleados, inverse_of: :departamento, dependent: :restrict_with_error
 
-  has_many :proyectos
+  has_many :proyectos, dependent: :restrict_with_error
 
   validates :codigo, :format => { :with => /(DPTO-)\d*/, :message => "El formato del Código es incorrecto" }
   #prescence

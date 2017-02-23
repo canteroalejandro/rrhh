@@ -95,6 +95,7 @@ class AsistenciasController < ApplicationController
 
   def show_por_horas_extras
     @empleado = Empleado.find params[:empleado_id]
+    @horario = @empleado.horarios.last
     render "show_por_horas_extras.html"
   end
 

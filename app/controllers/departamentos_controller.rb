@@ -55,10 +55,15 @@ class DepartamentosController < ApplicationController
   # DELETE /departamentos/1
   # DELETE /departamentos/1.json
   def destroy
-    @departamento.destroy
     respond_to do |format|
-      format.html { redirect_to departamentos_url, notice: 'Departamento fue eliminado exitosamente.' }
-      format.json { head :no_content }
+      if @departamento.destroy
+        # format.html { redirect_to departamentos_url, notice: 'Departamento fue eliminado exitosamente.' }
+        format.html { redirect_to departamentos_url, notice: 'Departamento fue eliminado exitosamente.' }
+        format.json { head :no_content }
+      else
+        format.html { render :show, notice: 'El Departamento no pudo ser eliminado.' }
+        format.json { head :no_content }
+      end
     end
   end
 

@@ -117,8 +117,8 @@ es:
       odd: debe ser impar
       record_invalid: 'La validación falló: %{errors}'
       restrict_dependent_destroy:
-        one: No se puede eliminar el registro porque existe un %{record} dependiente
-        many: No se puede eliminar el registro porque existen %{record} dependientes
+        one: No se puede eliminar el registro porque existe un %{record} dependiente a este %{model}.
+        many: No se puede eliminar el registro porque existen %{record} dependientes a este %{model}.
       taken: ya está en uso
       too_long:
         one: "es demasiado largo (1 carácter máximo)"

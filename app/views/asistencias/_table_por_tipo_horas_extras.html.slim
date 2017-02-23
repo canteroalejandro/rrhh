@@ -1,15 +1,16 @@
 table class="table table-striped table-bordered table-hover"
   thead
     tr
-      th Descripción de entrada y salida
-      th Horas Trabajadas
-      th Horas Extras trabajadas
+      th Fecha
+      th Descripcion de la Asistencia
+      th Horas Extras Correspondientes
 
   tbody
     - @asistencias.each do |asistencia|
       tr
-        td = asistencia.outputAsistencia
-        td = Time.at((asistencia.horasTrabajadas*60)*60).utc.strftime("%H:%M:%S") 
+        td = l asistencia.check_out.horaOutput, format: "%A %d/%m/%Y"
+        td = "Entrada: #{asistencia.check_in.horaOutput.strftime("%H:%M")} - Salida: #{asistencia.check_out.horaOutput.strftime("%H:%M")}"
+        / td = Time.at((asistencia.horasTrabajadas*60)*60).utc.strftime("%H:%M:%S") 
         td = Time.at((asistencia.getHorasExtras(asistencia.check_in, asistencia.check_out)*60)*60).utc.strftime("%H:%M:%S")
     tr
       td
