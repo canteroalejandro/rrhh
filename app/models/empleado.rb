@@ -182,7 +182,10 @@ class Empleado < ActiveRecord::Base
   end
 
   def vinculos
-    contrato_empleados
+    ContratoEmpleado.joins(:empleado)
+      .where(
+        empleados: {id: self.id}
+      )
   end
 
   def tiene_contrato_vigente(fecha)

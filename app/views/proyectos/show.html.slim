@@ -1,5 +1,14 @@
 p#notice = notice
 
+- if @proyecto.errors.any?
+  .alert.alert-warning
+    button.close data-dismiss="alert" type="button" 
+      i.ace-icon.fa.fa-times
+    strong = "#{pluralize(@proyecto.errors.count, "error")} #{pluralize_without_count(@proyecto.errors.count, "prohibe", "prohiben")} almacenar este Proyecto:"
+    ul
+      - @proyecto.errors.full_messages.each do |message|
+        li = message
+
 .widget-box
   .widget-header 
     h4.widget-title Datos del Proyecto
@@ -12,13 +21,6 @@ p#notice = notice
           tr
             td#titulo Nombre
             td = @proyecto.nombre
-          tr
-            td#titulo Empleados:
-            td
-              ul
-                -unless @proyecto.empleados.empty?
-                  -@proyecto.empleados.each do |d|
-                    li = d.nombre_y_apellido
 
 br
 a.btn.btn-sm.btn-primary href=(edit_proyecto_path(@proyecto))

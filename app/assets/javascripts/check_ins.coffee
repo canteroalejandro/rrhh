@@ -10,6 +10,7 @@
 
 crearDataTable = (selector)->
   $(selector).DataTable({
+    lengthMenu: [ 25, 50, 75, 100 ]
     # columns: [
     #   { width: "5%" },
     #   { width: "7%" },

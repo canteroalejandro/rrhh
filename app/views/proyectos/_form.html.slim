@@ -1,7 +1,9 @@
 = form_for @proyecto, :html => {:class => "form-horizontal"} do |f|
   - if @proyecto.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@proyecto.errors.count, "error")} #{pluralize_without_count(@proyecto.errors.count, "prohibe", "prohiben")} almacenar este Proyecto:"
+    .alert.alert-warning
+      button.close data-dismiss="alert" type="button" 
+        i.ace-icon.fa.fa-times
+      strong = "#{pluralize(@proyecto.errors.count, "error")} #{pluralize_without_count(@proyecto.errors.count, "prohibe", "prohiben")} almacenar este Proyecto:"
       ul
         - @proyecto.errors.full_messages.each do |message|
           li = message
@@ -16,11 +18,6 @@
     = f.label :departamento_id, 'Departamento al cual pertenece:', {class: "col-sm-3 control-label"}
     = f.collection_select :departamento_id, Departamento.all, :id, :nombre, {:prompt => "Seleccione un Departamento..."}, {:id => 'departamento_id'}
     
-  / .form-group
-  /   p#empleado_field
-  /     = f.label :empleado_ids, 'Empleados que forman parte de este Proyecto: ', {class: "col-sm-3 control-label"}
-  /     = f.grouped_collection_select :empleado_ids, Departamento.all, :empleados, :nombre, :id, :nombre_y_apellido, {:prompt => 'Seleccione Empleados...', :selected => @proyecto.empleado_ids}, {:multiple => true, :id => 'empleado_ids'}
-      
   .clearfix.form-actions
     .col-md-offset-3.col-md-9
       = f.submit class: "btn btn-info"

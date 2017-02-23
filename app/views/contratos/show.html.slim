@@ -1,5 +1,16 @@
 p#notice = notice
 
+- if @contrato.errors.any?
+  #error_explanation
+    .alert.alert-warning
+      button.close data-dismiss="alert" type="button" 
+        i.ace-icon.fa.fa-times
+      strong = "#{pluralize(@contrato.errors.count, "error")} #{pluralize_without_count(@contrato.errors.count, "prohibe", "prohiben")} almacenar este Contrato:"
+
+      ul
+        - @contrato.errors.full_messages.each do |message|
+          li = message
+          
 .widget-box
   .widget-header 
     h4.widget-title Datos del Contrato

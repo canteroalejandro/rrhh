@@ -1,10 +1,14 @@
 = form_for @contrato, :html => {:class => "form-horizontal"} do |f|
   - if @contrato.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@contrato_empleado.errors.count, "error")} #{pluralize_without_count(@contrato.errors.count, "prohibe", "prohiben")} almacenar este Contrato:"
-      ul
-        - @contrato.errors.full_messages.each do |message|
-          li = message
+      .alert.alert-warning
+        button.close data-dismiss="alert" type="button" 
+          i.ace-icon.fa.fa-times
+        strong = "#{pluralize(@contrato.errors.count, "error")} #{pluralize_without_count(@contrato.errors.count, "prohibe", "prohiben")} almacenar este Contrato:"
+
+        ul
+          - @contrato.errors.full_messages.each do |message|
+            li = message
 
   .form-group
     = f.label :codigo, 'Código: ', {class: "col-sm-3 control-label"}

@@ -1,7 +1,9 @@
 = form_for @departamento, :html => {:class => "form-horizontal"} do |f|
   - if @departamento.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@departamento.errors.count, "error")} #{pluralize_without_count(@departamento.errors.count, "prohibe", "prohiben")} almacenar este Departamento:"
+    .alert.alert-warning
+      button.close data-dismiss="alert" type="button" 
+        i.ace-icon.fa.fa-times
+      strong = "#{pluralize(@departamento.errors.count, "error")} #{pluralize_without_count(@departamento.errors.count, "prohibe", "prohiben")} almacenar este Departamento:"
       ul
         - @departamento.errors.full_messages.each do |message|
           li = message

@@ -7,14 +7,16 @@
         a.btn.btn-xs.btn-success href=new_usuario_path
           | Nuevo
 
-table class="table table-striped table-bordered table-hover"
+table#usuarios-table class="table table-striped table-bordered table-hover"
   thead
     tr
       th Empleado
       th Nombre de Usuario
       / th Password
       th Rol
-      th colspan="3" Acciones
+      th Acciones
+      th
+      th
 
   tbody
     - @usuarios.each do |usuario|

@@ -21,16 +21,17 @@ table#proyectos-table class="table table-striped table-bordered table-hover"
 
   tbody
     - @proyectos.each do |proyecto|
-      tr
-        td = proyecto.codigo
-        td = proyecto.nombre
-        / td
-        /   ul
-        /     - proyecto.empleado_proyectos.each do |ep|
-        /         li = ep.empleado.nombre_y_apellido
-        
-        td = proyecto.departamento.nombre
+      - if can? :index, proyecto
+        tr
+          td = proyecto.codigo
+          td = proyecto.nombre
+          / td
+          /   ul
+          /     - proyecto.empleado_proyectos.each do |ep|
+          /         li = ep.empleado.nombre_y_apellido
+          
+          td = proyecto.departamento.nombre
 
-        td = link_to 'Mostrar', proyecto
-        td = link_to 'Editar', edit_proyecto_path(proyecto)
-        td = link_to 'Eliminar', proyecto, data: {:confirm => 'Are you sure?'}, :method => :delete
+          td = link_to 'Mostrar', proyecto
+          td = link_to 'Editar', edit_proyecto_path(proyecto)
+          td = link_to 'Eliminar', proyecto, data: {:confirm => 'Are you sure?'}, :method => :delete

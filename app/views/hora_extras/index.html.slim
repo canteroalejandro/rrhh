@@ -5,9 +5,9 @@
       i.ace-icon.fa.fa-angle-double-right
       small
         a.btn.btn-xs.btn-success href=new_hora_extra_path
-          | Nueva Hora Extra
+          | Nuevo
 
-table class="table table-striped table-bordered table-hover"
+table#hora-extra-table class="table table-striped table-bordered table-hover"
   thead
     tr
       th Codigo
@@ -16,7 +16,9 @@ table class="table table-striped table-bordered table-hover"
       th Hora de Inicio
       th Hora de Finalización
       th Porcentaje del Salario
-      th colspan="3" Acciones
+      th Acciones
+      th
+      th
 
   tbody
     - @hora_extras.each do |hora_extra|

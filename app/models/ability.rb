@@ -9,8 +9,11 @@ class Ability < ActiveRecord::Base
       can :read, :all
       can :manage, :all
     elsif user.rol? :Supervisor
-      can :read, [Categoria, Departamento, Empleado, Asistencia]
+      can :read, [Categoria, Empleado, Asistencia]
       can :manage, [CheckIn, CheckOut] 	
+      can :manage, Proyecto, :departamento_id => user.empleado.departamento_id 
+      can [:read, :ver_en_lista], Departamento, :id => user.empleado.departamento_id
+
     elsif user.rol? :Empleado
       can :manage, [CheckIn, CheckOut]
       can :read, [Asistencia]	

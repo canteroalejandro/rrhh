@@ -40,28 +40,28 @@
                     -@departamento.empleados.each do |d|
                       - if @departamento.supervisor != d
                         li.item-blue = d.nombre_y_apellido
-br
-.row
-  .col-sm-2
-  .col-sm-6
-    .widget-box.widget-color-dark
-      .widget-header 
-        h5.widget-title.bigger.lighter Proyectos asociados a este Departamento
-      .widget-body
-        ul.item-list
-          - @departamento.proyectos.each do |proyecto|
-            li.item-orange
-              a href=(proyecto_path(proyecto)) 
-                | #{proyecto.codigo} - #{proyecto.nombre} [ver mas >>>]
+
+- if can? :read, Proyecto
+  br
+  .row
+    .col-sm-2
+    .col-sm-6
+      .widget-box.widget-color-dark
+        .widget-header 
+          h5.widget-title.bigger.lighter Proyectos asociados a este Departamento
+        .widget-body
+          ul.item-list
+            - @departamento.proyectos.each do |proyecto|
+                li.item-orange
+                  a href=(proyecto_path(proyecto)) 
+                    | #{proyecto.codigo} - #{proyecto.nombre} [ver mas >>>]
 
 .clearfix.form-actions
   .col-md-offset-3.col-md-9
     a.btn href=(departamentos_path) 
       i.ace-icon.fa.fa-chevron-left.bigger-110
       | Volver
-    '|  
-    = link_to 'Editar', edit_departamento_path(@departamento), class: "btn btn-info"
-
-
-/ = 
-/ = link_to 'Volver', departamentos_path
+    -if can? :update, Proyecto
+      '|  
+      a.btn.btn-info href=(edit_departamento_path(@departamento)) 
+        | Editar

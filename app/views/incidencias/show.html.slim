@@ -1,42 +1,5 @@
 p#notice = notice
 
-/ p
-/   strong Codigo:
-/   = @incidencia.codigo
-/ p
-/   strong Nombre:
-/   = @incidencia.nombre
-/ p
-/   strong Nroduracion:
-/   = @incidencia.nroDuracion
-/ p
-/   strong Tiempoduracion:
-/   = @incidencia.tiempoDuracion
-/ p
-/   strong Tienecondiciones:
-/   = @incidencia.tieneCondiciones
-/ p
-/   strong Fechainiciohabilitacion:
-/   = @incidencia.fechaInicioHabilitacion
-/ p
-/   strong Fechafinhabilitacion:
-/   = @incidencia.fechaFinHabilitacion
-/ p
-/   strong Nroantiguedadmayor:
-/   = @incidencia.nroAntiguedadMayor
-/ p
-/   strong Tiempoantiguedadmayor:
-/   = @incidencia.tiempoAntiguedadMayor
-/ p
-/   strong Nroantiguedadmenor:
-/   = @incidencia.nroAntiguedadMenor
-/ p
-/   strong Tiempoantiguedadmenor:
-/   = @incidencia.tiempoAntiguedadMenor
-/ p
-/   strong Vecespermitidasporaño:
-/   = @incidencia.vecesPermitidasPorAnio
-
 .widget-box
   .widget-header 
     h4.widget-title Datos de la Incidencia
@@ -68,7 +31,7 @@ p#notice = notice
             -if @incidencia.tienePeriodoHabilitacion == true
               tr
                 td#titulo Periodo de Habilitación
-                td = "#{@incidencia.fechaInicioHabilitacion} #{@incidencia.fechaFinHabilitacion}"
+                td = "#{ldate @incidencia.fechaInicioHabilitacion} #{ldate @incidencia.fechaFinHabilitacion}"
             tr
             td#titulo Tiene restricciones de antigüedad
             -if @incidencia.tieneRestriccionAntiguedad == true

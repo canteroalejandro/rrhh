@@ -6,9 +6,9 @@
       -if can? :create, @empleado
         small
           a.btn.btn-xs.btn-success href=new_empleado_path
-            | Nuevo Empleado
+            | Nuevo
 
-table class="table table-striped table-bordered table-hover"
+table#empleados-table class="table table-striped table-bordered table-hover"
   thead
     tr
       th Código
@@ -16,7 +16,9 @@ table class="table table-striped table-bordered table-hover"
       th Nombre y Apellido
       th Antiguedad
       th Categoría
-      th colspan="3" Acciones
+      th Acciones
+      th
+      th
 
   tbody
     - @empleados.each do |empleado|
@@ -35,4 +37,3 @@ table class="table table-striped table-bordered table-hover"
           td = link_to 'Eliminar', empleado, data: {:confirm => '¿Está Seguro que desea Eliminar al Empleado?'}, :method => :delete
 
 br
-

@@ -5,14 +5,16 @@
       i.ace-icon.fa.fa-angle-double-right
       small
         a.btn.btn-xs.btn-success href=new_feriado_path
-          | Nuevo Feriado
+          | Nuevo
 
-table class="table table-striped table-bordered table-hover"
+table#feriados-table class="table table-striped table-bordered table-hover"
   thead
     tr
       th Descripcion
       th Fecha
-      th colspan="3" Acciones
+      th Acciones
+      th
+      th
   tbody
     - @feriados.each do |feriado|
       tr

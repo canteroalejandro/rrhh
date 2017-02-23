@@ -1,11 +1,13 @@
 = form_for @feriado, :html => {:class => "form-horizontal"} do |f|
   - if @feriado.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@feriado.errors.count, "error")} #{pluralize_without_count(@feriado.errors.count, "prohibe", "prohiben")} almacenar este Feriado:"
+    .alert.alert-warning
+      button.close data-dismiss="alert" type="button" 
+        i.ace-icon.fa.fa-times
+      strong = "#{pluralize(@feriado.errors.count, "error")} #{pluralize_without_count(@feriado.errors.count, "prohibe", "prohiben")} almacenar este Feriado:"
       ul
         - @feriado.errors.full_messages.each do |message|
           li = message
-
+          
   .form-group
     = f.label :fecha, {class: "col-sm-3 control-label"}
     = f.date_select :fecha

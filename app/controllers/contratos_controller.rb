@@ -54,10 +54,15 @@ class ContratosController < ApplicationController
   # DELETE /contratos/1
   # DELETE /contratos/1.json
   def destroy
-    @contrato.destroy
     respond_to do |format|
-      format.html { redirect_to contratos_url, notice: 'Contrato was successfully destroyed.' }
-      format.json { head :no_content }
+      if @contrato.destroy
+        # format.html { redirect_to departamentos_url, notice: 'Departamento fue eliminado exitosamente.' }
+        format.html { redirect_to departamentos_url, notice: 'Contrato fue eliminado exitosamente.' }
+        format.json { head :no_content }
+      else
+        format.html { render :show }
+        format.json { head :no_content }
+      end
     end
   end
 

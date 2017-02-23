@@ -28,7 +28,7 @@ crearDataTable = (selector)->
     #   { type: 'date-eu', targets: 3 }
     # ]
     "language":
-      url: "https://cdn.datatables.net/plug-ins/1.10.13/i18n/Spanish.json"
+      url: "/assets/dataTables.Spanish.txt"
 
 $(document).ready ->
   crearDataTable("#proyectos-table")
