@@ -1,8 +1,12 @@
 class Rol < ActiveRecord::Base
 
-  def self.crearAsistencia(empleado)
+  def self.forAsistencias
+    Usuario.all.each {|u| self.crearAsistencia(u.empleado.id, u.id) }
+  end
 
-    ("2016-01-01 08:00 -03:00".to_datetime..Time.now.to_datetime).each do |fecha|
+  def self.crearAsistencia(empleado_id, usuario_id)
+
+    ("2016-12-01 08:00 -03:00".to_datetime..Time.now.to_datetime).each do |fecha|
         # Crear el CheckIn
 
         if fecha.wday == 0 and rand(20) > 15
@@ -11,8 +15,8 @@ class Rol < ActiveRecord::Base
 
           @check_in = CheckIn.new({
             horaOutput: rand(20) > 15 ? fecha.change({min: rand(60) }) : fecha, 
-            usuario_id: 1, 
-            empleado_id: empleado
+            usuario_id: usuario_id, 
+            empleado_id: empleado_id
           })
 
           if @check_in.save
@@ -30,13 +34,13 @@ class Rol < ActiveRecord::Base
             @check_in.errors.full_messages.each do |message|
               puts message
             end
-            break
+            # break
           end
 
           @check_out = CheckOut.new({
             horaOutput: rand(20) > 15 ? fecha.change({hour: 12, min: rand(60) }) : fecha.change({hour: 12}), 
-            usuario_id: 1, 
-            empleado_id: empleado
+            usuario_id: usuario_id, 
+            empleado_id: empleado_id
           })
 
           # @check_out = CheckOut.new({horaOutput: fecha, usuario_id: 1, empleado_id: 1})
@@ -50,7 +54,7 @@ class Rol < ActiveRecord::Base
             @check_out.errors.full_messages.each do |message|
               puts message
             end
-            break
+            # break
           end
         end
     end

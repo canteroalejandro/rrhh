@@ -34,7 +34,7 @@
     = @incidencia_empleado.get_cantidad_veces_restantes(@incidencia_empleado.incidencia_id) unless @incidencia_empleado.new_record?
   .form-group
     = f.label :inicio, {class: "col-sm-3 control-label"}
-    = f.datetime_select :inicio
+    = f.datetime_select :inicio, default: Time.now.change(hour: 0, minutes: 0)
   /.form-group
   /  = f.hidden_field :fin, :value => @incidencia_empleado.set_finalizacion(@incidencia_empleado.incidencia_id) 
   .clearfix.form-actions

@@ -31,7 +31,7 @@ class IncidenciaEmpleadosController < ApplicationController
 
     respond_to do |format|
       if @incidencia_empleado.save
-        format.html { redirect_to [@incidencia_empleado.empleado, @incidencia_empleado], notice: 'Incidencia Empleado was successfully created.' }
+        format.html { redirect_to [@incidencia_empleado.empleado, @incidencia_empleado], notice: 'La Incidencia fue Asignada correctamente.' }
         format.json { render :show, status: :created, location: @incidencia_empleado }
       else
         format.html { render :new }

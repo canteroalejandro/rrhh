@@ -189,6 +189,10 @@ class Empleado < ActiveRecord::Base
   end
 
   def tiene_contrato_vigente(fecha)
-    (vinculo_actual.fin >= fecha) or (vinculo_actual.contrato.indeterminado) ? true : false
+    if not( vinculo_actual.kind_of? NilClass)
+      (vinculo_actual.fin >= fecha) or (vinculo_actual.contrato.indeterminado) ? true : false
+    else
+      false
+    end
   end
 end
